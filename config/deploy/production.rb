@@ -17,11 +17,6 @@ role :db,  %w{72.167.38.159}
 
 server '72.167.38.159', user: 'deploy', roles: %w{web app}
 
-
-  
-  
-
-
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
