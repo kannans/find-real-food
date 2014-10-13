@@ -1,0 +1,34 @@
+$('.products_part').html('<%= escape_javascript(render("products")) %>');
+$('.products').slimScroll({
+          height:496,
+          wheelStep: 2,
+          alwaysVisible: true,
+          railVisible: true
+      }).bind('slimscroll', function(e, pos){
+        console.log("Reached " + pos);
+        });
+$('.expand a').click(function(){
+	$('.expand a').toggleClass('close');
+	$('.prd_search .home_right').toggleClass('goback');
+	$('.prd_search .home_left').toggleClass('fullwidth');
+	$('.prd_search .home_right').toggleClass('nullwidth');
+	$('.map_button.hide_for_mobile').toggleClass('expanded')
+})
+
+$('.etabs .tab a').click(function(evt){
+          evt.preventDefault();
+          $('.etabs .tab a').removeClass('active');
+          $(this).addClass('active');
+          var divId=$(this).attr('href');
+          $('.tab_div').fadeOut().removeClass('active');
+          $(divId).fadeIn().addClass('active');
+          })
+
+
+  initialize();
+  codeAddress('miami, florida, united states');
+  codeAddress('Ohio, united states');
+  codeAddress('new york, united states');
+  
+
+

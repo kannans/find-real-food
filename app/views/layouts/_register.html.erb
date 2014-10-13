@@ -1,0 +1,104 @@
+ 
+    <div class="light_popup" id="register">
+    <div class="light_pop_container">
+        <span class="pop_close"></span>
+        <div class="light_pop_body">
+            <div class="register_popup">
+                <h1 class="login_title"><span>ALREADY</span> ACCOUNT?</h1>
+                <a href="javascript:;" class="fblogin_link"><span class="login_fb fl"></span><span class="fb_txt fl">Sign In with Facebook</span></a>
+                <p class="fr"><span class="required">*</span> Indicates required field</p>
+                <div class="clear"></div>
+                <p class="center_align or rgt">or</p>
+                <p class="center_align crt_txt">Create an Account:</p>
+                <div class="popup_form">
+                   
+                    <%= form_for(:user, url: "/users/create", :html =>{:id => "user_signup_form", :autocomplete=>"off"}) do |f| %>
+                        <div class="field">
+                            <label>First Name:<span class="required">*</span></label>
+                            <div class="form_control">
+                                <%= f.text_field :fname %>
+
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Last Name:<span class="required">*</span></label>
+                            <div class="form_control">
+                               <%= f.text_field :name %>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Email Address:<span class="required">*</span></label>
+                            <div class="form_control">
+                                <%= f.text_field :email %>
+                            </div>
+                        </div>
+                       
+                        <div class="field">
+                            <label>Password:<span class="required">*</span></label>
+                            <div class="form_control">
+                                 <%= f.password_field :password %>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Confirm Password:<span class="required">*</span></label>
+                            <div class="form_control">
+                                <%= f.password_field :password_confirmation %>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>City:</label>
+                            <div class="form_control">
+                              <%= f.text_field :city %>
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <label>State:</label>
+                            <div class="form_control">
+                               <div   class="cus_select_rslt">
+                               <span></span>
+                                <select class="custom_select" name="user[state]" >
+                                    <option value="Select Category" selected>Select State</option>
+                                    <% get_state_list.each do |state| %> 
+                                    <option value="<%= state.name %>"><%= state.name %></option>
+                                    <% end %>
+                                </select>
+                               </div> 
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Profile Picture:</label>
+                            <div class="form_control">
+                                <input type="file" name="user[avatar_data]" class="photo">
+                                <ul class="file_dup">
+                                    <li class="file_result">No file selected.</li>
+                                    <li class="file_btn"><a href="javascript:;">Browse</a></li>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Cover Photo:</label>
+                            <div class="form_control">
+                                <input type="file" name="user[cover_photo_data]" class="photo">
+                                <ul class="file_dup">
+                                    <li class="file_result">No file selected.</li>
+                                    <li class="file_btn"><a href="javascript:;">Browse</a></li>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                         
+                        <div class="field">
+                            <label class="empty">&nbsp;</label>
+                            <div class="form_control">
+                                <input type="submit" value="sign up"/>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 

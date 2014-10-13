@@ -1,0 +1,13 @@
+<%  unless @comment.blank? %>
+   $(".alert_text").html("Your comment and rating has been added successfully");
+   $(".leave_cmt").val('');
+ <% else %>
+   $(".alert_text").html("dsfdf");
+   $(".leave_cmt").val('');
+<% end %>
+$(".alert_div").fadeIn();
+$(".close").click(function(){
+    $(".alert_div").fadeOut();
+});
+
+       

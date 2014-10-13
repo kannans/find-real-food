@@ -1,0 +1,50 @@
+<section>
+      <div class="main_container">
+            <div class="cms_section">
+              <div class="container">
+                  <div class="feedback_container">
+                      <div class="fdbc_body">
+                          <div class="login_popup">
+                          <% if flash[:notice] %>  <p class="cmmn_error"><%= flash[:notice] %></p> <% end %>
+                                <h1 class="login_title"><span>ALREADY</span> ACCOUNT?</h1>
+                                <a class="fblogin_link" href="javascript:;"><span class="login_fb fl"></span><span class="fb_txt fl">Sign In with Facebook</span></a>
+                                <p class="center_align or">or</p>
+                                <p class="center_align sign_txt">Sign in using your email address:</p>
+                                <div class="popup_form">
+                                     <%= form_tag({:controller=>'sessions', :action => 'create'}, {:id => 'login_frm_full'}) %>
+                                        <p class="inp_filed">
+                                            <span class="email_link">
+                                                <span class="login_email fl"></span>
+                                                    <span class="login_txt fl">
+                                                      <input type="text" autocomplete="off" id="email" name="email" placeholder="Email Address"/>
+                                                    </span>
+                                                </span>
+                                        </p>
+                                        <p class="inp_filed">
+                                            <span class="email_link"><span class="login_pwd fl"></span>
+                                                <span class="login_txt fl">
+                                                   <input type="password" autocomplete="off" id="password" name="password" placeholder="Password"/>
+                                                </span>
+                                            </span>
+                                        </p>
+                                        <div class="field signup_field">
+                                            <div class="form_control login_control">
+                                                <input type="submit" name="sbmt_login" id="sbmt_login" value="Submit">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <p class="center_align forgot_txt"><a href="javascript:;">Forgot Your Password?</a></p>
+                                <div class="pop_signup_part">
+                                    <h1 class="login_title creat_acc"><span>Need to create an</span> account?</h1>
+                                    <p class="signup_txt"><a class="light_pop_trigger signup_link" href="#register">Sign up</a></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>

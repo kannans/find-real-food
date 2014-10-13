@@ -1,0 +1,6 @@
+<%  unless @qualityratings.blank? %>
+	$('.quality_result').append("<%=escape_javascript(render :partial => @qualityratings)%>");
+	$('.scroll_down').attr('data-page','<%= @qualityratings.next_page%>')
+	<% else %>
+	$('#infinite-scroll').detach();
+	<% end %>

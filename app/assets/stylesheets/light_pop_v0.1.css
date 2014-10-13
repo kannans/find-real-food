@@ -1,0 +1,87 @@
+.light_popup
+{
+		background:#ffffff;
+		border-radius:10px;
+		-webkit-border-radius:10px;
+		z-index:999;
+		/*position:fixed;*/
+		position:absolute;
+		top:10%;
+		/*bottom:0;*/
+		bottom:auto;
+		left:0;
+		right:0;
+		margin:auto;
+		min-height:200px;
+		/*max-height:75%;*/
+		width:85%;
+		max-width:800px;
+		padding:30px 0px;
+		display:none;
+}
+.light_pop_overlay
+{
+	position:fixed;
+	width:100%;
+	height:100%;
+	background:#000000;
+  	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  	filter: alpha(opacity=90);
+  	-moz-opacity: 0.9;
+  	-khtml-opacity: 0.9;
+  	opacity: 0.9;
+	z-index:997;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	display:none;
+}
+.light_pop_overlay:hover
+{
+	cursor:pointer;
+}
+
+.light_pop_container
+{
+	position:relative;
+}
+.light_pop_body
+{
+	padding:0px 30px;
+	overflow:auto;
+}
+.pop_close
+{
+    background:url(/assets/close_btn.png) no-repeat center center;
+    content: "";
+    height: 46px;
+    position: absolute;
+    right: -22px;
+    top: -50px;
+    width: 46px;
+	transition:all 0.3s ease 0s;
+	-webkit-transition:all 0.3s ease 0s;
+	text-indent:-999px;
+}
+.pop_close:hover
+{
+	cursor:pointer;
+}
+@media screen and (max-width:768px)
+{
+	.pop_close
+	{
+		background:url(/assets/close_btn_small.png) no-repeat center center;
+		content: "";
+		height: 46px;
+		position: absolute;
+		right: -22px;
+		top: -50px;
+		width: 46px;
+	}
+	.light_pop_body
+	{
+		padding:15px 15px;
+	}
+}

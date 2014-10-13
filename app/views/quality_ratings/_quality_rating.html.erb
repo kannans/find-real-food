@@ -1,0 +1,14 @@
+ <div class="cms_white_bg mrg_btn_small">
+                      <h3><%= quality_rating.titleonly %></h3>
+                        <% qualities = get_quality(quality_rating.category_id) %>
+                        <% qualities.each do |quality| %>
+                        <div class="colmn <%= quality.name.downcase %>">
+                          <div class="bdy">
+                              <span class="<%= quality.name.downcase %>"><%= quality.name %></span>
+                                <p><%= quality.value %></p>
+                            </div>
+                        </div>
+                        <% end %>
+                          
+                        <div class="clear"></div>
+                    </div>

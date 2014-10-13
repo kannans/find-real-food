@@ -1,0 +1,8 @@
+<%  unless @categories.blank? %>
+	$('.category_result ul').append("<%=escape_javascript(render :partial => @categories)%>");
+	$('.scroll_down').attr('data-page','<%= @categories.next_page%>')
+	<% else %>
+	$('#infinite-scroll').detach();
+	<% end %>
+
+	   

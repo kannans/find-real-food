@@ -1,0 +1,88 @@
+html,
+body {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0px;
+  background-color: #f2f2f2;
+}
+.header {
+  background-color: #e34346;
+  height: 44px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 44px;
+  border-bottom: solid #b13232 4px;
+}
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+.button {
+  position: relative;
+  bottom: 20px;
+  border: none;
+  border-radius: 2px;
+  background-color: #636363;
+  width: 275px;
+  height: 44px;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  box-shadow: 0px 0px 5px 20px #343434;
+  box-shadow: inset 0px -2px 0px 0px #343434;
+}
+.button:active {
+  background-color: #343434;
+}
+.reset-form {
+  margin: 35px auto 0px auto;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  label{
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    color: #636363;
+  }
+}
+.field {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  border-radius: 2px;
+  background-color: #ffffff;
+  width: 255px;
+  height: 44px;
+  color: #838383;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  box-shadow: inset 0px -2px 0px 0px #cccccc;
+}
+.center {
+  width: 100%;
+  text-align: center;
+}
+.error {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  color: red;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  font-size: .8em;
+  border-bottom: solid red 1px;
+}
+li{ list-style-type: none; }

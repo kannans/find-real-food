@@ -1,0 +1,43 @@
+- unless @brand.updated_at.nil?
+  %p This brand was lasted edit on: #{@brand.updated_at.localtime.strftime('%m/%d/%Y  %l:%M %p')}
+
+= semantic_form_for [:admin, @brand] do |f|
+  = f.semantic_errors *f.object.errors.keys
+
+  = f.inputs "Brand" do
+    = f.input :name
+    = f.input :phone
+    = f.input :website
+    = f.input :store_locator_url
+    = f.input :order_by_online
+    = f.input :order_by_phone
+    = f.input :store_farmers_market
+    = f.input :third_party_available
+    = f.input :picture, :hint => "Image should be 600x250"
+    = f.input :approved
+
+  - unless @brand.picture.blank?
+    = f.inputs "Current Image" do
+      = image_tag @brand.picture(:original)
+
+  = f.inputs "Locations" do
+    = f.input :parent_ids, :label => "Parent Locations", :as => :select, :collection => options_from_collection_for_select(Location.parent_locations, :id, :name, f.object.selected_parents), :multiple => true, :input_html => { :style => "height: 150px; width: 350px;" }
+    = f.input :location_ids, :label => "Locations", :as => :select, :collection => Location.child_locations, :multiple => true, :input_html => { :style => "height: 250px; width: 350px;" }
+
+  = f.inputs "Create a New Location" do
+    = f.semantic_fields_for :location, :as => :location_attributes do |ff|
+      = ff.input :name
+      = ff.input :address
+      = ff.input :city
+      = ff.input :state
+      = ff.input :zip
+      = ff.input :hours
+      = ff.input :phone
+      = ff.input :website
+      = ff.input :picture, :as => :file
+      = ff.input :location_type, :as => :select, :collection => Location::TYPES
+
+      = ff.input :parent, :collection => Location.parent_locations
+
+  = f.actions
+

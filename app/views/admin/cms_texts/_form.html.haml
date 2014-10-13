@@ -1,0 +1,14 @@
+= semantic_form_for [:admin, @category] do |f|
+  = f.semantic_errors *f.object.errors.keys
+
+  = f.inputs "Category" do
+    = f.input :title
+    = f.input :sort
+    = f.input :picture, :as => :file
+
+  - unless @category.picture.blank?
+    = f.inputs "Current Image" do
+      = image_tag @category.picture(:original)
+
+  = f.actions
+

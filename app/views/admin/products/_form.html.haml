@@ -1,0 +1,22 @@
+= semantic_form_for [:admin, @product] do |f|
+  = f.semantic_errors *f.object.errors.keys
+
+  = f.inputs "Product" do
+    = f.input :name
+    = f.input :category
+    = f.input :brand
+    = f.input :quality_rating_id, :as => :select, :collection => Hash[QualityRating.all.map{|b| [b.title,b.id]}]
+    = f.input :approved
+    = f.input :available
+    = f.input :picture
+
+  - unless @product.picture.blank?
+    = f.inputs "Current Image" do
+      = image_tag @product.picture(:original)
+
+  = f.inputs "Locations" do
+    = f.input :parent_ids, :label => "Parent Locations", :as => :select, :collection => options_from_collection_for_select(Location.parent_locations, :id, :name, f.object.selected_parents), :multiple => true, :input_html => { :style => "height: 150px; width: 350px;" }
+    = f.input :location_ids, :label => "Locations", :as => :select, :collection => Location.child_locations, :multiple => true, :input_html => { :style => "height: 250px; width: 350px;" }
+
+  = f.actions
+

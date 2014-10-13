@@ -1,0 +1,22 @@
+<%= render '/layouts/googlemap' %>
+<section>
+        <div class="main_container">
+            <div class="inner_banner">
+                
+                <%= image_tag("products-search.jpg", :alt => "Product Search") %>
+
+                <div class="caption_part like_home">
+                     <div class="container">
+                          <h1>Milk</h1>
+                          <p>Sorem ipsum dolor sit amet, consectetuer adipiscing elit nibh euismod tincidunt ut laoreet dolore magna.</p>
+                     </div>
+                </div>
+            </div>
+            
+            <%= render '/searches/filter' %>
+
+            <div class="products_part"><%= render '/searches/products' %></div>
+
+            <div class="clear"></div>
+        </div>
+    </section>

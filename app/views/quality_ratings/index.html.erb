@@ -1,0 +1,100 @@
+<section>
+    	<div class="main_container">
+            <div class="inner_banner">
+                <%= image_tag('how_to_add_products.jpg', :alt => "How to add products") %>
+
+                <div class="caption_part">
+                     <div class="container">
+                          <h1>How Foods Are Chosen</h1>
+                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                          <div class="clear"></div>
+                     </div>
+                </div>
+            </div>
+            <div class="cms_section">
+            	<div class="container">
+                	<div class="cms_white_bg">
+                     	<h4>Quality - How Foods are Chosen for the Guide</h4>
+                        <p>The Weston A. Price Foundation (WAPF) is a nutrition education non-profit started in 1999, dedicated to research, education, and activism on health promoting, traditionally prepared, nutrient-dense, whole foods in the human diet. Their shopping guide has been released annually since 2004, and is the ONLY guide of its kind, which truly rates foods on their nutrient density and lack of additives and processing.</p>
+                        <h4>What determines the quality of a product?</h4>
+                        <p>Food quality is assessed based on proven nutrition principles including plants and animals raised in healthy ways on mineral-rich soil; and grains, legumes, fruits and vegetables that are packaged in ways that preserve and enhance their naturally occurring nutrients. Key ranking factors include: nutrient density, organic, bio-dynamic, seasonal, raw, fermented, grass-fed, \rpastured, humanely raised, wild, and sprouted. Foods must be in their whole form, have no additives, artificial flavors, MSG, or trans-fats. \r\rEach of the 30 food and beverage categories have their own unique set of criteria to determine if the product should be ranked as BEST , GOOD , or AVOID.</p>      
+                        <h4>Who chooses these products?</h4>
+                        <p>Since 2004, the non-profit Weston A. Price Foundation s team of food experts has scrutinized thousands of products and brands from small local farms to big ones who retail their products in grocery stores.</p>
+                    </div>
+                    <h1 class="cms_title">How foods are chosen in each category</h1>
+                    
+                    <div class="quality_result">
+                    <%= render @qualityratings %>
+                </div>
+                     
+                    <div class="scroll_down" data-page="2">
+                        <p>Scroll down</p>
+                        <a href="javascript:void(0);" class="pageload">
+                            
+                             <%= image_tag("scroll_down.png", :alt => "Scroll Down") %>
+                        </a>
+                    </div> 
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+    <script type="text/javascript">
+$(document).ready(function(){
+    var next_page ='';
+    var allpages = new Array(); 
+    function lastAddedLiveFunc()
+    {
+        if($('.scroll_down').attr('data-page')){
+         next_page = $('.scroll_down').attr('data-page')+'a';
+         
+            if(key_exists(next_page, allpages)){
+                     
+            }else{
+                
+                allpages.push(next_page);
+           
+                $.get('/how-foods-are-choosen', { page: $('.scroll_down').attr('data-page')}, null, "script");
+          
+            }
+          
+        }
+         return false;
+    };
+    
+
+
+    function key_exists(key, search) {
+    if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+        return false;
+    }
+    for (var i = 0; i < search.length; i++) {
+        if (search[i] === key) {
+            return true;
+        }
+    }
+    return key in search;
+    }
+
+
+    $('.pageload').click(function(){
+    
+        lastAddedLiveFunc();
+    });
+
+
+    //lastAddedLiveFunc();
+    
+    $(window).scroll(function(){
+        
+        var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+        var  scrolltrigger = 0.95;
+        
+        if  ((wintop/(docheight-winheight)) > scrolltrigger) {
+         //console.log('scroll bottom');
+         lastAddedLiveFunc();
+
+        }
+    });
+});
+</script>

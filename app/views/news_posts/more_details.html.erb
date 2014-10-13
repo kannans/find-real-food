@@ -1,0 +1,56 @@
+<section>
+        <div class="main_container">
+            <div class="inner_banner">
+                 
+                <%= image_tag('how_to_add_products.jpg', :alt => "How to add products") %>
+                <div class="caption_part">
+                     <div class="container">
+                          <h1>Real Food News Blog</h1>
+                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                          <div class="clear"></div>
+                     </div>
+                </div>
+            </div>
+            <div class="cms_section">
+                <div class="container">
+                    <div class="left_panel fl">
+                        <div class="blog_detail">
+                            
+                            <% if @newspost.picture.present? %>
+                                           <%= image_tag (@newspost.picture(:small)) %>
+                                            <% else %>
+                                            <%= image_tag('raw_milk_detailed.png', :alt => "How to add products") %>
+                                            <% end %>
+
+                            <h2 class="news_title"><%= @newspost.title %></h2>
+                            
+                            <p class="news_detail_authr"><em><%= @newspost.created_at.strftime '%b %d, %Y' %> by <%= @newspost.author %></em></p>
+                            <%= @newspost.body %>
+                            <br />
+                            <!--<div class="share_part">
+                                <div class="share_red"><span>Share:</span> <a href="javascript:;" class="mail_share"></a><a href="javascript:;" class="facebook_share"></a></div>
+                                <div class="clear"></div>
+                            </div>
+                            -->
+                           
+                        </div>
+                    </div>
+                    <div class="right_panel fr">
+                         
+                        <h1>Recent Articles</h1>
+                        <ul class="recent">
+                          
+
+                          <% @newsposts.each do |news| %> 
+                          <li><a href="/news/<%= news.slug %>"><%= news.title %></a></li>
+                          <% end %>
+
+
+                        </ul>
+                    </div>  
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>

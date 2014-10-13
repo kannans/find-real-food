@@ -1,0 +1,306 @@
+ <section>
+        <div class="main_container">
+            <div class="product_detail_container">
+                <div class="container">
+                    <div class="product_detail_top">
+                        <div class="product_left fl">
+                            
+                            <div class="product_img">
+                                 
+                                     <% branddetails = get_brand_details(@product.brand_id) %>
+                                    <% if @product.picture.present? %>
+                                           <%= image_tag (@product.picture(:small)) %>
+                                            <% else %>
+                                            <%= image_tag('product_detail_no_imge.jpg', :alt => "How to add products") %>
+                                            <% end %>
+                                <div class="wapf_rating"><p>WAPF Rating <span class="wapf_rating_detail fr"><%= @product.quality %></span></p></div>
+                                <div class="detail_rating">
+                                    <div>
+                                        User’s Rating  
+                                        <% if total_rating(@product.id) %>
+                                        <span class="detail_rating_span fr">
+                                            <% $i = 0 
+                                                if @product.rating %>
+                                               <% while $i < @product.rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("rate_star_red_detail.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                end
+                                              %>
+
+                                            <span>(<%= total_rating(@product.id) %>)</span>
+                                        </span>
+
+                                        <% end %>
+                                        <div class="clear"></div>    
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <% user = get_user_details(@product.user_id) %>
+                            <% unless user.blank? %>
+                            <p class="sugg_by">This product was suggested by: <span class="athr"><%= user.name %></span> <span class="date">on <%= @product.created_at.strftime '%m %d, %Y'%></span></p>
+                            <% end %>
+                        </div>
+                        <% if branddetails %>
+                        <div class="product_right fr">
+                            
+                            <h1 class="product_title"><%= @product.name %></h1>
+                           
+                            <h3 class="brand_title"><a href="/brand/<%= branddetails.slug %>"><%= branddetails.name %></a></h3>
+                            <div class="prd_comp_logo fr">
+                                <a href="javascript:;"> 
+                                    <% if branddetails.picture.present? %>
+                                           <%= image_tag (branddetails.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag('category_no_img12.jpg', :alt => branddetails.name) %>
+                                            <% end %>
+
+                                </a>
+                            </div>
+                            <div class="contact_links">
+                                <% if branddetails.order_by_phone && branddetails.phone !='' %>
+                                <p class="ord_phone">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
+                                <% end %>
+                                <% if branddetails.order_by_online && branddetails.website!='' %>
+                                <p class="ord_online">Order Online <a href="javascript:;">(<%= branddetails.website %>)</a></p>
+                                <% end %>
+                                <% if branddetails.store_farmers_market && branddetails.store_locator_url!='' %>
+                                <p class="ord_store">Available in Stores <a href="javascript:;">(<%= branddetails.store_locator_url%>)</a></p>
+                                <% end %>
+                            </div>
+                            <div class="product_button_set">
+                                <span class='st_sharethis_custom' displayText='Share'>Share</span>
+                                <a href="javascript:;" class="flag_prd">flag product</a>
+                                <a href="javascript:;" class="add_location">add location</a>
+                                <a href="javascript:void(0);" class="add_fav">Add to My Favorites</a>
+                            </div>
+                        </div>
+                        <% end %>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="product_detail_bottom">
+                        <div class="prd_btm_left fl">
+                            <div class="prd_btm_lft_container">
+                                <div class="view_location_part">
+                                    <a href="javascript:;" class="view_lct_btn">View Locations</a>
+                                    <div class="view_location_part_container">
+                                        <img src="/assets/map.jpg" alt="map"/>
+                                    </div>
+                                </div>
+                                <div class="prd_btm_right_responsive">
+                            <h1>Similar Products Nearby</h1>
+                            <div class="products">
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/raw_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><span>(2)</span></p>
+                                                <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/almond_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Almond Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(1)</span></p>
+                                                <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/coconut_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Coconut Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(24)</span></p>
+                                                <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/dairy_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Dairy Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(2)</span></p>
+                                                <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                <div class="prd_dtl_review_part">
+                                    <h1>User Reviews</h1>
+                                    <div class="avg_rating">
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_gray_detail.png"></a>
+                                    </div>
+                                    <div class="leave_comment">
+                                        <textarea class="leave_cmt" placeholder="Share your thoughts on this product..."></textarea>
+                                        <span class="txt_arrow"></span>
+                                    </div>
+                                    <div class="comment_btn">
+                                        <a href="javascript:;">post</a>
+                                    </div>
+                                    <div class="user_comments">
+                                        
+                                        
+                                        
+                                        
+                                        <div class="comment">
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><img src="/assets/review_user_image1.png" alt="image"/></a>
+                                            </div>
+                                            <div class="comment_dtl">
+                                                <h3>Wanda Berksley <span>(12 min)</span></h3>
+                                                <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a></p>
+                                                <p>This is probably the best tasting brand, and works really well for cooking.</p>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><img src="/assets/review_user_image2.png" alt="image"/></a>
+                                            </div>
+                                            <div class="comment_dtl">
+                                                <h3>Payton Johnson <span>(4/2/14)</span></h3>
+                                                <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a></p>
+                                                <p>A little thick but overall I was very Pleased</p>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><img src="/assets/review_user_image3.png" alt="image"/></a>
+                                            </div>
+                                            <div class="comment_dtl">
+                                                <h3>Peter Bug  <span>(3/20/14)</span></h3>
+                                                <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a></p>
+                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                    <div class="see_all">
+                                        <a href="javascript:;">See All</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prd_btm_right fr">
+                            <h1>Similar Products Nearby</h1>
+                            <div class="products">
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/raw_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><span>(2)</span></p>
+                                                <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/almond_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Almond Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(1)</span></p>
+                                                <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/coconut_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Coconut Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(24)</span></p>
+                                                <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="javascript:;" class="media_img"><img src="/assets/dairy_milk.png" alt="Image"/></a>
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="javascript:;">Dairy Milk</a></p>
+                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
+                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(2)</span></p>
+                                                <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="alert_div"><span class="close">X</span>
+            <span class="alert_text">some text</span>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+$(document).ready(function(){
+    
+    
+    $('.add_fav').click(function(){
+
+        $.get('/products/addtofavorite', { product_id:<%= @product.id %> }, null, "script");
+        return false;
+
+
+     });
+
+    $('.comment_btn a').click(function(){
+        if($(".leave_cmt").val()!=''){
+        $.get('/products/addrating', { ratable_id:<%= @product.id %>,comment:$(".leave_cmt").val() }, null, "script");
+    }else{
+        $(".alert_text").html("Comment should not be empty");
+        $(".alert_div").fadeIn();
+    }
+        return false;
+
+
+     });
+    
+
+    
+});
+</script>

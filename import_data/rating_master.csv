@@ -1,0 +1,368 @@
+"id","user_id","ratable_id","ratable_type","rating","created_at","updated_at","comment"
+"75","155","21887","Product","5","2013-12-12 22:35:30","2013-12-12 22:35:30","Perfect, healthy grains that have multiplied beautifully!!"
+"76","155","19078","Product","5","2013-12-12 22:36:28","2013-12-12 22:36:28","Bubonic Tonic is the best!"
+"77","155","17988","Product","5","2013-12-12 22:37:56","2013-12-12 22:37:56",NULL
+"78","155","24718","Product","5","2013-12-12 22:40:07","2013-12-12 22:40:07",NULL
+"79","171","25266","Product","5","2013-12-13 03:11:31","2013-12-13 03:11:31","The absolute best (non-raw) milk I've found in a store.  Low-temp pasteurized."
+"80","171","25268","Product","5","2013-12-13 03:14:07","2013-12-13 03:14:07","The best yogurt by far.  Plain."
+"81","65","24718","Product","5","2013-12-13 06:32:52","2013-12-13 06:32:52","Love thus"
+"82","65","24719","Product","5","2013-12-13 06:33:45","2013-12-13 06:33:45",NULL
+"83","65","24736","Product","5","2013-12-13 06:33:53","2013-12-13 06:33:53",NULL
+"84","65","27776","Product","5","2013-12-13 06:37:13","2013-12-13 06:37:13",NULL
+"85","65","27787","Product","5","2013-12-13 06:37:26","2013-12-13 06:37:26",NULL
+"86","65","27781","Product","5","2013-12-13 06:37:41","2013-12-13 06:37:41",NULL
+"87","65","27772","Product","5","2013-12-13 06:37:52","2013-12-13 06:37:52",NULL
+"88","65","27766","Product","5","2013-12-13 06:38:45","2013-12-13 06:38:45",NULL
+"89","65","27773","Product","5","2013-12-13 06:39:07","2013-12-13 06:39:07",NULL
+"90","65","27753","Product","5","2013-12-13 06:39:25","2013-12-13 06:39:25",NULL
+"91","172","23840","Product","5","2013-12-13 07:11:55","2013-12-13 07:11:55",NULL
+"92","172","23847","Product","5","2013-12-13 07:13:22","2013-12-13 07:13:22",NULL
+"93","172","23849","Product","5","2013-12-13 07:13:27","2013-12-13 07:13:27",NULL
+"94","172","23842","Product","5","2013-12-13 07:13:34","2013-12-13 07:13:34",NULL
+"95","172","23844","Product","5","2013-12-13 07:14:00","2013-12-13 07:14:00",NULL
+"96","172","23846","Product","5","2013-12-13 07:14:07","2013-12-13 07:14:07",NULL
+"97","172","23845","Product","5","2013-12-13 07:14:36","2013-12-13 07:14:36",NULL
+"98","26","21176","Product","5","2013-12-13 20:03:30","2013-12-13 20:03:30","Even though it's pasteurized it's worth using - especially for cooking!"
+"99","52","24943","Product","5","2013-12-15 03:07:31","2013-12-15 03:07:31",NULL
+"100","52","27466","Product","5","2013-12-15 03:09:07","2013-12-15 03:09:07",NULL
+"101","52","27434","Product","5","2013-12-15 03:09:24","2013-12-15 03:09:24",NULL
+"102","52","27449","Product","5","2013-12-15 03:10:29","2013-12-15 03:10:29",NULL
+"103","52","27422","Product","5","2013-12-15 03:11:00","2013-12-15 03:11:00",NULL
+"104","52","27421","Product","5","2013-12-15 03:11:14","2013-12-15 03:11:14",NULL
+"105","52","17992","Product","5","2013-12-15 03:17:10","2013-12-15 03:17:10",NULL
+"106","52","17988","Product","5","2013-12-15 03:17:27","2013-12-15 03:17:27",NULL
+"107","52","18572","Product","5","2013-12-15 03:19:15","2013-12-15 03:19:15",NULL
+"108","52","18571","Product","5","2013-12-15 03:19:39","2013-12-15 03:19:39",NULL
+"109","52","18569","Product","5","2013-12-15 03:19:59","2013-12-15 03:19:59",NULL
+"110","52","18570","Product","5","2013-12-15 03:22:24","2013-12-15 03:22:24",NULL
+"111","52","20412","Product","5","2013-12-15 03:23:33","2013-12-15 03:23:33",NULL
+"112","52","21176","Product","5","2013-12-15 03:39:04","2013-12-15 03:39:04",NULL
+"113","194","20434","Product","5","2013-12-15 22:07:27","2013-12-15 22:07:27","My favorite"
+"114","194","18093","Product","5","2013-12-15 22:08:24","2013-12-15 22:08:24","No sulfites and organic - only $8 at publix"
+"115","270","21452","Product","5","2013-12-16 00:59:53","2013-12-16 00:59:53",NULL
+"116","285","16789","Product","5","2013-12-16 15:22:00","2013-12-16 15:22:00",NULL
+"117","285","21176","Product","5","2013-12-16 15:23:38","2013-12-16 15:23:38","Easy to find at most grocery stores. Always a deep yellow color."
+"118","285","20412","Product","5","2013-12-16 15:26:23","2013-12-16 15:26:23","Green Pasture is a great company! Their products are made using the methods described by Dr. Weston A. Price himself."
+"119","285","27697","Product","5","2013-12-16 15:27:21","2013-12-16 15:27:21","Great snack for on the go."
+"120","285","27698","Product","5","2013-12-16 15:29:27","2013-12-16 15:29:27","My kids love these! They think it's a treat. I'm happy to let them grass-fed meat sticks any time. Fast and easy way for a little nutritional boost."
+"121","285","26862","Product","5","2013-12-16 15:30:30","2013-12-16 15:30:30","These are so good! Love the cranberry flavor."
+"122","296","23840","Product","5","2013-12-16 20:57:17","2013-12-16 20:57:17",NULL
+"123","319","20412","Product","5","2013-12-17 04:56:28","2013-12-17 04:56:28",NULL
+"124","322","20411","Product","5","2013-12-17 06:22:37","2013-12-17 06:22:37",NULL
+"125","322","20412","Product","5","2013-12-17 06:22:58","2013-12-17 06:22:58",NULL
+"126","322","20413","Product","5","2013-12-17 06:23:19","2013-12-17 06:23:19",NULL
+"127","322","20410","Product","5","2013-12-17 06:23:33","2013-12-17 06:23:33",NULL
+"128","322","16846","Product","5","2013-12-17 06:24:49","2013-12-17 06:24:49",NULL
+"129","322","16845","Product","4","2013-12-17 06:25:05","2013-12-17 06:25:05",NULL
+"130","326","24015","Product","4","2013-12-17 08:21:10","2013-12-17 08:21:10",NULL
+"131","330","21139","Product","5","2013-12-17 12:17:29","2013-12-17 12:17:29",NULL
+"132","322","21176","Product","5","2013-12-18 05:46:36","2013-12-18 05:46:36",NULL
+"133","322","21175","Product","5","2013-12-18 05:46:55","2013-12-18 05:46:55",NULL
+"134","322","21174","Product","5","2013-12-18 05:47:09","2013-12-18 05:47:09",NULL
+"135","322","21173","Product","5","2013-12-18 05:47:16","2013-12-18 05:47:16",NULL
+"136","322","21444","Product","5","2013-12-18 05:49:33","2013-12-18 05:49:33",NULL
+"137","322","21443","Product","5","2013-12-18 05:49:44","2013-12-18 05:49:44",NULL
+"138","322","21441","Product","5","2013-12-18 05:49:54","2013-12-18 05:49:54",NULL
+"139","345","23721","Product","5","2013-12-18 06:09:40","2013-12-18 06:09:40","It tastes amazing. It's guaranteed for years. Single family farm, hand picked olives. Single cold press. All certified organic."
+"140","26","20425","Product","5","2013-12-18 17:49:30","2013-12-18 17:49:30","Absolutely love this!"
+"141","26","20443","Product","5","2013-12-18 17:50:34","2013-12-18 17:50:34","Can't get enough of this!"
+"142","26","20435","Product","5","2013-12-18 17:51:19","2013-12-18 17:51:19","The best of both worlds, from a taste point of view."
+"143","26","20445","Product","5","2013-12-18 17:52:19","2013-12-18 17:52:19","This is a stunner with several big fans in my family."
+"144","26","20432","Product","3","2013-12-18 17:55:49","2013-12-18 17:55:49","In order to avoid running afoul of the regulators, GTs made this one non-alcoholic but with a GMO soy starter."
+"145","26","20444","Product","5","2013-12-18 17:57:01","2013-12-18 17:57:01","This completely rocks. Bursting with antioxidants!"
+"146","357","21176","Product","5","2013-12-19 05:24:00","2013-12-19 05:24:00",NULL
+"147","358","20412","Product","5","2013-12-19 18:52:30","2013-12-19 18:52:30","I use it every day! One teaspoon unless I'm sick or feeling down then two or three."
+"148","194","21188","Product","5","2013-12-19 20:44:52","2013-12-19 20:44:52","Tasty"
+"149","365","17843","Product","5","2013-12-20 01:09:51","2013-12-20 01:09:51","So delicious!"
+"150","389","23840","Product","5","2013-12-21 03:33:21","2013-12-21 03:33:21",NULL
+"151","389","23846","Product","5","2013-12-21 03:38:55","2013-12-21 03:38:55",NULL
+"152","389","23845","Product","5","2013-12-21 03:39:05","2013-12-21 03:39:05",NULL
+"153","389","21176","Product","5","2013-12-21 03:40:03","2013-12-21 03:40:03",NULL
+"154","394","27698","Product","5","2013-12-21 14:55:02","2013-12-21 14:55:02",NULL
+"155","394","27421","Product","5","2013-12-21 14:59:27","2013-12-21 14:59:27",NULL
+"156","401","17416","Product","4","2013-12-21 21:21:35","2013-12-21 21:21:35","It is a delicious cheese"
+"157","402","21176","Product","5","2013-12-21 22:12:02","2013-12-21 22:12:02",NULL
+"158","333","21065","Product","5","2013-12-22 01:15:07","2013-12-22 01:15:07",NULL
+"159","384","22363","Product","5","2013-12-22 13:07:01","2013-12-22 13:07:01","I love the rich flavor of this cheese
+"
+"160","408","17992","Product","5","2013-12-22 14:31:39","2013-12-22 14:31:39","Really good olive oil
+"
+"161","422","28326","Product","5","2013-12-22 23:05:32","2013-12-22 23:05:32",NULL
+"162","438","24930","Product","5","2013-12-23 20:07:53","2013-12-23 20:07:53","Love the chicken bone broth!"
+"163","439","26856","Product","5","2013-12-23 20:17:01","2013-12-23 20:17:01","So good for an occasional splurge!"
+"164","455","23844","Product","5","2013-12-23 23:55:15","2013-12-23 23:55:15",NULL
+"165","457","23840","Product","5","2013-12-24 01:08:21","2013-12-24 01:08:21",NULL
+"166","460","17982","Product","4","2013-12-24 03:04:09","2013-12-24 03:04:09",NULL
+"167","460","17983","Product","4","2013-12-24 03:04:16","2013-12-24 03:04:16",NULL
+"168","460","17586","Product","5","2013-12-24 03:06:56","2013-12-24 03:06:56",NULL
+"169","460","17587","Product","5","2013-12-24 03:07:07","2013-12-24 03:07:07",NULL
+"170","466","24015","Product","5","2013-12-24 06:30:12","2013-12-24 06:30:12","Best grocery store eggs by far. But you can do even better cost and freshness wise at the farmers market,"
+"171","466","21456","Product","5","2013-12-24 06:32:48","2013-12-24 06:32:48","Very bright orange yolk, lovely eggs. I left mesg w their office regarding which farmers market they sell at, but didn't get a response. I guess they are busy w their chickens."
+"172","466","16744","Product","5","2013-12-24 06:35:15","2013-12-24 06:35:15","Very good grocery store eggs, just not organic. I use to buy this every week along w a pack of pasture verde eggs which is from the same company but it's organic. Alfresco often was even better in terms of yolk being more orange."
+"173","466","18184","Product","5","2013-12-24 06:40:58","2013-12-24 06:40:58","I buy a case of this cow milk for my kids every week. Mother's Market offers us 10% discount for ordering a case. More creamy than Organic Pasture as this farm is mostly Jersey cows I believe. The goat milk is good too. Their cream is great."
+"174","466","25266","Product","5","2013-12-24 06:45:42","2013-12-24 06:45:42","The taste of their milk is phenomenal, better than Claravale and Organic Pastures. Too bad they don't offer it raw. "
+"175","376","21065","Product","4","2013-12-24 07:50:10","2013-12-24 07:50:10",NULL
+"176","376","18144","Product","5","2013-12-24 07:50:36","2013-12-24 07:50:36",NULL
+"177","475","23912","Product","5","2013-12-24 15:03:55","2013-12-24 15:03:55",NULL
+"178","512","18184","Product","5","2013-12-27 15:17:58","2013-12-27 15:17:58",NULL
+"179","512","25266","Product","5","2013-12-27 15:19:11","2013-12-27 15:19:11","This is the best option if you aren't drinking raw milk. Their yogurt is my favorite."
+"180","512","25268","Product","5","2013-12-27 15:24:23","2013-12-27 15:24:23","Best plain yogurt out there! "
+"181","198","22501","Product","5","2013-12-27 17:46:10","2013-12-27 17:46:10","This is a new product of theirs. Live the tangy taste. "
+"182","198","22375","Product","5","2013-12-27 17:49:41","2013-12-27 17:49:41","We've been ordering this raw sour creme for 5 years and I can't live without it. Heavenly!"
+"183","198","27815","Product","4","2013-12-27 17:51:05","2013-12-27 17:51:05","Happy to find this brand in my Whole Foods for the times I run out of eggs from my local farmer. "
+"184","198","21176","Product","4","2013-12-27 17:52:53","2013-12-27 17:52:53","Happy with this butter! I heard the cows are grass fed/pastured. Tastes mild and delicious"
+"185","198","17159","Product","5","2013-12-27 18:11:09","2013-12-27 18:11:09","Shocked and thrilled to see B&J has one acceptable flavor! Yay!"
+"186","198","21198","Product","4","2013-12-27 18:12:23","2013-12-27 18:12:23","This is great for birthday parties"
+"187","198","27759","Product","5","2013-12-27 18:15:40","2013-12-27 18:15:40","A staple in our home. "
+"188","198","27785","Product","5","2013-12-27 18:17:48","2013-12-27 18:17:48","Fantastic for travel"
+"189","198","27784","Product","5","2013-12-27 18:18:01","2013-12-27 18:18:01","Fantastic for travel"
+"190","198","27770","Product","5","2013-12-27 18:20:17","2013-12-27 18:20:17","Love these! So quick to thaw and sautÃ© for fast protein. "
+"191","198","27754","Product","5","2013-12-27 18:20:54","2013-12-27 18:20:54","A staple in our home. We like ""skin on"""
+"192","198","27803","Product","5","2013-12-27 18:22:24","2013-12-27 18:22:24","This brand freezes their fruit in a way that doesn't make them all mush after thawing. I can't find frozen blueberries like these in grocery store. "
+"193","503","21105","Product","5","2013-12-27 21:44:33","2013-12-27 21:44:33","Great for when your craving a sandwhich.
+"
+"194","525","25268","Product","5","2013-12-28 06:33:52","2013-12-28 06:33:52","Definitely the best!"
+"195","326","16727","Product","5","2013-12-28 19:23:25","2013-12-28 19:23:25","Simply the best. Hamburger is outstanding. Makes the best meat loaf. Kidney fat and bones make great staples for frying and making stock"
+"196","326","16726","Product","5","2013-12-28 19:23:49","2013-12-28 19:23:49",NULL
+"197","326","20412","Product","5","2013-12-28 19:24:52","2013-12-28 19:24:52",NULL
+"198","536","18348","Product","1","2013-12-28 23:30:10","2013-12-28 23:30:10","This farm is impossible to get a hold of. Between the complete lack of communication, and the fact that they stopped doing drop offs in convenient places and notified their customers one day in advance, it's just not worth it. I would find another farm. One that appreciates your business. "
+"199","540","17637","Product","5","2013-12-29 02:15:51","2013-12-29 02:15:51","The best tasting and fastest acting ACV."
+"200","555","24930","Product","5","2013-12-29 23:39:37","2013-12-29 23:39:37","The cleanest product out there! Great flavor, the only substitute for homemade!"
+"201","555","20411","Product","5","2013-12-29 23:42:26","2013-12-29 23:42:26","Great for cooking, not too coconut flavored "
+"202","559","20412","Product","5","2013-12-30 01:56:28","2013-12-30 01:56:28","Excellent! I take this everyday with the X-Factor Butter. "
+"203","563","26371","Product","5","2013-12-30 03:57:12","2013-12-30 03:57:12","It still has cream inside. Very yummy. My bf says it reminds him of Germany. I would like full raw but for now it's the next best thing."
+"204","561","23840","Product","5","2013-12-30 05:20:26","2013-12-30 05:20:26","Buy it every week at the farmers market. "
+"205","561","26371","Product","1","2013-12-30 05:21:51","2013-12-30 05:21:51","I read in cornucopia listings that this dairy was being downgraded. I'm concerned that the cows aren't grassfed. "
+"206","578","16846","Product","5","2013-12-30 21:15:01","2013-12-30 21:15:01",NULL
+"207","578","19270","Product","5","2013-12-30 21:22:10","2013-12-30 21:22:10","Very good flavor. They dry out very quickly "
+"208","602","20412","Product","5","2014-01-01 00:27:34","2014-01-01 00:27:34","I like the non flavored one"
+"209","513","25461","Product","5","2014-01-01 07:06:51","2014-01-01 07:06:51",NULL
+"210","384","23084","Product","5","2014-01-01 11:46:29","2014-01-01 11:46:29",NULL
+"211","384","27411","Product","5","2014-01-01 11:47:18","2014-01-01 11:47:18",NULL
+"212","384","25831","Product","5","2014-01-01 11:47:54","2014-01-01 11:47:54",NULL
+"213","384","22392","Product","5","2014-01-01 11:49:40","2014-01-01 11:49:40","This butter has a wonderful taste
+"
+"214","384","19182","Product","5","2014-01-01 12:11:05","2014-01-01 12:11:05",NULL
+"215","384","24943","Product","5","2014-01-01 12:11:52","2014-01-01 12:11:52",NULL
+"216","613","18184","Product","5","2014-01-01 14:13:33","2014-01-01 14:13:33",NULL
+"217","613","26371","Product","4","2014-01-01 14:14:05","2014-01-01 14:14:05",NULL
+"218","613","23912","Product","5","2014-01-01 14:15:44","2014-01-01 14:15:44",NULL
+"219","613","21176","Product","5","2014-01-01 14:16:18","2014-01-01 14:16:18",NULL
+"220","613","26376","Product","5","2014-01-01 14:16:56","2014-01-01 14:16:56",NULL
+"221","613","18476","Product","5","2014-01-01 14:18:31","2014-01-01 14:18:31",NULL
+"222","613","26073","Product","5","2014-01-01 14:19:41","2014-01-01 14:19:41",NULL
+"223","613","17593","Product","5","2014-01-01 14:20:50","2014-01-01 14:20:50",NULL
+"224","613","25268","Product","5","2014-01-01 14:21:23","2014-01-01 14:21:23",NULL
+"225","616","20684","Product","2","2014-01-01 15:32:36","2014-01-01 15:32:36","One of the better local sources if you are not participating in a cow share and have the option of local farm raw milk."
+"226","561","24744","Product","5","2014-01-01 19:37:09","2014-01-01 19:37:09","Haven't used this, yet. I'm new to ghee, but the price was right in Lazy Acres, and it says, ""pasture fed"". "
+"227","629","20434","Product","5","2014-01-01 23:46:24","2014-01-01 23:46:24","Me too!"
+"228","358","18185","Product","5","2014-01-02 03:14:02","2014-01-02 03:14:02","This cream is excellent every time! A great tasting food for rich treats and a healing food to help master sugar cravings."
+"229","358","19129","Product","3","2014-01-02 03:22:10","2014-01-02 03:22:10",NULL
+"230","635","23842","Product","3","2014-01-02 04:22:23","2014-01-02 04:22:23","Really wanted to like this but it tastes like rubber. Hopefully they can develop a better version. "
+"231","635","18184","Product","5","2014-01-02 04:24:18","2014-01-02 04:24:18","Excellent product. Love that it comes from Jersey cows. We go through four bottles a week. "
+"232","635","23846","Product","5","2014-01-02 04:24:52","2014-01-02 04:24:52",NULL
+"233","635","25268","Product","5","2014-01-02 04:25:19","2014-01-02 04:25:19",NULL
+"234","635","19129","Product","5","2014-01-02 04:32:06","2014-01-02 04:32:06",NULL
+"235","652","27490","Product","5","2014-01-03 01:41:59","2014-01-03 01:41:59","Love that it's so convent and I can purchase at Costco!!  Makes me not feel bad for not having the time to soak my rice!"
+"236","621","18184","Product","5","2014-01-03 02:19:29","2014-01-03 02:19:29","Best raw milk I have found. Very smooth and my kids love it"
+"237","659","23840","Product","5","2014-01-03 04:03:21","2014-01-03 04:03:21","Delish! Great milk!
+"
+"238","659","26371","Product","4","2014-01-03 04:05:29","2014-01-03 04:05:29","Next best thing after raw milk!
+"
+"239","198","22420","Product","4","2014-01-03 18:30:50","2014-01-03 18:30:50","Great! But a tad too spicy for my little one"
+"240","513","18184","Product","5","2014-01-04 02:31:58","2014-01-04 02:31:58",NULL
+"241","561","23912","Product","5","2014-01-05 16:35:19","2014-01-05 16:35:19","I buy lots of this during the season and freeze it. "
+"242","561","23890","Product","5","2014-01-05 16:36:28","2014-01-05 16:36:28","The Navy Commissary has started carrying this. I buy it when they're not out of stock. "
+"243","726","21139","Product","5","2014-01-07 02:59:49","2014-01-07 02:59:49",NULL
+"244","726","21140","Product","5","2014-01-07 03:00:29","2014-01-07 03:00:29",NULL
+"245","757","24719","Product","5","2014-01-09 02:45:20","2014-01-09 02:45:20","This ghee is delicious!"
+"246","757","21176","Product","5","2014-01-09 02:46:20","2014-01-09 02:46:20",NULL
+"247","757","20412","Product","5","2014-01-09 04:08:11","2014-01-09 04:08:11","I use fermented cod liver oil with butter oil - unflavored.  My dd (4 y.o.) and I both take it!!"
+"248","757","27688","Product","5","2014-01-09 04:09:23","2014-01-09 04:09:23","Love it!!!"
+"249","757","16845","Product","5","2014-01-09 04:10:27","2014-01-09 04:10:27","We love this salami in our home!"
+"250","757","17711","Product","5","2014-01-09 04:11:07","2014-01-09 04:11:07",NULL
+"251","561","19028","Product","5","2014-01-09 13:26:50","2014-01-09 13:26:50","I like these, and of Weston price says they're good, that's enough for me. The yolks are nice and dark and tasty. They say that they feed them things like marigolds. I hope that's true. "
+"252","831","19182","Product","5","2014-01-14 14:05:37","2014-01-14 14:05:37",NULL
+"253","107","21176","Product","5","2014-01-14 16:39:25","2014-01-14 16:39:25",NULL
+"254","107","27407","Product","5","2014-01-14 16:40:25","2014-01-14 16:40:25",NULL
+"255","107","17700","Product","5","2014-01-14 16:43:29","2014-01-14 16:43:29","I use this for so many things (smoothies, dips, as a sub for sour cream, on top of soups) since it's hard to find raw milk products where I live. "
+"256","107","28648","Product","5","2014-01-14 16:44:36","2014-01-14 16:44:36",NULL
+"257","107","16845","Product","4","2014-01-14 16:45:12","2014-01-14 16:45:12",NULL
+"258","107","17988","Product","5","2014-01-14 16:46:28","2014-01-14 16:46:28",NULL
+"259","2","21452","Product","5","2014-01-15 20:44:07","2014-01-15 20:44:07",NULL
+"260","61","19048","Product","5","2014-01-16 03:17:06","2014-01-16 03:17:06","Excellent. Long fermentation thus high probiotic content is evident by the highly sour flavor. I love it
+"
+"261","880","27407","Product","5","2014-01-17 02:11:54","2014-01-17 02:11:54",NULL
+"262","880","27395","Product","5","2014-01-17 02:12:50","2014-01-17 02:12:50",NULL
+"263","884","17637","Product","5","2014-01-17 11:48:51","2014-01-17 11:48:51",NULL
+"264","883","20443","Product","5","2014-01-17 16:30:25","2014-01-17 16:30:25","Delicious!"
+"265","10","17564","Product","5","2014-01-19 14:44:33","2014-01-19 14:44:33","Love this fermented beverage! I discovered it cuts my appetite and helps me digest better. Slightly sour fizzy taste is incredible. Kombucha tends to raise my blood sugar but this drink does not!"
+"266","924","20425","Product","4","2014-01-21 05:00:31","2014-01-21 05:00:31","Great product other then the inconsistent carbonation. Too many of my bottles lately have been ""flat."""
+"267","929","25831","Product","5","2014-01-21 18:46:03","2014-01-21 18:46:03","Low temp pasteurized, this is about as good as it gets in stores (in the Midwest). Their cream is very good."
+"268","2","17416","Product","4","2014-01-23 21:09:07","2014-01-23 21:09:07","Pretty good cheese"
+"269","969","20412","Product","5","2014-01-25 13:57:36","2014-01-25 13:57:36","The mint is strong but it mostly covers up the fish taste and two teaspoons a day, with breakfast and dinner, have more omega 3 and D vitamin than other brands 
+where you have to take two or three tablespoons to get the dosage for my gender/age/size. Also has good D to A vitamin ratio so you know they're not putting in synthetic A vitamins. "
+"270","834","20413","Product","5","2014-01-26 11:56:25","2014-01-26 11:56:25","Good option with or instead of cod liver oil."
+"271","834","20412","Product","5","2014-01-26 11:58:10","2014-01-26 11:58:10","Green Pasture is one of the only, maybe the only, brands of CLO with taking. Most of the others remove the naturally occurring vitamins A and D and replace them with synthetics so as to standardize the dosage.
+"
+"272","834","18846","Product","5","2014-01-26 11:58:48","2014-01-26 11:58:48","Dr Ron sells Green Pasture--great stuff."
+"273","834","24718","Product","5","2014-01-26 12:00:20","2014-01-26 12:00:20","Very high quality ghee!"
+"274","834","24720","Product","5","2014-01-26 12:01:11","2014-01-26 12:01:11","Love their spiced ghees, especially the Niter Kibbeh with the Indian spices."
+"275","834","24736","Product","5","2014-01-26 12:01:36","2014-01-26 12:01:36","Great ghee."
+"276","834","27336","Product","5","2014-01-26 12:03:21","2014-01-26 12:03:21","I mix a variety of the sprouted flours for pancakes. Good stuff."
+"277","834","27348","Product","5","2014-01-26 12:04:27","2014-01-26 12:04:27","Great flour, next best to grinding and sprouting your own."
+"278","834","27345","Product","5","2014-01-26 12:05:18","2014-01-26 12:05:18","I mix this and several of their other sprouted flours for pancakes."
+"279","834","17988","Product","5","2014-01-26 12:06:33","2014-01-26 12:06:33","Excellent US olive oil! Quality you can count on."
+"280","834","28514","Product","5","2014-01-26 12:07:31","2014-01-26 12:07:31","Very tasty!"
+"281","834","28515","Product","5","2014-01-26 12:07:56","2014-01-26 12:07:56",NULL
+"282","834","28513","Product","5","2014-01-26 12:08:11","2014-01-26 12:08:11","Great combination"
+"283","834","28511","Product","5","2014-01-26 12:09:17","2014-01-26 12:09:17","Wonderfully reminiscent of root beer. I do wish I could get this locally or shipped to me! Have only had it at the WAPF conference."
+"284","834","28512","Product","5","2014-01-26 12:09:35","2014-01-26 12:09:35","Love this"
+"285","834","19083","Product","5","2014-01-26 12:10:15","2014-01-26 12:10:15","Such a tasty kraut!"
+"286","834","19081","Product","5","2014-01-26 12:10:55","2014-01-26 12:10:55","My favorite of their excellent krauts!"
+"287","834","19082","Product","5","2014-01-26 12:11:26","2014-01-26 12:11:26","Great Kimchi!"
+"288","834","19191","Product","5","2014-01-26 12:12:33","2014-01-26 12:12:33","This farm is local to me; love their lamb!"
+"289","834","19182","Product","5","2014-01-26 12:12:46","2014-01-26 12:12:46","Great stuff!"
+"290","834","27411","Product","4","2014-01-26 12:13:57","2014-01-26 12:13:57","I use their non homogenized milk occasionally when I can't get raw. Delicious!"
+"291","834","27416","Product","4","2014-01-26 12:14:22","2014-01-26 12:14:22","Excellent cream when I can't get raw."
+"292","834","25535","Product","4","2014-01-26 12:16:08","2014-01-26 12:16:08","Best yogurt when I can't get raw!"
+"293","834","24943","Product","5","2014-01-26 12:20:06","2014-01-26 12:20:06","Fantastic honey "
+"294","834","28663","Product","5","2014-01-26 12:20:58","2014-01-26 12:20:58","Best salt!"
+"295","834","17992","Product","5","2014-01-26 13:19:03","2014-01-26 13:19:03","It is fun, although a lot of work, to brine your own olives! These are excellent."
+"296","834","21045","Product","4","2014-01-26 13:21:21","2014-01-26 13:21:21","These are very good; a little sweeter than I care for."
+"297","834","17637","Product","5","2014-01-26 13:23:08","2014-01-26 13:23:08","Great ACV!"
+"298","834","28038","Product","5","2014-01-26 13:26:06","2014-01-26 13:26:06","This is fantastic mayo!"
+"299","834","20452","Product","4","2014-01-26 13:27:01","2014-01-26 13:27:01","Best I can find easily in stores when I'm out of my mail order mayo!"
+"300","834","19046","Product","4","2014-01-26 13:27:54","2014-01-26 13:27:54","Delicious!"
+"301","834","19045","Product","4","2014-01-26 13:28:06","2014-01-26 13:28:06","Delicious!"
+"302","991","17465","Product","5","2014-01-28 05:28:17","2014-01-28 05:28:17","Always use these. I Buy from vita cost. "
+"303","967","21139","Product","5","2014-01-28 19:48:10","2014-01-28 19:48:10",NULL
+"304","867","23931","Product","5","2014-01-29 02:08:03","2014-01-29 02:08:03",NULL
+"305","867","21355","Product","5","2014-01-29 02:12:02","2014-01-29 02:12:02",NULL
+"306","178","27815","Product","4","2014-01-29 03:15:54","2014-01-29 03:15:54","Nice dark yellow firm yokes.  Consistently  good."
+"307","1","21887","Product","5","2014-01-31 17:40:29","2014-01-31 17:40:29","Awesome food!"
+"308","1041","21450","Product","5","2014-02-01 22:42:13","2014-02-01 22:42:13","Great stuff, very rich with a unique taste & golden color. Amish farmer.
+"
+"309","1042","21176","Product","5","2014-02-02 13:07:21","2014-02-02 13:07:21","Yum!
+FIVE stars
+"
+"310","931","27407","Product","5","2014-02-04 02:43:00","2014-02-04 02:43:00",NULL
+"311","358","23450","Product","4","2014-02-05 00:14:18","2014-02-05 00:14:18","Nice product, always has good coconut smell and sometimes can be found in a great reusable glass jar!"
+"312","1095","20560","Product","5","2014-02-05 22:11:41","2014-02-05 22:11:41","Awesome!"
+"313","751","24736","Product","5","2014-02-09 01:36:19","2014-02-09 01:36:19","Best ghee ever!"
+"314","1165","21750","Product","4","2014-02-12 05:14:29","2014-02-12 05:14:29","I use this rice almost exclusively. It's delicious and affordable. Wish it was all wild rice but the blend is the best option here."
+"315","1165","17167","Product","4","2014-02-12 05:24:14","2014-02-12 05:24:14","Wonderful addition to breakfast. With butter, cream cheese, jam... It's all wonderful. "
+"316","26","20413","Product","5","2014-02-15 16:15:19","2014-02-15 16:15:19","I use it in conjunction with cod liver oil for my family just to get a broader nutrient spectrum"
+"317","26","25535","Product","4","2014-02-15 16:19:30","2014-02-15 16:19:30","Definitely a good choice for those times you can't make you own"
+"318","194","27815","Product","5","2014-02-17 20:13:47","2014-02-17 20:13:47",NULL
+"319","194","26924","Product","4","2014-02-17 20:16:41","2014-02-17 20:16:41","Happy that I can find these at Publix when I can't get to whole foods etc"
+"320","1265","19191","Product","5","2014-02-26 00:14:12","2014-02-26 00:14:12","I used to live 20 min from Fields of Athenry Farm in Va. The best lamb ever! Amazing broth, soups and stews"
+"321","883","18185","Product","5","2014-02-28 06:24:46","2014-02-28 06:24:46","Love this! Expensive but worth it."
+"322","503","19086","Product","5","2014-02-28 19:31:50","2014-02-28 19:31:50","Best store bought Greek yogurt ever!!!
+"
+"323","105","20434","Product","5","2014-02-28 20:23:35","2014-02-28 20:23:35","Love this flavor. 
+"
+"324","1286","16725","Product","3","2014-03-01 04:28:15","2014-03-01 04:28:15",NULL
+"325","105","20412","Product","5","2014-03-01 23:00:15","2014-03-01 23:00:15","I get the Oslo orange flavor
+"
+"326","105","28205","Product","5","2014-03-01 23:05:36","2014-03-01 23:05:36","I have been using this oil for some months now. Very good. Love wilderness' coconut products. "
+"327","1291","23846","Product","5","2014-03-02 06:22:55","2014-03-02 06:22:55",NULL
+"328","1338","27373","Product","5","2014-03-08 07:32:29","2014-03-08 07:32:29","I gravitated to this choice at TJ's. Happy to see my instincts were guiding me in the right direction. But I'm still looking for something better."
+"329","1338","27374","Product","5","2014-03-10 07:16:55","2014-03-10 07:16:55","I really like this Product. I usually use olive oil, but this is a nice change. Imparts  a subtle and clean coconut essence to sautes. "
+"330","1385","21450","Product","5","2014-03-11 15:15:58","2014-03-11 15:15:58",NULL
+"331","1373","23840","Product","5","2014-03-14 13:40:12","2014-03-14 13:40:12","All of my children have grown up on this milk. "
+"332","10","16951","Product","5","2014-03-20 22:02:07","2014-03-20 22:02:07",
+"333","1466","17416","Product","5","2014-03-28 13:27:13","2014-03-28 13:27:13","Great!"
+"334","1467","27815","Product","4","2014-03-28 19:19:08","2014-03-28 19:19:08","I buy these when Rainbow Eggs are unavailable. It's my 2nd go to for pasture eggs."
+"335","1467","23840","Product","5","2014-03-28 19:25:19","2014-03-28 19:25:19","Favorite!!!! Tastes like milk my mom would get from her farmer friend"
+"336","1467","23891","Product","5","2014-03-28 19:28:21","2014-03-28 19:28:21","Good tasting, second choice when raw is not available"
+"337","1467","23846","Product","4","2014-03-28 19:36:02","2014-03-28 19:36:02","Not very creamy, but tasty!"
+"338","10","23084","Product","3","2014-03-28 19:42:58","2014-03-28 19:42:58","As a backup, I'm happy to find this in Whole Foods when I can't get raw milk from my farmer. It's pasteurized which isn't ideal, but at least it's from GrassFed cows making the milk nutrient dense and higher in good fats. "
+"339","10","20412","Product","5","2014-03-28 20:01:43","2014-03-28 20:01:43","My husband loves the mint flavored one,  and I'm using plain unflavored and add a drop of maple syrup which works well for my 6 y.o.  I use the syringe and squirt it to back of my throat. Painless!"
+"340","10","20807","Product","5","2014-03-28 20:08:26","2014-03-28 20:08:26","I am HOOKED on this amazing probiotic drink! Love the sour fizzy taste. I really feel good the days I drink it. "
+"341","10","20811","Product","5","2014-03-28 22:42:36","2014-03-28 22:42:36","We love these!! These wraps have revolutionized our ability to make yummy varieties of GF wraps. So tasty. Worth the price. If only they could keep them in stock all year!"
+"342","10","28206","Product","5","2014-03-28 22:46:02","2014-03-28 22:46:02","We buy and love both the flavorful extra virgin type and the Expeller Pressed one which has no coconut taste. "
+"343","10","28205","Product","5","2014-03-28 22:47:22","2014-03-28 22:47:22",NULL
+"344","11","20529","Product","4","2014-03-28 22:48:35","2014-03-28 22:48:35","This milk is delicious!"
+"345","10","28045","Product","5","2014-03-28 22:49:03","2014-03-28 22:49:03","Love it. Light and fluffy. Great for baking. "
+"346","11","24008","Product","5","2014-03-28 22:49:37","2014-03-28 22:49:37","Great quality butter. Deep yellow color"
+"347","11","27754","Product","5","2014-03-28 22:53:33","2014-03-28 22:53:33","We love everything Vital Choice sells. This salmon is no exception"
+"348","10","27760","Product","5","2014-03-28 22:54:28","2014-03-28 22:54:28","This tuna makes amazing homemade sushi! We make rolls with Vital Choice King Salmon, Tuna, and crab. And top it with Ikura. "
+"349","10","27756","Product","5","2014-03-28 22:56:42","2014-03-28 22:56:42","This Ikura is heavenly. My 6 year old has a spoon of it straight into her mouth and loves it. It's very salty and pops in your mouth :-). We put some on top of our homemade sushi. "
+"350","10","28284","Product","5","2014-03-29 00:52:33","2014-03-29 00:52:33","Amazingly thick and delicious! "
+"351","1495","17156","Product","5","2014-03-30 18:12:28","2014-03-30 18:12:28","Love the creamy taste.  "
+"352","1528","21780","Product","5","2014-04-06 04:52:19","2014-04-06 04:52:19","Tasty, juicy, flavorful large figs. "
+"353","1570","27395","Product","5","2014-04-15 23:26:03","2014-04-15 23:26:03",NULL
+"354","1570","21176","Product","5","2014-04-15 23:33:29","2014-04-15 23:33:29",NULL
+"355","1569","25831","Product","5","2014-04-15 23:34:54","2014-04-15 23:34:54","When raw milk is not available this is a great option. Tastes excellent and they have wonderful customer service!
+"
+"356","1569","23908","Product","5","2014-04-15 23:37:37","2014-04-15 23:37:37","This is a great option for places that can't buy raw. Love that this product is 100% grass fed. :)
+"
+"357","1581","21176","Product","5","2014-04-16 04:25:36","2014-04-16 04:25:36",NULL
+"358","1608","25535","Product","4","2014-04-17 13:59:16","2014-04-17 13:59:16","Love it and it is a first choice behind Thomas' and Trader's Point for store-bought yogurt. 
+"
+"359","1608","27407","Product","5","2014-04-17 14:00:30","2014-04-17 14:00:30","We were able to visit the creamery and it was so worth the trip. Amazing food and farming practices! "
+"360","1608","27267","Product","5","2014-04-17 14:02:41","2014-04-17 14:02:41","Great quality. Definitely our favorite store bought brand. "
+"361","1608","27266","Product","5","2014-04-17 14:04:07","2014-04-17 14:04:07","Next best option to raw. Delicious and many of my previously non-dairy clients do well with Thomas'. "
+"362","1644","25831","Product","5","2014-04-18 17:05:17","2014-04-18 17:05:17","Good stuff right here. Cream on top. The way it should be. A little disheartening that they offer 1% and 2% options, but I suppose there's still a market for that. "
+"363","1661","20518","Product","5","2014-04-18 17:35:23","2014-04-18 17:35:23","We get this weekly as we can't get raw milk locally. It's low temperature pasteurized. The thick cream on top is heavenly and it comes in glass bottles. Highly recommended."
+"364","1688","22385","Product","5","2014-04-18 18:37:40","2014-04-18 18:37:40","Great product. Very consistent. I order every two weeks."
+"365","1743","21139","Product","5","2014-04-18 22:01:02","2014-04-18 22:01:02",NULL
+"366","1758","23840","Product","5","2014-04-18 22:51:30","2014-04-18 22:51:30","Love these products! I make my 2 month old daughter raw milk infant formula with it. She loves it too ;)"
+"367","1827","20529","Product","3","2014-04-19 14:19:16","2014-04-19 14:19:16","I'm sure the product is great, but be advised, you cannot buy it online and have it shipped to you. Had my hopes up for a minute until I called and verified :("
+"368","1836","25266","Product","5","2014-04-19 16:07:04","2014-04-19 16:07:04",NULL
+"369","1836","18184","Product","5","2014-04-19 16:08:09","2014-04-19 16:08:09","Tastes great and comes in returnable glass.
+"
+"370","1836","23840","Product","5","2014-04-19 16:09:08","2014-04-19 16:09:08","Can't beat how easy this one is to find in the stores. "
+"371","1836","16792","Product","5","2014-04-19 16:11:34","2014-04-19 16:11:34","This stuff is amazing. It's a staple in my pantry now. I cook eggs in it and other sautee tasks. It's in the butter, lard, tallow, coconut oil rotation for my cooking oils."
+"372","1836","23912","Product","5","2014-04-19 16:12:26","2014-04-19 16:12:26",NULL
+"373","1858","23840","Product","5","2014-04-19 20:51:56","2014-04-19 20:51:56","Totally yummy!"
+"374","1858","23844","Product","5","2014-04-19 20:54:53","2014-04-19 20:54:53","Delish in my morning coffee and in homemade ice cream!"
+"375","1867","28278","Product","5","2014-04-20 02:00:11","2014-04-20 02:00:11","The most amazing, thick cream I've ever had. Delicious.  "
+"376","1898","17636","Product","5","2014-04-21 04:48:36","2014-04-21 04:48:36",NULL
+"377","1898","24063","Product","5","2014-04-21 04:56:34","2014-04-21 04:56:34","Full of great flavor & so versatile! "
+"378","1898","24062","Product","5","2014-04-21 04:57:21","2014-04-21 04:57:21","My favorite! Better than most freshly ground peppercorns."
+"379","1898","24045","Product","5","2014-04-21 04:58:38","2014-04-21 04:58:38","Every time I use this I just want to drink the bottle. "
+"380","1898","24102","Product","5","2014-04-21 05:00:35","2014-04-21 05:00:35","Perfect spice with flavor"
+"381","1898","24103","Product","5","2014-04-21 05:00:49","2014-04-21 05:00:49",NULL
+"382","1898","24154","Product","5","2014-04-21 05:02:35","2014-04-21 05:02:35","So good in burgers. "
+"383","1911","27416","Product","4","2014-04-21 20:43:49","2014-04-21 20:43:49","Very good, but I have often found a dark brown residue stuck on the inside of the bottom of the bottle. It's clearly not a clean bottle. I then end up returning it and I'm luck to be able to find two bottles in the local Whole Foods. "
+"384","1911","27417","Product","4","2014-04-21 20:55:45","2014-04-21 20:55:45",NULL
+"385","1912","26371","Product","5","2014-04-21 21:40:03","2014-04-21 21:40:03","Their cream is so delicious! "
+"386","1912","23840","Product","5","2014-04-21 21:40:51","2014-04-21 21:40:51","This milk tastes like ice cream!
+"
+"387","1929","22462","Product","5","2014-04-22 19:02:50","2014-04-22 19:02:50",NULL
+"388","1929","22463","Product","5","2014-04-22 19:03:36","2014-04-22 19:03:36",NULL
+"389","1951","16744","Product","5","2014-04-23 15:59:11","2014-04-23 15:59:11","Delicious pasture raised eggs, the yolks are often orange."
+"390","1925","21176","Product","4","2014-04-24 15:45:29","2014-04-24 15:45:29","Wonderful flavour. Love it on waffles!"
+"391","1925","21174","Product","4","2014-04-24 15:48:31","2014-04-24 15:48:31","This is a really enjoyable cheese. Allow it to come to room temperature for full flavour. You can just taste those fat-soluble nutrients!"
+"392","1950","17637","Product","5","2014-04-24 20:17:45","2014-04-24 20:17:45","This is the only brand I use!
+
+"
+"393","2022","28038","Product","2","2014-04-27 20:04:02","2014-04-27 20:04:02","Very tart flavor."
+"394","2097","23845","Product","5","2014-05-01 21:46:29","2014-05-01 21:46:29",NULL
+"395","2098","16732","Product","5","2014-05-01 23:18:54","2014-05-01 23:18:54",NULL
+"396","2098","18184","Product","5","2014-05-01 23:20:36","2014-05-01 23:20:36","Tastes great 
+"
+"397","2098","23840","Product","3","2014-05-01 23:22:02","2014-05-01 23:22:02","Has a slightly ""grassy"" taste to me. Prefer Claravel"
+"398","2098","18467","Product","5","2014-05-01 23:25:57","2014-05-01 23:25:57","Rind is smelly, but one of my favorite cheeses"
+"399","2098","18476","Product","5","2014-05-01 23:26:22","2014-05-01 23:26:22","Creamy and perfect!"
+"400","2098","16705","Product","5","2014-05-01 23:28:05","2014-05-01 23:28:05","Perfection! Reminds me of bread in Paris."
+"401","2098","26376","Product","5","2014-05-04 02:00:41","2014-05-04 02:00:41",NULL
+"402","2098","26375","Product","5","2014-05-04 02:00:54","2014-05-04 02:00:54",NULL
+"403","2098","26374","Product","5","2014-05-04 02:02:08","2014-05-04 02:02:08","Perfect flavor and texture. Not too sweet,"
+"404","2098","16876","Product","5","2014-05-04 02:03:11","2014-05-04 02:03:11",NULL
+"405","2098","16881","Product","5","2014-05-04 02:04:40","2014-05-04 02:04:40","Love this in smoothies. Really mild flavor."
+"406","2152","21139","Product","5","2014-05-06 01:43:51","2014-05-06 01:43:51",
+"407","2172","18184","Product","5","2014-05-06 23:44:05","2014-05-06 23:44:05","Amazing quality raw milk, cream and
+Ice cream too! At hillcrest farmers market (San Diego) every other Sunday.  "
+"408","2172","27388","Product","4","2014-05-06 23:50:31","2014-05-06 23:50:31","Not sure if it's organic. But tasty !
+"
+"409","2189","20518","Product","5","2014-05-08 02:22:34","2014-05-08 02:22:34",NULL
+"410","2239","26373","Product","5","2014-05-11 03:48:18","2014-05-11 03:48:18",NULL
+"411","2239","21443","Product","5","2014-05-11 03:51:26","2014-05-11 03:51:26",NULL
+"412","2239","18837","Product","5","2014-05-11 03:54:23","2014-05-11 03:54:23",NULL
+"413","2169","27421","Product","5","2014-05-11 09:32:25","2014-05-11 09:32:25","Great product."
+"414","2169","27688","Product","5","2014-05-11 09:38:11","2014-05-11 09:38:11",
+"415","194","26857","Product","5","2014-05-11 16:22:25","2014-05-11 16:22:25","Yum!"
+"416","2260","21176","Product","5","2014-05-11 23:02:59","2014-05-11 23:02:59","Deep yellow color and great butter flavor. Love it."

@@ -1,0 +1,14 @@
+<%  unless @newsposts.blank? %>
+	$('.news_page').append("<%=escape_javascript(render :partial => @newsposts)%>");
+	$('.scroll_down').attr('data-page','<%= @newsposts.next_page%>')
+	<% else %>
+	$('#infinite-scroll').detach();
+	<% end %>
+	var i = 1;
+$(".news").each(function() {
+    var newClass = 'last';
+    if (i % 3 == 0){ newClass = 'last';
+    $(this).addClass(newClass);
+}
+i++;
+});

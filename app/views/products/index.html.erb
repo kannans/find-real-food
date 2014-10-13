@@ -1,0 +1,247 @@
+<section>
+        <div class="main_container">
+            <div class="inner_banner">
+                
+                <%= image_tag("products-search.jpg", :alt => "Product Search") %>
+
+                <div class="caption_part like_home">
+                     <div class="container">
+                          <h1>Milk</h1>
+                          <p>Sorem ipsum dolor sit amet, consectetuer adipiscing elit nibh euismod tincidunt ut laoreet dolore magna.</p>
+                     </div>
+                </div>
+            </div>
+            <div class="filter_part">
+                <div class="container">
+                    <div class="filters fltr1 fl">
+                        <div class="custom_accord">
+                            <span class="accrtitle">Narrow by:</span>
+                        </div>
+                    </div>
+                    <div class="filters fltr2 fl">
+                        <a class="accrd_btn" href="javascript:;">Keywords</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="kwd_srch_form">
+                                        <input type="text" placeholder="Enter Keyword" />
+                                        <input type="button"/>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="filters fltr3 fl">
+                        <a class="accrd_btn" href="javascript:;">Sort Order</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>Proximity</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>Alphabetical</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>User Ratings</label>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="filters fltr4 fl">
+                        <a class="accrd_btn" href="javascript:;">How Sold</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>In Stores</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>Online</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>By Phone</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>All</label>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="filters fltr5 fl">
+                        <a class="accrd_btn" href="javascript:;">WAPF Ranking</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>Best</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>Good</label>
+                                    </div class="checks">
+                                    <div class="checks">
+                                        <input type="checkbox"/>
+                                        <label>Both</label>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="products_part">
+                <div class="container">
+                    <div class="products_list_tab">
+                        <div class="choosen_foods fr">
+                            <a href="javascript:;" class="button">How Foods Were Chosen & Ranked</a>
+                        </div>
+                        <ul class='etabs'>
+                           <li class='tab'><a href="#products" class="active">products</a></li>
+                           <li class='tab'><a href="#brands">brands</a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="clear"></div>
+                    <div class='tab_container'>
+                        <div class='panel_container'>
+                            <div id="products" class="tab_div active">
+                                <div class="home_body prd_search">
+                                    <div class="map_button fr hide_for_mobile">
+                                        <a href="javascript:;">Full Screen Map</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="home_left fl">
+                                       <div class="products">
+                                            
+                                             <% @products.each do |product| %> 
+
+                                              
+
+                                            <div class="product_item">
+                                                <div class="product_item_body">
+                                                    <div class="media product">
+                                                    <a href="javascript:;" class="media_img">
+                                             
+                                              <% if product.picture.present? %>
+                                            <%= image_tag (product.picture(:original)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             </a>
+                                                        <div class="media_text">
+                                                            <p class="media_title"><a href="javascript:;"><%= product.name %></a></p>
+                                                            <p class="media_sub_title"><a href="javascript:;"><%= get_brandname(product.brand_id) %></a></p>
+                                                             
+                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% end %>
+                                 
+                                            <div class="expand">
+                                                <a href="javascript:;"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="map_button fr hide_for_desktop">
+                                            <a href="javascript:;">Full Screen Map</a>
+                                        </div>
+                                        <div class="clear hide_for_desktop"></div>
+                                    <div class="home_right fr">
+                                        <div class="home_right_container">
+                                            <div class="map_area">
+                                                <div class="map_form">
+                                                    <div class="map_form_container">
+                                                        <div class="bg_white">
+                                                            <div class="map_input fl">
+                                                                <input type="text" placeholder="Whats your zipcode?"/>
+                                                            </div>
+                                                            <div class="map_btn fr">
+                                                                <a href="javascript:;">See what's nearby</a>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               <%= image_tag("map.jpg", :alt => "star") %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div id="brands" class="tab_div">
+                               <div class="home_body prd_search">
+                                    <div class="map_button fr hide_for_mobile">
+                                        <a href="javascript:;">Full Screen Map</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="home_left fl">
+                                       <div class="products">
+                                            <% @brands.each do |brand| %> 
+                                            <div class="product_item">
+                                                <div class="product_item_body">
+                                                    <div class="media product">
+                                                        <a href="javascript:;" class="media_img"><%= image_tag (brand.picture(:original)) %></a>
+                                                        <div class="media_text">
+                                                            <p class="media_sub_title"><a href="javascript:;"><%= brand.name%></a></p>
+                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% end %>
+                                            
+                                             
+                                            <div class="expand">
+                                                <a href="javascript:;"></a>
+                                            </div>
+                                        </div>
+                                    
+                                             
+                                         
+                                    </div>
+                                    <div class="map_button fr hide_for_desktop">
+                                            <a href="javascript:;">Full Screen Map</a>
+                                        </div>
+                                        <div class="clear hide_for_desktop"></div>
+                                    <div class="home_right fr">
+                                        <div class="home_right_container">
+                                            <div class="map_area">
+                                                <div class="map_form">
+                                                    <div class="map_form_container">
+                                                        <div class="bg_white">
+                                                            <div class="map_input fl">
+                                                                <input type="text" placeholder="Whats your zipcode?"/>
+                                                            </div>
+                                                            <div class="map_btn fr">
+                                                                <a href="javascript:;">See what's nearby</a>
+                                                            </div>
+                                                            <div class="clear"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               <%= image_tag("map.jpg", :alt => "star") %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                             </div>
+                             
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="stock_status">
+                        <p><strong>IN STOCK?</strong> Please call the store to verify the product or brand you want is currently in stock before going.<br/>Find Real Food cannot guarantee product inventory on any given day.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>

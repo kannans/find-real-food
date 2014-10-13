@@ -1,0 +1,174 @@
+ <section>
+    	<div class="main_container">
+            <div class="inner_banner brands_page">
+            	<div class="container">
+                	<a href="javascript:;" class="banner_logo">
+                		
+                	 	<% if @brand.picture.present? %>
+                              <%= image_tag (@brand.picture(:original)) %>
+                        <% else %>
+                              <%= image_tag('brand_no_image.jpg', :alt => @brand.name) %>
+                        <% end %>
+
+                	</a>
+                    <div class="brands_options">
+                    	<div class="left">
+                            <h1><%= @brand.name%></h1>
+                            <p><a href="javascript:;"><%= number_to_phone(@brand.phone, area_code: true)     %></a>   -   <a href="<%= @brand.website %>"><%= @brand.website %></a></p>
+ 							<ul>
+                                <% if @brand.order_by_online && @brand.website !='' %><li class="online"><a href="javascript:;">Available Online</a></li> <% end %>
+                               <% if @brand.order_by_phone && @brand.phone !='' %> <li class="byphone"><a href="javascript:;">Available by Phone</a></li> <% end %>
+                               <% if @brand.store_locator_url !='' %> <li class="store"><a href="javascript:;">Available in Stores</a></li><% end %>
+                               <% if @brand.store_farmers_market %>
+                                <li class="farmer_market"><a href="javascript:;">Available in Farmers Market</a></li><% end %>
+                            </ul>
+                        </div>
+                        <div class="right">
+                        	<ul>
+                            	<li class="brand_share"><a href="javascript:;">Share</a></li>
+                                <li class="brand_flag"><a href="javascript:;">Flag Product</a></li>
+                                <li class="brand_location"><a href="javascript:;">Add Location</a></li>
+                                <li class="brand_fav"><a href="javascript:;">Add To My Favorites</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="products_part">
+            	<div class="container">
+                	<ul class='etabs'>
+                       <li class='tab'><a href="#nearby" class="active">Nearby Products</a></li>
+                       <li class='tab'><a href="#allbrands">All Products</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                	<div class='tab_container'>
+                    	<div class='panel_container'>
+  							<div id="nearby" class="tab_div active">
+                                <div class="home_body prd_search">
+                                    <div class="map_button fr hide_for_mobile">
+                                        <a href="javascript:;">Full Screen Map</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="home_left fl">
+                                         <div class="products">
+                               <% @products.each do |product| %> 
+                              
+                               
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                 
+                                                <p class="location"><a href="#">4 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                               
+                                
+                            </div>
+                                    </div>
+                                    <div class="map_button fr hide_for_desktop">
+                                            <a href="javascript:;">Full Screen Map</a>
+                                        </div>
+                                        <div class="clear hide_for_desktop"></div>
+                                    <div class="home_right fr">
+                                        <div class="home_right_container">
+                                            <div class="map_area">
+                                                  <%= render '/layouts/zipsearch' %>
+                                                 
+                                                <!-- Google Map -->
+                                                <div id="map-canvas"></div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                        	</div>
+                            <div id="allbrands" class="tab_div">
+                               <div class="home_body prd_search">
+                                    <div class="map_button fr hide_for_mobile">
+                                        <a href="javascript:;">Full Screen Map</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="home_left fl">
+                                         <div class="products">
+                               <% @productsall.each do |product| %> 
+                              
+                               
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                
+                                                <p class="location"><a href="#">4 Locations Nearby</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                               
+                                
+                            </div>
+                                    </div>
+                                    <div class="map_button fr hide_for_desktop">
+                                            <a href="javascript:;">Full Screen Map</a>
+                                        </div>
+                                        <div class="clear hide_for_desktop"></div>
+                                    <div class="home_right fr">
+                                        <div class="home_right_container">
+                                        <div class="map_area">
+                                              <%= render '/layouts/zipsearch' %>
+                                             
+                                            <!-- Google Map -->
+                                            <div id="map-canvas"></div>
+
+
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="stock_status">
+                        <p><strong>IN STOCK?</strong> Please call the store to verify the product or brand you want is currently in stock before going.<br/>Find Real Food cannot guarantee product inventory on any given day.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+
+    

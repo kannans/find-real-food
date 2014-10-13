@@ -1,0 +1,103 @@
+    <section>
+        <div class="main_container">
+            <div class="inner_banner">
+                  <%= image_tag('how_to_add_products.jpg', :alt => "How to add products") %>
+                <div class="caption_part">
+                     <div class="container">
+                          <h1>Real Food News Blog</h1>
+                          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+                          <div class="clear"></div>
+                     </div>
+                </div>
+            </div>
+            <div class="cms_section">
+                <div class="container">
+                    <div class="news_page">
+                         <%= render @newsposts %>
+                       
+                    </div>
+                     <div class="clear"></div>
+                     <div class="scroll_down" data-page="2">
+                        <p>Scroll down</p>
+                        <a href="javascript:void(0);" class="pageload">
+                            
+                             <%= image_tag("scroll_down.png", :alt => "Scroll Down") %>
+                        </a>
+                    </div>   
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var next_page ='';
+    var allpages = new Array(); 
+    function lastAddedLiveFunc()
+    {
+        if($('.scroll_down').attr('data-page')){
+         next_page = $('.scroll_down').attr('data-page')+'a';
+         
+            if(key_exists(next_page, allpages)){
+                     
+            }else{
+                
+                allpages.push(next_page);
+           
+                $.get('/news', { page: $('.scroll_down').attr('data-page')}, null, "script");
+          
+            }
+          
+        }
+         return false;
+    };
+    
+
+
+    function key_exists(key, search) {
+    if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+        return false;
+    }
+    for (var i = 0; i < search.length; i++) {
+        if (search[i] === key) {
+            return true;
+        }
+    }
+    return key in search;
+    }
+
+
+    $('.pageload').click(function(){
+    
+        lastAddedLiveFunc();
+    });
+
+
+    //lastAddedLiveFunc();
+    
+    $(window).scroll(function(){
+        
+        var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+        var  scrolltrigger = 0.95;
+        
+        if  ((wintop/(docheight-winheight)) > scrolltrigger) {
+         //console.log('scroll bottom');
+         lastAddedLiveFunc();
+
+        }
+    });
+
+    var i = 1;
+    $(".news").each(function() {
+        var newClass = 'last';
+        if (i % 3 == 0){ newClass = 'last';
+        $(this).addClass(newClass);
+    }
+    i++;
+    });
+
+
+});
+</script>

@@ -1,0 +1,16 @@
+ <%= form_tag("/search", :method => "get", :class => "zip_search_form") do %>
+<div class="map_form">
+    <div class="map_form_container">
+        <div class="bg_white">
+            <div class="map_input fl">
+                <%= text_field_tag :zip, params[:zip], :id => 'zip_field', :class => 'zip_field', :placeholder => "Whats your zipcode?" %>
+
+            </div>
+            <div class="map_btn fr">
+                 <input type="submit" value="See what's nearby">
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<% end %> 

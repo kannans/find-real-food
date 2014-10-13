@@ -1,0 +1,11 @@
+= form_for :user, :url => user_session_path, :remote => true  do |f|
+  = f.label :email, "Email:"
+  = f.email_field :email
+
+  = f.label :password, "Password:"
+  = f.password_field :password
+
+  = f.submit "Log In", :id => 'login-btn'
+  = link_to "Create Account", login_path, :id =>'create-account-btn'
+
+  .errors

@@ -1,0 +1,85 @@
+ <%= form_tag({:controller => "searches", :action => "index"}, :method => "get", :class => "nifty_form") do %>
+ 
+            <div class="filter_part">
+                <div class="container">
+                    <div class="filters fltr1 fl">
+                        <div class="custom_accord">
+                            <span class="accrtitle">Narrow by:</span>
+                        </div>
+                    </div>
+                    <div class="filters fltr2 fl">
+                        <a class="accrd_btn" href="javascript:;">Keywords</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="kwd_srch_form">
+                                        <%= text_field_tag :search, params[:search], :id => 'search_field_new', :placeholder => "Enter Keyword" %>
+
+                                        <input class="ajaxcall" type="button"/>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="filters fltr3 fl">
+                        <a class="accrd_btn" href="javascript:;">Sort Order</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="checks">
+                                        <input type="radio" id="proximity" name="sort" value="proximity" />
+                                        <label>Proximity</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="radio" id="alphabetical" name="sort" value="alphabetical" />
+                                        <label>Alphabetical</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="radio" id="rating" name="sort" value="rating" />
+                                        <label>User Ratings</label>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="filters fltr4 fl">
+                        <a class="accrd_btn" href="javascript:;">How Sold</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="checks">
+                                         <input type="radio" id="store" name="sold" value="store" />
+                                        <label>In Stores</label>
+                                    </div>
+                                    <div class="checks">
+                                       <input type="radio" id="online" name="sold" value="online" />
+                                        <label>Online</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="radio" id="phone" name="sold" value="phone" />
+                                        <label>By Phone</label>
+                                    </div>
+                                    <div class="checks"><input type="radio" id="all" name="sold" value="all" />
+                                        <label>All</label>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="filters fltr5 fl">
+                        <a class="accrd_btn" href="javascript:;">WAPF Ranking</a>
+                        <div class="accrd1">
+                              <div class="accordion_body">
+                                    <div class="checks">
+                                       <input type="radio" id="best" name="rank" value="best" />
+                                        <label>Best</label>
+                                    </div>
+                                    <div class="checks">
+                                        <input type="radio" id="good" name="rank" value="good" />
+                                        <label>Good</label>
+                                    </div class="checks">
+                                    <div class="checks">
+                                       <input type="radio" id="both" name="rank" value="both" />
+                                        <label>Both</label>
+                                    </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+             <% end %> 

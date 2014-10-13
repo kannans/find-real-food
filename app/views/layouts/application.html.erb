@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>FIND REAL FOOD | Home</title>
+  <% #= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+ 
+<link rel="stylesheet" type="text/css" href="/assets/fonts.css">
+<link rel="stylesheet" type="text/css" href="/assets/style.css">
+<link rel="stylesheet" type="text/css" href="/assets/light_pop_v0.1.css">
+<link rel="stylesheet" type="text/css" href="/assets/responsive.css">
+<script src="/assets/jquery.bxslider.js"></script>
+<script src="/assets/light_pop_v0.js"></script>
+<script src="/assets/jquery.validate.js"></script>
+<script src="/assets/custom.js"></script>
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-60b58715-9a18-f952-26e5-d7c1b1165d91", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<style>
+      html, body, #map-canvas {
+        height: 478px;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+  
+</head>
+<body>
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1601901470036363&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo fl">
+                    <h2>
+                        <a href="/"><%= image_tag("logo.png", :alt => "FIND REAL FOOD") %></a>
+                    </h2>
+                </div>
+                <div class="top_right_part fr">
+                    <div class="menu_toggle fr">
+                        <a href="#"><%= image_tag("menu.png", :alt => "Menu") %></a>
+                        <div class="menu_container">
+                            <ul>
+                              <li><a href="/categories">View Food Categories</a></li>
+                              <li><a href="/search">Search All Foods</a></li>
+                              <li><a href="/news">Real Food News Blog</a></li>
+                              <li><a href="/faq">FAQs</a></li>
+                              <li><a href="#">Tutorials</a></li>
+                              <li><a href="#">App Overview</a></li>
+                              <li><a href="/how-foods-are-choosen">How Foods are Choosen</a></li>
+                             
+                              <li><a href="#">Terms & Privacy Policy</a></li>
+                              <li><a href="#">Invite Friends</a></li>
+                              <li><a href="#">Suggest a Product</a></li>
+                              <li><a href="#">Add a Location</a></li>
+                              <li><a href="#">Become an Affiliate</a></li>
+                              <li><a href="/page/about-us">About Us</a></li>
+                              <li><a href="#">Contact Us</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                        
+                    </div>
+
+                    <% if user_signed_in? %>
+
+                    <div class="user_menu fr">
+                      <a href="javascript:;" class="user_mn_link"><img src="/assets/header_user.png" alt="User Name"/></a>
+                        <ul class="user_menu_list">
+                          <li class="user_detail_list"><a href="javascript:;"><img src="/assets/header_user.png" alt="User Name"/><span>Jon VanBuren</span></a></li>
+                          <li><%= link_to 'My Profile', "/user/profile" %></li>
+                            <li><a href="javascript:;">Edit Profile</a></li>
+                            <li><a href="javascript:;">My Favorites</a></li>
+                            <li><a href="javascript:;">Subscription</a></li>
+                            <li><a href="javascript:;">Help</a></li>
+                            <li><%= link_to 'Logout', "/logout" %></li>
+                        </ul>
+                    </div>
+
+                     <% else %>
+                     
+                     <div class="signup fr"><a  class="light_pop_trigger" href="#register">Sign Up</a></div>
+                    <div class="login fr"><a class="light_pop_trigger" href="#login">Login</a></div>
+                     <% end %>
+                    <div class="search fr">
+                     
+
+                       <%= form_tag({:controller => "searches", :action => "index"}, :method => "get", :class => "search_form_top") do %>
+
+                        <span class="search_box fl">
+                          <%= text_field_tag :search, params[:search], :id => 'search_field', :class => 'search_field', :placeholder => "Search Products, Brands, Users" %>
+                          <!--  <input type="text" placeholder="Search Products, Brands, Users"/>-->
+                        </span>
+                        <%= submit_tag "Search", :name => nil, :class=>"search_btn fr" %> 
+                        
+                        <div class="clear"></div>
+                        <% end %> 
+                    </div>
+
+                      
+
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </nav>
+    </header>
+   
+   <%= yield %>
+    <footer>
+        <div class="footer">
+            
+            <div class="footer_top">
+                <div class="container">
+                    <div class="footer_left fl">
+                        <h1>Get Notified About Important Changes</h1>
+                        <p>Get occasional news and helpful updates about the Find Real Food Guide!</p>
+                         <form method="post" action="https://register.sendreach.com/forms/?listid=16073" name="optin" id="optin" onsubmit="return required();">
+                        <div class="form_newsletter">
+                            <span class="input_field">
+                                <input type="text" placeholder="Your Name" name="name" />
+                                <span class="error">Error Message</span>
+                            </span>
+                            <span class="input_field">
+                                <input type="text" placeholder="Your Email Address" name="email" />
+                            </span>
+                            <input type="hidden" name="lid" value="16073">
+                            <input type="submit" class="button" value="Sign me Up!">
+                        </div>
+                        </form>
+                    </div>
+                    <div class="footer_right fr">
+                        <%= image_tag("globe_footer.png", :alt => "star") %>
+                        
+                        <h2><span>The</span> Weston A. Price Foundation</h2>
+                        <p>For wise traditions in Food, Farming and the Healing Arts</p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+ 
+
+
+
+
+            <div class="footer_bottom">
+                <div class="container">
+                    <span class="fl fb_area">
+                       <div class="fb-like" data-href="https://www.facebook.com/findrealfoodapp" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+                        <div class="facebook"><a target="_blank" href="https://www.facebook.com/findrealfoodapp"><%= image_tag("footer_fb_icon.png", :alt => "Facebook") %></a></div>
+                    </span>
+                    <p class="fr copyrt">Copyrights &copy; 2014 Find Real Food. All Rights Reserved</p>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <%= render '/layouts/login' %>
+    <%= render '/layouts/register' %>
+
+    <script type="text/javascript">
+    $(function(){
+
+      $('.products').slimScroll({
+          height:496,
+          wheelStep: 2,
+          alwaysVisible: true,
+          railVisible: true
+      });
+     
+    });
+</script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+        
+ $('.ajaxcall, .checks input').click(function(){
+
+   search_products();
+
+
+  });
+ 
+  $(".search_form_top").submit(function(){ 
+    if($(".search_field").val()==''){
+      $(".search_box, .search_box input").css("background","#f9d4d4"); 
+      $(".search_box, .search_box input").css("color","#ff0000"); 
+      return false;
+    }
+  });
+
+
+  $(".zip_search_form1").submit(function(){ 
+    if($(".zip_field").val()==''){
+      alert('fdsfds')
+      $(".map_input, .map_input input").css("background","#f9d4d4"); 
+      $(".map_input, .map_input input").css("color","#ff0000"); 
+      return false;
+    }
+  });
+
+ function search_products(){
+
+  $('.loading_ovelay').show();
+  var sort = '';
+  var rank = '';
+  var sold = '';
+  
+   if($('#proximity').is(":checked")){
+    sort = $('#proximity').val();
+   }
+   if($('#alphabetical').is(":checked")){
+     sort = $('#alphabetical').val();
+   }
+   if($('#rating').is(":checked")){
+       sort = $('#rating').val();
+   }
+
+   if($('#best').is(":checked")){
+       rank = $('#best').val();
+   }
+
+   if($('#good').is(":checked")){
+       rank = $('#good').val();
+   }
+   if($('#all').is(":checked")){
+       rank = $('#all').val();
+   }
+
+   if($('#phone').is(":checked")){
+       sold = $('#phone').val();
+   }
+
+   if($('#online').is(":checked")){
+       sold = $('#online').val();
+   }
+   if($('#store').is(":checked")){
+       sold = $('#store').val();
+   }
+   if($('#all').is(":checked")){
+       sold = $('#all').val();
+   }
+
+    $.get("/search", { search: $("#search_field_new").val(),sort:sort, rank:rank, sold:sold }, null, "script");
+    return false;
+
+
+ }
+
+ 
+    
+                $("#login_frm, #login_frm_full").validate({
+                  
+                  debug: true,
+                    rules: {
+                        email:{
+                            required: true,
+                            email: true 
+                        },
+                        password: "required"
+                    },
+                    messages: {
+                        email:{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address"  
+                        },
+                        password: "Password is Required"
+                    },submitHandler : function(form) {
+                     if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
+                     }
+                  }
+                });
+                
+                //End Login
+                
+                //Start Register
+                $("#user_signup_form").validate({
+                  debug: true,
+                    rules: {
+                        "user[fname]": "required",
+                        "user[name]": "required",
+                        "user[email]":{
+                            required: true,
+                            email: true 
+                        },
+                          
+                        "user[password]": {
+                            required: true,
+                            minlength: 8
+                        },
+                        "user[password_confirmation]": {
+                            required: true,
+                            equalTo: "#user_password_confirmation"
+                        }
+                    },
+                    messages: {
+                        "user[fname]": "First Name is Required",
+                        "user[name]": "Last Name is Required",
+                         "user[email]":{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address"  
+                        },
+                          
+                         "user[password]": {
+                            required: "Password is Required",
+                            minlength: "Password must Have Minimum 8 Charecters"
+                        },
+                         "user[password_confirmation]": {
+                            required: "Confirm Password is Required",
+                            equalTo: "Passwords are Mismatch"
+                        }
+                    },submitHandler : function(form) {
+                     if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
+                     }
+                  }
+                });
+ 
+});
+    
+
+</script>
+
+</body>
+</html>

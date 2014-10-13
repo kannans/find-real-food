@@ -1,0 +1,20 @@
+<div class="header">Change Password</div>
+<% unless devise_error_messages!.empty? %>
+  <div class="error"><%= devise_error_messages! %></div>
+<% end %>
+
+<div class="reset-form">
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div><%= f.label :password, "New password" %><br />
+    <%= f.password_field :password, :autofocus => true, :class => 'field' %></div>
+
+    <div><%= f.label :password_confirmation, "Confirm new password" %><br />
+    <%= f.password_field :password_confirmation, :class => 'field' %></div>
+    <div class="footer">
+      <div><%= f.submit "Reset", :class => 'button' %></div>
+    </div>
+  <% end %>
+</div>
+

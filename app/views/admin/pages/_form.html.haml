@@ -1,0 +1,14 @@
+= semantic_form_for [:admin, @page] do |f|
+  = f.semantic_errors *f.object.errors.keys
+
+  = f.inputs "Page" do
+    = f.input :title, :label => "Title"
+    = f.input :body, :label => "body Text"
+    = f.input :picture, :as => :file
+
+  - unless @page.picture.blank?
+    = f.inputs "Current Image" do
+      = image_tag @page.picture(:original)
+
+  = f.actions
+

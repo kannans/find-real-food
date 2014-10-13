@@ -1,0 +1,14 @@
+<h1>Home#index</h1>
+
+    <%= session[:user_id] %>
+	<%= form_tag({:controller=>'sessions', :action => 'create'}, {:id => 'login'}) %>
+      <%= label_tag :email, 'Email: ' %><br>
+      <%= text_field_tag :email %><br>
+
+      <%= label_tag :password, 'Password: ' %><br>
+      <%= password_field_tag :password %><br>
+
+      <%= submit_tag 'Login' %>
+
+    
+
