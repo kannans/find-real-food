@@ -2,16 +2,27 @@
     	<div class="main_container">
             <div class="inner_banner locations_page">
             	<div class="container">
-                	<a href="javascript:;" class="banner_logo"><img src="/assets/location_logo.png" alt="Brand"/></a>
+                	<a href="javascript:;" class="banner_logo"> 
+                        <% if @location.picture.present? %>
+                                           <%= image_tag (@location.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("location_logo.png", :alt => "star") %>
+                                            <% end %>
+                    </a>
                     <div class="locations_options">
                     	<ul>
                         	<li>
-                            	<h1 class="lct_title">Whole Foods Markets</h1>
-                                <p class="lct_desc">123 Major Ave, Bowling Green, KY 42104</p>
+                            	<h1 class="lct_title"><%= @location.name %></h1>
+                                <p class="lct_desc"><%= @location.address %>, <%= @location.city %>, <%= get_state_name(@location.state_id) %> <%= @location.zip %></p>
                             </li>
+                            
                             <li>
-                            	<a href="javascript:;" class="lct_phone">270-969-8563</a>
-                                <a href="http://www.wholefoodsmarket.com" target="_blank" class="lct_web">www.wholefoodsmarket.com</a>
+                                <% if @location.phone !='' %>
+                            	<a href="javascript:;" class="lct_phone"><%= number_to_phone(@location.phone, area_code: true) %></a>
+                                <% end %>
+                                <% if @location.website!='' %>
+                                <a href="<%= @location.website %>" target="_blank" class="lct_web"><%= @location.website %></a>
+                                <% end %>
                             </li>
                         </ul>
                         <div class="clear"></div>
@@ -31,432 +42,105 @@
   							<div id="nearby" class="tab_div active">
                                 <div class="home_body prd_search">
                                     <div class="locations">
-                                        <div class="products">
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a class="media_img" href="javascript:;"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a class="media_img" href="javascript:;"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                          <% if @products %>
+                                         <div class="products">
+                               <% @products.each do |product| %> 
+                              
+                               
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                 <% $i = 0
+                                                if product.avg_rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < product.avg_rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= product.rating_count %>)</span></p>
+                                               <% end  %>
+
+                                                <p class="location"><a href="#">4 Locations Nearby</a></p>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                               
+                                
+                            </div>
+                            <% end %>
                                     </div>
                                 </div>
                         	</div>
                             <div id="allbrands" class="tab_div">
                                <div class="home_body prd_search">
                                     <div class="locations">
-                                        <div class="products">
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a class="media_img" href="javascript:;"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/raw_milk.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/ice_cream.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Ice Cream</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(1)</span></p>
-                                                            <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/grains_legumes.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Grains &amp; Legumes</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(24)</span></p>
-                                                            <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product_item">
-                                                <div class="product_item_body">
-                                                    <div class="media product">
-                                                        <a href="javascript:;" class="media_img"><img alt="Image" src="/assets/butter.png"></a>
-                                                        <div class="media_text">
-                                                            <p class="media_title"><a href="javascript:;">Butter</a></p>
-                                                            <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                            <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><span>(2)</span></p>
-                                                            <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                         <% if @productsall %>
+                                         <div class="products">
+                               <% @productsall.each do |product| %> 
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                <% $i = 0
+                                                if product.avg_rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < product.avg_rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= product.rating_count %>)</span></p>
+                                               <% end  %>
+
+                                                <p class="location"><a href="#">4 Locations Nearby</a></p>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                                
+                                
+                            </div> <% end %>
                                     </div>
                                 </div>
                              </div>

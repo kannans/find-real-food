@@ -1,6 +1,18 @@
 class CategoriesController < ApplicationController
 
 	def index
+
+		if params[:zip]
+	  		zip = params[:zip]
+	      session[:zip] = zip
+	  	elsif session[:zip]
+	      zip = session[:zip]
+	  	else
+	    	zip = '94123'
+	      session[:zip] = zip
+	  	end
+
+	  	@locations = Location.near("#{zip}", 20)
 		@categories = Category.paginate(page: params[:page], per_page: 5).order('title DESC')
 
 	end
@@ -9,12 +21,12 @@ class CategoriesController < ApplicationController
 		
 		if params[:zip]
 	  		zip = params[:zip]
-	      session[:user] = zip
-	  	elsif session[:user]
-	      zip = session[:user]
+	      session[:zip] = zip
+	  	elsif session[:zip]
+	      zip = session[:zip]
 	  	else
 	    	zip = '94123'
-	      session[:user] = zip
+	      session[:zip] = zip
 	  	end
 
 	    category = Category.find(params[:slug])

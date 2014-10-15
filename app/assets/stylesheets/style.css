@@ -999,6 +999,7 @@ a.button.hide_for_desktop
 .category_map
 {
 	border-bottom:1px solid #a1a1a1;
+	
 }
 .category_map .map_form
 {
@@ -1340,12 +1341,14 @@ span.accrtitle
 	  /* Good browsers */
 	  opacity: 0;
 }
-.home_left .products .product_item
+.home_left .products .product_item, .home_body .products .product_item
 {
 	display: inline-block;
 	transition: all 0.5s ease 0s;
 	-webkit-transition: all 0.5s ease 0s;
+	vertical-align: top;
 	width:350px;
+
 	
 }
 
@@ -1633,7 +1636,7 @@ h3.brand_title
 p.ord_phone
 {
 	min-height:28px;
-	background:url(/assets/phone_rounded.png) no-repeat left center;
+	background:url(/assets/phone_rounded.png) no-repeat left top;
 	color:#828283;
 	font-family:'OpenSansBold', Arial, Helvetica, sans-serif;
 	font-size:15px;
@@ -1655,7 +1658,7 @@ p.ord_phone a:hover, p.ord_phone a:focus
 p.ord_online
 {
 	min-height:28px;
-	background:url(/assets/globe_rounded.png) no-repeat left center;
+	background:url(/assets/globe_rounded.png) no-repeat left top;
 	color:#828283;
 	font-family:'OpenSansBold', Arial, Helvetica, sans-serif;
 	font-size:15px;
@@ -1677,7 +1680,7 @@ p.ord_online a:hover, p.ord_online a:focus
 p.ord_store
 {
 	min-height:28px;
-	background:url(/assets/location_pointer_rounded.png) no-repeat left center;
+	background:url(/assets/location_pointer_rounded.png) no-repeat left top;
 	color:#828283;
 	font-family:'OpenSansBold', Arial, Helvetica, sans-serif;
 	font-size:15px;
@@ -2453,6 +2456,10 @@ span.avoid
 .brands_options .right ul li a:hover
 {
 	color:#ffffff;
+}
+
+.brands_options .right ul li span.st_sharethis_custom {
+    display: block;
 }
 .brands_options .right ul li a:before
 {
@@ -3231,7 +3238,7 @@ h1.login_title.creat_acc
 }
 .locations .product_item
 {
-	float:left;
+	/*float:left;*/
 }
 .inner_banner.locations_page
 {
@@ -4342,4 +4349,118 @@ a.sub_banner_button:hover
     color: #ff0000 !important;
     border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+.location_list
+{
+	padding:15px 10px 15px 0;
+	display:none;
+}
+.location_list ul
+{
+	background: #ffffff;
+    border: 1px solid #dddddd;
+    margin: 0;
+    padding: 10px;
+}
+.location_list ul li
+{
+	border-bottom: 1px solid #dddddd;
+	padding:10px 0px;
+}
+.location_list ul li:last-child
+{
+	padding-bottom:0;
+	border-bottom:0;
+}
+.location_list ul li:first-child
+{
+	padding-top:0;
+}
+.location_list ul li a
+{
+	font-size:11px;
+	color:#9d9c9c;
+	display:block;
+	padding-left:15px;
+	background:url(/assets/map_pointer_small.png) no-repeat left 0px;
+	line-height:12px;
+	min-height:12px;
+}
+.location_list ul li a span
+{
+	color:#000000;
+	font-family:'OpenSansSemibold', Arial, Helvetica, sans-serif;
+}
+.loaction_title
+{
+	margin:0 0 5px 0;
+}
+.location_list ul li .loaction_title a
+{
+	color:#dd3637;
+	font-family:'OpenSansSemibold', Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-transform:uppercase;
+	padding:0;
+	background:none;
+	min-height:inherit;
+	line-height:normal;
+}
+.location_list ul li .loaction_title a:hover, .location_list ul li .loaction_title a:focus
+{
+	color:#000000;
+}
+.alert_overlay {
+    background: rgba(0,0,0,0.8);
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    display: none;
+    top: 0;
+}
+.alert_div {
+    background: none repeat scroll 0 0 #ffffff;
+    left: 0;
+    margin: auto;
+    max-width: 360px;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    top: 20%;
+	border-top-right-radius:5px;
+	border-top-left-radius:5px;
+	border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	-webkit-border-bottom-left-radius:5px;
+}
+.close {
+    background: #dd3637;
+    position: absolute;
+    right: -13px;
+    top: -13px;
+	font-family:'OpenSansBold', Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-transform:uppercase;
+	display:block;
+	line-height:25px;
+	height:25px;
+	width:25px;
+	border-top-right-radius:25px;
+	border-top-left-radius:25px;
+	border-bottom-right-radius:25px;
+	border-bottom-left-radius:25px;
+	-webkit-border-top-right-radius:25px;
+	-webkit-border-top-left-radius:25px;
+	-webkit-border-bottom-right-radius:25px;
+	-webkit-border-bottom-left-radius:25px;
+	text-align:center;
+	color:#ffffff;
+}
+.close:hover
+{
+	cursor:pointer;
 }

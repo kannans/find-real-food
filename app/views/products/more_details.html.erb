@@ -93,60 +93,65 @@
                                 </div>
                                 <div class="prd_btm_right_responsive">
                             <h1>Similar Products Nearby</h1>
+                            <% if @similar_products %>
                             <div class="products">
+                               <% @similar_products.each do |product| %> 
+                              
+                               
                                 <div class="product_item">
                                     <div class="product_item_body">
                                         <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/raw_milk.png" alt="Image"/></a>
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
                                             <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><span>(2)</span></p>
-                                                <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                <% $i = 0
+                                                if product.avg_rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < product.avg_rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= product.rating_count %>)</span></p>
+                                               <% end  %>
+                                                <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= row[4]%>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
+                                             
+                                             </ul>
+                                          </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/almond_milk.png" alt="Image"/></a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Almond Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(1)</span></p>
-                                                <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/coconut_milk.png" alt="Image"/></a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Coconut Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(24)</span></p>
-                                                <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/dairy_milk.png" alt="Image"/></a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Dairy Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(2)</span></p>
-                                                <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% end %>
+                               
+                                
                             </div>
+                            <% end %>
                         </div>
                                 <div class="prd_dtl_review_part">
                                     <h1>User Reviews</h1>
@@ -211,69 +216,77 @@
                         </div>
                         <div class="prd_btm_right fr">
                             <h1>Similar Products Nearby</h1>
+                            <% if @similar_products %>
                             <div class="products">
+                               <% @similar_products.each do |product| %> 
+                              
+                               
                                 <div class="product_item">
                                     <div class="product_item_body">
                                         <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/raw_milk.png" alt="Image"/></a>
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
                                             <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Raw Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><span>(2)</span></p>
-                                                <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                <% $i = 0
+                                                if product.avg_rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < product.avg_rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= product.rating_count %>)</span></p>
+                                               <% end  %>
+                                                <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= row[4]%>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
+                                             
+                                             </ul>
+                                          </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/almond_milk.png" alt="Image"/></a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Almond Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(1)</span></p>
-                                                <p class="location"><a href="javascript:;">2 Locations Nearby</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/coconut_milk.png" alt="Image"/></a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Coconut Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Digest Easy</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(24)</span></p>
-                                                <p class="location"><a href="javascript:;">3 Locations Nearby</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="javascript:;" class="media_img"><img src="/assets/dairy_milk.png" alt="Image"/></a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="javascript:;">Dairy Milk</a></p>
-                                                <p class="media_sub_title"><a href="javascript:;">Castle Rock Organic Farms</a></p>
-                                                <p class="rating"><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star.png" alt="star"/></a><a href="javascript:;"><img src="/assets/star_gray.png" alt="star"/></a><span>(2)</span></p>
-                                                <p class="location"><a href="javascript:;">5 Locations Nearby</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <% end %>
+                               
+                                
                             </div>
+                            <% end %>
                         </div>
                         <div class="clear"></div>
                     </div>
                 </div>
             </div>  
         </div>
-        <div class="alert_div"><span class="close">X</span>
-            <span class="alert_text">some text</span>
-        </div>
+        <div class="alert_overlay">
+    <div class="alert_div">
+        <span class="close">X</span>
+        <span class="alert_text">some text</span>
+    </div>
+</div>
     </section>
 
     <script type="text/javascript">
@@ -293,14 +306,16 @@ $(document).ready(function(){
         $.get('/products/addrating', { ratable_id:<%= @product.id %>,comment:$(".leave_cmt").val() }, null, "script");
     }else{
         $(".alert_text").html("Comment should not be empty");
-        $(".alert_div").fadeIn();
+        $(".alert_overlay").fadeIn();
     }
         return false;
 
 
      });
     
-
+    $(".close").click(function(){
+    $(".alert_overlay").fadeOut();
+});
     
 });
 </script>

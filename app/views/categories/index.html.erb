@@ -1,10 +1,10 @@
-  
+  <%= render '/layouts/googlemap' %>
     <section>
         <div class="main_container">
             <div class="category_map">
                 <div class="map_container">
                     
-                    <%= image_tag('category_map.jpg', :alt => "map") %>
+                    <div id="map-canvas"></div>
                     <div class="container">
                         <%= render '/layouts/zipsearch' %>
                     </div>
@@ -93,5 +93,19 @@ $(document).ready(function(){
 
         }
     });
+
+     setInterval(function(){
+        <% @locations.each do |locationval| %> 
+        codeAddress('<%= locationval.full_address %>');
+        <% end %>
+
+      }, 2000);
+     
 });
+ 
+
+     
+ 
+     
+
 </script>

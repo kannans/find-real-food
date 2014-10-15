@@ -5,35 +5,24 @@ class SearchesController < ApplicationController
 
     if params[:zip]
       zip = params[:zip]
-      session[:user] = zip
-    elsif session[:user]
-      zip = session[:user]
+      session[:zip] = zip
+    elsif session[:zip]
+      zip = session[:zip]
     else
       zip = '94123'
-      session[:user] = zip
+      session[:zip] = zip
     end
 
-    
-
-    location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+    location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]
-    sort = 'name' if sort.nil? || sort=='alphabetical' || sort=='proximity'
     sold = params[:sold]
 
     if location !=''
-      @products = Product.sort_by_rating(location, search)
+      @products = Product.sort_by_rating(location, search, '','',sort)
       @brands = Brand.search_by_locations_and_name(location, search, sold)
-
-    else
-      @products = Product.sort_by_rating('', search)
-      @brands = Brand.search_by_locations_and_name('', search, sold)
-
+ 
     end
-    
-
-
-     
     respond_to do |format|
       format.html
       format.js

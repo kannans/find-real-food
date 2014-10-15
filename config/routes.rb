@@ -22,6 +22,9 @@ RealFood::Application.routes.draw do
     post 'users/create'
     get 'logout', :to => 'sessions#destroy'
     
+    
+    get 'brands/addtofavorite', :to => 'brands#add_to_favorites'
+    get 'location/:slug', :to => 'locations#index'
     get 'products', :to => 'products#index'
     get 'products/addtofavorite', :to => 'products#add_to_favorites'
     get 'products/addrating', :to => 'products#add_comments'

@@ -1,6 +1,9 @@
 class Location < ActiveRecord::Base
   TYPES = ['National Retailer', 'Local Retailer', 'Farm Store', 'Co-Op/Buying Club', 'Farmer\'s Market']
-
+  
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+  
   belongs_to :state
   belongs_to :brand
 

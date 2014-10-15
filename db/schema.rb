@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141010121934) do
+ActiveRecord::Schema.define(:version => 20141014053843) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -149,8 +149,10 @@ ActiveRecord::Schema.define(:version => 20141010121934) do
     t.string   "location_type"
     t.string   "latitude"
     t.string   "longitude"
+    t.string   "slug"
   end
 
+  add_index "locations", ["slug"], :name => "index_locations_on_slug", :unique => true
   add_index "locations", ["state_id"], :name => "index_locations_on_state_id"
 
   create_table "locations_products", :force => true do |t|

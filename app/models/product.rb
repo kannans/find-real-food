@@ -94,42 +94,69 @@ class Product < ActiveRecord::Base
         .search(params)
   end
 
-  def self.sort_by_rating(location='',search='', category='', brand='')
-    if search !=''
+  def self.similar_products(category_id)
+    self.unscoped.quality_rating_search().where(category_id: category_id)
+              .order("products.name asc")
+              .order("avg_rating desc")
+              .order("quality_order asc")              
+              .find(:all, :limit => 20)
+  end
+
+  def self.sort_by_rating(location='',search='', category='', brand='', sort='')
+    
       if category !=''
-      self.unscoped.quality_rating_search(location).where(category_id: category.id)
+        if search !=''
+            if sort =='proximity' || sort =='alphabetical'
+              self.unscoped.quality_rating_search(location).where(category_id: category.id)
+              .order("products.name asc")
+              .order("avg_rating desc")
+              .order("quality_order asc")              
+              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
+            else
+              self.unscoped.quality_rating_search(location).where(category_id: category.id)
+              .order("avg_rating desc")
+              .order("quality_order asc")
+              .order("products.name asc")
+              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
+            end
+
+         else
+          self.unscoped.quality_rating_search(location).where(category_id: category.id)
         .order("avg_rating desc")
         .order("quality_order asc")
         .order("products.name asc")
-        .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
-      else
-        self.unscoped.quality_rating_search(location)
-        .order("avg_rating desc")
-        .order("quality_order asc")
-        .order("products.name asc")
-        .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
-      
-      end
-    else
-      if brand !=''
+        .find(:all, :conditions => ['products.name IS NOT NULL'], :limit => 20)
+         end 
+      elsif brand !=''
       self.unscoped.quality_rating_search(location).where(brand_id: brand.id)
         .order("avg_rating desc")
         .order("quality_order asc")
         .order("products.name asc")
         .find(:all, :conditions => ["products.name IS NOT NULL"], :limit => 20)
       else
-            self.unscoped.quality_rating_search(location)
+        if search !=''
+            if sort =='proximity' || sort =='alphabetical'
+              self.unscoped.quality_rating_search(location)
+              .order("products.name asc")
+              .order("avg_rating desc")
+              .order("quality_order asc")
+              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
+            else
+              self.unscoped.quality_rating_search(location)
+              .order("avg_rating desc")
+              .order("quality_order asc")
+              .order("products.name asc")
+              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
+            end 
+        else
+         self.unscoped.quality_rating_search(location)
         .order("avg_rating desc")
         .order("quality_order asc")
         .order("products.name asc")
-        .find(:all, :conditions => ["products.name IS NOT NULL"], :limit => 20)
-
+        .find(:all, :conditions => ['products.name IS NOT NULL'], :limit => 20) 
+        end
       end
-    end 
-
-
-
-
+    
   end
 
   def selected_parents
@@ -137,7 +164,7 @@ class Product < ActiveRecord::Base
   end
 
   private
-    def self.quality_rating_search(params)
+    def self.quality_rating_search(params='')
       if params !=''
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
@@ -155,7 +182,6 @@ class Product < ActiveRecord::Base
 
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
-          .joins("LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id")
           .group("products.id")
           .select("products.*,
                 CASE quality_ratings.name
@@ -164,7 +190,7 @@ class Product < ActiveRecord::Base
                     WHEN 'Avoid' THEN 3
                 END As quality_order")
           .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
-          .where("products.quality_rating_id IS NOT NULL")
+          
         end
     end
 

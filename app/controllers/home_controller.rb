@@ -3,20 +3,20 @@ class HomeController < ApplicationController
   	
   	if params[:zip]
   		zip = params[:zip]
-      session[:user] = zip
-  	elsif session[:user]
-      zip = session[:user]
+      session[:zip] = zip
+  	elsif session[:zip]
+      zip = session[:zip]
   	else
     	zip = '94123'
-      session[:user] = zip
+      session[:zip] = zip
   	end
 
     
     search = ''
-  	location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+  	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     
-    if location !=''
-	  @products = Product.sort_by_rating(location,search)
+    if @location !=''
+	  @products = Product.sort_by_rating(@location,search)
     end
 
    	@sliders = Slider.all

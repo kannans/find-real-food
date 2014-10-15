@@ -3,8 +3,8 @@
                 </div>
                 <div class="container">
                     <ul class='etabs'>
-                     <% if @products %>  <li class='tab'><a href="#products" class="active">products</a></li> <% end %>
-                     <% if @brands %>   <li class='tab'><a href="#brands">brands</a></li> <% end %>
+                        <li class='tab'><a href="#products" class="active">products</a></li>  
+                       <li class='tab'><a href="#brands">brands</a></li>  
                       
                     </ul>
                     <div class="clear"></div>
@@ -17,6 +17,7 @@
                                     </div>
                                     <div class="clear"></div>
                                     <div class="home_left fl">
+                                        <% if @products %>
                                         <div class="products">
                                             
                                              <% @products.each do |product| %> 
@@ -66,6 +67,13 @@
                                                 <a href="javascript:;"></a>
                                             </div>
                                         </div>
+                                         <% else %>
+                                            <div class="products"><p class="notification" >No Products Available</p>
+                                            </div>
+
+                                            
+
+                                        <% end %>
                                     </div>
                                     <div class="map_button fr hide_for_desktop">
                                             <a href="javascript:;">Full Screen Map</a>
@@ -89,6 +97,7 @@
                                     </div>
                                     <div class="clear"></div>
                                     <div class="home_left fl">
+                                        <% if @brands  %>
                                         <div class="products">
                                             <% @brands.each do |brand| %> 
                                             <div class="product_item">
@@ -121,6 +130,13 @@
                                                 <a href="javascript:;"></a>
                                             </div>
                                         </div>
+                                         <% else %>
+                                            <div class="products"><p class="notification" >No Brands Available</p>
+                                            </div>
+
+                                            
+
+                                        <% end %>
                                     </div>
                                     <div class="map_button fr hide_for_desktop">
                                             <a href="javascript:;">Full Screen Map</a>
