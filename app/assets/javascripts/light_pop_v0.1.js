@@ -14,7 +14,7 @@ $(window).load(function(e) {
 		$(popid).fadeIn(500);	
 		$("#user_signup_form").find("input[type=text], textarea").val("");
 		$("#user_signup_form").find("select").val("").removeAttr('selected');
-
+		$("label.error").hide();
 		//$('.light_pop_container').height($(popid).height()-15)	
 		//$('.light_pop_body').height($(popid).height()-30);
 		
