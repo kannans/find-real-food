@@ -62,7 +62,7 @@
   map.setMapTypeId('map_style');
 }
 
-function codeAddress(address_val) {
+function codeAddress(address_val, content) {
   var address = address_val;
 
   if(geocoder){
@@ -82,11 +82,9 @@ function codeAddress(address_val) {
         });
         //Content structure of info Window for the Markers
         var contentString = $('<div class="marker-info-win">'+
-        '<div class="marker-inner-win"><span class="info-content">'+
-        '<h1 class="marker-heading">New Marker</h1>'+
-        'This is a new marker infoWindow'+
+        '<div class="marker-inner-win" style="max-width:300px;"><span class="info-content">'+content+
         '</span>'+
-        '<br /><button name="remove-marker" class="remove-marker" title="Remove Marker">Remove Marker</button></div></div>');
+        '<button name="remove-marker" class="remove-marker" title="Remove Marker">x</button></div></div>');
            
         //Create an infoWindow
         var infowindow = new google.maps.InfoWindow();

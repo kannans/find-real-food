@@ -9,4 +9,14 @@ class LocationsController < ApplicationController
 	@productsall = Product.sort_by_rating()
 
   end
+
+  def create
+  	@location = Location.new(params[:location])
+        if @location.save
+    	  redirect_to @location, notice: "Successfully created."
+        else
+       	  render :action => 'edit'
+		end
+
+  end
 end

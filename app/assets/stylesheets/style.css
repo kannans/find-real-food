@@ -4464,3 +4464,32 @@ a.sub_banner_button:hover
 {
 	cursor:pointer;
 }
+
+.popup_form .field .form_control select.multiple
+{
+	border-radius:4px;
+	-webkit-border-radius:4px;
+}
+button.remove-marker 
+{
+    background: none repeat scroll 0 0 #dd3637;
+    border: 1px solid #dd3637;
+    border-radius: 20px;
+    color: #ffffff;
+    display: block;
+    font-family: arial;
+    font-size: 10px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 16px;
+    position: absolute;
+    right: -22px;
+    text-align: center;
+    top: 0;
+    width: 20px;
+    z-index: 99999;
+}
+button.remove-marker:hover
+{
+	cursor: pointer;
+}

@@ -40,7 +40,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="home_left fl">
-                           <% if @products %>
+                            <% if @products %>
                             <div class="products">
                                <% @products.each do |product| %> 
                               
@@ -167,7 +167,7 @@ $(document).ready(function() {
 
       setInterval(function(){
         <% @locations.each do |locationval| %> 
-        codeAddress('<%= locationval.full_address %>');
+        codeAddress('<%= locationval.full_address %>', '<p><span><a href="/location/<%= locationval.slug%>" ><%= locationval.name%></a></span>, <%= locationval.full_address %></p>');
         <% end %>
 
       }, 2000);

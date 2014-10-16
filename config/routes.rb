@@ -17,6 +17,7 @@ RealFood::Application.routes.draw do
      
     # K2B Routes code
     get 'user/profile', :to => 'users#index'
+    get 'user/edit', :to => 'users#edit'
     get 'login', :to => 'users#login'
     post 'sessions/create'
     post 'users/create'
@@ -25,6 +26,9 @@ RealFood::Application.routes.draw do
     
     get 'brands/addtofavorite', :to => 'brands#add_to_favorites'
     get 'location/:slug', :to => 'locations#index'
+
+    post 'locations/create'
+    
     get 'products', :to => 'products#index'
     get 'products/addtofavorite', :to => 'products#add_to_favorites'
     get 'products/addrating', :to => 'products#add_comments'

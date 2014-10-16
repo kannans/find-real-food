@@ -48,7 +48,9 @@ class UsersController < Devise::RegistrationsController
   		redirect_to :action => 'login'
     end
   end
-
+  
+  def edit
+  end
   def update
     params[:user].delete(:avatar_data) if params[:user][:avatar_data].nil?
     params[:user].delete(:cover_photo_data) if params[:user][:cover_photo_data].nil?
