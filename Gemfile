@@ -68,7 +68,7 @@ gem 'magnificpopup-rails', '~> 0.0.5'
 gem 'friendly_id'
 gem 'geocoder'
 #gem 'debugger'
-
+gem "ckeditor"
 
 
 # Add this if you're using rbenv

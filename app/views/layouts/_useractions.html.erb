@@ -33,8 +33,8 @@
                             <div class="form_control">
                                <div   class="cus_select_rslt">
                                <span></span>
-                                <select class="custom_select" name="location[state]" >
-                                    <option value="Select Category" selected>Select State</option>
+                                <select class="custom_select" name="location[state_id]" >
+                                    <option value="" selected>Select State</option>
                                     <% get_state_list.each do |state| %> 
                                     <option value="<%= state.id %>"><%= state.name %></option>
                                     <% end %>
@@ -283,7 +283,15 @@
                         "location[name]": "required",
                         "location[address]": "required",
                         "location[city]": "required",
-                        "location[state]": "required",
+                        "location[state]": {
+                            required: {
+                                depends: function(element){
+                                if('' == $('location[state]').val()){
+                                return true;
+                                }
+                                
+                            }
+                        },
                         "location[zip]": "required"
                     },
                     messages: {

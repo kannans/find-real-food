@@ -35,5 +35,11 @@ def add_comments
      
 end
 
+def add_comments
+	
+	@comment = Rating.create(user_id:current_user.id, flaggable_type: "Product", flaggable_id: params[:flaggable_id], comment: params[:comment] )
+	@comment.save
+end
+
 
 end
