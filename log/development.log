@@ -1,1 +1,533 @@
 Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-17 15:41:46 +0530
+Processing by HomeController#index as HTML
+  [1m[36mLocation Load (31.5ms)[0m  [1mSELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC[0m
+  [1m[35mProduct Load (14.8ms)[0m  SELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1363,1777,1786,515)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20
+  [1m[36mSlider Load (0.3ms)[0m  [1mSELECT `sliders`.* FROM `sliders` [0m
+  Rendered layouts/_googlemap.html.erb (0.7ms)
+  [1m[35mBrand Exists (0.4ms)[0m  SELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1
+  [1m[36mBrand Load (0.3ms)[0m  [1mSELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  select count(*) from locations_products where product_id=27336 and location_id in (1363,1777,1786,515) 
+  [1m[36m (26.3ms)[0m  [1mselect * from locations where id in (select id from locations_products where product_id=27336 and location_id in (1363,1777,1786,515)) [0m
+  Rendered layouts/_zipsearch.html.erb (1.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC
+  Rendered home/index.html.erb within layouts/application (73.9ms)
+Compiled jquery.js  (3ms)  (pid 3133)
+Compiled jquery_ujs.js  (0ms)  (pid 3133)
+Compiled magnific-popup/jquery.magnific-popup.js  (0ms)  (pid 3133)
+Compiled magnific-popup.js  (13ms)  (pid 3133)
+Compiled jquery.bxslider.js  (1ms)  (pid 3133)
+Compiled jquery.easing.1.3.js  (0ms)  (pid 3133)
+Compiled jquery.fitvids.js  (0ms)  (pid 3133)
+Compiled bxslider.js  (15ms)  (pid 3133)
+Compiled jquery-ui.js  (5ms)  (pid 3133)
+Compiled active_admin/lib/namespace.js  (158ms)  (pid 3133)
+Compiled active_admin/components/jquery.aa.checkbox-toggler.js  (37ms)  (pid 3133)
+Compiled active_admin/components/jquery.aa.dropdown-menu.js  (34ms)  (pid 3133)
+Compiled active_admin/components/jquery.aa.popover.js  (25ms)  (pid 3133)
+Compiled active_admin/components/jquery.aa.table-checkbox-toggler.js  (7ms)  (pid 3133)
+Compiled active_admin/pages/application.js  (9ms)  (pid 3133)
+Compiled active_admin/pages/batch_actions.js  (6ms)  (pid 3133)
+Compiled active_admin/application.js  (348ms)  (pid 3133)
+Compiled active_admin/base.js  (383ms)  (pid 3133)
+Compiled active_admin.js  (394ms)  (pid 3133)
+Compiled brands.js  (0ms)  (pid 3133)
+Compiled custom.js  (0ms)  (pid 3133)
+Compiled faq.js  (0ms)  (pid 3133)
+Compiled home.js  (0ms)  (pid 3133)
+Compiled jquery.slimscroll.js  (0ms)  (pid 3133)
+Compiled jquery.tipTip.js  (0ms)  (pid 3133)
+Compiled jquery.validate.js  (0ms)  (pid 3133)
+Compiled light_pop_v0.1.js  (0ms)  (pid 3133)
+Compiled locations.js  (0ms)  (pid 3133)
+Compiled news_posts.js  (0ms)  (pid 3133)
+Compiled page.js  (0ms)  (pid 3133)
+Compiled products.js  (0ms)  (pid 3133)
+Compiled quality_ratings.js  (0ms)  (pid 3133)
+Compiled searches.js  (0ms)  (pid 3133)
+Compiled sessions.js  (0ms)  (pid 3133)
+Compiled users.js  (0ms)  (pid 3133)
+Compiled application.js  (520ms)  (pid 3133)
+  Rendered layouts/_login.html.erb (0.8ms)
+  [1m[36mState Load (0.3ms)[0m  [1mSELECT `states`.* FROM `states` [0m
+  Rendered layouts/_register.html.erb (8.2ms)
+Completed 200 OK in 1543ms (Views: 810.3ms | ActiveRecord: 79.7ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.js - 200 OK (10ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery_ujs.js - 200 OK (5ms)
+
+
+Started GET "/assets/magnific-popup/jquery.magnific-popup.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /magnific-popup/jquery.magnific-popup.js - 200 OK (3ms)
+
+
+Started GET "/assets/magnific-popup.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /magnific-popup.js - 200 OK (5ms)
+
+
+Started GET "/assets/jquery.bxslider.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.bxslider.js - 200 OK (3ms)
+
+
+Started GET "/assets/jquery.fitvids.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.fitvids.js - 200 OK (5ms)
+
+
+Started GET "/assets/jquery.easing.1.3.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.easing.1.3.js - 200 OK (4ms)
+
+
+Started GET "/assets/bxslider.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /bxslider.js - 200 OK (5ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery-ui.js - 200 OK (5ms)
+
+
+Started GET "/assets/active_admin/lib/namespace.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/lib/namespace.js - 200 OK (4ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/components/jquery.aa.checkbox-toggler.js - 200 OK (2ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.dropdown-menu.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/components/jquery.aa.dropdown-menu.js - 200 OK (2ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.popover.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/components/jquery.aa.popover.js - 200 OK (2ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/components/jquery.aa.table-checkbox-toggler.js - 200 OK (2ms)
+
+
+Started GET "/assets/active_admin/pages/batch_actions.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/pages/batch_actions.js - 200 OK (2ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /active_admin/base.js - 200 OK (25ms)
+
+
+Started GET "/assets/brands.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /brands.js - 200 OK (1ms)
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /custom.js - 200 OK (2ms)
+
+
+Started GET "/assets/faq.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /faq.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.slimscroll.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.slimscroll.js - 200 OK (2ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /home.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.tipTip.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.tipTip.js - 200 OK (2ms)
+
+
+Started GET "/assets/jquery.validate.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /jquery.validate.js - 200 OK (2ms)
+
+
+Started GET "/assets/light_pop_v0.1.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /light_pop_v0.1.js - 200 OK (2ms)
+
+
+Started GET "/assets/locations.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /locations.js - 200 OK (2ms)
+
+
+Started GET "/assets/news_posts.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /news_posts.js - 200 OK (2ms)
+
+
+Started GET "/assets/page.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /page.js - 200 OK (3ms)
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /products.js - 200 OK (3ms)
+
+
+Started GET "/assets/quality_ratings.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /quality_ratings.js - 200 OK (3ms)
+
+
+Started GET "/assets/searches.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /searches.js - 200 OK (3ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /sessions.js - 200 OK (2ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /users.js - 200 OK (4ms)
+
+
+Started GET "/assets/fonts.css" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Compiled fonts.css  (0ms)  (pid 3133)
+Served asset /fonts.css - 304 Not Modified (32ms)
+
+
+Started GET "/assets/style.css" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Compiled style.css  (0ms)  (pid 3133)
+Served asset /style.css - 304 Not Modified (62ms)
+
+
+Started GET "/assets/responsive.css" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Compiled responsive.css  (0ms)  (pid 3133)
+Served asset /responsive.css - 304 Not Modified (34ms)
+
+
+Started GET "/assets/custom.js" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /custom.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /light_pop_v0.js - 404 Not Found (3ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-17 15:41:48 +0530
+Served asset /light_pop_v0.js - 404 Not Found (3ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.4ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2014-10-17 15:41:53 +0530
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (3.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-17 15:42:31 +0530
+Processing by HomeController#index as HTML
+  [1m[35mLocation Load (0.2ms)[0m  SELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1363,1777,1786,515)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20[0m
+  [1m[35mSlider Load (0.2ms)[0m  SELECT `sliders`.* FROM `sliders` 
+  Rendered layouts/_googlemap.html.erb (0.0ms)
+  [1m[36mBrand Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1[0m
+  [1m[35mBrand Load (0.1ms)[0m  SELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mselect count(*) from locations_products where product_id=27336 and location_id in (1363,1777,1786,515) [0m
+  [1m[35m (0.1ms)[0m  select * from locations where id in (select id from locations_products where product_id=27336 and location_id in (1363,1777,1786,515)) 
+  Rendered layouts/_zipsearch.html.erb (0.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC[0m
+  Rendered home/index.html.erb within layouts/application (10.5ms)
+  Rendered layouts/_login.html.erb (0.3ms)
+  [1m[35mState Load (0.2ms)[0m  SELECT `states`.* FROM `states` 
+  Rendered layouts/_register.html.erb (3.2ms)
+Completed 200 OK in 477ms (Views: 66.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.js - 200 OK (1ms)
+
+
+Started GET "/assets/magnific-popup.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /magnific-popup.js - 200 OK (2ms)
+
+
+Started GET "/assets/magnific-popup/jquery.magnific-popup.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /magnific-popup/jquery.magnific-popup.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery_ujs.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.fitvids.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.fitvids.js - 200 OK (1ms)
+
+
+Started GET "/assets/jquery.easing.1.3.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.easing.1.3.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.bxslider.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.bxslider.js - 200 OK (0ms)
+
+
+Started GET "/assets/bxslider.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /bxslider.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery-ui.js - 200 OK (1ms)
+
+
+Started GET "/assets/active_admin/lib/namespace.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/lib/namespace.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/components/jquery.aa.checkbox-toggler.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.dropdown-menu.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/components/jquery.aa.dropdown-menu.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.popover.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/components/jquery.aa.popover.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/components/jquery.aa.table-checkbox-toggler.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/components/jquery.aa.table-checkbox-toggler.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/pages/batch_actions.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/pages/batch_actions.js - 200 OK (0ms)
+
+
+Started GET "/assets/active_admin/base.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /active_admin/base.js - 200 OK (6ms)
+
+
+Started GET "/assets/brands.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /brands.js - 200 OK (0ms)
+
+
+Started GET "/assets/faq.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /faq.js - 200 OK (0ms)
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /custom.js - 200 OK (0ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /home.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.slimscroll.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.slimscroll.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.tipTip.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.tipTip.js - 200 OK (0ms)
+
+
+Started GET "/assets/jquery.validate.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.validate.js - 200 OK (0ms)
+
+
+Started GET "/assets/light_pop_v0.1.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /light_pop_v0.1.js - 200 OK (0ms)
+
+
+Started GET "/assets/locations.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /locations.js - 200 OK (0ms)
+
+
+Started GET "/assets/news_posts.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /news_posts.js - 200 OK (0ms)
+
+
+Started GET "/assets/page.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /page.js - 200 OK (0ms)
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /products.js - 200 OK (0ms)
+
+
+Started GET "/assets/quality_ratings.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /quality_ratings.js - 200 OK (0ms)
+
+
+Started GET "/assets/searches.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /searches.js - 200 OK (0ms)
+
+
+Started GET "/assets/sessions.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /sessions.js - 200 OK (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /users.js - 200 OK (0ms)
+
+
+Started GET "/assets/fonts.css" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /fonts.css - 200 OK (0ms)
+
+
+Started GET "/assets/style.css" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /style.css - 200 OK (0ms)
+
+
+Started GET "/assets/light_pop_v0.1.css" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Compiled light_pop_v0.1.css  (0ms)  (pid 3133)
+Served asset /light_pop_v0.1.css - 200 OK (17ms)
+
+
+Started GET "/assets/responsive.css" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /responsive.css - 200 OK (0ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /light_pop_v0.js - 404 Not Found (7ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/assets/jquery.bxslider.js" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.bxslider.js - 200 OK (29ms)
+
+
+Started GET "/assets/jquery.validate.js" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /jquery.validate.js - 200 OK (4ms)
+
+
+Started GET "/assets/custom.js" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /custom.js - 200 OK (0ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-17 15:42:32 +0530
+Served asset /light_pop_v0.js - 404 Not Found (5ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
