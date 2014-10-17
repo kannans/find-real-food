@@ -4,11 +4,10 @@ lock '3.1.0'
 set :application, 'find-real-food'
 
 
-
 set :repo_url, 'git@github.com:k2b-ramamoorthy/find-real-food.git'
 
 # Default branch is :master
-set :branch, "master"
+#ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
  set :deploy_to, '/home/deploy/frf'
@@ -22,37 +21,27 @@ set :branch, "master"
  set :log_level, :debug
 
 # Default value for :pty is false
- set :pty, true
+# set :pty, true
 
 # Default value for :linked_files is []
- set :linked_files, %w{config/database.yml}
+ # set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
- set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+ # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default value for default_env is {}
- set :default_env, { path: "/opt/ruby/bin:$PATH" }
+ set :default_env, {}#{ path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
  set :keep_releases, 5
 
 namespace :deploy do
 
-  desc "Restart Passenger app"
-  task :restart do
-    run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
-  end
-  
-  desc "Symlink shared config files"
-  task :symlink_config_files do
-    run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
-  end
-  
-   
+  # desc "Restart Passenger app"
+  # task :restart do
+  #   run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
+  # end
+  set :conf_symlinks,  %w{database.yml}
 
-  after "deploy", "deploy:symlink_config_files"
-  after "deploy", "deploy:restart"
-  after "deploy", "deploy:cleanup"
-  
-  
 end
+
