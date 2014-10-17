@@ -21,17 +21,11 @@ gem 'bxslider-rails', '~> 4.1.0'
 
  
 group :development do
-  gem 'mysql2', '0.3.16'
+  
   #gem 'capistrano-hitcents', :require => false, :git => 'git@yumrepo.omni-prise.com:capistrano-hitcents.git'
   #gem 'capistrano-hitcents', :require => false, :git => 'git@yumrepo.omni-prise.com:capistrano-hitcents.git'
   #gem 'capistrano-hitcents'
-  gem 'capistrano', '~> 3.1.0'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rvm', github: "capistrano/rvm"
-
-  # Use the Unicorn app server
-  gem 'unicorn'
+  
 
 end
 
@@ -63,14 +57,21 @@ end
 group :production do
     #gem 'pg'
 end
-
+gem 'mysql2', '0.3.16'
+gem "activerecord-mysql2-adapter"
 gem 'magnificpopup-rails', '~> 0.0.5'
 gem 'friendly_id'
 gem 'geocoder'
 #gem 'debugger'
 gem "ckeditor"
 
+gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rvm', github: "capistrano/rvm"
 
+  # Use the Unicorn app server
+  gem 'unicorn'
 # Add this if you're using rbenv
 # gem 'capistrano-rbenv', github: "capistrano/rbenv"
 

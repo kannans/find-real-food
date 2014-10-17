@@ -4,10 +4,11 @@ lock '3.1.0'
 set :application, 'find-real-food'
 
 
+
 set :repo_url, 'git@github.com:k2b-ramamoorthy/find-real-food.git'
 
 # Default branch is :master
-#ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+set :branch, "master"
 
 # Default deploy_to directory is /var/www/my_app
  set :deploy_to, '/home/deploy/frf'
