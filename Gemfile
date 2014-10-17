@@ -58,7 +58,7 @@ group :production do
     #gem 'pg'
 end
 gem 'mysql2', '0.3.16'
-gem "activerecord-mysql2-adapter"
+#gem "activerecord-mysql2-adapter"
 gem 'magnificpopup-rails', '~> 0.0.5'
 gem 'friendly_id'
 gem 'geocoder'
