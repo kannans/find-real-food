@@ -4,17 +4,21 @@
 <meta charset="utf-8">
 <title>FIND REAL FOOD | Home</title>
   <% #= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <% # javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
  
 <link rel="stylesheet" type="text/css" href="/assets/fonts.css">
 <link rel="stylesheet" type="text/css" href="/assets/style.css">
 <link rel="stylesheet" type="text/css" href="/assets/light_pop_v0.1.css">
 <link rel="stylesheet" type="text/css" href="/assets/responsive.css">
+<script src="/assets/jquery-1.11.0.js"></script>
+
 <script src="/assets/jquery.bxslider.js"></script>
 <script src="/assets/light_pop_v0.js"></script>
 <script src="/assets/jquery.validate.js"></script>
 <script src="/assets/custom.js"></script>
+<script src="/assets/jquery.slimscroll.js"></script>
+
 <script type="text/javascript">var switchTo5x=true;</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-60b58715-9a18-f952-26e5-d7c1b1165d91", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
@@ -181,7 +185,7 @@
         </div>
     <%= render '/layouts/login' %>
     <%= render '/layouts/register' %>
-
+   
     <script type="text/javascript">
     $(function(){
 
@@ -196,7 +200,7 @@
 </script>
 <script type="text/javascript">
 
-$(document).ready(function() {
+$(document).ready(function(){
         
  $('.ajaxcall, .checks input').click(function(){
 
@@ -273,11 +277,10 @@ $(document).ready(function() {
 
  
     
-                $("#login_frm, #login_frm_full").validate({
-                  
-                  debug: true,
-                    rules: {
-                        email:{
+$("#login_frm, #login_frm_full").validate({
+       debug: true,
+       rules: {
+        email:{
                             required: true,
                             email: true 
                         },

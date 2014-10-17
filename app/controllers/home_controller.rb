@@ -4,8 +4,6 @@ class HomeController < ApplicationController
   	if params[:zip]
   		zip = params[:zip]
       session[:zip] = zip
-  	elsif session[:zip]
-      zip = session[:zip]
   	else
     	zip = '94123'
       session[:zip] = zip

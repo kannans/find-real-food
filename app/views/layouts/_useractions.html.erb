@@ -225,7 +225,7 @@
                         <div class="field">
                             <label>Comments/Notes:<span class="required">*</span></label>
                             <div class="form_control">
-                                <textarea rows="5" name="flag_cont"></textarea>
+                                <textarea rows="5" id="flag_cont" name="flag_cont"></textarea>
                             </div>
                         </div>
                         <div class="field">
@@ -251,7 +251,10 @@
                     },
                     messages: {
                         flag_cont: "This Field is Required"
-                    }
+                    },submitHandler : function(form) {
+                     $.get('/products/addflag', { product_id:<%= @product.id %>, comment:$("#flag_cont").val() }, null, "script");
+                     return false;
+                  }
                 });
             
             /*********** Flag End **************/
@@ -289,7 +292,7 @@
                                 if('' == $('location[state]').val()){
                                 return true;
                                 }
-                                
+                                }
                             }
                         },
                         "location[zip]": "required"

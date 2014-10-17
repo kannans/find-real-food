@@ -32,6 +32,7 @@ RealFood::Application.routes.draw do
     get 'products', :to => 'products#index'
     get 'products/addtofavorite', :to => 'products#add_to_favorites'
     get 'products/addrating', :to => 'products#add_comments'
+    get 'products/addflag', :to => 'products#add_flag'
     get 'product/:slug', :to => 'products#more_details'
     get 'category/:slug', :to => 'categories#products'
     get 'categories', :to => 'categories#index'
