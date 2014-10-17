@@ -41,7 +41,7 @@ namespace :deploy do
   # task :restart do
   #   run "#{ try_sudo } touch #{ File.join(current_path, 'tmp', 'restart.txt') }"
   # end
-  set :conf_symlinks,  %w{database.yml}
+  set :conf_symlinks,  %w{database.yml unicorn.rb}
 
 end
 
