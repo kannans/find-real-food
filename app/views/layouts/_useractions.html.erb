@@ -253,6 +253,7 @@
                         flag_cont: "This Field is Required"
                     },submitHandler : function(form) {
                      $.get('/products/addflag', { product_id:<%= @product.id %>, comment:$("#flag_cont").val() }, null, "script");
+                     $(".pop_close").trigger('click');
                      return false;
                   }
                 });

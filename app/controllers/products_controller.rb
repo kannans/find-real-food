@@ -9,9 +9,20 @@ end
 
 def more_details
 	
+	if params[:zip]
+      zip = params[:zip]
+      session[:zip] = zip
+    elsif session[:zip]
+      zip = session[:zip]
+    else
+      zip = '94123'
+      session[:zip] = zip
+    end
+    location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+
 	@product = Product.find(params[:slug])
-	category_id = @product.category_id
-	@similar_product  = Product.similar_products(category_id)
+	
+	@similar_product  = Product.sort_by_rating(location, @product.category_id) 
 	
 end
 
@@ -27,7 +38,7 @@ end
 
 def add_comments
 	
-	@already_exists = Rating.where(user_id:current_user.id).where(ratable_id: params[:ratable_id]).where(type: "Product").count
+	@already_exists = Rating.where(user_id:current_user.id).where(ratable_id: params[:ratable_id]).where(ratable_type: "Product").count
 	if @already_exists < 1
 	@comment = Rating.create(user_id:current_user.id, ratable_type: "Product", ratable_id: params[:ratable_id], comment: params[:comment] )
 	@comment.save
@@ -36,9 +47,10 @@ def add_comments
 end
 
 def add_flag
-	
-	@flag = Rating.create(user_id:current_user.id, flaggable_type: "Product", flaggable_id: params[:flaggable_id], comment: params[:comment] )
+
+	@flag = FlagRequest.create(user_id:current_user.id, flaggable_type: "Product", flaggable_id: params[:product_id], comment: params[:comment] )
 	@flag.save
+
 end
 
 

@@ -1,12 +1,12 @@
 <%  unless @flag.blank? %>
    $(".alert_text").html("Your Flag comment has been posted successfully");
-   $(".flag_cont").val('');
-   $("#flagProduct").hide();
+   $("#flag_cont").val('');
+
  <% else %>
    $(".alert_text").html("");
-   $(".flag_cont").val('');
+   $("#flag_cont").val('');
 <% end %>
-$(".alert_div").fadeIn();
+   $(".alert_div").fadeIn();
 $(".close").click(function(){
     $(".alert_div").fadeOut();
 });

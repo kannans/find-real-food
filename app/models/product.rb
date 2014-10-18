@@ -94,11 +94,11 @@ class Product < ActiveRecord::Base
         .search(params)
   end
 
-  def self.similar_products(category_id)
-    self.unscoped.quality_rating_search().where(category_id: category_id)
-              .order("products.name asc")
+  def self.similar_products(location='', category_id='')
+    self.unscoped.quality_rating_search(location).where(category_id: category_id)
               .order("avg_rating desc")
-              .order("quality_order asc")              
+              .order("quality_order asc")
+              .order("products.name asc")
               .find(:all, :limit => 20)
   end
 

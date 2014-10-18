@@ -74,9 +74,15 @@
                             </div>
                             <div class="product_button_set">
                                 <span class='st_sharethis_custom' displayText='Share'>Share</span>
+                                 <% if user_signed_in? %>
                                  <a href="#flagProduct" class="flag_prd light_pop_trigger">flag product</a>
                                 <a href="#addLocation" class="add_location light_pop_trigger">add location</a>
                                 <a href="javascript:void(0);" class="add_fav">Add to My Favorites</a>
+                                <% else %>
+                                 <a href="#login" class="flag_prd light_pop_trigger">flag product</a>
+                                <a href="#login" class="add_location light_pop_trigger">add location</a>
+                                <a href="#login" class="light_pop_trigger">Add to My Favorites</a>
+                                <% end %>
                             </div>
                         </div>
                         <% end %>
@@ -93,9 +99,9 @@
                                 </div>
                                 <div class="prd_btm_right_responsive">
                             <h1>Similar Products Nearby</h1>
-                            <% if @similar_products %>
+                            <% if @similar_product %>
                             <div class="products">
-                               <% @similar_products.each do |product| %> 
+                               <% @similar_product.each do |product| %> 
                               
                                
                                 <div class="product_item">
@@ -155,13 +161,13 @@
                         </div>
                                 <div class="prd_dtl_review_part">
                                     <h1>User Reviews</h1>
-                                    <div class="avg_rating">
+                                    <!--<div class="avg_rating">
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_gray_detail.png"></a>
-                                    </div>
+                                    </div>-->
                                     <div class="leave_comment">
                                         <textarea class="leave_cmt" placeholder="Share your thoughts on this product..."></textarea>
                                         <span class="txt_arrow"></span>
@@ -172,53 +178,58 @@
                                     <div class="user_comments">
                                         
                                         
+                                        <% comments = get_rating_list(@product.id) %>
                                         
-                                        
+                                        <% comments.each do |c| %>
                                         <div class="comment">
+                                             <% user_details = get_user_details(c.user_id) %>
+                                              <% if user_details %>
                                             <div class="user_img fl">
-                                                <a href="javascript:;"><img src="/assets/review_user_image1.png" alt="image"/></a>
+                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
                                             </div>
+                                            <% else %>
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                            </div>
+                                            <% end %>
                                             <div class="comment_dtl">
-                                                <h3>Wanda Berksley <span>(12 min)</span></h3>
-                                                <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a></p>
-                                                <p>This is probably the best tasting brand, and works really well for cooking.</p>
+                                               
+                                                <% if user_details %>
+                                                <h3><%= user_details.fname %> <%= user_details.name %></h3>
+                                                <% end %>
+                                                
+                                                     <% $i = 0
+                                                if c.rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < c.rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 end
+                                              %> 
+                                                <p><%= c.comment %></p>
                                             </div>
                                             <div class="clear"></div>
                                         </div>
-                                        <div class="comment">
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><img src="/assets/review_user_image2.png" alt="image"/></a>
-                                            </div>
-                                            <div class="comment_dtl">
-                                                <h3>Payton Johnson <span>(4/2/14)</span></h3>
-                                                <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a></p>
-                                                <p>A little thick but overall I was very Pleased</p>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                        <div class="comment">
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><img src="/assets/review_user_image3.png" alt="image"/></a>
-                                            </div>
-                                            <div class="comment_dtl">
-                                                <h3>Peter Bug  <span>(3/20/14)</span></h3>
-                                                <p class="rating"><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star.png"></a><a href="javascript:;"><img alt="star" src="/assets/star_gray.png"></a></p>
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
+                                        <% end %>
+                                         
                                     </div>
-                                    <div class="see_all">
+                                    <!--<div class="see_all">
                                         <a href="javascript:;">See All</a>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
                         <div class="prd_btm_right fr">
                             <h1>Similar Products Nearby</h1>
-                            <% if @similar_products %>
+                            <% if @similar_product %>
                             <div class="products">
-                               <% @similar_products.each do |product| %> 
+                               <% @similar_product.each do |product| %> 
                               
                                
                                 <div class="product_item">
