@@ -297,6 +297,8 @@ raw_milk_detailed.png: raw_milk_detailed-311c75ccabb13ac3c3a9af5fb46077b8.png
 raw_milk_detailed/index.png: raw_milk_detailed-311c75ccabb13ac3c3a9af5fb46077b8.png
 recent_post_li.png: recent_post_li-dad1cd828e80dcb656ca2d72c4396026.png
 recent_post_li/index.png: recent_post_li-dad1cd828e80dcb656ca2d72c4396026.png
+review_user_default.png: review_user_default-6ab55320e630e07b730db9c19c682eb5.png
+review_user_default/index.png: review_user_default-6ab55320e630e07b730db9c19c682eb5.png
 review_user_image1.png: review_user_image1-3badead3c0b65b6d79ef1f096a374081.png
 review_user_image1/index.png: review_user_image1-3badead3c0b65b6d79ef1f096a374081.png
 review_user_image2.png: review_user_image2-eb4ca9bca9764137b18308a04e3506d6.png
@@ -377,8 +379,8 @@ why_subscribe.png: why_subscribe-6d345a24b3195e8fc57c9d1607bfd375.png
 why_subscribe/index.png: why_subscribe-6d345a24b3195e8fc57c9d1607bfd375.png
 active_admin.js: active_admin-236eeb1a3d5f024eb8752595f63bcbac.js
 active_admin/index.js: active_admin-236eeb1a3d5f024eb8752595f63bcbac.js
-application.js: application-c2935108909c27e3054e941547efbb2e.js
-application/index.js: application-c2935108909c27e3054e941547efbb2e.js
+application.js: application-95dfcea6c0edc83ba235df70dfab3d0c.js
+application/index.js: application-95dfcea6c0edc83ba235df70dfab3d0c.js
 active_admin.css: active_admin-461eb210a84fbbcae255b3d75d5c2bcf.css
 active_admin/index.css: active_admin-461eb210a84fbbcae255b3d75d5c2bcf.css
 application.css: application-1e2d3170aec5e21ee7d1a3dfdfa6d79a.css
