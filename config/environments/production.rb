@@ -67,4 +67,6 @@ RealFood::Application.configure do
   #config.action_mailer.default_url_options = {
   #  :host => "prod.real-food.hcents.com"
   #}
+
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb']
 end
