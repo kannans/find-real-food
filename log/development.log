@@ -15178,3 +15178,219 @@ ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"
 
 
   Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-18 12:31:09 +0530
+Processing by HomeController#index as HTML
+  [1m[36mLocation Load (190.2ms)[0m  [1mSELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC[0m
+  [1m[35mProduct Load (158.1ms)[0m  SELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1363,1777,1786,515)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20
+  [1m[36mSlider Load (0.2ms)[0m  [1mSELECT `sliders`.* FROM `sliders` [0m
+  Rendered layouts/_googlemap.html.erb (0.5ms)
+  [1m[35mBrand Exists (0.3ms)[0m  SELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1
+  [1m[36mBrand Load (0.4ms)[0m  [1mSELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  select count(*) from locations_products where product_id=27336 and location_id in (1363,1777,1786,515) 
+  [1m[36m (19.1ms)[0m  [1mselect * from locations where id in (select id from locations_products where product_id=27336 and location_id in (1363,1777,1786,515)) [0m
+  Rendered layouts/_zipsearch.html.erb (1.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC
+  Rendered home/index.html.erb within layouts/application (128.4ms)
+  Rendered layouts/_login.html.erb (0.9ms)
+  [1m[36mState Load (0.3ms)[0m  [1mSELECT `states`.* FROM `states` [0m
+  Rendered layouts/_register.html.erb (8.3ms)
+Completed 200 OK in 1751ms (Views: 664.4ms | ActiveRecord: 373.8ms)
+
+
+Started GET "/assets/fonts.css" for 127.0.0.1 at 2014-10-18 12:31:12 +0530
+Compiled fonts.css  (0ms)  (pid 2823)
+Served asset /fonts.css - 200 OK (135ms)
+
+
+Started GET "/assets/light_pop_v0.1.css" for 127.0.0.1 at 2014-10-18 12:31:12 +0530
+Compiled light_pop_v0.1.css  (0ms)  (pid 2823)
+Served asset /light_pop_v0.1.css - 200 OK (169ms)
+
+
+Started GET "/assets/style.css" for 127.0.0.1 at 2014-10-18 12:31:12 +0530
+Compiled style.css  (0ms)  (pid 2823)
+Served asset /style.css - 200 OK (33ms)
+
+
+Started GET "/assets/responsive.css" for 127.0.0.1 at 2014-10-18 12:31:12 +0530
+Compiled responsive.css  (0ms)  (pid 2823)
+Served asset /responsive.css - 200 OK (106ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-18 12:31:12 +0530
+Served asset /light_pop_v0.js - 404 Not Found (215ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2014-10-18 12:31:16 +0530
+
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/search?utf8=%E2%9C%93&zip=33139" for 127.0.0.1 at 2014-10-18 12:31:23 +0530
+DEPRECATION WARNING: Calling set_table_name is deprecated. Please use `self.table_name = 'the_name'` instead. (called from <class:Search> at /home/k2badmin/projects/find-real-food/app/models/search.rb:2)
+Processing by SearchesController#index as HTML
+  Parameters: {"utf8"=>"✓", "zip"=>"33139"}
+  [1m[35mLocation Load (4.4ms)[0m  SELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((25.783312 - locations.latitude) * PI() / 180 / 2), 2) + COS(25.783312 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-80.1484407 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -80.1484407) / 57.2957795), ((locations.latitude - 25.783312) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 23.984668788162537 AND 27.58195521183746 AND locations.longitude BETWEEN -82.14594439579878 AND -78.15093700420121 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((25.783312 - locations.latitude) * PI() / 180 / 2), 2) + COS(25.783312 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-80.1484407 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 200) ORDER BY distance ASC
+  [1m[36mProduct Load (2.0ms)[0m  [1mSELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1028,399)) AND (products.name LIKE '%%') GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20[0m
+  [1m[35mBrand Load (3.3ms)[0m  SELECT brands.* FROM `brands` LEFT OUTER JOIN brands_locations ON brands_locations.brand_id = brands.id WHERE (brands_locations.location_id in (1028,399)) AND (brands.name LIKE '%%') GROUP BY brands.id ORDER BY brands.name asc LIMIT 20
+  Rendered layouts/_googlemap.html.erb (0.1ms)
+  Rendered searches/_filter.html.erb (1.9ms)
+  [1m[36mBrand Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 3534 LIMIT 1[0m
+  [1m[35mBrand Load (0.3ms)[0m  SELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 3534 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 3534 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 3534 LIMIT 1
+  [1m[36mBrand Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 4286 LIMIT 1[0m
+  [1m[35mBrand Load (0.3ms)[0m  SELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 4286 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 4286 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 4286 LIMIT 1
+  Rendered layouts/_zipsearch.html.erb (0.6ms)
+  Rendered layouts/_zipsearch.html.erb (0.3ms)
+  Rendered searches/_products.html.erb (16.7ms)
+  Rendered searches/index.html.erb within layouts/application (27.7ms)
+  Rendered layouts/_login.html.erb (0.4ms)
+  [1m[36mState Load (0.1ms)[0m  [1mSELECT `states`.* FROM `states` [0m
+  Rendered layouts/_register.html.erb (6.1ms)
+Completed 200 OK in 330ms (Views: 74.9ms | ActiveRecord: 11.3ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-18 12:31:23 +0530
+Served asset /light_pop_v0.js - 404 Not Found (3ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-18 12:57:23 +0530
+Processing by HomeController#index as HTML
+  [1m[35mLocation Load (0.2ms)[0m  SELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1363,1777,1786,515)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20[0m
+  [1m[35mSlider Load (0.2ms)[0m  SELECT `sliders`.* FROM `sliders` 
+  Rendered layouts/_googlemap.html.erb (0.0ms)
+  [1m[36mBrand Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1[0m
+  [1m[35mBrand Load (0.2ms)[0m  SELECT `brands`.* FROM `brands` WHERE `brands`.`id` = 4022 LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mselect count(*) from locations_products where product_id=27336 and location_id in (1363,1777,1786,515) [0m
+  [1m[35m (0.2ms)[0m  select * from locations where id in (select id from locations_products where product_id=27336 and location_id in (1363,1777,1786,515)) 
+  Rendered layouts/_zipsearch.html.erb (0.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT locations.*, 6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2))) AS distance, MOD(CAST((ATAN2( ((locations.longitude - -122.4382307) / 57.2957795), ((locations.latitude - 37.8020405) / 57.2957795)) * 57.2957795) + 360 AS decimal), 360) AS bearing FROM `locations` WHERE (locations.latitude BETWEEN 37.622176178816254 AND 37.98190482118374 AND locations.longitude BETWEEN -122.66586867900556 AND -122.21059272099446 AND (6371.0 * 2 * ASIN(SQRT(POWER(SIN((37.8020405 - locations.latitude) * PI() / 180 / 2), 2) + COS(37.8020405 * PI() / 180) * COS(locations.latitude * PI() / 180) * POWER(SIN((-122.4382307 - locations.longitude) * PI() / 180 / 2), 2)))) BETWEEN 0.0 AND 20) ORDER BY distance ASC[0m
+  Rendered home/index.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_login.html.erb (0.3ms)
+  [1m[35mState Load (0.2ms)[0m  SELECT `states`.* FROM `states` 
+  Rendered layouts/_register.html.erb (3.3ms)
+Completed 200 OK in 407ms (Views: 14.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-10-18 12:57:23 +0530
+Served asset /light_pop_v0.js - 404 Not Found (6ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
