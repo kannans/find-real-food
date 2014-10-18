@@ -89,8 +89,12 @@ namespace :deploy do
       puts "finish bundle"
     end
   end   
+  desc "Recreate symlink"
+  task :resymlink, :roles => :app do
+    run "rm -f #{current_path} && ln -s #{release_path} #{current_path}"
+  end
 
-  after "deploy", "deploy:reload"
+  after "deploy", "deploy:reload", "deploy:resymlink"
 end
 
 namespace :unicorn do
