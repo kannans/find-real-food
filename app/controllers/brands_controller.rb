@@ -18,7 +18,7 @@ class BrandsController < ApplicationController
     
     if @location !=''
     @products = Product.sort_by_rating(@location,search,'',@brand)
-    @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
+   # @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
     end
 
 
