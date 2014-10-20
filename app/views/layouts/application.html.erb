@@ -12,13 +12,16 @@
 <link rel="stylesheet" type="text/css" href="/assets/light_pop_v0.1.css">
 <link rel="stylesheet" type="text/css" href="/assets/responsive.css">
 
-<%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
  
 <link rel="stylesheet" type="text/css" href="/assets/fonts.css">
 <link rel="stylesheet" type="text/css" href="/assets/style.css">
 <link rel="stylesheet" type="text/css" href="/assets/light_pop_v0.1.css">
 <link rel="stylesheet" type="text/css" href="/assets/responsive.css">
+
+<script src="/assets/jquery-1.11.0.js"></script>
+<script src="/assets/jquery.slimscroll.js"></script>
 <script src="/assets/jquery.bxslider.js"></script>
 <script src="/assets/light_pop_v0.js"></script>
 <script src="/assets/jquery.validate.js"></script>
@@ -143,17 +146,17 @@
                     <div class="footer_left fl">
                         <h1>Get Notified About Important Changes</h1>
                         <p>Get occasional news and helpful updates about the Find Real Food Guide!</p>
-                         <form method="post" action="https://register.sendreach.com/forms/?listid=16073" name="optin" id="optin" onsubmit="return required();">
+                         <form method="post" action="https://register.sendreach.com/forms/?listid=16073" name="optin" id="optin" >
                         <div class="form_newsletter">
                             <span class="input_field">
-                                <input type="text" placeholder="Your Name" name="name" />
+                                <input type="text" placeholder="Your Name" name="name" id="news_name" />
                                 
                             </span>
                             <span class="input_field">
-                                <input type="text" placeholder="Your Email Address" name="email" />
+                                <input type="text" placeholder="Your Email Address" name="email" id="news_email" />
                             </span>
                             <input type="hidden" name="lid" value="16073">
-                            <input type="submit" class="button" value="Sign me Up!">
+                            <input type="submit" class="button newssubmit" value="Sign me Up!">
                         </div>
                         </form>
                     </div>
@@ -166,12 +169,7 @@
                     <div class="clear"></div>
                 </div>
             </div>
-
  
-
-
-
-
             <div class="footer_bottom">
                 <div class="container">
                     <span class="fl fb_area">
@@ -184,12 +182,18 @@
             </div>
         </div>
     </footer>
-     
+     <% if user_signed_in? %>
     <div class="suggest_prd">
             <a href="#sggProduct" class="light_pop_trigger"><img src="/assets/suggest_product.jpg"/></a>
         </div>
+         <% else %>
+          <div class="suggest_prd">
+            <a href="#login" class="light_pop_trigger"><img src="/assets/suggest_product.jpg"/></a>
+        </div>
+         <% end %>
     <%= render '/layouts/login' %>
     <%= render '/layouts/register' %>
+    <%= render '/layouts/suggest_products' %>
    
     <script type="text/javascript">
     $(function(){
@@ -280,12 +284,32 @@ $(document).ready(function(){
 
  }
 
- 
+ $("#optin").validate({
+                     debug: true,
+                     rules: {
+                      news_email:{
+                            required: true,
+                            email: true 
+                        },
+                        news_name: "required"
+                    },
+                    messages: {
+                        news_email:{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address"  
+                        },
+                        news_name: "Name is Required"
+                    },submitHandler : function(form) {
+                     if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
+                     }
+                  }
+                });
+
     
 $("#login_frm, #login_frm_full").validate({
-       debug: true,
-       rules: {
-        email:{
+                     debug: true,
+                     rules: {
+                      email:{
                             required: true,
                             email: true 
                         },

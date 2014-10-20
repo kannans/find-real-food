@@ -52,6 +52,18 @@ namespace :import do
 
     end
   end
+  
+  task :location => :environment do
+       locations = Location.all
+       locations.each do |l|
+         location = Location.where(:id => l.id).first
+          next if location.nil?
+
+       location.update_attributes({
+        :hours => ""
+      })
+       end
+  end
 
   task :category_data => :environment do
     file = "import_data/category_master.csv"

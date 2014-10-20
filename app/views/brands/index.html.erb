@@ -17,20 +17,26 @@
                             <h1><%= @brand.name%></h1>
                             <p><a href="javascript:;"><%= number_to_phone(@brand.phone, area_code: true)     %></a>   -   <a href="<%= @brand.website %>"><%= @brand.website %></a></p>
  							<ul>
-                                <% if @brand.order_by_online && @brand.website !='' %><li class="online"><a href="<%= @brand.website %>" target="_blank">Available Online</a></li> <% end %>
-                               <% if @brand.order_by_phone && @brand.phone !='' %> <li class="byphone"><a href="javascript:;">Available by Phone</a></li> <% end %>
-                               <% if @brand.store_locator_url !='' %> <li class="store"><a href="<%= @brand.store_locator_url %>" target="_blank">Available in Stores</a></li><% end %>
+                                <% if @brand.order_by_online && @brand.website !='' %><li class="online"><a href="<%= @brand.website %>" target="_blank">Order from brand's website</a></li> <% end %>
+                               <% if @brand.order_by_phone && @brand.phone !='' %> <li class="byphone"><a href="javascript:;">Order By Phone</a></li> <% end %>
+                               <% if @brand.store_locator_url !='' %> <li class="store"><a href="<%= @brand.store_locator_url %>" target="_blank">Sold by online retailer</a></li><% end %>
                                <% if @brand.store_farmers_market %>
-                                <li class="farmer_market"><a href="javascript:;">Available in Farmers Market</a></li><% end %>
+                                <li class="farmer_market"><a href="javascript:;">Sold in stores or farmer's markets"</a></li><% end %>
                             </ul>
                         </div>
                         <div class="right">
                         	<ul>
                             	
                                 <li class="brand_share" ><a href="javascript:;"><span class='st_sharethis_custom' displayText='Share'>Share</span></a></li>
-                                <li class="brand_flag"><a href="javascript:;">Flag Product</a></li>
-                                <li class="brand_location"><a href="javascript:;">Add Location</a></li>
-                                <li class="brand_fav"><a href="javascript:;">Add To My Favorites</a></li>
+                                 <% if user_signed_in? %>
+                                <li class="brand_flag "><a  class="light_pop_trigger" href="#flagProduct">Flag Product</a></li>
+                                <li class="brand_location "><a class="light_pop_trigger" href="#addLocation">Add Location</a></li>
+                                <li class="brand_fav "><a  class="light_pop_trigger" href="javascript:;">Add To My Favorites</a></li>
+                                <% else %>
+                                <li class="brand_flag "><a  class="light_pop_trigger" href="#login">Flag Product</a></li>
+                                <li class="brand_location "><a class="light_pop_trigger"  href="#login">Add Location</a></li>
+                                <li class="brand_fav1 "><a class="light_pop_trigger"  href="#login">Add To My Favorites</a></li>
+                                <% end %>
                             </ul>
                         </div>
                         <div class="clear"></div>
@@ -91,9 +97,23 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>
-
-                                                <p class="location"><a href="#">4 Locations Nearby</a></p>
+                                            <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
+
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
+                                             
+                                             </ul>
+                                          </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -174,8 +194,22 @@
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>
 
-                                                <p class="location"><a href="#">4 Locations Nearby</a></p>
+                                                 <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
+
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
+                                             
+                                             </ul>
+                                          </div>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -231,18 +265,60 @@
 </div>
     </section>
 
+    <div class="light_popup" id="flagProduct">
+  <div class="light_pop_container">
+      <span class="pop_close"></span>
+      <div class="light_pop_body">
+          <div class="register_popup">
+                <h1 class="login_title"><span>flag</span> product</h1>
+                <p class="fr"><span class="required">*</span> Indicates required field</p>
+                <div class="popup_form">
+                    <form id="frm_flag_prd"  method="post" action="">
+                        <div class="field">
+                            <label>Comments/Notes:<span class="required">*</span></label>
+                            <div class="form_control">
+                                <textarea rows="5" id="flag_cont" name="flag_cont"></textarea>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="empty">&nbsp;</label>
+                            <div class="form_control">
+                                <input type="submit" value="Submit"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render '/layouts/useractions' %>
     <script type="text/javascript">
  
 $(document).ready(function() {
 
-      setInterval(function(){
-        <% @locations.each do |locationval| %> 
-        codeAddress('<%= locationval.full_address %>');
+       <% if @products_locations %>
+       setTimeout(function(){
+        <% productlocations = get_prod_locations_list(@products_locations) %>
+        <% productlocations.each do |row| %> 
+        codeAddress('<%= row[2] %>, <%= row[3] %>,<%= row[5] %>, <%= get_statename(row[4]) %>,', '<p><span><a href="/location/<%= row[19] %>" ><%= row[1] %></a></span>,<span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></p>');
         <% end %>
 
       }, 2000);
+      <% end %>
 
-
+     $("#frm_flag_prd").validate({
+                    rules: {
+                        flag_cont: "required"
+                    },
+                    messages: {
+                        flag_cont: "This Field is Required"
+                    },submitHandler : function(form) {
+                     $.get('/brands/addflag', { brand_id:<%= @brand.id %>, comment:$("#flag_cont").val() }, null, "script");
+                     $(".pop_close").trigger('click');
+                     return false;
+                  }
+                });
 
     $('.brand_fav').click(function(){
 

@@ -31,10 +31,11 @@ class CategoriesController < ApplicationController
 
 	    category = Category.find(params[:slug])
 	    search = ''
-	  	location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+	  	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
 	    
-	    if location !=''
-		  @products = Product.sort_by_rating(location,search,category)
+	    if @location !=''
+		  @products = Product.sort_by_rating(@location,search,category)
+		  @products_locations = Product.sort_by_rating(location,search,category).collect{|c| c.location_id}.join(',')
 	    end
 
 	   	@sliders = Slider.all

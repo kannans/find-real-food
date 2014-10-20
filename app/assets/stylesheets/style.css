@@ -4493,3 +4493,67 @@ button.remove-marker:hover
 {
 	cursor: pointer;
 }
+/**************************20-10-2014*************************/
+
+.modified.home_right.goback, .modified.home_right
+{
+	position:absolute;
+	right:0;
+	
+}
+
+.prd_search .home_left
+{
+	transition:all 1.2s ease 0s;
+	-webkit-transition:all 1.2s ease 0s;
+	background:url("/assets/texture_bg.png") repeat;
+}
+
+.prd_search .home_left.fullwidth
+{
+	width:96%;
+}
+.modified.home_right
+{
+	transition:all 1.2s ease 0s;
+	-webkit-transition:all 1.2s ease 0s;
+}
+.modified.home_right.nullwidth
+{
+	width:0px;
+	overflow:hidden;
+	padding:0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	  /* IE 5-7 */
+	  filter: alpha(opacity=0);
+	
+	  /* Netscape */
+	  -moz-opacity: 0;
+	
+	  /* Safari 1.x */
+	  -khtml-opacity: 0;
+	
+	  /* Good browsers */
+	  opacity: 0;
+}
+.modified.home_right .map_form
+{
+	transition:all 1.2s ease 0s;
+	-webkit-transition:all 1.2s ease 0s;
+}
+.modified.home_right.nullwidth .map_form
+{
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	  /* IE 5-7 */
+	  filter: alpha(opacity=0);
+	
+	  /* Netscape */
+	  -moz-opacity: 0;
+	
+	  /* Safari 1.x */
+	  -khtml-opacity: 0;
+	
+	  /* Good browsers */
+	  opacity: 0;
+}
+/*************************************************************/

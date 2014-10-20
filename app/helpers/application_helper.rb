@@ -67,5 +67,22 @@ module ApplicationHelper
        
 
   end
+  def get_prod_locations_list(locations='')
+    
+      connection = ActiveRecord::Base.connection()
+
+      return results = connection.execute("select * from locations where  id in (select id from locations_products where location_id in (#{locations})) ")
+       
+  end
+
+  def get_statename(state_id=nil)
+     
+     if State.exists?(state_id)
+       state = State.find(state_id)
+       return state.name ? state.name : ''
+     else
+       return 
+     end 
+  end
 
 end

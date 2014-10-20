@@ -2265,3 +2265,28 @@
 	}
 }
 /***************************************************************/
+
+/***********************20-10-2014*************************/
+@media (min-width:919px) and (max-width:1240px)
+{
+	.modified.home_right
+	{
+		width:56%;
+	}
+}
+@media (min-width:919px) and (max-width:990px)
+{
+	.modified.home_right
+	{
+		width:53%;
+	}
+}
+@media screen and (max-width:919px)
+{
+	.modified.home_right.goback, .modified.home_right
+	{
+		position:relative;
+		clear:both;
+	}
+}
+/**********************************************************/

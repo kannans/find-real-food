@@ -14,21 +14,17 @@ class BrandsController < ApplicationController
 
     
     search = ''
-    location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
-    if location !=''
-    @products = Product.sort_by_rating(location,search,'',@brand)
+    if @location !=''
+    @products = Product.sort_by_rating(@location,search,'',@brand)
+    @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
     end
 
 
 	  @productsall = Product.sort_by_rating('',search,'',@brand)
     @locations = Location.near("#{zip}", 20)
-	#@products =  Product.joins("LEFT OUTER JOIN ratings ON ratings.ratable_id = products.id AND ratable_type = 'Product'")
-    #     .group("products.id")
-    #      .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
-    #      .where("products.brand_id=@brand.id").first(20) 
-  #  @products = Product.where("brand_id=@brand.id").first(20) 
-	
+ 
   end
 
   def add_to_favorites
@@ -41,6 +37,12 @@ class BrandsController < ApplicationController
      
 end
 
+def add_flag
+
+  @flag = FlagRequest.create(user_id:current_user.id, flaggable_type: "Brand", flaggable_id: params[:brand_id], comment: params[:comment] )
+  @flag.save
+
+end
 
 
 end

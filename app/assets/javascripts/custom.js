@@ -29,9 +29,9 @@ $(document).ready(function() {
 				
 			$('.expand a').click(function(){
 				$('.expand a').toggleClass('close');
-				$('.prd_search .home_right').toggleClass('goback');
+				$('.modified.home_right').toggleClass('goback');
 				$('.prd_search .home_left').toggleClass('fullwidth');
-				$('.prd_search .home_right').toggleClass('nullwidth');
+				$('.modified.home_right').toggleClass('nullwidth');
 				$('.map_button.hide_for_mobile').toggleClass('expanded')
 				})	  
 				  

@@ -1,0 +1,152 @@
+
+    <div class="light_popup" id="sggProduct">
+        <div class="light_pop_container">
+            <span class="pop_close"></span>
+            <div class="light_pop_body">
+                <div class="add_product_popup">
+                    <h1>Suggest A Product</h1>
+                    <p class="center_align">Thank you for taking the time to submit a product or brand to be reviewed by the Weston A. Price Foundation team of experts! IF it qualifies, it will be be added to this guide. If rejected, it will be posted here at: <a href="www.RealFoodMobileApp.com/rejected-foods-database" target="_blank">www.RealFoodMobileApp.com/rejected-foods-database</a></p>
+                    <p class="center_align">You may suggest a product which is sold either locally or nationwide in stores, farmer's markets, online, by phone, or through private co-ops. Enter any extra info you wish to provide the review team in the Comments box. You may also email the WAPF product review team directly with a large number of products to <a href="mailTo:ShoppingGuide@WestonAPrice.org">ShoppingGuide@WestonAPrice.org</a></p>
+                    <p class="fr"><span class="required">*</span> Indicates required field</p>
+                    <div class="popup_form">
+                        <form id="add_product_form">
+                            
+                            <div class="field">
+                                <label>Product Name:<span class="required">*</span></label>
+                                <div class="form_control">
+                                    <input type="text" name="prd_name"/>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Category:<span class="required">*</span></label>
+                                <div class="form_control">
+                                   <div class="cus_select_rslt">
+                                   <span>Select Category</span>
+                                    <select class="custom_select" name="add_categ">
+                                        <option value="Select Category" selected>Select Category</option>
+                                        <option value="Category 1">Category 1</option>
+                                        <option value="Category 2">Category 2</option>
+                                        <option value="Category 3">Category 3</option>
+                                        <option value="Category 4">Category 4</option>
+                                        <option value="Category 5">Category 5</option>
+                                        <option value="Category 6">Category 6</option>
+                                        <option value="Category 7">Category 7</option>
+                                    </select>
+                                   </div> 
+                                </div>
+                            </div>
+                             <div class="field">
+                                <label>Brand:<span class="required">*</span></label>
+                                <div class="form_control">
+                                   <div class="cus_select_rslt">
+                                   <span>Select Brand</span>
+                                    <select class="custom_select" name="add_brand">
+                                        <option value="Select Brand" selected>Select Brand</option>
+                                        <option value="Brand 1">Brand 1</option>
+                                        <option value="Brand 2">Brand 2</option>
+                                        <option value="Brand 3">Brand 3</option>
+                                        <option value="Brand 4">Brand 4</option>
+                                        <option value="Brand 5">Brand 5</option>
+                                        <option value="Brand 6">Brand 6</option>
+                                        <option value="Brand 7">Brand 7</option>
+                                    </select>
+                                   </div> 
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Quality Rating:<span class="required">*</span></label>
+                                <div class="form_control">
+                                   <div class="cus_select_rslt">
+                                   <span>Select Rating</span>
+                                    <select class="custom_select">
+                                        <option value="Select Rating" selected name="add_rating">Select Rating</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                   </div> 
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="empty">&nbsp;</label>
+                                <div class="form_control">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td><input type="checkbox"/><label>Approved</label></td>
+                                            <td><input type="checkbox"/><label>Available</label></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Picture:</label>
+                                <div class="form_control">
+                                    <input type="file" class="photo">
+                                    <ul class="file_dup">
+                                        <li class="file_result">No file selected.</li>
+                                        <li class="file_btn"><a href="javascript:;">Browse</a></li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Location:</label>
+                                <div class="form_control">
+                                    <select multiple class="multiple">
+                                        <option value="Select Rating" selected>Select Rating</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="field">
+                                <label class="empty">&nbsp;</label>
+                                <div class="form_control">
+                                    <p class="note"><span>Note:</span> We will notify you of product/brand approval or rejection after it is reviewed.</p>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="empty">&nbsp;</label>
+                                <div class="form_control">
+                                    <input type="submit" value="Submit"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<script type="text/javascript">
+        $(document).ready(function(){
+            
+           
+            /*********** Add Product *************/
+        
+                $("#add_product_form").validate({
+                    rules: {
+                        prd_name: "required",
+                        add_categ: "required",
+                        add_brand: "required",
+                        add_rating: "required"
+                        
+                    },
+                    messages: {
+                        prd_name: "This Field is Required",
+                        add_categ: "This Field is Required",
+                        add_brand: "This Field is Required",
+                        add_rating: "This Field is Required"
+                    }
+                });
+            
+            
+            /*********** Add Product End **************/
+        });
+        
+    </script>      

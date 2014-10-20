@@ -13,14 +13,16 @@ class SearchesController < ApplicationController
       session[:zip] = zip
     end
 
-    location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+    @locations = Location.near("#{zip}", 20)
     search = params[:search]
     sort = params[:sort]
     sold = params[:sold]
 
-    if location !=''
-      @products = Product.sort_by_rating(location, search, '','',sort)
-      @brands = Brand.search_by_locations_and_name(location, search, sold)
+    if @location !=''
+      @products = Product.sort_by_rating(@location, search, '','',sort)
+      @brands = Brand.search_by_locations_and_name(@location, search, sold)
+       @products_locations = Product.sort_by_rating(@location, search, '','',sort).collect{|c| c.location_id}.join(',')
  
     end
     respond_to do |format|
