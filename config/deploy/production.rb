@@ -8,8 +8,6 @@ role :app, %w{72.167.38.159}
 role :web, %w{72.167.38.159}
 role :db,  %w{72.167.38.159}
 
-set :rvm_ruby_string, "ruby-2.1.3"
-
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server definition into the
