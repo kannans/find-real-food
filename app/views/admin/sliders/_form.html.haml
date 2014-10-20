@@ -1,10 +1,10 @@
 = semantic_form_for [:admin, @slider] do |f|
   = f.semantic_errors *f.object.errors.keys
 
-  = f.inputs "Page" do
-    = f.input :title, :label => "Title"
-    = f.input :body, :label => "Body text"
-
+  = f.inputs "Slider" do
+    = f.input :title, :label => "Slider Text Big"
+    = f.input :slider_text, :label => "Slider Text Small"
+    = f.input :url
     = f.input :picture, :as => :file
 
   - unless @slider.picture.blank?
@@ -12,4 +12,3 @@
       = image_tag @slider.picture(:original)
 
   = f.actions
-
