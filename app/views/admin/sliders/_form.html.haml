@@ -7,9 +7,9 @@
 
     = f.input :picture, :as => :file
 
-  - unless @page.picture.blank?
+  - unless @slider.picture.blank?
     = f.inputs "Current Image" do
-      = image_tag @page.picture(:original)
+      = image_tag @slider.picture(:original)
 
   = f.actions
 
