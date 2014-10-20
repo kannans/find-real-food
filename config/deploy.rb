@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+lock '3.1.0'
 
 set :application, 'find-real-food'
 
@@ -37,16 +37,10 @@ set :pty, true
 
  set :unicorn_pid, "#{deploy_to}/current/tmp/pids/unicorn.pid"
  set :unicorn_config, "#{deploy_to}/current/config/unicorn.rb"
+ set :unicorn_config_path, "#{deploy_to}/current/config/unicorn.rb"
 
-set :default_environment, {
-'RUBY_VERSION'=>"ruby-2.0.0-p576",
-'GEM_PATH'=>'/home/deploy/.rvm/gems/ruby-2.0.0-p576@global',
-'GEM_HOME'=>'/home/deploy/.rvm/gems/ruby-2.0.0-p576@global',
-'BUNDLE_PATH'=>'/home/deploy/.rvm/gems/ruby-2.0.0-p576@global',
-'PATH'=>'/home/deploy/.rvm/gems/ruby-2.0.0-p576@global/bin:/home/deploy/.rvm/rubies/ruby-2.0.0-p576/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/deploy/.rvm/bin:/home/deploy/.rvm/bin:/home/deploy/.rvm/bin:$PATH'  ,
-}
-# set :conf_symlinks,  %w{database.yml}
-# set :linked_files, %w{config/database.yml}
+ set :rvm_ruby_version, 'ruby-2.0.0-p576'
+
 namespace :deploy do
 
   desc 'Stop Unicorn'
@@ -61,61 +55,13 @@ namespace :deploy do
   desc 'Start Unicorn'
   task :start do
     on roles(:app) do
-      # within current_path do
-        # with rails_env: fetch(:rails_env) do
-          execute :run, "unicorn -E production -c #{fetch(:unicorn_config)} -D"
-        # end
-      # end
-    end
-  end
-
-  desc 'Reload Unicorn without killing master process'
-  task :reload do
-    on roles(:app) do
-      if test("[ -f #{fetch(:unicorn_pid)} ]")
-        execute :kill, '-s USR2', capture(:cat, fetch(:unicorn_pid))
-        error "Unicorn reload"
-      else
-        error 'Unicorn process not running'
-      end
-    end
-  end   
-
-  desc 'bundle'
-  task :bundle do
-    on roles(:app) do
-      execute "cd #{deploy_to}/current"
-      execute 'bundle install'
-      puts "finish bundle"
-    end
-  end   
-
-  after "deploy", "deploy:reload"
-end
-
-namespace :unicorn do
-
-  desc 'Stop Unicorn'
-  task :stop do
-    on roles(:app) do
-      if test("[ -f #{fetch(:unicorn_pid)} ]")
-        execute :kill, capture(:cat, fetch(:unicorn_pid))
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec unicorn -E production -c #{fetch(:unicorn_config)} -D"
+        end
       end
     end
   end
-
-  # desc 'Start Unicorn'
-  # task :start do
-  #   on roles(:app) do
-  #     within current_path do
-  #       # execute :run, "unicorn -E production -c #{fetch(:unicorn_config)} -D"
-
-  #       with rails_env: fetch(:rails_env) do
-  #         execute :bundle, "exec unicorn -E production -c #{fetch(:unicorn_config)} -D"
-  #       end
-  #     end
-  #   end
-  # end
 
   desc 'Reload Unicorn without killing master process'
   task :reload do
@@ -129,9 +75,7 @@ namespace :unicorn do
     end
   end   
 
-  # desc 'Restart Unicorn'
-  # task :restart
-  # before :restart, :stop
-  # before :restart, :start
+  after "deploy", "deploy:stop"
+  after "deploy", "deploy:start"
 
 end
