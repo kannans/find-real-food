@@ -1,0 +1,88 @@
+<section>
+        <div class="main_container">
+            <div class="cms_section contact_page">
+                <div class="container">
+                    <div class="cms_white_bg">
+                        <h1>Contact Us</h1>
+                        <div class="contact_left fl">
+                            <div class="contact_form">
+                                <form id="frm_con" name="frm_con" method="post" action="/page/contact">
+                                    <div class="frm_field">
+                                        <label>First Name:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <input type="text" id="txt_con_fname" name="txt_con_fname" maxlength="30"/>
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                        <label>Last Name:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <input type="text" id="txt_con_lname" name="txt_con_lname" maxlength="30" />
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                        <label>Email Address:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <input type="text" id="txt_con_email" name="txt_con_email" maxlength="30" />
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                        <label>Phone:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <input type="text" id="txt_con_ph" name="txt_con_ph" maxlength="15"/>
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                        <label>Comments:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <textarea rows="5" id="txtar_con_comments" name="txtar_con_comments" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                        <label class="empty_label">&nbsp;</label>
+                                        <div class="frm_control buttons">
+                                            <input type="submit" value="Submit" id="sbmt_con" name="sbmt_con" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="contact_right fr">
+                            <img src="/assets/map.jpg"/>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+ <script type="text/javascript">
+        $(document).ready(function(){
+            /*********** Start 06-10-2014 *************/
+        
+                $("#frm_con").validate({
+                    rules: {
+                        txt_con_fname: "required",
+                        txt_con_lname: "required",
+                        txt_con_email:{
+                            required: true,
+                            email: true 
+                        },
+                        txt_con_ph: "required",
+                        txtar_con_comments: "required"
+                    },
+                    messages: {
+                        txt_con_fname: "First Name is Required",
+                        txt_con_lname: "Last Name is Required",
+                        txt_con_email:{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address"  
+                        },
+                        txt_con_ph: "Phone is Required",
+                        txtar_con_comments: "Comments are Required"
+                    }
+                });
+            
+            /*********** End 06-10-2014 **************/
+        });
+    </script>

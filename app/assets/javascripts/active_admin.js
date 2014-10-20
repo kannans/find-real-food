@@ -36,3 +36,5 @@ $(document).ready(function(){
       };
     });
 });
+
+var CKEDITOR_BASEPATH = '/assets/ckeditor/';

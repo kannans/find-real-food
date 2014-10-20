@@ -3,7 +3,7 @@
 
   = f.inputs "Page" do
     = f.input :title, :label => "Title"
-    = f.input :body, :label => "body Text"
+    = f.cktext_area :body,  :id => "sometext"
     = f.input :picture, :as => :file
 
   - unless @page.picture.blank?

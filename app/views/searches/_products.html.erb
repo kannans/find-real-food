@@ -8,13 +8,11 @@
                       
                     </ul>
                     <div class="clear"></div>
-                    <div class='tab_container'>
+                    <div class='tab_container fl'>
                         <div class='panel_container'>
                             <div id="products" class="tab_div active">
                                 <div class="home_body prd_search">
-                                    <div class="map_button fr hide_for_mobile">
-                                        <a href="javascript:;">Full Screen Map</a>
-                                    </div>
+                                    
                                     <div class="clear"></div>
                                     <div class="home_left fl">
                                         <% if @products %>
@@ -92,27 +90,13 @@
                                         <% end %>
                                     </div>
                                      
-                                    <div class="map_button fr hide_for_desktop">
-                                            <a href="javascript:;">Full Screen Map</a>
-                                        </div>
-                                        <div class="clear hide_for_desktop"></div>
-                                    <div class="home_right fr">
-                                        <div class="home_right_container">
-                                            <div class="map_area">
-                                                <%= render '/layouts/zipsearch' %>
-                                                 <div id="map-canvas"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
+                                
                                     <div class="clear"></div>
                                 </div>
                             </div>
                             <div id="brands" class="tab_div">
                                <div class="home_body prd_search">
-                                    <div class="map_button fr hide_for_mobile">
-                                        <a href="javascript:;">Full Screen Map</a>
-                                    </div>
+                                    
                                     <div class="clear"></div>
                                     <div class="home_left fl">
                                         <% if @brands  %>
@@ -158,26 +142,29 @@
 
                                         <% end %>
                                     </div>
-                                    
-                                    <div class="map_button fr hide_for_desktop">
-                                            <a href="javascript:;">Full Screen Map</a>
-                                        </div>
-                                        <div class="clear hide_for_desktop"></div>
-                                    <div class="home_right fr">
-                                        <div class="home_right_container">
-                                            <div class="map_area">
-                                                <%= render '/layouts/zipsearch' %>
-                                               <div id="map-canvas"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
                                     <div class="clear"></div>
                                 </div>
                              </div>
                               
                         </div>
                     </div>
+
+                    <div class="map_button fr hide_for_mobile">
+                                        <a href="javascript:;">Full Screen Map</a>
+                                    </div>
+                                    <div class="map_button fr hide_for_desktop">
+                                            <a href="javascript:;">Full Screen Map</a>
+                                        </div>
+                                        
+                             <div class="home_right modified fr">
+                                        <div class="home_right_container">
+                                            <div class="map_area">
+                                                <%= render '/layouts/zipsearch' %>
+                                                <div id="map-canvas"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                     <div class="clear"></div>
                     <div class="stock_status">
                         <p><strong>IN STOCK?</strong> Please call the store to verify the product or brand you want is currently in stock before going.<br/>Find Real Food cannot guarantee product inventory on any given day.</p>

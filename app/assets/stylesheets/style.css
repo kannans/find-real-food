@@ -4499,6 +4499,7 @@ button.remove-marker:hover
 {
 	position:absolute;
 	right:0;
+	margin-top:60px;
 	
 }
 
@@ -4557,3 +4558,9 @@ button.remove-marker:hover
 	  opacity: 0;
 }
 /*************************************************************/
+ .map_button.hide_for_mobile
+{
+position: absolute;
+right: 0;
+margin-top: 10px;
+}

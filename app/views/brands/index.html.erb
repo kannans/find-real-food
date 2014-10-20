@@ -51,13 +51,11 @@
                        <li class='tab'><a href="#allbrands">All Products</a></li>
                     </ul>
                     <div class="clear"></div>
-                	<div class='tab_container'>
+                	<div class='tab_container fl'>
                     	<div class='panel_container'>
   							<div id="nearby" class="tab_div active">
                                 <div class="home_body prd_search">
-                                    <div class="map_button fr hide_for_mobile">
-                                        <a href="javascript:;">Full Screen Map</a>
-                                    </div>
+                                     
                                     <div class="clear"></div>
                                     <div class="home_left fl">
                                          <% if @products %>
@@ -132,30 +130,13 @@
 
                             <% end %>
                                     </div>
-                                    <div class="map_button fr hide_for_desktop">
-                                            <a href="javascript:;">Full Screen Map</a>
-                                        </div>
-                                        <div class="clear hide_for_desktop"></div>
-                                    <div class="home_right fr">
-                                        <div class="home_right_container">
-                                            <div class="map_area">
-                                                  <%= render '/layouts/zipsearch' %>
-                                                 
-                                                <!-- Google Map -->
-                                                <div id="map-canvas"></div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                     
                                     <div class="clear"></div>
                                 </div>
                         	</div>
                             <div id="allbrands" class="tab_div">
                                <div class="home_body prd_search">
-                                    <div class="map_button fr hide_for_mobile">
-                                        <a href="javascript:;">Full Screen Map</a>
-                                    </div>
+                                  
                                     <div class="clear"></div>
                                     <div class="home_left fl">
                                         <% if @productsall %>
@@ -209,7 +190,7 @@
                                              
                                              </ul>
                                           </div>
-                                          
+
                                         </div>
                                     </div>
                                 </div>
@@ -227,27 +208,31 @@
 
                             <% end %>
                                     </div>
-                                    <div class="map_button fr hide_for_desktop">
-                                            <a href="javascript:;">Full Screen Map</a>
-                                        </div>
-                                        <div class="clear hide_for_desktop"></div>
-                                    <div class="home_right fr">
-                                        <div class="home_right_container">
-                                        <div class="map_area">
-                                              <%= render '/layouts/zipsearch' %>
-                                             
-                                            <!-- Google Map -->
-                                           <%= image_tag("map.jpg", :alt => "star") %>
+                                    
+                                     
 
-
-                                        </div>
-                                    </div>
-                                    </div>
                                     <div class="clear"></div>
                                 </div>
                              </div>
                         </div>
                     </div>
+
+                    <div class="map_button fr hide_for_mobile">
+                                        <a href="javascript:;">Full Screen Map</a>
+                                    </div>
+                                    <div class="map_button fr hide_for_desktop">
+                                            <a href="javascript:;">Full Screen Map</a>
+                                        </div>
+                                        <div class="clear"></div>
+                             <div class="home_right modified fr">
+                                        <div class="home_right_container">
+                                            <div class="map_area">
+                                                <%= render '/layouts/zipsearch' %>
+                                                <div id="map-canvas"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                     <div class="clear"></div>
                     <div class="stock_status">
                         <p><strong>IN STOCK?</strong> Please call the store to verify the product or brand you want is currently in stock before going.<br/>Find Real Food cannot guarantee product inventory on any given day.</p>
@@ -297,15 +282,7 @@
  
 $(document).ready(function() {
 
-       <% if @products_locations %>
-       setTimeout(function(){
-        <% productlocations = get_prod_locations_list(@products_locations) %>
-        <% productlocations.each do |row| %> 
-        codeAddress('<%= row[2] %>, <%= row[3] %>,<%= row[5] %>, <%= get_statename(row[4]) %>,', '<p><span><a href="/location/<%= row[19] %>" ><%= row[1] %></a></span>,<span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></p>');
-        <% end %>
-
-      }, 2000);
-      <% end %>
+        
 
      $("#frm_flag_prd").validate({
                     rules: {

@@ -1,0 +1,15 @@
+= semantic_form_for [:admin, @news_post] do |f|
+  = f.semantic_errors *f.object.errors.keys
+
+  = f.inputs "News Post" do
+    = f.input :title, :label => "Title"
+    = f.input :author, :label => "Author"
+    = f.input :website
+    = f.cktext_area :body,  :id => "sometext"
+    = f.input :picture
+
+  - unless @news_post.picture.blank?
+    = f.inputs "Current Image" do
+      = image_tag @news_post.picture(:original)
+
+  = f.actions

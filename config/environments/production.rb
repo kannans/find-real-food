@@ -67,4 +67,19 @@ RealFood::Application.configure do
   #config.action_mailer.default_url_options = {
   #  :host => "prod.real-food.hcents.com"
   #}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: 'smtp.gmail.com',
+  port: 587,
+  domain: 'gmail.com',
+  user_name: "rmarktest@gmail.com",
+  password: "Testing12",
+  authentication: 'plain',
+  enable_starttls_auto: true }
+
+  config.action_mailer.default_url_options = { :host => '72.167.38.159' }  
+
+
+
 end

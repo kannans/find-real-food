@@ -3,6 +3,8 @@ RealFood::Application.routes.draw do
   
 
   
+  mount Ckeditor::Engine => '/ckeditor'
+
   get "locations/index"
 
    get "home/index"
@@ -47,6 +49,8 @@ RealFood::Application.routes.draw do
     get 'brand/:slug', :to => 'brands#index'
     get 'page/:slug', :to => 'page#index'
     get 'faq', :to => 'faq#index'
+    get 'contact-us', :to => 'page#contact'
+    post 'page/contact'
     
 
     # end K2B Routes Code
@@ -92,5 +96,5 @@ RealFood::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-
+  mount Ckeditor::Engine => "/ckeditor"
 end

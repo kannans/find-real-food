@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     	zip = '94123'
       session[:zip] = zip
   	end
-
+    zip = '94123'
     
     search = ''
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')

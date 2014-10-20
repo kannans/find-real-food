@@ -12,6 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require magnific-popup
-//= require bxslider
 //= require_tree .
+//= require ckeditor/init
