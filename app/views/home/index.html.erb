@@ -170,15 +170,7 @@
  
 $(document).ready(function() {
 
-      <% if @products_locations %>
-       setTimeout(function(){
-        <% productlocations = get_prod_locations_list(@products_locations) %>
-        <% productlocations.each do |row| %> 
-        codeAddress('<%= row[2] %>, <%= row[3] %>,<%= row[5] %>, <%= get_statename(row[4]) %>, USA', '<p><span><a href="/location/<%= row[19] %>" ><%= row[1] %></a></span>,<span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></p>');
-        <% end %>
-
-      }, 2000);
-      <% end %>
+       
       <% if @sliders %>
      $('.slider').bxSlider({
               pager:false,
