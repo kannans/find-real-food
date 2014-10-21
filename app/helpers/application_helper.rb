@@ -71,7 +71,7 @@ module ApplicationHelper
   def get_brand_location_count(brand_id='',locations='')
     
       connection = ActiveRecord::Base.connection()
-      results = connection.execute("select count(*) from brands_locations where product_id=#{product_id} and location_id in (#{locations}) ")
+      results = connection.execute("select count(*) from brands_locations where brand_id=#{brand_id} and location_id in (#{locations}) ")
       results.each do |row|
          return row[0]
       end
