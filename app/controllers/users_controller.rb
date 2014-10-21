@@ -14,7 +14,7 @@ class UsersController < Devise::RegistrationsController
   def index
      @user = User.find(current_user.id)
      #@product_ids = Fovorite.where(user_id:current_user.id).where(type: "Product").collect{|c| c.reference_id}.join(',')
-     @products = Product.find(:all, :conditions => ['name IS NOT NULL'], :limit => 20) 
+     #@products = Product.find(:all, :conditions => ['name IS NOT NULL'], :limit => 20) 
   end
   
   def login
