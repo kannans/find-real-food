@@ -109,7 +109,7 @@ $(document).ready(function() {
 		/**************************************/
 
 		$('.media_text .location a').click(function(){
-			$(this).parent('.location').parent('.media_text').next('.location_list').slideToggle(400)
+			$(this).parent('.location').parent('.media_text').next().next('.location_list').slideToggle(400)
 			})
 });
 $(window).resize(function(){
