@@ -57,21 +57,7 @@
                                                  <% if branddetails %>
                                                 <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
                                                 <% end %>
-                                                        <% $i = 0
-                                                if product.avg_rating %>
-                                                <p class="rating">
-
-                                                
-                                               <% while $i < product.avg_rating  do %>
-                                                   <a href="#">
-                                                  <%= image_tag("star.png", :alt => "star") %>
-                                                 </a>
-                                                  
-                                              <%   $i +=1 
-                                                    end 
-                                                 
-                                              %>
-                                               <span>(<%= product.rating_count %>)</span></p>
+                                               </p>
                                                <% end  %>     
                                                             <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                                         </div>
