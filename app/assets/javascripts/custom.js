@@ -40,8 +40,8 @@ $(document).ready(function() {
 				  $('.etabs .tab a').removeClass('active');
 				  $(this).addClass('active');
 				  var divId=$(this).attr('href');
-				  $('.tab_div').fadeOut().removeClass('active');
-				  $(divId).fadeIn().addClass('active');
+				  $('.tab_div').hide().removeClass('active');
+				  $(divId).show().addClass('active');
 				  })
 				  
 		$('.view_lct_btn').click(function() {

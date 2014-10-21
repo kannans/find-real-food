@@ -4558,7 +4558,7 @@ button.remove-marker:hover
 	  opacity: 0;
 }
 /*************************************************************/
- .map_button.hide_for_mobile
+ .map_button.hide_for_mobile.with_tab
 {
 position: absolute;
 right: 0;
