@@ -95,10 +95,21 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>
-                                           
+                                            <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
 
-                                            
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
+                                             
+                                             </ul>
+                                          </div>
 
 
                                         </div>
@@ -164,10 +175,21 @@
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>
 
-                                                  
+                                                 <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
 
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
                                              
+                                             </ul>
+                                          </div>
 
                                         </div>
                                     </div>
