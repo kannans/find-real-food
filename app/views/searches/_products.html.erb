@@ -55,7 +55,7 @@
                                                <% end  %>     
                                                             <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                                         </div>
-
+                                                            <div class="clear"></div>
                                                             <div class="location_list">
                                               <ul>
                                                 <% loca = get_locations_list(product.id,@location) %>
@@ -122,8 +122,24 @@
                                                                 <a href="javascript:void(0);">
                                                                 <% end %>
                                                                 <%= brand.name%></a></p>
-                                                            <p class="location"><a href="javascript:;">4 Locations Nearby</a></p>
+                                                      
+                                                            <p class="location"><a href="javascript:void(0);"><%= get_brand_location_count(brand.id, @location) %> Location(s) Nearby</a></p>
+
                                                         </div>
+                                                         <div class="clear"></div>
+                                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_brand_locations_list(brand.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= get_statename(row[4]) %>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
+                                             
+                                             </ul>
+                                          </div>
+
                                                     </div>
                                                 </div>
                                             </div>
