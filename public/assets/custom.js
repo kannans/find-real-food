@@ -27,21 +27,22 @@ $(document).ready(function() {
 				  $(".accrd_btn").toggleClass('closed');
 				  })
 				
+				
 			$('.expand a').click(function(){
 				$('.expand a').toggleClass('close');
-				$('.prd_search .home_right').toggleClass('goback');
+				$('.modified.home_right').toggleClass('goback');
 				$('.prd_search .home_left').toggleClass('fullwidth');
-				$('.prd_search .home_right').toggleClass('nullwidth');
+				$('.modified.home_right').toggleClass('nullwidth');
 				$('.map_button.hide_for_mobile').toggleClass('expanded')
-				})	  
+				})  
 				  
 			  $('.etabs .tab a').click(function(evt){
 				  evt.preventDefault();
 				  $('.etabs .tab a').removeClass('active');
 				  $(this).addClass('active');
 				  var divId=$(this).attr('href');
-				  $('.tab_div').fadeOut().removeClass('active');
-				  $(divId).fadeIn().addClass('active');
+				  $('.tab_div').hide().removeClass('active');
+				  $(divId).show().addClass('active');
 				  })
 				  
 		$('.view_lct_btn').click(function() {
