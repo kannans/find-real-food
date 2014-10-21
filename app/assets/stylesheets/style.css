@@ -4564,3 +4564,13 @@ position: absolute;
 right: 0;
 margin-top: 10px;
 }
+
+.tab_container.fullwidth
+{
+width:100%;
+}
+.expand .close
+{
+border-radius:0;
+-webkit-border-radius:0;
+}

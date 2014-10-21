@@ -33,7 +33,8 @@ $(document).ready(function() {
 				$('.modified.home_right').toggleClass('goback');
 				$('.prd_search .home_left').toggleClass('fullwidth');
 				$('.modified.home_right').toggleClass('nullwidth');
-				$('.map_button.hide_for_mobile').toggleClass('expanded')
+				$('.map_button.hide_for_mobile').toggleClass('expanded');
+				$('.tab_container').toggleClass('fullwidth');
 				})  
 				  
 			  $('.etabs .tab a').click(function(evt){
