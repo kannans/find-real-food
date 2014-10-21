@@ -172,9 +172,15 @@
                                         <textarea class="leave_cmt" placeholder="Share your thoughts on this product..."></textarea>
                                         <span class="txt_arrow"></span>
                                     </div>
+                                    <% if user_signed_in? %>
                                     <div class="comment_btn">
                                         <a href="javascript:;">post</a>
                                     </div>
+                                    <% else %>
+                                    <div class="comment_btn">
+                                        <a class="light_pop_trigger" href="#login">post</a>
+                                    </div>
+                                    <% end %>
                                     <div class="user_comments">
                                         
                                         
