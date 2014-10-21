@@ -63,7 +63,7 @@ module ApplicationHelper
     
       connection = ActiveRecord::Base.connection()
 
-      return results = connection.execute("select * from locations where  id in (select id from locations_products where product_id=#{product_id} and location_id in (#{locations})) ")
+      return results = connection.execute("select * from locations where  id in (select location_id from locations_products where product_id=#{product_id} and location_id in (#{locations})) ")
        
 
   end
@@ -82,7 +82,7 @@ module ApplicationHelper
     
       connection = ActiveRecord::Base.connection()
 
-      return results = connection.execute("select * from locations where  id in (select id from brands_locations where brand_id=#{brand_id} and location_id in (#{locations})) ")
+      return results = connection.execute("select * from locations where  id in (select location_id from brands_locations where brand_id=#{brand_id} and location_id in (#{locations})) ")
 
   end
 
@@ -90,7 +90,7 @@ module ApplicationHelper
     
       connection = ActiveRecord::Base.connection()
 
-      return results = connection.execute("select * from locations where  id in (select id from locations_products where location_id in (#{locations})) ")
+      return results = connection.execute("select * from locations where  id in (select location_id from locations_products where location_id in (#{locations})) ")
        
   end
 
