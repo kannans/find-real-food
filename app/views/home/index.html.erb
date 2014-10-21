@@ -26,7 +26,127 @@
             <% end %>
             
 
-           
+            <div class="products_part">
+                <div class="container">
+                    <div class="title_area">
+                        <h3 class="fl">Highest Rated Products</h3>
+                        <a href="/categories" class="fr button hide_for_mobile">browse all categories</a>
+                        <div class="clear"></div>
+                    </div>
+                    <a href="#" class="button hide_for_desktop fr">browse all categories</a>
+                    <div class="home_body">
+                        <div class="map_button fr hide_for_mobile">
+                            <a href="#">Full Screen Map</a> 
+                        </div>
+                        <div class="clear"></div>
+                        <div class="home_left fl">
+                            <% if @products %>
+                            <div class="products">
+                               <% @products.each do |product| %> 
+                              
+                               
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                <% $i = 0
+                                                if product.avg_rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < product.avg_rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= product.rating_count %>)</span></p>
+                                               <% end  %>
+                                                <p class="location"><a href="javascript:void(0);">Location(s) Nearby</a></p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                               
+                                
+                            </div>
+                            <% end %>
+                        </div>
+                        <div class="map_button fr hide_for_desktop">
+                                <a href="#">Full Screen Map</a>
+                            </div>
+                            <div class="clear hide_for_desktop"></div>
+                        <div class="home_right fr">
+                            <div class="home_right_container">
+                                <div class="map_area">
+                                      <%= render '/layouts/zipsearch' %>
+                                     
+                                    <!-- Google Map -->
+                                    <div id="map-canvas"></div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                
+                
+ 
+                <div class="app_part">
+                    <div class="container">
+                        <div class="app_part_container">
+                            <div class="shopping_gd fl">
+                                <a href="#"><%= image_tag("shopping_guide.png", :alt => "star") %> </a>
+                            </div>
+                            <div class="app_screen fl">
+                                <%= image_tag("app_screen1.png", :alt => "star") %>
+                                
+                            </div>
+                            <div class="app_screen two fl">
+                                 <%= image_tag("app_screen2.png", :alt => "star") %>
+                                
+                            </div>
+                            <div class="app_screen fl">
+                                 <%= image_tag("app_screen3.png", :alt => "star") %>
+                                
+                            </div>
+                            <div class="app_screen last fl">
+                                 <%= image_tag("app_screen4.png", :alt => "star") %>
+                                
+                            </div>
+                            <div class="bottom_logo_part fr">
+                                <a href="#" class="big_logo">
+                                <%= image_tag("logo_large.png", :alt => "star") %></a>
+                                <ul>
+                                    <li><a href="#"><%= image_tag("apple_store.png", :alt => "star") %></a></li>
+                                    <li><a href="#"><%= image_tag("play_store.png", :alt => "star") %></a></li>
+                                </ul>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             
         </div>
     </section>
