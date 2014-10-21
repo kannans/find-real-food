@@ -1,4 +1,35 @@
 <%= render '/layouts/googlemap' %>
+<section>
+        <div class="main_container">
+            <% if @sliders %>
+            <div class="banner">
+               <ul class="slider">
+                     <% @sliders.each do |slider| %> 
+                    <li>
+                    
+                      <a href="<%= slider.url%>">   <%= image_tag(slider.picture(:original), :alt => "Banner") %></a>
+                       
+                        <div class="caption_part">
+                            <div class="container">
+                               <% if slider.slider_text !='' %>  <h4><%= slider.slider_text%></h4>
+                               <% end %>
+                               <% if slider.title !='' %>
+                                <h1><%= slider.title %></h1>
+                                <% end %>
+                            </div>
+                        </div>
+                    </li>
+                    <% end %>
+                        
+                </ul>
+            </div>
+            <% end %>
+            
+
+           
+            
+        </div>
+    </section>
 
 
     
