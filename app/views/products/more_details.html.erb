@@ -173,7 +173,7 @@
                                         <span class="txt_arrow"></span>
                                     </div>
                                     <% if user_signed_in? %>
-                                    <div class="comment_btn">
+                                    <div class="comment_btn comment_post">
                                         <a href="javascript:;">post</a>
                                     </div>
                                     <% else %>
@@ -364,7 +364,7 @@ $(document).ready(function(){
                   }
                 });
       
-    $('.comment_btn a').click(function(){
+    $('.comment_post a').click(function(){
         if($(".leave_cmt").val()!=''){
         $.get('/products/addrating', { ratable_id:<%= @product.id %>,comment:$(".leave_cmt").val() }, null, "script");
     }else{
