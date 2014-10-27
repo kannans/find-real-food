@@ -19,6 +19,7 @@
                              </p><p>GENERAL QUESTIONS/SUGGESTIONS
                             Please fill out the form below...
                             </p>
+                              <% if flash[:notice] %>  <p class="cmmn_error"><%= flash[:notice] %></p> <% end %>
                             <div class="contact_form">
                                 <form id="frm_con" name="frm_con" method="post" action="/page/contact">
                                     <div class="frm_field">
@@ -60,9 +61,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="contact_right fr">
-                            <img src="/assets/map.jpg"/>
-                        </div>
+                        
                         <div class="clear"></div>
                     </div>
                 </div>
