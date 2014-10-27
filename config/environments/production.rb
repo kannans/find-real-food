@@ -78,7 +78,8 @@ RealFood::Application.configure do
   authentication: 'plain',
   enable_starttls_auto: true }
 
-  config.action_mailer.default_url_options = { :host => '72.167.38.159:3000' }  
+  config.action_mailer.default_url_options = { :host => '72.167.38.159' }  
+    config.action_mailer.perform_deliveries = true
 
 
 
