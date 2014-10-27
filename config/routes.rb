@@ -43,13 +43,13 @@ RealFood::Application.routes.draw do
     get 'categories', :to => 'categories#index'
     post 'search', :to => 'searches#index'
     get 'search', :to => 'searches#index'
-    get 'how-foods-are-choosen', :to => 'quality_ratings#index'
+    get 'how-foods-are-chosen', :to => 'quality_ratings#index'
     get 'news', :to => "news_posts#index"
     get 'news/:slug', :to => 'NewsPosts#more_details'
     get 'brand/:slug', :to => 'brands#index'
     get 'page/:slug', :to => 'page#index'
     get 'faq', :to => 'faq#index'
-    get 'contact-us', :to => 'page#contact'
+    get 'contact-us', :to => 'page#contact' 
     post 'contact-us', :to => 'page#contact'
     
 
