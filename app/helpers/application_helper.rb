@@ -62,7 +62,7 @@ module ApplicationHelper
   def getlocationslist(product_id='',locations='')
     
       subquery = "select location_id from locations_products where product_id=#{product_id} and location_id in (#{locations})"
-      Location.where("locations.id IN (#{subquery})")
+      return Location.where("locations.id IN (#{subquery})")
 
 
   end
