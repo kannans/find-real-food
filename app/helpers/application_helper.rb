@@ -59,11 +59,11 @@ module ApplicationHelper
 
   end
 
-  def get_locations_list(product_id='',locations='')
+  def getlocationslist(product_id='',locations='')
     
       connection = ActiveRecord::Base.connection()
 
-      return results = connection.execute("select location_id from locations_products where product_id=#{product_id} and location_id in (#{locations})")
+      return results = connection.execute("select * from locations where  id in (select location_id from locations_products where product_id=#{product_id} and location_id in (#{locations})) ")
        
 
   end
