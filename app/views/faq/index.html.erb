@@ -16,7 +16,7 @@
                      	<% if @faqs %>
                      	 <% @faqs.each do |faq| %> 
                     		<div class="question"><%= faq.title %></div>
-                    		<div class="ans"><%= faq.answer %></div>
+                    		<div class="ans"><%= raw(faq.answer) %></div>
                    		 <% end %>
               
             			<% end %>
