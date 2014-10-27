@@ -54,10 +54,12 @@ $(document).ready(function(){
                 
                 allpages.push(next_page);
            
-                $.get('/how-foods-are-choosen', { page: $('.scroll_down').attr('data-page')}, null, "script");
+                $.get('/how-foods-are-chosen', { page: $('.scroll_down').attr('data-page')}, null, "script");
           
             }
           
+        }else{
+            $('.scroll_down').hide();
         }
          return false;
     };
