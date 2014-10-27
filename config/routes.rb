@@ -50,7 +50,7 @@ RealFood::Application.routes.draw do
     get 'page/:slug', :to => 'page#index'
     get 'faq', :to => 'faq#index'
     get 'contact-us', :to => 'page#contact'
-    post 'page/contact'
+    post 'contact-us', :to => 'page#contact'
     
 
     # end K2B Routes Code
