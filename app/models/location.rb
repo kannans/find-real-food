@@ -48,7 +48,8 @@ class Location < ActiveRecord::Base
   def full_address
     "#{address}, #{zip}, #{city}, USA"
   end
-
+  
+  
   def self.parent_locations
     self.where(:parent_id => nil)
   end

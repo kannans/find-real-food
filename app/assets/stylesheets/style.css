@@ -4483,7 +4483,7 @@ button.remove-marker
     height: 20px;
     line-height: 16px;
     position: absolute;
-    right: -22px;
+    right: -12px;
     text-align: center;
     top: 0;
     width: 20px;
@@ -4705,4 +4705,13 @@ width: 465px;
 .contact_form .frm_field
 {
 max-width: 530px;
+}
+.marker-info-win {
+    max-width: 280px;
+}
+
+.info-content > a {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
 }

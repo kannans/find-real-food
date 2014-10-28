@@ -186,9 +186,13 @@ $(document).ready(function() {
      <% end %>
 
 
-     codeAddress('miami, florida, united states');
-  codeAddress('Ohio, united states');
-  codeAddress('new york, united states');
+ <% if @locations %>
+      setTimeout(function(){ 
+        <% @locations.each do |lrow| %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% end %>
+      }, 5000);
+      <% end %>
 
 });
     
