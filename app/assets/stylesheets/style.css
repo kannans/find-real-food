@@ -2615,8 +2615,7 @@ span.avoid
 	font-family:'OpenSansSemibold', Arial, Helvetica, sans-serif;
 	font-size:14px;
 }
-.popup_form .field .form_control 
-[type="file"]
+.popup_form .field .form_control input[type="file"]
 {
 	width:460px;
 	top:0;
@@ -4715,7 +4714,7 @@ max-width: 530px;
     font-size: 14px;
     font-weight: bold;
 }
-.popup_form .field .form_control [type="file"]
+.popup_form .field .form_control input[type="file"]
 {
 left: 0;
 opacity: 0;
