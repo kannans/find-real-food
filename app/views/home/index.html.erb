@@ -191,7 +191,7 @@ $(document).ready(function() {
         <% @locations.each do |lrow| %>
         <% if lrow.slug %>
         codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
-        
+        <% end %>
         <% end %>
       }, 5000);
       <% end %>
