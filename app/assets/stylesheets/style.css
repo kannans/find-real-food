@@ -4715,3 +4715,12 @@ max-width: 530px;
     font-size: 14px;
     font-weight: bold;
 }
+.popup_form .field .form_control [type="file"]
+{
+left: 0;
+opacity: 0;
+position: absolute;
+top: 0;
+width: 460px;
+z-index: 2;
+}
