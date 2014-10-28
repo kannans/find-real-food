@@ -29,12 +29,12 @@ class CategoriesController < ApplicationController
 	      session[:zip] = zip
 	  	end
 
-	    category = Category.find(params[:slug])
+	    @category = Category.find(params[:slug])
 	    search = ''
 	  	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
 	    
 	    if @location !=''
-		  @products = Product.sort_by_rating(@location,search,category)
+		  @products = Product.sort_by_rating(@location,search,@category)
 		  
 	    end
 
