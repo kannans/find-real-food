@@ -16,12 +16,24 @@
                     	<div class="left">
                             <h1><%= @brand.name%></h1>
                             <p><a href="javascript:;"><%= number_to_phone(@brand.phone, area_code: true)     %></a>   -   <a href="<%= @brand.website %>"><%= @brand.website %></a></p>
- 							<ul>
-                                <% if @brand.order_by_online && @brand.website !='' %><li class="online"><a href="<%= @brand.website %>" target="_blank">Order from brand's website</a></li> <% end %>
-                               <% if @brand.order_by_phone && @brand.phone !='' %> <li class="byphone"><a href="javascript:;">Order By Phone</a></li> <% end %>
-                               <% if @brand.store_locator_url !='' %> <li class="store"><a href="<%= @brand.store_locator_url %>" target="_blank">Sold by online retailer</a></li><% end %>
+ 							                <ul>
+                                <% if @brand.order_by_online && @brand.website !='' %><li class="online"><a href="<%= @brand.website %>" target="_blank">Order from brand's website</a></li> 
+                                <% else %>
+                                <li class="online disabled"><a href="javascript:void(0);" >Order from brand's website</a></li> 
+                                <% end %>
+                               <% if @brand.order_by_phone && @brand.phone !='' %> <li class="byphone"><a href="javascript:;">Order By Phone</a></li> 
+                               <% else %>
+                               <li class="byphone disabled"><a href="javascript:;">Order By Phone</a></li> 
+                               <% end %>
+                               <% if @brand.store_locator_url !='' %> <li class="store"><a href="<%= @brand.store_locator_url %>" target="_blank">Sold by online retailer</a></li>
+                               <% else %>
+                                <li class="store disabled"><a href="javascript:;">Sold by online retailer</a></li>
+                               <% end %>
                                <% if @brand.store_farmers_market %>
-                                <li class="farmer_market"><a href="javascript:;">Sold in stores or farmer's markets"</a></li><% end %>
+                                <li class="farmer_market"><a href="javascript:;">Sold in stores or farmer's markets"</a></li>
+                                <% else %>
+                                <li class="farmer_market disabled"><a href="javascript:;">Sold in stores or farmer's markets"</a></li>
+                                <% end %>
                             </ul>
                         </div>
                         <div class="right">
