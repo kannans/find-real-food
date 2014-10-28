@@ -9,6 +9,8 @@ end
 
 def more_details
 	
+	if user_signed_in?
+
 	if params[:zip]
       zip = params[:zip]
       session[:zip] = zip
@@ -23,6 +25,10 @@ def more_details
 	@product = Product.find(params[:slug])
 	
 	@similar_product  = Product.sort_by_rating(location, @product.category_id) 
+
+	else
+		redirect_to "/login"
+	end
 	
 end
 
