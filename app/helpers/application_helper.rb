@@ -48,7 +48,11 @@ module ApplicationHelper
   def get_state_list
        return State.all
   end
-   
+  
+  def get_quality_name(id)
+    qualityval =  QualityRating.where(id:id).first
+    return qualityval.name
+  end
   def get_location_count(product_id='',locations='')
     
       connection = ActiveRecord::Base.connection()

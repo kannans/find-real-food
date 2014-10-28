@@ -54,7 +54,7 @@
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
-                                            <span class="ribbon ribbonbest">Best</span>
+                                            <span class="ribbon ribbonbest"><%= get_quality_name(product.quality_rating_id)%></span>
                                           </a>
                                              
                                             <div class="media_text">
