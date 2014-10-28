@@ -4723,3 +4723,7 @@ top: 0;
 width: 460px;
 z-index: 2;
 }
+.gmnoprint img
+{
+max-width:none;
+}
