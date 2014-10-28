@@ -62,12 +62,21 @@
                                 </a>
                             </div>
                             <div class="contact_links">
+                                
                                 <% if branddetails.order_by_phone && branddetails.phone !='' %>
                                 <p class="ord_phone">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
+                                <% else %>
+                                <p class="ord_phone disabled">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
                                 <% end %>
+
                                 <% if branddetails.order_by_online && branddetails.website!='' %>
-                                <p class="ord_online">Order Online <a href="javascript:;">(<%= branddetails.website %>)</a></p>
+                                <p class="ord_online"><a target="_blank"  href="<%= branddetails.website %>">Order from brand's website</a></p>
+                                <% else %>
+                                <p class="ord_online disabled"><a href="javascript:;">Order from brand's website</a></p>
+                                
                                 <% end %>
+                                
+                                
                                 <% if branddetails.store_farmers_market && branddetails.store_locator_url!='' %>
                                 <p class="ord_store">Available in Stores <a href="javascript:;">(<%= branddetails.store_locator_url%>)</a></p>
                                 <% end %>
