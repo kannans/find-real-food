@@ -1,5 +1,8 @@
 class BrandsController < ApplicationController
   def index
+
+    if user_signed_in?
+
   	@brand = Brand.find(params[:slug])
 
     if params[:zip]
@@ -24,6 +27,10 @@ class BrandsController < ApplicationController
 
 	  @productsall = Product.sort_by_rating('',search,'',@brand)
     @locations = Location.near("#{zip}", 20)
+
+    else
+      redirect_to "/login"
+    end
  
   end
 
