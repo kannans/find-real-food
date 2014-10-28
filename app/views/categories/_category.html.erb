@@ -1,6 +1,6 @@
  
                             <li>
-                             <a href="javascript:;">
+                             <a href="/category/<%= category.slug %>">
                               <% if category.picture.present? %>
                           <%= image_tag (category.picture(:original)) %>
                           <% else %>

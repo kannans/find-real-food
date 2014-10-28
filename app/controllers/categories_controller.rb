@@ -35,7 +35,7 @@ class CategoriesController < ApplicationController
 	    
 	    if @location !=''
 		  @products = Product.sort_by_rating(@location,search,category)
-		  @products_locations = Product.sort_by_rating(location,search,category).collect{|c| c.location_id}.join(',')
+		  
 	    end
 
 	   	@sliders = Slider.all
