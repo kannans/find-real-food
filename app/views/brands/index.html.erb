@@ -72,7 +72,7 @@
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
-                                            <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id)%>"><%= get_quality_name(product.quality_rating_id)%></span>
+                                            <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id).downcase %>"><%= get_quality_name(product.quality_rating_id)%></span>
                                              </a>
                                             <div class="media_text">
                                                 <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
@@ -141,7 +141,7 @@
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
-                                            <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id)%>"><%= get_quality_name(product.quality_rating_id)%></span>
+                                            <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id).downcase %>"><%= get_quality_name(product.quality_rating_id)%></span>
                                              </a>
                                             <div class="media_text">
                                                 <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
