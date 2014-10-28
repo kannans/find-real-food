@@ -56,7 +56,7 @@
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
-                                             
+                                             </a>
                                             <div class="media_text">
                                                 <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
                                                  <% branddetails = get_brand_details(product.brand_id) %>
@@ -108,7 +108,7 @@
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
-                                             
+                                             </a>
                                             <div class="media_text">
                                                 <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
                                                  <% branddetails = get_brand_details(product.brand_id) %>
