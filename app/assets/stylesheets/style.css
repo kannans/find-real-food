@@ -4579,3 +4579,108 @@ border-radius:0;
 min-height: 100px;
 padding-right: 12px;
 }
+.popup_form .field
+{
+	margin: auto auto 15px;
+    width: 465px;
+}
+.popup_form .field label 
+{
+    float: none;
+    text-align: left;
+}
+.popup_form .field .form_control 
+{
+    margin-left: 0;
+}
+.light_popup
+{
+	max-width:580px;
+}
+.login_title
+{
+	font-size:25px;
+	margin-bottom:15px;
+}
+.fblogin_link
+{
+	margin-bottom:15px;
+}
+.crt_txt
+{
+	margin-bottom:10px;
+}
+ a.signup_link
+{
+	font-size:25px;
+}
+.pop_signup_part
+{
+	padding:20px 15px;
+}
+.inner_banner.brands_page ul li
+{
+	margin-right:5px;
+}
+.contact_left.fl
+{
+	float:none;
+	width:auto;
+}
+.contact_form 
+{
+    margin-top: 45px;
+}
+.form_newsletter input.button:hover
+{
+	cursor:pointer;
+}
+.cmmn_success
+{
+    background: none repeat scroll 0 0 #96e49a;
+    border: 1px solid #1c822b;
+    border-radius: 5px;
+    color: #0c7e06 !important;
+    padding: 5px 10px;
+}
+.inner_banner.brands_page ul li.disabled a
+{
+	color:#000000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	  filter: alpha(opacity=50);
+	  -moz-opacity: 0.5;
+	  -khtml-opacity: 0.5;
+	  opacity: 0.5;
+}
+.inner_banner.brands_page ul li.disabled a:hover
+{
+	cursor:not-allowed;
+}
+.media .media_img
+{
+	height:100px;
+	width:100px;
+	overflow:hidden;
+}
+.ribbon
+{
+    bottom: 10px;
+    color: #ffffff;
+    left: -30px;
+    position: absolute;
+    text-align: center;
+    transform: rotate(45deg);
+    width: 100%;
+}
+.ribbon.ribbonbest 
+{
+    background:#268d11;
+}
+.ribbon.ribbongood
+{
+	background:#5d5d5d;
+}
+.map_btn a:hover, .map_btn input:hover
+{
+	cursor:pointer;
+}
