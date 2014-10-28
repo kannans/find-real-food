@@ -2508,11 +2508,11 @@ span.avoid
 	background:url(/assets/brands_sprite.png) no-repeat 12px 7px #252525;
 }
 
-.brands_options .right ul li.brand_fav a
+.brands_options .right ul li.brand_fav a, .brands_options .right ul li.brand_fav1 a
 {
 	background:url(/assets/brands_sprite.png) no-repeat 12px -22px #c92a2b;
 }
-.brands_options .right ul li.brand_fav a:before
+.brands_options .right ul li.brand_fav a:before, .brands_options .right ul li.brand_fav1 a:before
 {
 	background:url(/assets/brands_sprite.png) no-repeat 12px -22px #252525;
 }
