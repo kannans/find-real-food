@@ -4697,3 +4697,12 @@ opacity: 0.5;
 {
 cursor:not-allowed;
 }
+.popup_form .field
+{
+margin: auto auto 5px;
+width: 465px;
+}
+.contact_form .frm_field
+{
+max-width: 530px;
+}
