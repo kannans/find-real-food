@@ -32,7 +32,7 @@
                                <% if @brand.store_farmers_market %>
                                 <li class="farmer_market"><a href="javascript:;">Sold in stores or farmer's markets</a></li>
                                 <% else %>
-                                <li class="farmer_market disabled"><a href="javascript:;">Sold in stores or farmer's markets"</a></li>
+                                <li class="farmer_market disabled"><a href="javascript:;">Sold in stores or farmer's markets</a></li>
                                 <% end %>
                             </ul>
                         </div>
@@ -296,6 +296,18 @@ $(document).ready(function() {
 
 
      });
+
+    <% if @locations %>
+      setTimeout(function(){ 
+        <% @locations.each do |lrow| %>
+        <% if lrow.slug %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% else %>
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% end %>
+        <% end %>
+      }, 5000);
+      <% end %>
 
  
 });
