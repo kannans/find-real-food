@@ -23,6 +23,7 @@ RealFood::Application.routes.draw do
     get 'login', :to => 'users#login'
     post 'sessions/create'
     post 'users/create'
+    post 'users/update'
     get 'logout', :to => 'sessions#destroy'
     
     
