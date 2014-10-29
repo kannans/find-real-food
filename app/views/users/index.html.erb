@@ -8,7 +8,11 @@
                       <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.capitalize %><% end %> <% if @user.name %><%= @user.name.capitalize %><% end %>, <span>
                         <% if @user.city %><%= @user.city.capitalize %><% end %>, <% if @user.state %><%= @user.state.capitalize %><% end %></span></h1>
                         <div class="clear"></div>
-                        <p class="user_pr_desc">Gluten free for 3 years and loving healthy eating. How do I make this long enough?</p>
+                        <% if @user.bio !='' %>
+                        <p class="user_pr_desc"><%= @user.bio %></p>
+                        <% else %>
+                        <p class="user_pr_desc">Share something about your eating habits!</p>
+                        <% end %>
                         <div class="clear"></div>
                     </div>
                     <div class="user_rewards">

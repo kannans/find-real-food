@@ -23,13 +23,14 @@
                                <%= f.text_field :name %>
                             </div>
                         </div>
+                        
                         <div class="field">
-                            <label>Email Address:<span class="required">*</span></label>
+                            <label>Bio:<span class="required">*</span></label>
                             <div class="form_control">
-                                <%= f.text_field :email %>
+                                <%= text_area(:user, :bio, size: "20x6") %>
                             </div>
                         </div>
-                       
+                      
                          
                         <div class="field">
                             <label>City:</label>
