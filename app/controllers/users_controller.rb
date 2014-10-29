@@ -12,12 +12,16 @@ class UsersController < Devise::RegistrationsController
   end
   
   def index
-     @user = User.find(current_user.id)
-     product_ids = Fovorite.where(user_id:current_user.id).where(type: "Product").collect{|c| c.reference_id}.join(',')
-     @products = Product.where(id: [product_ids])
+     if user_signed_in?
+       @user = User.find(current_user.id)
+       product_ids = Fovorite.where(user_id:current_user.id).where(type: "Product").collect{|c| c.reference_id}.join(',')
+       @products = Product.where(id: [product_ids])
 
-     product_ids_rat = Rating.where(user_id:current_user.id).where(ratable_type: "Product").collect{|c| c.ratable_id}.join(',')
-     @products_rate = Product.where(id: [product_ids_rat])
+       product_ids_rat = Rating.where(user_id:current_user.id).where(ratable_type: "Product").collect{|c| c.ratable_id}.join(',')
+       @products_rate = Product.where(id: [product_ids_rat])
+     else
+      redirect_to "/login"
+     end
   end
   
   def login
