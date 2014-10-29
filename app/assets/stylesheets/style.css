@@ -3625,7 +3625,7 @@ p.download_links a img
 .user_rewards ul li.user_tick
 {
 	margin-right:0px;
-	padding-top: 10px;
+	/*padding-top: 10px;*/
 }
 .user_rewards ul li a
 {

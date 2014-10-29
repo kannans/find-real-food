@@ -8,8 +8,8 @@
                                 <h1 class="login_title"><span>Edit</span> Profile</h1>
                                 <br/>
                                 <div class="popup_form">
-                   
-                    <%= form_for(:user, url: "/users/update", :html =>{:id => "user_signup_form", :autocomplete=>"off"}) do |f| %>
+                    <% if flash[:notice] %>  <p class="cmmn_success"><%= flash[:notice] %></p> <% end %>
+                    <%= form_for(:user, url: "/users/update", :html =>{:id => "user_edit_form", :autocomplete=>"off"}) do |f| %>
                         <div class="field">
                             <label>First Name:<span class="required">*</span></label>
                             <div class="form_control">
@@ -30,18 +30,7 @@
                             </div>
                         </div>
                        
-                        <div class="field">
-                            <label>Password:<span class="required">*</span></label>
-                            <div class="form_control">
-                                 <%= f.password_field :password %>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label>Confirm Password:<span class="required">*</span></label>
-                            <div class="form_control">
-                                <%= f.password_field :password_confirmation %>
-                            </div>
-                        </div>
+                         
                         <div class="field">
                             <label>City:</label>
                             <div class="form_control">
@@ -89,7 +78,7 @@
                         <div class="field">
                             <label class="empty">&nbsp;</label>
                             <div class="form_control">
-                                <input type="submit" value="sign up"/>
+                                <input type="submit" value="Update"/>
                             </div>
                         </div>
                     <% end %>
@@ -102,3 +91,39 @@
             <div class="clear"></div>
         </div>
     </section>
+    <script type="text/javascript">
+
+$(document).ready(function(){
+        
+ 
+                
+                //Start Register
+                $("#user_edit_form").validate({
+                  debug: true,
+                    rules: {
+                        "user[fname]": "required",
+                        "user[name]": "required",
+                        "user[email]":{
+                            required: true,
+                            email: true 
+                        }
+                          
+                        
+                    },
+                    messages: {
+                        "user[fname]": "First Name is Required",
+                        "user[name]": "Last Name is Required",
+                         "user[email]":{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address"  
+                        }
+                    },submitHandler : function(form) {
+                     if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
+                     }
+                  }
+                });
+ 
+});
+    
+
+</script>

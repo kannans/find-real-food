@@ -59,10 +59,17 @@ class UsersController < Devise::RegistrationsController
   end
   
   def edit
-      if user_signed_in?
-      else
+     if user_signed_in?
+    else
       redirect_to "/login"
-      end
+    end
+  end
+  
+  def editpass
+    if user_signed_in?
+    else
+      redirect_to "/login"
+    end
   end
 
   def update
@@ -88,15 +95,34 @@ class UsersController < Devise::RegistrationsController
       current_user.cover_photo = RealFood::ImageDecoder.decode_jpg(cover_photo_data) if cover_photo_data
 
       current_user.update_attributes!(params[:user])
-      flash[:notice] = "You have been registered successfully"
-  	  redirect_to :action => 'show'
+      flash[:notice] = "Profile Details has been updated Successfully"
+  	  redirect_to "/user/edit"
     rescue Exception => e
        flash[:notice] = e.message
-  	   redirect_to :action => 'show'
+  	   redirect_to "/user/edit"
     end
     else
       redirect_to "/login"
     end
   end
+  
+
+
+
+  def updatepass
+    if user_signed_in?
+    begin
+      current_user.update_attributes!(params[:user])
+      flash[:notice] = "Password has been Changed Successfully, Please login to proceed"
+      redirect_to "/login"
+    rescue Exception => e
+       flash[:notice] = e.message
+       redirect_to "/user/editpass"
+    end
+    else
+      redirect_to "/login"
+    end
+  end
+
 
 end
