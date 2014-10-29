@@ -59,8 +59,14 @@ class UsersController < Devise::RegistrationsController
   end
   
   def edit
+      if user_signed_in?
+      else
+      redirect_to "/login"
+      end
   end
+
   def update
+    if user_signed_in?
     params[:user].delete(:avatar_data) if params[:user][:avatar_data].nil?
     params[:user].delete(:cover_photo_data) if params[:user][:cover_photo_data].nil?
 
@@ -87,6 +93,9 @@ class UsersController < Devise::RegistrationsController
     rescue Exception => e
        flash[:notice] = e.message
   	   redirect_to :action => 'show'
+    end
+    else
+      redirect_to "/login"
     end
   end
 
