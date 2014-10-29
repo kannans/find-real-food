@@ -79,11 +79,10 @@ class UsersController < Devise::RegistrationsController
 
       current_user.update_attributes!(params[:user])
       flash[:notice] = "You have been registered successfully"
-  	  redirect_to :action => 'show'
+  	  redirect_to "/user/edit"
     rescue Exception => e
        flash[:notice] = e.message
-  	   redirect_to :action => 'show'
-    end
+  	   redirect_to "/user/edit"
   end
 
 end
