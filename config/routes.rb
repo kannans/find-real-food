@@ -1,7 +1,7 @@
 RealFood::Application.routes.draw do
 
   
-
+  match "/auth/:provider/callback" => "sessions#create"
   
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -24,6 +24,9 @@ RealFood::Application.routes.draw do
     post 'sessions/create'
     post 'users/create'
     get 'logout', :to => 'sessions#destroy'
+
+    get "users/auth/facebook" :to => "OmniauthCallbacks#facebook"
+    post "users/auth/facebook" :to => "OmniauthCallbacks#facebook"
     
     
     get 'brands/addtofavorite', :to => 'brands#add_to_favorites'
