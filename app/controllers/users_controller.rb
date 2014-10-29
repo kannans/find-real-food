@@ -15,6 +15,9 @@ class UsersController < Devise::RegistrationsController
      @user = User.find(current_user.id)
      product_ids = Fovorite.where(user_id:current_user.id).where(type: "Product").collect{|c| c.reference_id}.join(',')
      @products = Product.where(id: [product_ids])
+
+     product_ids_rat = Rating.where(user_id:current_user.id).where(ratable_type: "Product").collect{|c| c.ratable_id}.join(',')
+     @products_rate = Product.where(id: [product_ids_rat])
   end
   
   def login
