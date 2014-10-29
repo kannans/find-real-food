@@ -31,7 +31,9 @@ RealFood::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
-
+  
+   config.gem "multipart-post", :lib => "net/http/post/multipart"
+   
   # Expands the lines which load the assets
   config.assets.debug = true
 
