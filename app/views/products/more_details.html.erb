@@ -40,9 +40,84 @@
                                     <div class="clear"></div>
                                 </div>
                             </div>
+                            <% if @product.user_id %>
+                            <% user = get_user_details(@product.user_id) %>
+                            <% unless user.blank? %>
+                            <p class="sugg_by">This product was suggested by: <span class="athr"><%= user.name %></span> <span class="date">on <%= @product.created_at.strftime '%m %d, %Y'%></span></p>
+                            <% end %>
+                            <% end %>
+                        </div>
+                        <% if branddetails %>
+                        <div class="product_right fr">
                             
+                            <h1 class="product_title"><%= @product.name %></h1>
+                           
+                            <h3 class="brand_title"><a href="/brand/<%= branddetails.slug %>"><%= branddetails.name %></a></h3>
+                            <div class="prd_comp_logo fr">
+                                <a href="javascript:;"> 
+                                    <% if branddetails.picture.present? %>
+                                           <%= image_tag (branddetails.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag('category_no_img12.jpg', :alt => branddetails.name) %>
+                                            <% end %>
 
-                            <div class="prd_btm_right fr">
+                                </a>
+                            </div>
+                            <div class="contact_links">
+                                
+                                <% if branddetails.order_by_phone && branddetails.phone !='' %>
+                                <p class="ord_phone">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
+                                <% else %>
+                                <p class="ord_phone disabled">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
+                                <% end %>
+
+                                <% if branddetails.order_by_online && branddetails.website!='' %>
+                                <p class="ord_online"><a target="_blank"  href="<%= branddetails.website %>">Order from brand's website</a></p>
+                                <% else %>
+                                <p class="ord_online disabled"><a href="javascript:;">Order from brand's website</a></p>
+                                
+                                <% end %>
+                                
+                                <% if branddetails.store_locator_url!='' %>
+                                <p class="ord_store"> <a target="_blank" href="<%= branddetails.store_locator_url %>">Sold by online retailer</a></p>
+                                <% else %>
+                                <p class="ord_store disabled"> <a href="javascript:;">Sold by online retailer</a></p>
+                                
+                                <% end %>
+                                
+                                <% if branddetails.store_farmers_market %>
+                                <p class="ord_store"> <a href="javascript:;">Sold in stores or farmer's markets</a></p>
+                                <% else %>
+                                <p class="ord_store disabled"> <a href="javascript:;">Sold in stores or farmer's markets</a></p>
+                                <% end %>
+                                
+                            </div>
+                            <div class="product_button_set">
+                                <span class='st_sharethis_custom' displayText='Share'>Share</span>
+                                 <% if user_signed_in? %>
+                                 <a href="#flagProduct" class="flag_prd light_pop_trigger">flag product</a>
+                                
+                                <a href="javascript:void(0);" class="add_fav">Add to My Favorites</a>
+                                <% else %>
+                                 <a href="#login" class="flag_prd light_pop_trigger">flag product</a>
+                                
+                                <a href="#login" class="light_pop_trigger">Add to My Favorites</a>
+                                <% end %>
+                            </div>
+                        </div>
+                        <% end %>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="product_detail_bottom">
+                        <div class="prd_btm_left fl">
+                            <div class="prd_btm_lft_container">
+                                <div class="view_location_part">
+                                    <a href="javascript:;" class="view_lct_btn">View Locations</a>
+                                    <div class="view_location_part_container">
+                                        <img src="/assets/map.jpg" alt="map"/>
+                                    </div>
+                                </div>
+                                <div class="prd_btm_right_responsive">
                             <h1>Similar Products Nearby</h1>
                             <% if @similar_product %>
                             <div class="products">
@@ -83,7 +158,18 @@
                                                <% end  %>
                                                 <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                             </div>
+                                            <div class="location_list">
+                                              <ul>
+                                                <% loca = get_locations_list(product.id,@location) %>
+                                                <% loca.each do |row| %>
+                                            <li>
+                                              <h4 class="loaction_title"><a href="/location/<%= row[19] %>"><%= row[1] %></a></h4>
+                                              <a href="javascript:;"><span><%= row[2] %></span>, <%= row[3] %>, <%= row[4]%>, <%= row[5] %></a>
+                                            </li>
+                                            <% end %>
                                              
+                                             </ul>
+                                          </div>
                                         </div>
                                     </div>
                                 </div>
@@ -93,6 +179,79 @@
                             </div>
                             <% end %>
                         </div>
+                                <div class="prd_dtl_review_part">
+                                    <h1>User Reviews</h1>
+                                    <!--<div class="avg_rating">
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
+                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_gray_detail.png"></a>
+                                    </div>-->
+                                    <div class="leave_comment">
+                                        <textarea class="leave_cmt" placeholder="Share your thoughts on this product..."></textarea>
+                                        <span class="txt_arrow"></span>
+                                    </div>
+                                    <% if user_signed_in? %>
+                                    <div class="comment_btn comment_post">
+                                        <a href="javascript:;">post</a>
+                                    </div>
+                                    <% else %>
+                                    <div class="comment_btn">
+                                        <a class="light_pop_trigger" href="#login">post</a>
+                                    </div>
+                                    <% end %>
+                                    <div class="user_comments">
+                                        
+                                        
+                                        <% comments = get_rating_list(@product.id) %>
+                                        
+                                        <% comments.each do |c| %>
+                                        <div class="comment">
+                                             <% user_details = get_user_details(c.user_id) %>
+                                              <% if user_details %>
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                            </div>
+                                            <% else %>
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                            </div>
+                                            <% end %>
+                                            <div class="comment_dtl">
+                                               
+                                                <% if user_details %>
+                                                <h3><%= user_details.fname %> <%= user_details.name %></h3>
+                                                <% end %>
+                                                
+                                                     <% $i = 0
+                                                if c.rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < c.rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 end
+                                              %> 
+                                                <p><%= c.comment %></p>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <% end %>
+                                         
+                                    </div>
+                                    <!--<div class="see_all">
+                                        <a href="javascript:;">See All</a>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                         
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -133,7 +292,7 @@
         </div>
     </div>
 </div>
-                            
+
 <%= render '/layouts/useractions' %>
     <script type="text/javascript">
 $(document).ready(function(){
