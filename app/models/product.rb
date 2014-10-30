@@ -102,10 +102,11 @@ class Product < ActiveRecord::Base
               .find(:all, :limit => 20)
   end
 
-  def self.sort_by_rating(location='',search='', category='', brand='', sort='')
+  def self.sort_by_rating(location='',search='', category='', brand='', sort='', rank='')
     
       if category !=''
         if search !=''
+            
             if sort =='proximity' || sort =='alphabetical'
               self.unscoped.quality_rating_search(location).where(category_id: category.id)
               .order("products.name asc")
@@ -119,6 +120,7 @@ class Product < ActiveRecord::Base
               .order("products.name asc")
               .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
             end
+
 
          else
           self.unscoped.quality_rating_search(location).where(category_id: category.id)
@@ -136,7 +138,7 @@ class Product < ActiveRecord::Base
       else
         if search !=''
             if sort =='proximity' || sort =='alphabetical'
-              self.unscoped.quality_rating_search(location)
+              self.unscoped.quality_rating_search(location).where(quality_order: 1)
               .order("products.name asc")
               .order("avg_rating desc")
               .order("quality_order asc")

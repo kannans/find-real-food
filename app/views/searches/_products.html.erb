@@ -131,7 +131,7 @@
                                                                 <% end %>
                                                                 <%= brand.name%></a></p>
                                                       
-                                                            <p class="location"><a href="javascript:void(0);">3 Location(s) Nearby</a></p>
+                                                            <p class="location"><a href="javascript:void(0);"><%= get_brand_location_count(brand.id, @location) %> Location(s) Nearby</a></p>
 
                                                         </div>
                                                          <div class="clear"></div>

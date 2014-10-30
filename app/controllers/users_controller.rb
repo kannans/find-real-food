@@ -51,10 +51,10 @@ class UsersController < Devise::RegistrationsController
 
       resource.save!
         flash[:notice] = "You have been registered successfully"
-  	    redirect_to :action => 'login'
+  	    redirect_to '/login'
     rescue Exception => e
         flash[:notice] = e.message
-  		redirect_to :action => 'login'
+  		redirect_to '/login'
     end
   end
   

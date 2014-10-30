@@ -8,12 +8,13 @@ $('.products').slimScroll({
         console.log("Reached " + pos);
         });
 $('.expand a').click(function(){
-	$('.expand a').toggleClass('close');
-	$('.prd_search .home_right').toggleClass('goback');
-	$('.prd_search .home_left').toggleClass('fullwidth');
-	$('.prd_search .home_right').toggleClass('nullwidth');
-	$('.map_button.hide_for_mobile').toggleClass('expanded')
-})
+        $('.expand a').toggleClass('close');
+        $('.modified.home_right').toggleClass('goback');
+        $('.prd_search .home_left').toggleClass('fullwidth');
+        $('.modified.home_right').toggleClass('nullwidth');
+        $('.map_button.hide_for_mobile').toggleClass('expanded');
+        $('.tab_container').toggleClass('fullwidth');
+        }) 
 
 $('.etabs .tab a').click(function(evt){
           evt.preventDefault();
@@ -26,9 +27,16 @@ $('.etabs .tab a').click(function(evt){
 
 
   initialize();
-  codeAddress('miami, florida, united states');
-  codeAddress('Ohio, united states');
-  codeAddress('new york, united states');
-  
+  <% if @locations %>
+      setTimeout(function(){ 
+        <% @locations.each do |lrow| %>
+        <% if lrow.slug %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% else %>
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% end %>
+        <% end %>
+      }, 5000);
+      <% end %>
 
 
