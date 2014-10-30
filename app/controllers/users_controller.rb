@@ -58,8 +58,6 @@ class UsersController < Devise::RegistrationsController
       if response.success?
         gateway.capture(1000, response.authorization)
         
-        flash[:success] = response.success
-        
       else
         flash[:notice] = "Error: #{response.message}"
          
