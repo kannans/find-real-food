@@ -43,6 +43,7 @@ RealFood::Application.routes.draw do
     get 'products/addflag', :to => 'products#add_flag'
     
     get 'subscribe', :to => 'subscribe#index'
+    get 'paynow/:slug', :to => 'subscribe#paynow'
 
     get 'product/:slug', :to => 'products#more_details'
     get 'category/:slug', :to => 'categories#products'

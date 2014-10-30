@@ -2,6 +2,9 @@ class SubscribeController < ApplicationController
   def index
   	@page = Page.find('subscribe')
   end
+  def paynow
+  	@payment = params[:slug]
+  end
   def payment
 	require "rubygems"
 	require "active_merchant"
