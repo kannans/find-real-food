@@ -14,32 +14,7 @@
                                             <%= image_tag('product_detail_no_imge.jpg', :alt => "How to add products") %>
                                             <% end %>
                                 <div class="wapf_rating"><p>WAPF Rating <span class="wapf_rating_detail fr"><%= @product.quality %></span></p></div>
-                                <div class="detail_rating">
-                                    <div>
-                                        User’s Rating  
-                                        <% if total_rating(@product.id) %>
-                                        <span class="detail_rating_span fr">
-                                            <% $i = 0 
-                                                if @product.rating %>
-                                               <% while $i < @product.rating  do %>
-                                                   <a href="#">
-                                                  <%= image_tag("rate_star_red_detail.png", :alt => "star") %>
-                                                 </a>
-                                                  
-                                              <%   $i +=1 
-                                                    end 
-                                                end
-                                              %>
-
-                                            <span>(<%= total_rating(@product.id) %>)</span>
-                                        </span>
-
-                                        <% end %>
-                                        <div class="clear"></div>    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
+                                <!-- copied rating part -->
                             <% if @product.user_id %>
                             <% user = get_user_details(@product.user_id) %>
                             <% unless user.blank? %>
