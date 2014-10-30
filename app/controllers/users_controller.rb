@@ -58,7 +58,7 @@ class UsersController < Devise::RegistrationsController
       if response.success?
         gateway.capture(1000, response.authorization)
         
-        
+        flash[:success] = response.success
         
       else
         flash[:notice] = "Error: #{response.message}"
@@ -68,7 +68,7 @@ class UsersController < Devise::RegistrationsController
       flash[:notice] = "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}"
        
     end
- 
+    redirect_to '/login'
     params[:user].delete(:avatar_data) if params[:user][:avatar_data].nil?
     params[:user].delete(:cover_photo_data) if params[:user][:cover_photo_data].nil?
 
