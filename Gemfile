@@ -77,4 +77,4 @@ gem 'capistrano', '~> 3.1.0'
 
 # Add this if you're using rvm
 #gem 'capistrano-rvm', github: "capistrano/rvm"
- gem 'paypal-sdk-rest'
+ gem 'activemerchant'

@@ -30,6 +30,9 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_utils (2.2.3)
+      activesupport (>= 2.3.11)
+      i18n
     activeadmin (0.6.3)
       arbre (~> 1.0)
       bourbon (>= 1.0.0, < 4)
@@ -41,6 +44,14 @@ GEM
       meta_search (~> 1.0)
       rails (>= 3.0.0, < 4)
       sass (~> 3.1)
+    activemerchant (1.43.3)
+      active_utils (~> 2.0, >= 2.0.1)
+      activesupport (>= 2.3.14, < 5.0.0)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (~> 0.5)
+      json (~> 1.7)
+      money (< 7.0.0)
+      nokogiri (~> 1.4)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -173,6 +184,9 @@ GEM
       polyamorous (~> 0.5.0)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
+    money (5.1.1)
+      i18n (~> 0.6.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -180,6 +194,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -203,12 +219,6 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
-    paypal-sdk-core (0.3.1)
-      multi_json (~> 1.0)
-      xml-simple
-    paypal-sdk-rest (0.7.2)
-      paypal-sdk-core (~> 0.3.1)
-      uuidtools (~> 2.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.5)
@@ -322,11 +332,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uuidtools (2.1.5)
     warden (1.2.3)
       rack (>= 1.0)
     will_paginate (3.0.7)
-    xml-simple (1.1.4)
 
 PLATFORMS
   ruby
@@ -334,6 +342,7 @@ PLATFORMS
 DEPENDENCIES
   ZenTest (~> 4.10.1)
   activeadmin
+  activemerchant
   acts_as_api
   apipie-rails!
   autotest-growl
@@ -360,7 +369,6 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   paperclip (~> 3.0)
-  paypal-sdk-rest
   rails (= 3.2.13)
   rails-erd
   rails_12factor

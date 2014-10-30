@@ -1,8 +1,5 @@
 RealFood::Application.routes.draw do
 
-  
-
-  
   mount Ckeditor::Engine => '/ckeditor'
 
   get "locations/index"
@@ -45,6 +42,7 @@ RealFood::Application.routes.draw do
     get 'products/addrating', :to => 'products#add_comments'
     get 'products/addflag', :to => 'products#add_flag'
     
+    get 'subscribe', :to => 'subscribe#index'
 
     get 'product/:slug', :to => 'products#more_details'
     get 'category/:slug', :to => 'categories#products'
