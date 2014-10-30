@@ -40,9 +40,11 @@
                                     <div class="clear"></div>
                                 </div>
                             </div>
+                            <% if @product.user_id %>
                             <% user = get_user_details(@product.user_id) %>
                             <% unless user.blank? %>
                             <p class="sugg_by">This product was suggested by: <span class="athr"><%= user.name %></span> <span class="date">on <%= @product.created_at.strftime '%m %d, %Y'%></span></p>
+                            <% end %>
                             <% end %>
                         </div>
                         <% if branddetails %>
