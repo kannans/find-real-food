@@ -15,7 +15,7 @@ class HomeController < ApplicationController
     
     if @location !=''
 	  @products = Product.sort_by_rating(@location,search)
-   # @products_locations = Product.sort_by_rating(@location,search).collect{|c| c.location_id}.join(',')
+    @products_locations = Product.sort_by_rating(@location,search).collect{|c| c.location_id}.join(',')
     end
 
    	@sliders = Slider.all
