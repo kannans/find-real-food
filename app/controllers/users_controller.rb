@@ -18,7 +18,7 @@ class UsersController < Devise::RegistrationsController
        @products = Product.where(id: [product_ids])
 
        product_ids_rat = Rating.where(user_id:current_user.id).where(ratable_type: "Product").collect{|c| c.ratable_id}.join(',')
-       @products_rate = Product.where(id: [product_ids_rat])
+       @products_rate = Product.find([product_ids_rat])
      else
       redirect_to "/login"
      end
