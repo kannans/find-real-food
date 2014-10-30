@@ -42,4 +42,51 @@
                             </div>
                             
 
+
+
                             
+<%= render '/layouts/useractions' %>
+    <script type="text/javascript">
+$(document).ready(function(){
+    
+    
+    $('.add_fav').click(function(){
+
+        $.get('/products/addtofavorite', { product_id:<%= @product.id %> }, null, "script");
+        return false;
+
+
+     });
+
+
+      $("#frm_flag_prd").validate({
+                    rules: {
+                        flag_cont: "required"
+                    },
+                    messages: {
+                        flag_cont: "This Field is Required"
+                    },submitHandler : function(form) {
+                     $.get('/products/addflag', { product_id:<%= @product.id %>, comment:$("#flag_cont").val() }, null, "script");
+                     $(".pop_close").trigger('click');
+                     return false;
+                  }
+                });
+      
+    $('.comment_post a').click(function(){
+        if($(".leave_cmt").val()!=''){
+        $.get('/products/addrating', { ratable_id:<%= @product.id %>,comment:$(".leave_cmt").val() }, null, "script");
+    }else{
+        $(".alert_text").html("Comment should not be empty");
+        $(".alert_overlay").fadeIn();
+    }
+        return false;
+
+
+     });
+    
+    $(".close").click(function(){
+    $(".alert_overlay").fadeOut();
+});
+    
+});
+</script>
