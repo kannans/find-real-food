@@ -8,7 +8,8 @@
                                 <h1 class="login_title"><span>Edit</span> Profile</h1>
                                 <br/>
                                 <div class="popup_form">
-                    <% if flash[:notice] %>  <p class="cmmn_success"><%= flash[:notice] %></p> <% end %>
+                   <% if flash[:notice] %>  <p class="cmmn_error"><%= flash[:notice] %></p> <% end %>
+                          <% if flash[:success] %>  <p class="cmmn_success"><%= flash[:success] %></p> <% end %>
                     <%= form_for(:user, url: "/users/update", :html =>{:id => "user_edit_form", :autocomplete=>"off", :multipart => true}) do |f| %>
                         <div class="field">
                             <label>First Name:<span class="required">*</span></label>

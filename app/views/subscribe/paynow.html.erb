@@ -4,82 +4,139 @@
                 <div class="container">
                     <div class="feedback_container">
                         <div class="fdbc_body">
-                            <div class="register_popup">
-                                <h1 class="login_title"><span>Edit</span> Profile</h1>
-                                <br/>
-                                <div class="popup_form">
+                            <h1 class="login_title"><span>Create an Account</span></h1>
+                 
+                <p class="fr"><span class="required">*</span> Indicates required field</p>
+                <div class="clear"></div>
+
+                            <div class="feedbackform registerfrm">
+                                
+                <h2 class="frm_title12"><span>User Details</span></h2>
+                                <div class="registerfrm popup_form">
                     <% if flash[:notice] %>  <p class="cmmn_success"><%= flash[:notice] %></p> <% end %>
-                    <%= form_for(:user, url: "/users/update", :html =>{:id => "user_edit_form", :autocomplete=>"off", :multipart => true}) do |f| %>
-                        <div class="field">
+                    
+                         
+                    <%= form_for(:user, url: "/users/create", :html =>{:id => "user_signup_form1", :autocomplete=>"off"}) do |f| %>
+                        <div class="form_field">
                             <label>First Name:<span class="required">*</span></label>
                             <div class="form_control">
                                 <%= f.text_field :fname %>
 
                             </div>
                         </div>
-                        <div class="field">
+                        <div class="form_field">
                             <label>Last Name:<span class="required">*</span></label>
                             <div class="form_control">
                                <%= f.text_field :name %>
                             </div>
                         </div>
-                        
-                        <div class="field">
-                            <label>Bio:<span class="required">*</span></label>
+                        <div class="form_field">
+                            <label>Email Address:<span class="required">*</span></label>
                             <div class="form_control">
-                                <%= text_area(:user, :bio, size: "20x6") %>
+                                <%= f.text_field :email %>
                             </div>
                         </div>
-                      
-                         
-                        <div class="field">
-                            <label>City:</label>
+                       
+                        <div class="form_field">
+                            <label>Password:<span class="required">*</span></label>
                             <div class="form_control">
-                              <%= f.text_field :city %>
+                                 <%= f.password_field :password %>
                             </div>
                         </div>
-                        
-                        <div class="field">
-                            <label>State:</label>
+                        <div class="form_field">
+                            <label>Confirm Password:<span class="required">*</span></label>
                             <div class="form_control">
-                               <div   class="cus_select_rslt">
-                               <span></span>
-                                <select class="custom_select" name="user[state]" >
-                                    <option value="Select Category" selected>Select State</option>
-                                    <% get_state_list.each do |state| %> 
-                                    <option value="<%= state.name %>"><%= state.name %></option>
-                                    <% end %>
-                                </select>
-                               </div> 
+                                <%= f.password_field :password_confirmation %>
                             </div>
                         </div>
-                        <div class="field">
-                            <label>Profile Picture:</label>
-                            <div class="form_control">
-                                <input type="file" name="user[avatar_data]" class="photo">
-                                <ul class="file_dup">
-                                    <li class="file_result">No file selected.</li>
-                                    <li class="file_btn"><a href="javascript:;">Browse</a></li>
-                                </ul>
-                                <div class="clear"></div>
-                            </div>
+                       
+                         <div class="paymentdetails">
+                        <h2 class="frm_title12"><span>Payment Details</span></h2>
+
+                        <div class="form_field">
+                        <label>Credit Card Type<span class="required" aria-required="true">*</span></label>
+                        <div class="form_control">
+                        <div class="selectcardtype"><select class="cardtype" name="cardtype" >
+                        <option value="0">--Please Select--</option>
+                        <option value="AmericanExpress">American Express</option>
+                        <option value="Visa">Visa</option>
+                        <option value="MasterCard">MasterCard</option>
+                        <option value="Discover">Discover</option>
+                        </select>
+
                         </div>
-                        <div class="field">
-                            <label>Cover Photo:</label>
-                            <div class="form_control">
-                                <input type="file" name="user[cover_photo_data]" class="photo">
-                                <ul class="file_dup">
-                                    <li class="file_result">No file selected.</li>
-                                    <li class="file_btn"><a href="javascript:;">Browse</a></li>
-                                </ul>
-                                <div class="clear"></div>
-                            </div>
+                        <div class="clear"></div>
                         </div>
-                         
-                        <div class="field">
+                        </div>
+
+                        <div class="form_field">
+                        <label>Credit Card Number<span class="required" aria-required="true">*</span></label>
+                        <div class="form_control">
+                        <input type="text" size="30" name="cardnumber" id="cardnumber">
+                        </div>
+                        </div>
+
+                        <div class="form_field">
+                        <label class="expiridate">Expiration Date<span class="required" aria-required="true">*</span></label>
+                        <div class="form_control">
+                        <div class="selectcardtype monthselect"><select class="month" name="month" >
+                        <option selected="selected" value="0" >Month</option>
+                        <option value="1">01 - January</option>
+                        <option value="2">02 - February</option>
+                        <option value="3">03 - March</option>
+                        <option value="4">04 - April</option>
+                        <option value="5">05 - May</option>
+                        <option value="6">06 - June</option>
+                        <option value="7">07 - July</option>
+                        <option value="8">08 - August</option>
+                        <option value="9">09 - September</option>
+                        <option value="10">10 - October</option>
+                        <option value="11">11 - November</option>
+                        <option value="12">12 - December</option>
+                        </select>
+
+                        </div>
+
+                        <div class="selectcardtype yearselect"><select class="year" name="year" >
+                        <option value="0" selected="selected" >Year</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        </select>
+
+                        </div>
+
+                        <div class="clear"></div>
+                        </div>
+                        </div>
+
+
+                        <div class="form_field">
+                        <label>CVV Number<span class="required" aria-required="true">*</span></label>
+                        <div class="form_control">
+                        <input type="text" size="30" name="cvvnumber" id="cvvnumber">
+                        </div>
+                        </div>
+                        <div class="form_field">
+                        <label>Card Holder Name<span class="required" aria-required="true">*</span></label>
+                        <div class="form_control">
+                        <input type="text" size="30" name="holder_name" id="holder_name">
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="form_field">
                             <label class="empty">&nbsp;</label>
                             <div class="form_control">
-                                <input type="submit" value="Update"/>
+                                <input type="submit" value="Proceed to Payment"/>
                             </div>
                         </div>
                     <% end %>
@@ -98,25 +155,98 @@ $(document).ready(function(){
         
  
                 
+    jQuery.validator.addMethod('selectcheck', function (value) {
+        return (value != '0');
+    }, "");
+
                 //Start Register
-                $("#user_edit_form").validate({
+                $("#user_signup_form1").validate({
                   debug: true,
                     rules: {
                         "user[fname]": "required",
                         "user[name]": "required",
                         "user[email]":{
                             required: true,
-                            email: true 
-                        }
+                            email: true,
+                            remote:"/users/checkemail"
+                        },
                           
-                        
+                        "user[password]": {
+                            required: true,
+                            minlength: 8
+                        },
+                        "user[password_confirmation]": {
+                            required: true,
+                            equalTo: "#user_password_confirmation"
+                        },
+                        cardtype:{
+                            selectcheck: true
+
+                        },
+                        cardnumber: {
+                            required: true,
+                            creditcard: true,
+                            minlength: 13,
+                            maxlength: 16,
+                            digits: true
+                            
+                        },
+                        month: {
+                            selectcheck: true
+                        },
+                        year: {
+                            selectcheck: true
+                        },
+                        cvvnumber:{
+                            required: true
+                        },
+                        holder_name:{
+                            required: true
+                        }
                     },
                     messages: {
                         "user[fname]": "First Name is Required",
                         "user[name]": "Last Name is Required",
                          "user[email]":{
                             required: "Email Address is Required",
-                            email: "Invalid Email Address"  
+                            email: "Invalid Email Address",
+                            remote: "Email Address is already exists, Please choose another one"  
+                        },
+                          
+                         "user[password]": {
+                            required: "Password is Required",
+                            minlength: "Password must Have Minimum 8 Charecters"
+                        },
+                         "user[password_confirmation]": {
+                            required: "Confirm Password is Required",
+                            equalTo: "Passwords are Mismatch"
+                        },
+                        cardtype:{
+                            selectcheck: "Please choose card type"
+
+                        },
+                        cardnumber: {
+                            required: "Please enter a valid credit card number",
+                            minlength: "Please enter a valid credit card number",
+                            maxlength: "Please enter a valid credit card number",
+                            digits: "Your credit card number cannot contain spaces."
+                            
+                        },
+                        
+                        year:{
+                            selectcheck: "Please choose Expiry year"
+
+                        },month:{
+                            selectcheck: "Please choose Expiry month"
+
+                        },
+                        cvvnumber:{
+                            required: "CVV Number is Required"
+
+                        },
+                        holder_name:{
+                            required: "Card Holder Name is Required"
+
                         }
                     },submitHandler : function(form) {
                      if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
@@ -125,6 +255,4 @@ $(document).ready(function(){
                 });
  
 });
-    
-
 </script>

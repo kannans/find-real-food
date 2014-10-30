@@ -23,6 +23,7 @@ RealFood::Application.routes.draw do
     get 'user/profile', :to => 'users#index'
     get 'user/edit', :to => 'users#edit'
     get 'user/editpass', :to => 'users#edit_password'
+    get 'users/checkemail', :to => 'users#check_email'
     
     get 'login', :to => 'users#login'
     post 'sessions/create'

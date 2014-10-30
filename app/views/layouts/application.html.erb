@@ -272,18 +272,18 @@ $(document).ready(function(){
  $("#optin").validate({
                      
                      rules: {
-                      news_email:{
+                      email:{
                             required: true,
                             email: true 
                         },
-                        news_name: "required"
+                        name: "required"
                     },
                     messages: {
-                        news_email:{
+                        email:{
                             required: "Email Address is Required",
                             email: "Invalid Email Address"  
                         },
-                        news_name: "Name is Required"
+                        name: "Name is Required"
                     },submitHandler : function(form) {
                      if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
                      }

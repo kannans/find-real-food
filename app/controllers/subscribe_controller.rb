@@ -29,7 +29,7 @@ class SubscribeController < ApplicationController
 
 	if credit_card.valid?
 	  # or gateway.purchase to do both authorize and capture
-	  response = gateway.authorize(1000, credit_card, :ip => "127.0.0.1")
+	  response = gateway.authorize(1000, credit_card, :ip => "72.167.38.159")
 	  if response.success?
 	    gateway.capture(1000, response.authorization)
 	    puts "Purchase complete!"

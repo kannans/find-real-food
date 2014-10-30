@@ -3425,11 +3425,7 @@ h1.login_title.creat_acc
 {
 	width:100%;
 }
-
-
-
-
-
+ 
 .user_menu ul.user_menu_list li.user_detail_list a
 {
 	background:#ffffff;
@@ -4299,7 +4295,7 @@ a.sub_banner_button:hover
 	outline:none;
 }
 /*****************************************************************/
-.email_link, .popup_form .field .form_control
+.email_link, .popup_form .field .form_control, .registerfrm .form_field .form_control, .monthselect
 {
 	position:relative;
 }
@@ -4312,7 +4308,38 @@ a.sub_banner_button:hover
 	display:block;
 	max-width:none;
 }
-.frm_control label.error, .email_link label.error, .popup_form .field .form_control label.error
+
+.monthselect label.error
+{
+    padding: 6px 15px;
+    position: absolute;
+    right: -50px !important;
+    top: -35px;
+	background: none repeat scroll 0 0 #dd3637;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 12px;
+    max-width: 300px;
+	line-height:normal;
+	text-transform: capitalize;
+}
+
+.yearselect label.error
+{
+    padding: 6px 15px;
+    position: absolute;
+    right: -70px !important;
+    top: -35px;
+	background: none repeat scroll 0 0 #dd3637;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 12px;
+    max-width: 300px;
+	line-height:normal;
+	text-transform: capitalize;
+}
+
+.frm_control label.error, .email_link label.error, .popup_form .field .form_control label.error, .form_newsletter .input_field label.error, .registerfrm .form_field label.error
 {
     padding: 6px 15px;
     position: absolute;
@@ -4326,7 +4353,7 @@ a.sub_banner_button:hover
 	line-height:normal;
 	text-transform: capitalize;
 }
-.frm_control label.error:before, .email_link label.error:before, .popup_form .field .form_control label.error:before
+.frm_control label.error:before, .email_link label.error:before, .popup_form .field .form_control label.error:before, .form_newsletter .input_field label.error:before, .registerfrm .form_field label.error:before
 {
 	border-left: 8px solid rgba(0, 0, 0, 0);
     border-right: 8px solid rgba(0, 0, 0, 0);
@@ -4337,7 +4364,7 @@ a.sub_banner_button:hover
     position: absolute;
     width: 0;
 }
-.frm_control {
+.frm_control{
     position: relative;
 }
 
@@ -4726,4 +4753,66 @@ z-index: 2;
 .gmnoprint img
 {
 max-width:none;
+}
+
+/* october 30 */
+.registerfrm .form_field label {
+color: #797979;
+float: left;
+font-family: "OpenSansSemibold",Arial,Helvetica,sans-serif;
+font-size: 16px;
+line-height: 42px;
+width: 174px;
+}
+.frm_title12 {
+color: #454648;
+font-size: 25px;
+margin: 15px 0;
+margin-top: 0;
+font-weight:normal;
+text-transform: uppercase;
+font-family: "OpenSansRegular",Arial,Helvetica,sans-serif;
+}
+.paymentdetails{ padding-top:20px;}
+
+.registerfrm .form_field .selectcardtype {
+background: none repeat scroll 0 0 #e2e2e2;
+border: 1px solid #d8d8d8;
+border-radius: 100px;
+
+
+line-height: 42px;
+padding: 0 15px 0 15px; float:left;
+
+}
+
+.registerfrm .form_field .selectcardtype select.cardtype {width: 320px; height: 34px;color: #919191;
+font-family: "OpenSansSemibold",Arial,Helvetica,sans-serif; background: none repeat scroll 0 0 #e2e2e2; border:none;
+font-size: 14px;
+}
+
+.registerfrm .form_field .selectcardtype select.month {width:135px; height: 34px;color: #919191;
+font-family: "OpenSansSemibold",Arial,Helvetica,sans-serif; background: none repeat scroll 0 0 #e2e2e2; border:none;
+font-size: 14px;
+}
+
+.registerfrm .form_field .selectcardtype select.year {width: 135px; height: 34px;color: #919191;
+font-family: "OpenSansSemibold",Arial,Helvetica,sans-serif; background: none repeat scroll 0 0 #e2e2e2; border:none;
+font-size: 14px;
+}
+.registerfrm .form_field .monthselect{ margin-right:10px;}
+
+.registerfrm .form_field input[type='password']
+{
+background: none repeat scroll 0 0 #e2e2e2;
+border: 1px solid #d8d8d8;
+border-radius: 100px;
+-webkit-border-radius: 100px;
+color: #919191;
+font-family: "OpenSansSemibold",Arial,Helvetica,sans-serif;
+font-size: 14px;
+height: 42px;
+line-height: 42px;
+padding: 0 15px;
+width: 320px;
 }

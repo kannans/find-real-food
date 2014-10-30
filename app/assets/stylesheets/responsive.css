@@ -2173,6 +2173,19 @@
 	{
 		padding: 15px;
 	}
+
+	.feedbackform .form_field input[type='password']
+	{
+	width:250px;
+	}
+	.registerfrm .form_field .selectcardtype select.cardtype {
+	width:250px;
+	}
+
+	.registerfrm .form_field .selectcardtype select.month, .registerfrm .form_field .selectcardtype select.year {
+	width:100px;
+	}
+
 }
 @media screen and (max-width:340px)
 {
@@ -2188,6 +2201,19 @@
 	{
 		max-width: 245px;
 	}
+
+	.feedbackform .form_field input[type='password']
+	{
+	width:210px;
+	}
+	.registerfrm .form_field .selectcardtype select.cardtype
+	{
+	width:210px;
+	}
+	.registerfrm .form_field .selectcardtype select.month, .registerfrm .form_field .selectcardtype select.year {
+	width:80px;
+	}
+
 }
 /***********************************************************************/
 /************************Contact Page***************************/
@@ -2289,4 +2315,9 @@
 		clear:both;
 	}
 }
+
+@media screen and (max-width:660px){
+.expiridate{ clear:both; display:block;}
+}
+
 /**********************************************************/
