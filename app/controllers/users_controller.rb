@@ -54,7 +54,7 @@ class UsersController < Devise::RegistrationsController
 
     if credit_card.valid?
       # or gateway.purchase to do both authorize and capture
-      response = gateway.authorize(1000, credit_card, :ip => "127.0.0.1")
+      response = gateway.authorize(1000, credit_card, :ip => "72.167.38.159")
       if response.success?
         gateway.capture(1000, response.authorization)
         
@@ -68,7 +68,7 @@ class UsersController < Devise::RegistrationsController
       flash[:notice] = "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}"
        
     end
-    redirect_to '/login'
+    
     params[:user].delete(:avatar_data) if params[:user][:avatar_data].nil?
     params[:user].delete(:cover_photo_data) if params[:user][:cover_photo_data].nil?
 
