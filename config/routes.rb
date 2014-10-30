@@ -15,7 +15,7 @@ RealFood::Application.routes.draw do
   devise_scope :user do
     #get 'login',  :to => 'devise/sessions#new'
     get 'logout', :to => 'devise/sessions#destroy'
-    get 'signup', :to => 'devise/registrations#new'
+    #get 'signup', :to => 'devise/registrations#new'
      
     # K2B Routes code
     get "users/sign_in", :to => 'users#login'
