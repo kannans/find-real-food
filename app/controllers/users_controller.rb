@@ -31,6 +31,7 @@ class UsersController < Devise::RegistrationsController
 
   def create
 
+
     require "rubygems"
     require "active_merchant"
 
@@ -42,26 +43,18 @@ class UsersController < Devise::RegistrationsController
       :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
     )
 
-      #credit_card = ActiveMerchant::Billing::CreditCard.new(
-      #:type               => params[:cardtype],
-      #:number             => params[:cardnumber],
-      #:verification_value => params[:cvvnumber],
-      #:month              => params[:month],
-      #:year               => params[:year],
-      #:first_name         => params[:user][:fname],
-      #:last_name          => params[:user][:name]
-    #)
+      credit_card = ActiveMerchant::Billing::CreditCard.new(
+      :type               => params[:cardtype],
+      :number             => params[:cardnumber],
+      :verification_value => params[:cvvnumber],
+      :month              => params[:month],
+      :year               => params[:year],
+      :first_name         => params[:user][:fname],
+      :last_name          => params[:user][:name]
+    )
     
-    credit_card = ActiveMerchant::Billing::CreditCard.new(
-  :type               => "visa",
-  :number             => "4024007148673576",
-  :verification_value => "123",
-  :month              => 1,
-  :year               => Time.now.year+1,
-  :first_name         => "Ryan",
-  :last_name          => "Bates"
-)
     
+
     if credit_card.valid?
       # or gateway.purchase to do both authorize and capture
       response = gateway.authorize(1000, credit_card, :ip => "72.167.38.159")

@@ -4054,15 +4054,14 @@ a.sub_banner_button:hover
 {
 	display:none;
 }
-.question
-{
-	background:#454545;
-    font-family: "OpenSansBold",Arial,Helvetica,sans-serif;
-    font-size: 16px;
-    line-height: 40px;
-    padding: 0 20px;
-	color:#ffffff;
-	margin-bottom:3px;
+.question {
+background: none repeat scroll 0 0 #454545;
+color: #ffffff;
+font-family: "OpenSansBold",Arial,Helvetica,sans-serif;
+font-size: 16px;
+line-height: 24px;
+margin-bottom: 3px;
+padding: 10px 20px;
 }
 .question:hover, .question:focus
 {
@@ -4663,11 +4662,11 @@ padding-right: 12px;
 }
 .cmmn_success
 {
-    background: none repeat scroll 0 0 #96e49a;
-    border: 1px solid #1c822b;
+    background: none repeat scroll 0 0 #b6f2b9;
+    border: 1px solid #64a06d;
     border-radius: 5px;
-    color: #0c7e06 !important;
-    padding: 5px 10px;
+    color: #056c00 !important;
+    padding: 10px 10px;
 }
 .inner_banner.brands_page ul li.disabled a
 {

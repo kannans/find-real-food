@@ -4,15 +4,16 @@
 
 ActiveMerchant::Billing::Base.mode = :test
 
+ 
 gateway = ActiveMerchant::Billing::PaypalGateway.new(
-  :login => "seller_1229899173_biz_api1.railscasts.com",
-  :password => "FXWU58S7KXFC6HBE",
-  :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
-)
+      :login => "seller_1229899173_biz_api1.railscasts.com",
+      :password => "FXWU58S7KXFC6HBE",
+      :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
+    )
 
 credit_card = ActiveMerchant::Billing::CreditCard.new(
-  :type               => "visa",
-  :number             => "4024007148673576",
+  :type               => "discover",
+  :number             => "6011000990139424",
   :verification_value => "123",
   :month              => 1,
   :year               => Time.now.year+1,

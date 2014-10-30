@@ -359,6 +359,14 @@
 	{
 		font-size:24px;
 	}
+
+	form_newsletter .button.newssubmit
+	{
+	width:92px;
+	display:block;
+	margin:16px auto auto auto;
+	}
+
 }
 @media (min-width:425px) and (max-width:768px)
 {
