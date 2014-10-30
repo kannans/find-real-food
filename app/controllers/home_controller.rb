@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     end
 
    	@sliders = Slider.all
-   	@locations = Location.near("#{zip}", 20)
+   	@locations = Location.where("id in (#{@products_locations})")
     
   end
 end
