@@ -21,7 +21,7 @@ class SearchesController < ApplicationController
     rank = params[:rank]
 
     if @location !=''
-      @products = Product.sort_by_rating(@location, search, '','',sort,  rank)
+      @products = Product.sort_by_rating(@location, search, '','',sort)
       @brands = Brand.search_by_locations_and_name(@location, search, sold)
        #@products_locations = Product.sort_by_rating(@location, search, '','',sort).collect{|c| c.location_id}.join(',')
  
