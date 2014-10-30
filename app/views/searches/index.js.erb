@@ -16,6 +16,10 @@ $('.expand a').click(function(){
         $('.tab_container').toggleClass('fullwidth');
         }) 
 
+$('.media_text .location a').click(function(){
+      $(this).parent('.location').parent('.media_text').next().next('.location_list').slideToggle(400)
+ })
+
 $('.etabs .tab a').click(function(evt){
           evt.preventDefault();
           $('.etabs .tab a').removeClass('active');
