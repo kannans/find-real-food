@@ -54,8 +54,11 @@
                         <div class="product_right fr">
                             
                             <h1 class="product_title"><%= @product.name %></h1>
-                           
-                            <h3 class="brand_title"><a href="/brand/<%= branddetails.slug %>"><%= branddetails.name %></a></h3>
+                           <% if branddetails.slug %>
+                             <h3 class="brand_title"><a href="/brand/<%= branddetails.slug %>"><%= branddetails.name %></a></h3>
+                            <% else %>
+                             <h3 class="brand_title"><a href="javascript:void(0);"><%= branddetails.name %></a></h3>
+                             <% end %>
                             <div class="prd_comp_logo fr">
                                 <a href="javascript:;"> 
                                     <% if branddetails.picture.present? %>
