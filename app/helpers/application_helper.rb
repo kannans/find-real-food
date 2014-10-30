@@ -56,7 +56,7 @@ module ApplicationHelper
   def get_location_count(product_id='',locations='')
     
       connection = ActiveRecord::Base.connection()
-      results = connection.execute("select count(*) from locations_products where product_id=#{product_id} and location_id in (#{locations}) ")
+      results = connection.execute("select count(*) from locations_products where product_id=#{product_id} and location_id in (#{locations}) group by location_id")
       results.each do |row|
          return row[0]
       end
