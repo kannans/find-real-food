@@ -14,212 +14,40 @@
                                             <%= image_tag('product_detail_no_imge.jpg', :alt => "How to add products") %>
                                             <% end %>
                                 <div class="wapf_rating"><p>WAPF Rating <span class="wapf_rating_detail fr"><%= @product.quality %></span></p></div>
-                                <!-- copied rating part -->
-                            <% if @product.user_id %>
-                            <% user = get_user_details(@product.user_id) %>
-                            <% unless user.blank? %>
-                            <p class="sugg_by">This product was suggested by: <span class="athr"><%= user.name %></span> <span class="date">on <%= @product.created_at.strftime '%m %d, %Y'%></span></p>
-                            <% end %>
-                            <% end %>
-                        </div>
-                       <!-- copied-->
-                        <div class="clear"></div>
-                    </div>
-                    <div class="product_detail_bottom">
-                        <div class="prd_btm_left fl">
-                            <div class="prd_btm_lft_container">
-                                <div class="view_location_part">
-                                    <a href="javascript:;" class="view_lct_btn">View Locations</a>
-                                    <div class="view_location_part_container">
-                                        <img src="/assets/map.jpg" alt="map"/>
-                                    </div>
-                                </div>
-                                <div class="prd_btm_right_responsive">
-                            <h1>Similar Products Nearby</h1>
-                            <% if @similar_product %>
-                            <div class="products">
-                               <% @similar_product.each do |product| %> 
-                              
-                               
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="/product/<%= product.slug %>" class="media_img">
-                                                <% if product.picture.present? %>
-                                           <%= image_tag (product.picture(:thumb)) %>
-                                            <% else %>
-                                            <%= image_tag("product_no_image.png", :alt => "star") %>
-                                            <% end %>
-                                             
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
-                                                 <% branddetails = get_brand_details(product.brand_id) %>
-                                                 <% if branddetails %>
-                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
-                                                <% end %>
-                                                <% $i = 0
-                                                if product.avg_rating %>
-                                                <p class="rating">
-
-                                                
-                                               <% while $i < product.avg_rating  do %>
+                                <div class="detail_rating">
+                                    <div>
+                                        User’s Rating  
+                                        <% if total_rating(@product.id) %>
+                                        <span class="detail_rating_span fr">
+                                            <% $i = 0 
+                                                if @product.rating %>
+                                               <% while $i < @product.rating  do %>
                                                    <a href="#">
-                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                  <%= image_tag("rate_star_red_detail.png", :alt => "star") %>
                                                  </a>
                                                   
                                               <%   $i +=1 
                                                     end 
-                                                 
+                                                end
                                               %>
-                                               <span>(<%= product.rating_count %>)</span></p>
-                                               <% end  %>
-                                                <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
-                                            </div>
-                                             
-                                        </div>
-                                    </div>
-                                </div>
-                                <% end %>
-                               
-                                
-                            </div>
-                            <% end %>
-                        </div>
-                                <div class="prd_dtl_review_part">
-                                    <h1>User Reviews</h1>
-                                    <!--<div class="avg_rating">
-                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
-                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
-                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
-                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
-                                            <a href="javascript:;"><img alt="star" src="/assets/rate_star_gray_detail.png"></a>
-                                    </div>-->
-                                    <div class="leave_comment">
-                                        <textarea class="leave_cmt" placeholder="Share your thoughts on this product..."></textarea>
-                                        <span class="txt_arrow"></span>
-                                    </div>
-                                    <% if user_signed_in? %>
-                                    <div class="comment_btn comment_post">
-                                        <a href="javascript:;">post</a>
-                                    </div>
-                                    <% else %>
-                                    <div class="comment_btn">
-                                        <a class="light_pop_trigger" href="#login">post</a>
-                                    </div>
-                                    <% end %>
-                                    <div class="user_comments">
-                                        
-                                        
-                                        <% comments = get_rating_list(@product.id) %>
-                                        
-                                        <% comments.each do |c| %>
-                                        <div class="comment">
-                                             <% user_details = get_user_details(c.user_id) %>
-                                              <% if user_details %>
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
-                                            </div>
-                                            <% else %>
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
-                                            </div>
-                                            <% end %>
-                                            <div class="comment_dtl">
-                                               
-                                                <% if user_details %>
-                                                <h3><%= user_details.fname %> <%= user_details.name %></h3>
-                                                <% end %>
-                                                
-                                                     <% $i = 0
-                                                if c.rating %>
-                                                <p class="rating">
 
-                                                
-                                               <% while $i < c.rating  do %>
-                                                   <a href="#">
-                                                  <%= image_tag("star.png", :alt => "star") %>
-                                                 </a>
-                                                  
-                                              <%   $i +=1 
-                                                    end 
-                                                 end
-                                              %> 
-                                                <p><%= c.comment %></p>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
+                                            <span>(<%= total_rating(@product.id) %>)</span>
+                                        </span>
+
                                         <% end %>
-                                         
+                                        <div class="clear"></div>    
                                     </div>
-                                    <!--<div class="see_all">
-                                        <a href="javascript:;">See All</a>
-                                    </div>-->
+                                    <div class="clear"></div>
                                 </div>
                             </div>
-                        </div>
-                         <div class="prd_btm_right fr">
-                            <h1>Similar Products Nearby</h1>
-                            <% if @similar_product %>
-                            <div class="products">
-                               <% @similar_product.each do |product| %> 
-                              
-                               
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="/product/<%= product.slug %>" class="media_img">
-                                                <% if product.picture.present? %>
-                                           <%= image_tag (product.picture(:thumb)) %>
-                                            <% else %>
-                                            <%= image_tag("product_no_image.png", :alt => "star") %>
-                                            <% end %>
-                                             
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
-                                                 <% branddetails = get_brand_details(product.brand_id) %>
-                                                 <% if branddetails %>
-                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
-                                                <% end %>
-                                                <% $i = 0
-                                                if product.avg_rating %>
-                                                <p class="rating">
 
-                                                
-                                               <% while $i < product.avg_rating  do %>
-                                                   <a href="#">
-                                                  <%= image_tag("star.png", :alt => "star") %>
-                                                 </a>
-                                                  
-                                              <%   $i +=1 
-                                                    end 
-                                                 
-                                              %>
-                                               <span>(<%= product.rating_count %>)</span></p>
-                                               <% end  %>
-                                                <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
-                                            </div>
-                                             
-                                        </div>
-                                    </div>
-                                </div>
-                                <% end %>
-                               
-                                
-                            </div>
-                            <% end %>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>  
-        </div>
-        <div class="alert_overlay">
-    <div class="alert_div">
-        <span class="close">X</span>
-        <span class="alert_text">some text</span>
-    </div>
-</div>
-    </section>
+
+
+
+
+
+
+
 
     <div class="light_popup" id="flagProduct">
     <div class="light_pop_container">
