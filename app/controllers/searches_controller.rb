@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
     end
 
     @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-    @locations = Location.near("#{zip}", 20)
+    
     search = params[:search]
     sort = params[:sort]
     sold = params[:sold]
@@ -23,7 +23,8 @@ class SearchesController < ApplicationController
     if @location !=''
       @products = Product.sort_by_rating(@location, search, '','',sort)
       @brands = Brand.search_by_locations_and_name(@location, search, sold)
-       #@products_locations = Product.sort_by_rating(@location, search, '','',sort).collect{|c| c.location_id}.join(',')
+      @products_locations = Product.sort_by_rating(@location, search, '','',sort).collect{|c| c.location_id}.join(',')
+      @locations = Location.where("id in (#{@products_locations})")
  
     end
     respond_to do |format|

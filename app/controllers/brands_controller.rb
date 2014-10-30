@@ -21,12 +21,12 @@ class BrandsController < ApplicationController
     
     if @location !=''
     @products = Product.sort_by_rating(@location,search,'',@brand)
-   # @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
+    @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
     end
 
 
 	  @productsall = Product.sort_by_rating('',search,'',@brand)
-    @locations = Location.near("#{zip}", 20)
+    @locations = Location.where("id in (#{@products_locations})")
 
     else
       redirect_to "/login"

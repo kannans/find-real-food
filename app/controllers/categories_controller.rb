@@ -35,12 +35,11 @@ class CategoriesController < ApplicationController
 	    
 	    if @location !=''
 		  @products = Product.sort_by_rating(@location,search,@category)
-		  
+		  @products_locations = Product.sort_by_rating(@location,search,@category).collect{|c| c.location_id}.join(',')
 	    end
 
 	   	@sliders = Slider.all
-	   	@locations = Location.near("#{zip}", 20)
-
+	   	@locations = Location.where("id in (#{@products_locations})")
 		
 		#@products = Product.where(category_id: category.id)
 		@brands = Brand.all
