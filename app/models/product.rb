@@ -138,7 +138,7 @@ class Product < ActiveRecord::Base
       else
         if search !=''
             if sort =='proximity' || sort =='alphabetical'
-              self.unscoped.quality_rating_search(location).where(quality_ratings.name: "Good")
+              self.unscoped.quality_rating_search(location)
               .order("products.name asc")
               .order("avg_rating desc")
               .order("quality_order asc")
