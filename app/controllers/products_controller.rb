@@ -20,11 +20,11 @@ def more_details
       zip = '94123'
       session[:zip] = zip
     end
-    location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
 
 	@product = Product.find(params[:slug])
 	
-	@similar_product  = Product.sort_by_rating(location, @product.category_id) 
+	@similar_product  = Product.sort_by_rating(@location, @product.category_id) 
 
 	else
 		redirect_to "/login"

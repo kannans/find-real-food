@@ -42,7 +42,69 @@
                             </div>
                             
 
+                            <div class="prd_btm_right fr">
+                            <h1>Similar Products Nearby</h1>
+                            <% if @similar_product %>
+                            <div class="products">
+                               <% @similar_product.each do |product| %> 
+                              
+                               
+                                <div class="product_item">
+                                    <div class="product_item_body">
+                                        <div class="media product">
+                                            <a href="/product/<%= product.slug %>" class="media_img">
+                                                <% if product.picture.present? %>
+                                           <%= image_tag (product.picture(:thumb)) %>
+                                            <% else %>
+                                            <%= image_tag("product_no_image.png", :alt => "star") %>
+                                            <% end %>
+                                             
+                                            <div class="media_text">
+                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
+                                                 <% branddetails = get_brand_details(product.brand_id) %>
+                                                 <% if branddetails %>
+                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                <% end %>
+                                                <% $i = 0
+                                                if product.avg_rating %>
+                                                <p class="rating">
 
+                                                
+                                               <% while $i < product.avg_rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= product.rating_count %>)</span></p>
+                                               <% end  %>
+                                                <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
+                                            </div>
+                                             
+                                        </div>
+                                    </div>
+                                </div>
+                                <% end %>
+                               
+                                
+                            </div>
+                            <% end %>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="alert_overlay">
+    <div class="alert_div">
+        <span class="close">X</span>
+        <span class="alert_text">some text</span>
+    </div>
+</div>
+    </section>
 
     <div class="light_popup" id="flagProduct">
     <div class="light_pop_container">
