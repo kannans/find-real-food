@@ -18,7 +18,7 @@ RealFood::Application.routes.draw do
     get "users/sign_in", :to => 'users#login'
     #get 'auth/facebook/callback', :to => 'sessions#create'
     
-    post 'auth/facebook/callback', :to => 'omniauth_callbacks#facebook'
+    #post 'auth/facebook/callback', :to => 'omniauth_callbacks#facebook'
 
     get 'user/profile', :to => 'users#index'
     get 'user/edit', :to => 'users#edit'
