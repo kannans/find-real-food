@@ -2298,9 +2298,9 @@
 		clear:both;
 	}
 }
-/***************************************************************/
 
-/***********************20-10-2014*************************/
+
+
 @media (min-width:919px) and (max-width:1240px)
 {
 	.modified.home_right
@@ -2329,3 +2329,170 @@
 }
 
 /**********************************************************/
+
+@media (min-width:1012px) and (min-width: 1160px)
+{
+	.form_newsletter .input_field input
+	{
+		width:180px
+	}
+}
+@media (max-width: 1011px) and (min-width: 865px)
+{
+	.form_newsletter .input_field input 
+	{
+		width: 130px;
+	}
+}
+@media screen and (max-width: 869px)
+{
+	.right_panel 
+	{
+		margin-top: 30px;
+	}
+}
+@media (max-width: 768px) and (min-width: 425px)
+{
+	.form_newsletter .input_field input 
+	{
+		width: 120px;
+		text-align: left;
+	}
+}
+@media screen and (max-width:599px)
+{
+	.news_page .news
+	{
+		width:100%;
+		max-width:370px;
+		margin:30px auto auto auto;
+		float:none;
+	}	
+	.news_page div.news:nth-child(1)
+	{
+		margin:0px auto auto auto;
+	}
+	.news_page div.news:nth-child(2), .news_page div.news:nth-child(3)
+	{
+		margin:30px auto auto auto;
+	}
+	.news_page .news.last
+	{
+		margin:30px auto auto auto;
+	}
+	
+}
+@media screen and (max-width: 505px)
+{
+	.form_newsletter a.button
+	{
+		width:92px;
+		display:block;
+		margin:5px auto auto auto;
+	}
+	.form_newsletter .input_field input
+	{
+		width:100%;
+		text-align:left;
+	}
+	.form_newsletter .input_field
+	{
+		display:block;
+		margin-right:0px;
+		margin-bottom:7px;
+		
+	}
+}
+
+/******************************************************//*********************31-10-2014***********************/
+.contact_left .cmmn_success
+{
+	max-width:500px;
+}
+.loading_ovelay
+{
+	z-index:100;
+}
+.question
+{
+	line-height:20px;
+}
+.form_newsletter input.button 
+{
+    text-align: center;
+}
+@media (min-width:1012px) and (min-width: 1160px)
+{
+	.form_newsletter .input_field input
+	{
+		width:180px
+	}
+}
+@media (max-width: 1011px) and (min-width: 865px)
+{
+	.form_newsletter .input_field input 
+	{
+		width: 130px;
+	}
+}
+@media screen and (max-width: 869px)
+{
+	.right_panel 
+	{
+		margin-top: 30px;
+	}
+}
+@media (max-width: 768px) and (min-width: 425px)
+{
+	.form_newsletter .input_field input 
+	{
+		width: 120px;
+		text-align: left;
+	}
+}
+@media screen and (max-width:599px)
+{
+	.news_page .news
+	{
+		width:100%;
+		max-width:370px;
+		margin:30px auto auto auto;
+		float:none;
+	}	
+	.news_page div.news:nth-child(1)
+	{
+		margin:0px auto auto auto;
+	}
+	.news_page div.news:nth-child(2), .news_page div.news:nth-child(3)
+	{
+		margin:30px auto auto auto;
+	}
+	.news_page .news.last
+	{
+		margin:30px auto auto auto;
+	}
+	
+}
+@media screen and (max-width: 505px)
+{
+	.form_newsletter a.button
+	{
+		width:92px;
+		display:block;
+		margin:5px auto auto auto;
+	}
+	.form_newsletter .input_field input
+	{
+		width:100%;
+		text-align:left;
+	}
+	.form_newsletter .input_field
+	{
+		display:block;
+		margin-right:0px;
+		margin-bottom:7px;
+		
+	}
+}
+
+/******************************************************/

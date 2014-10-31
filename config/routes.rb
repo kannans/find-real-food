@@ -14,7 +14,9 @@ RealFood::Application.routes.draw do
     get 'logout', :to => 'devise/sessions#destroy'
     #get 'signup', :to => 'devise/registrations#new'
      
+
     # K2B Routes code
+    get 'login1',  :to => 'devise/sessions#new'
     get "users/sign_in", :to => 'users#login'
     #get 'auth/facebook/callback', :to => 'sessions#create'
     
