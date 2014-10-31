@@ -67,6 +67,7 @@ RealFood::Application.configure do
   #config.action_mailer.default_url_options = {
   #  :host => "prod.real-food.hcents.com"
   #}
+ config.gem "multipart-post", :lib => "net/http/post/multipart"
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -78,7 +79,7 @@ RealFood::Application.configure do
   authentication: 'plain',
   enable_starttls_auto: true }
 
-  config.action_mailer.default_url_options = { :host => '72.167.38.159' }  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }  
     config.action_mailer.perform_deliveries = true
 
 
