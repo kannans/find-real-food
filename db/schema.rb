@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141020135411) do
+ActiveRecord::Schema.define(:version => 20141031123955) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -178,6 +178,42 @@ ActiveRecord::Schema.define(:version => 20141020135411) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "master_zipcode", :force => true do |t|
+    t.integer "ZIP_CODE",                                                             :null => false
+    t.string  "CITY",                                                                 :null => false
+    t.string  "STATE",                                                                :null => false
+    t.string  "AREA_CODE",              :limit => 100,                                :null => false
+    t.string  "CITY_ALIAS_NAME",                                                      :null => false
+    t.string  "CITY_ALIAS_ABBR",                                                      :null => false
+    t.string  "CITY_TYPE",              :limit => 2,                                  :null => false
+    t.string  "COUNTY_NAME",                                                          :null => false
+    t.integer "STATE_FIPS",                                                           :null => false
+    t.integer "COUNTY_FIPS",                                                          :null => false
+    t.integer "TIME_ZONE",                                                            :null => false
+    t.string  "DAY_LIGHT_SAVING",       :limit => 1,                                  :null => false
+    t.decimal "LATITUDE",                              :precision => 10, :scale => 5, :null => false
+    t.decimal "LONGITUDE",                             :precision => 10, :scale => 5, :null => false
+    t.integer "ELEVATION",                                                            :null => false
+    t.integer "MSA2000",                                                              :null => false
+    t.integer "PMSA",                                                                 :null => false
+    t.integer "CBSA",                                                                 :null => false
+    t.integer "CBSA_DIV",                                                             :null => false
+    t.string  "CBSA_TITLE",                                                           :null => false
+    t.decimal "PERSONS_PER_HOUSEHOLD",                 :precision => 10, :scale => 2, :null => false
+    t.integer "ZIPCODE_POPULATION",                                                   :null => false
+    t.integer "COUNTIES_AREA",                                                        :null => false
+    t.integer "HOUSEHOLDS_PER_ZIPCODE",                                               :null => false
+    t.integer "WHITE_POPULATION",                                                     :null => false
+    t.integer "BLACK_POPULATION",                                                     :null => false
+    t.integer "HISPANIC_POPULATION",                                                  :null => false
+    t.float   "INCOME_PER_HOUSEHOLD",   :limit => 10,                                 :null => false
+    t.float   "AVERAGE_HOUSE_VALUE",    :limit => 10,                                 :null => false
+  end
+
+  add_index "master_zipcode", ["LATITUDE", "LONGITUDE"], :name => "LATITUDE"
+  add_index "master_zipcode", ["STATE"], :name => "STATE"
+  add_index "master_zipcode", ["ZIP_CODE"], :name => "ZIP_CODE"
+
   create_table "news_posts", :force => true do |t|
     t.string   "title"
     t.string   "author"
@@ -320,9 +356,11 @@ ActiveRecord::Schema.define(:version => 20141020135411) do
     t.boolean  "private",                  :default => false
     t.string   "bio"
     t.boolean  "pro_account",              :default => false
+    t.string   "fname"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
     t.string   "provider"
     t.string   "uid"
-    t.string   "fname"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
