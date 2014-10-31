@@ -16,7 +16,9 @@ class HomeController < ApplicationController
     if @location !=''
 	  @products = Product.sort_by_rating(@location,search)
     @products_locations = Product.sort_by_rating(@location,search).collect{|c| c.location_id}.join(',')
+    if @products_locations!=''
     @locations = Location.where("id in (#{@products_locations})")
+    end
     else
     @locations = Location.near("#{zip}", 20)
     end
