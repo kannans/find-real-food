@@ -105,6 +105,26 @@ class UsersController < Devise::RegistrationsController
   format.json { render :json => !@user }
   end
   end
+  
+
+  def check_email_forgot
+  @user = User.find_by_email(params[:emailaddress])
+   
+  respond_to do |format|
+    if @user
+      format.json { render :json => true}
+    else
+      format.json { render :json => false}
+    end 
+  end
+  end
+  
+  def forgotpassword
+    @user = User.find_by_email(params[:emailaddress])
+    ContactMailer.forgot_mail(@user).deliver
+    flash[:success] = "Your Login Credentials have been Sent to registered Email address."
+    redirect_to "/login"
+  end
 
   def update
     if user_signed_in?

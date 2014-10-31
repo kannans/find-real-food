@@ -311,6 +311,27 @@ $(document).ready(function(){
                   }
                 });
                 
+
+                $("#forgot_frm").validate({
+                     debug: true,
+                     rules: {
+                      emailaddress:{
+                            required: true,
+                            email: true,
+                            remote:"/users/checkemailforgot"
+                        } 
+                    },
+                    messages: {
+                        emailaddress:{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address",
+                            remote: "Entered Email Address is not available in our database"  
+                        } 
+                    },submitHandler : function(form) {
+                     if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
+                     }
+                  }
+                });
                 //End Login
                 
                 //Start Register

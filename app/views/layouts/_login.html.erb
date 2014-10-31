@@ -20,10 +20,41 @@
                         </div>
                     </form>
                 </div>
-                <p class="center_align forgot_txt"><a href="javascript:;">Forgot Your Password?</a></p>
+                <p class="center_align forgot_txt"><a class="light_pop_trigger" href="#forgot">Forgot Your Password?</a></p>
                 <div class="pop_signup_part">
                 	<h1 class="login_title creat_acc"><span>Need to create an</span> account?</h1>
                     <p class="signup_txt"><a href="/subscribe" class="signup_link">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="light_popup" id="forgot">
+    <div class="light_pop_container">
+        <span class="pop_close"></span>
+        <div class="light_pop_body">
+            <div class="login_popup">
+                <h1 class="login_title"><span>FORGOT</span> PASSWORD?</h1>
+                 
+                 
+                <p class="center_align sign_txt">Enter your email address to receive password</p>
+                <div class="popup_form">
+                   <%= form_tag({:controller=>'users', :action => 'forgotpassword'}, {:id => 'forgot_frm', :autocomplete=>"off"}) %>
+                        <p class="inp_filed"><span class="email_link"><span class="login_email fl"></span><span class="login_txt fl"><input type="text" autocomplete="off" id="emailaddress" name="emailaddress" placeholder="Email Address"/></span></span></p>
+                         
+                        <div class="field signup_field">
+                            <div class="form_control login_control">
+                                <input type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <p class="center_align forgot_txt"><a href="javascript:;">Forgot Your Password?</a></p>
+                <div class="pop_signup_part">
+                    <h1 class="login_title creat_acc"><span>Already have an</span> account?</h1>
+                    <p class="signup_txt"><a href="#login" class="signup_link light_pop_trigger">Login</a></p>
                 </div>
             </div>
         </div>

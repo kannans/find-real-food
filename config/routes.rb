@@ -27,9 +27,11 @@ RealFood::Application.routes.draw do
     get 'user/edit', :to => 'users#edit'
     get 'user/editpass', :to => 'users#edit_password'
     get 'users/checkemail', :to => 'users#check_email'
+    get 'users/checkemailforgot', :to => 'users#check_email_forgot'
     
     get 'login', :to => 'users#login'
     post 'sessions/create'
+    post 'users/forgotpassword'
     post 'users/create'
     post 'users/update'
     post 'users/updatepass'

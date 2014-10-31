@@ -4,4 +4,10 @@ class ContactMailer < ActionMailer::Base
     #@contact = contact
     #mail(to: 'rmarktest1@gmail.com', subject: 'Find Real Food - Contact Us')
   end
+
+  def forgot_mail(user)
+    @user = user
+    mail(to: 'rmarktest1@gmail.com', subject: 'Find Real Food - Login Credentials')
+  end
+
 end
