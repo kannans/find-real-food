@@ -49,7 +49,7 @@ def create
 
   def invalid_login_attempt
     warden.custom_failure!
-    redirect_to "/login", notice: "Invalid email or password."
+    redirect_to "/login", notice: "Invalid Email address or Password."
   end
 def destroy
     session[:user_id] = nil
