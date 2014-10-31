@@ -222,7 +222,8 @@
                     </div>
 
                     
-                                        <%= form_tag("/map", :method => "get", :class =><div class="map_button fr hide_for_mobile with_tab">
+                                        <%= form_tag("/map", :method => "get", :class => "map", :target => '_blank') do %>
+                                          <div class="map_button fr hide_for_mobile with_tab">
                                 <input name="location" value="<%= @location %>" type="hidden" />
                                  <input type="submit" value="Full Screen Map">
                             </div>
