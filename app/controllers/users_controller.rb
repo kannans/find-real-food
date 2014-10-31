@@ -70,25 +70,11 @@ class UsersController < Devise::RegistrationsController
        
     end
     
-    params[:user].delete(:avatar_data) if params[:user][:avatar_data].nil?
-    params[:user].delete(:cover_photo_data) if params[:user][:cover_photo_data].nil?
-
-    if params[:user][:avatar_data]
-      avatar_data = params[:user][:avatar_data]
-      params[:user].delete(:avatar_data)
-    end
-
-    if params[:user][:cover_photo_data]
-      cover_photo_data = params[:user][:cover_photo_data]
-      params[:user].delete(:cover_photo_data)
-    end
+   
 
     build_resource(params[:user])
 
     begin
-      resource.avatar = RealFood::ImageDecoder.decode_jpg(avatar_data) if avatar_data
-      resource.cover_photo = RealFood::ImageDecoder.decode_jpg(cover_photo_data) if cover_photo_data
-
       resource.save!
         flash[:success] = "You have been registered successfully"
   	    redirect_to '/login'
