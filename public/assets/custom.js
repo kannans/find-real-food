@@ -148,6 +148,7 @@ $(window).resize(function(){
 $(window).load(function(e) {
 	
 	$('.light_pop_trigger').click(function(e){
+		$('body,html').animate({scrollTop:0}, 800);
 		var current=$(this);
 		e.preventDefault();
 		$('.pop_close').fadeOut(500);

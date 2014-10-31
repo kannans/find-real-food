@@ -1,6 +1,7 @@
 $(window).load(function(e) {
 	
 	$('.light_pop_trigger').click(function(e){
+		
 		var current=$(this);
 		e.preventDefault();
 		$('.pop_close').fadeOut(500);
