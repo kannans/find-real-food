@@ -221,13 +221,21 @@
                         </div>
                     </div>
 
-                    <div class="map_button fr hide_for_mobile with_tab">
-                                        <a href="javascript:;">Full Screen Map</a>
-                                    </div>
-                                    <div class="map_button fr hide_for_desktop">
-                                            <a href="javascript:;">Full Screen Map</a>
-                                        </div>
-                                        
+                    
+                                        <%= form_tag("/map", :method => "get", :class =><div class="map_button fr hide_for_mobile with_tab">
+                                <input name="location" value="<%= @location %>" type="hidden" />
+                                 <input type="submit" value="Full Screen Map">
+                            </div>
+                            <% end %> 
+
+
+                                        <%= form_tag("/map", :method => "get", :class => "map", :target => '_blank') do %>
+                        <div class="map_button fr hide_for_desktop">
+                                <input name="location" value="<%= @location %>" type="hidden" />
+                                 <input type="submit" value="Full Screen Map">
+                            </div>
+                            <% end %> 
+
                              <div class="home_right modified fr">
                                         <div class="home_right_container">
                                             <div class="map_area">
