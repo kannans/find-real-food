@@ -69,7 +69,13 @@ RealFood::Application.configure do
   #}
  config.gem "multipart-post", :lib => "net/http/post/multipart"
 
-  config.action_mailer.delivery_method = :smtp
+ config.action_mailer.delivery_method = :sendmail
+config.action_mailer.sendmail_settings = { 
+      :location => '/usr/sbin/sendmail', 
+      :arguments => '-i -t' 
+  } 
+
+
   config.action_mailer.smtp_settings = {
   address: 'smtp.gmail.com',
   port: 587,
