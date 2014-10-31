@@ -109,9 +109,12 @@
                             </div>
                             <% end %>
                         </div>
+                        <%= form_tag("/map", :method => "get", :class => "map") do %>
                         <div class="map_button fr hide_for_desktop">
-                                <a href="#">Full Screen Map</a>
+                                <input name="location" value="@location" />
+                                 <input type="submit" value="Full Screen Map">
                             </div>
+                            <% end %> 
                             <div class="clear hide_for_desktop"></div>
                         <div class="home_right fr">
                             <div class="home_right_container">

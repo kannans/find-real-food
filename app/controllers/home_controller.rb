@@ -25,4 +25,9 @@ class HomeController < ApplicationController
    	
     
   end
+
+  def map
+    location = params[:location]
+    @locations = Location.where("id in (#{location})")
+  end
 end

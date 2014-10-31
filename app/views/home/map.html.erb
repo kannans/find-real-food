@@ -1,0 +1,29 @@
+<%= render '/layouts/googlemap' %>
+<section>
+        <div class="main_container">
+        	  <div id="map-canvas"></div>
+        </div>
+</section>
+
+<script type="text/javascript">
+ 
+$(document).ready(function() {
+
+      
+
+ <% if @locations %>
+      setTimeout(function(){ 
+        <% @locations.each do |lrow| %>
+        <% if lrow.slug %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% else %>
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% end %>
+        <% end %>
+      }, 5000);
+      <% end %>
+
+});
+    
+
+</script>
