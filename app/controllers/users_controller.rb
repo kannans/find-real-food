@@ -121,7 +121,7 @@ class UsersController < Devise::RegistrationsController
   
   def forgotpassword
     @user = User.find_by_email(params[:emailaddress])
-    #ContactMailer.forgot_mail(@user).deliver
+    ContactMailer.forgot_mail(@user).deliver
     flash[:success] = "Your Login Credentials have been Sent to registered Email address."
     redirect_to "/login"
   end
