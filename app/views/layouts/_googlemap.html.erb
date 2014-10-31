@@ -100,7 +100,7 @@ function codeAddress(address_val, content) {
         //###### remove marker #########/
         var removeBtn   = contentString.find('button.remove-marker')[0];
         google.maps.event.addDomListener(removeBtn, "click", function(event) {
-            marker.setMap(null);
+            infowindow.close(); 
         });
 
 
