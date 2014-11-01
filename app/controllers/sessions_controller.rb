@@ -19,8 +19,6 @@ def create1
     end
     end
 def create
-  test = params[:facebook_id]
-  redirect_to "/login", notice: "#{test}"
     if params[:facebook_id]
       resource = User.where(:email => params[:email], :facebook_id => params[:facebook_id]).first
       if resource.nil?
