@@ -226,7 +226,11 @@ $(document).ready(function(){
   var sort = '';
   var rank = '';
   var sold = '';
-  
+  <% if @category %>
+  var category = <%= @category.id %>
+  <% else %>
+  var category = ''; 
+  <% end  %>
    if($('#proximity').is(":checked")){
     sort = $('#proximity').val();
    }
@@ -262,7 +266,7 @@ $(document).ready(function(){
        sold = $('#all').val();
    }
 
-    $.get("/search", { search: $("#search_field_new").val(),sort:sort, rank:rank, sold:sold }, null, "script");
+    $.get("/search", { search: $("#search_field_new").val(),sort:sort,category:category, rank:rank, sold:sold }, null, "script");
     return false;
 
 

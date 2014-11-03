@@ -176,7 +176,12 @@ namespace :import do
     file = "import_data/locationdata-03-nov.csv"
     CSV.foreach(file, :headers => true) do |row|
       
-       parent = Location.where(:location_code => row[0]).first
+       if row[9]
+        parent = Location.where(:location_code => row[9]).first
+       else
+        parent = 0
+       end 
+       puts "#{row[0]}"
        location = Location.where(:name => row[1]).first
       if location.nil?
         location = Location.create!({
@@ -190,6 +195,7 @@ namespace :import do
         :location_type => row[7],
         :parent_id => parent
         })
+        next
       else
 
       location.update_attributes({
