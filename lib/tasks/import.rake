@@ -181,24 +181,10 @@ namespace :import do
        else
         parent = 0
        end 
-       puts "#{row[0]}"
+      
        location = Location.where(:name => row[1]).first
-      if location.nil?
-        location = Location.create!({
-        :location_code => row[0],
-        :name => row[1],
-        :address => row[2],
-        :city => row[3],
-        :state => row[4],
-        :zip => row[5],
-        :phone => row[6],
-        :location_type => row[7],
-        :parent_id => parent
-        })
-        next
-      else
-
-      location.update_attributes({
+      if location
+         location.update_attributes({
         :location_code => row[0],
         :name => row[1],
         :address => row[2],
@@ -209,7 +195,21 @@ namespace :import do
         :location_type => row[7],
         :parent_id => parent
       })
-
+       puts "update #{row[0]}"
+      else
+      location = Location.create!({
+        :location_code => row[0],
+        :name => row[1],
+        :address => row[2],
+        :city => row[3],
+        :state => row[4],
+        :zip => row[5],
+        :phone => row[6],
+        :location_type => row[7],
+        :parent_id => parent
+        })
+     
+       puts "insert #{row[0]}"
       end
       
  

@@ -18,7 +18,7 @@ RealFood::Application.routes.draw do
     # K2B Routes code
     #get 'login1',  :to => 'devise/sessions#new'
     #get "users/sign_in", :to => 'users#login'
-    #get 'auth/facebook/callback', :to => 'sessions#create'
+    #get 'auth/facebook/callback', :to => 'sessions#create1'
     #post "users/sign_in(.:format)", :to => "devise/sessions#create"
     #get "users/sign_in(.:format)", :to => "devise/sessions#new"
 

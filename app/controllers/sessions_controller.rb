@@ -9,15 +9,10 @@ class SessionsController < Devise::SessionsController
   EOS
 
 def create1
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        redirect_to root_url, notice: "Logged in!"
-        else
-        flash.now.alert = "Email or password is invalid"
-        render "new"
-    end
-    end
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url
+end
 def create
     if params[:facebook_id]
       resource = User.where(:email => params[:email], :facebook_id => params[:facebook_id]).first

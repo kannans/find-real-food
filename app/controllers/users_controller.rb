@@ -38,10 +38,12 @@ class UsersController < Devise::RegistrationsController
     ActiveMerchant::Billing::Base.mode = :test
 
     gateway = ActiveMerchant::Billing::PaypalGateway.new(
-      :login => "seller_1229899173_biz_api1.railscasts.com",
-      :password => "FXWU58S7KXFC6HBE",
-      :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
+      :login => "PayPal_api1.RealFoodMobileApp.com",
+      :password => "H53KLCUJMVQ3PU66",
+      :signature => "APNTJQWHE7asaT8MlHyiwn-f0vqpAYTTim7yHx2-5zZWks5INVOKJ-on"
     )
+
+
 
       credit_card = ActiveMerchant::Billing::CreditCard.new(
       :type               => params[:cardtype],
