@@ -47,7 +47,7 @@ class Location < ActiveRecord::Base
 
   # the full_address method
   def full_address
-    "#{address}, #{zip}, #{city}, USA"
+    "#{address}, #{zip}, #{city}, #{state}, USA"
   end
   
   

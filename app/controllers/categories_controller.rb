@@ -2,17 +2,6 @@ class CategoriesController < ApplicationController
 
 	def index
 
-		if params[:zip]
-	  		zip = params[:zip]
-	      session[:zip] = zip
-	  	elsif session[:zip]
-	      zip = session[:zip]
-	  	else
-	    	zip = '94123'
-	      session[:zip] = zip
-	  	end
-
-	  	@locations = Location.near("#{zip}", 20)
 		@categories = Category.paginate(page: params[:page], per_page: 5).order('title DESC')
 
 	end
@@ -36,6 +25,8 @@ class CategoriesController < ApplicationController
 	    if @location !=''
 		  @products = Product.sort_by_rating(@location,search,@category)
 		  @products_locations = Product.sort_by_rating(@location,search,@category).collect{|c| c.location_id}.join(',')
+		  @brand_ids = @products.collect{|c| c.brand_id}.join(',')
+		  @brands = Brand.where("id in (#{@brand_ids})")
 		  if @products_locations!=''
 	      @locations = Location.where("id in (#{@products_locations})")
 	  	  end
@@ -47,7 +38,7 @@ class CategoriesController < ApplicationController
 	   	
 		
 		#@products = Product.where(category_id: category.id)
-		@brands = Brand.all
+		
 	end
 
 
