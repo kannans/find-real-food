@@ -88,12 +88,7 @@ $(document).ready(function(){
         }
     });
 
-     setInterval(function(){
-        <% @locations.each do |locationval| %> 
-        codeAddress('<%= locationval.full_address %>');
-        <% end %>
-
-      }, 2000);
+      
      
 });
  
