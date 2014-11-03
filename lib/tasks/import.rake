@@ -38,6 +38,34 @@ namespace :import do
 
     end
   end
+  
+
+  task :brandsnew => :environment do
+    file = "import_data/branddata-03-nov.csv"
+    CSV.foreach(file, :headers => true) do |row|
+      order_by_phone = row[3] == 'Yes'
+      order_by_online = row[4] == 'Yes'
+      image = "import_data/images/brands/#{row[5]}.jpg"
+
+      brand = Brand.create!({
+        :name => row[0],
+        :phone => row[1],
+        :website => row[2],
+        :order_by_phone => order_by_phone,
+        :order_by_online => order_by_online,
+        :approved => true
+      })
+
+      puts "#{image} -- #{File.exists?(image)}"
+
+      #if File.exists?(image)
+      #  brand.picture = File.open(image)
+      #  brand.save
+      #end
+
+    end
+  end
+
 
   task :category => :environment do
     file = "import_data/category_master.csv"

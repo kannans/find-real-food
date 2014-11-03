@@ -17,12 +17,14 @@ RealFood::Application.routes.draw do
 
     # K2B Routes code
     #get 'login1',  :to => 'devise/sessions#new'
-    get "users/sign_in", :to => 'users#login'
+    #get "users/sign_in", :to => 'users#login'
     #get 'auth/facebook/callback', :to => 'sessions#create'
-    
+    post "users/sign_in(.:format)", :to => "devise/sessions#create"
+    get "users/sign_in(.:format)", :to => "devise/sessions#new"
+
     #post 'auth/facebook/callback', :to => 'omniauth_callbacks#facebook'
   
-    get 'auth/:provider/callback', to: 'sessions#create'
+    get 'auth/facebook/callback', to: 'sessions#create'
     
     get 'user/profile', :to => 'users#index'
     get 'user/edit', :to => 'users#edit'
