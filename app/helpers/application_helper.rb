@@ -44,7 +44,12 @@ module ApplicationHelper
        return 
      end 
   end
+  
 
+  def numeric?
+    Float(self) != nil rescue false
+  end
+  
   def get_state_list
        return State.all
   end

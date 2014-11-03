@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141031125622) do
+ActiveRecord::Schema.define(:version => 20141103085328) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -54,16 +54,18 @@ ActiveRecord::Schema.define(:version => 20141031125622) do
     t.boolean  "order_by_online"
     t.boolean  "store_farmers_market"
     t.boolean  "third_party_available"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.boolean  "approved",              :default => false
+    t.boolean  "approved",                             :default => false
     t.integer  "user_id"
     t.string   "store_locator_url"
     t.string   "slug"
+    t.string   "brand_code1",           :limit => 100,                    :null => false
+    t.string   "brand_code"
   end
 
   add_index "brands", ["slug"], :name => "index_brands_on_slug", :unique => true
@@ -155,8 +157,8 @@ ActiveRecord::Schema.define(:version => 20141031125622) do
     t.string   "phone"
     t.string   "website"
     t.string   "hours"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -166,6 +168,10 @@ ActiveRecord::Schema.define(:version => 20141031125622) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "slug"
+    t.string   "location_code1",       :limit => 100, :null => false
+    t.string   "state1",               :limit => 50,  :null => false
+    t.string   "state"
+    t.string   "location_code"
   end
 
   add_index "locations", ["slug"], :name => "index_locations_on_slug", :unique => true

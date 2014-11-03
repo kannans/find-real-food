@@ -70,7 +70,7 @@ namespace :import do
       end
 
        brand = Brand.where(:name => row[1]).first
-      if brand.nil?
+      if brand
         brand = Brand.create!({
         :brand_code => row[0],
         :name => row[1],
@@ -108,19 +108,24 @@ namespace :import do
   task :brandlinklocate => :environment do
     file = "import_data/brandlocationdata-03-nov.csv"
     CSV.foreach(file, :headers => true) do |row|
-      
-       brand = Brand.where(:brand_code => row[0]).first
-       location = Location.where(:location_code => row[0]).first
-       connection = ActiveRecord::Base.connection()
-       if brand.id &&  location.id
+      brand_code = row[0]
+      location_code = row[1]
+       brand = Brand.where("brand_code='#{brand_code}'").first
+       location = Location.where("location_code='#{location_code}'").first
+
+       if brand && location
+        connection = ActiveRecord::Base.connection()
          results = connection.execute("insert into brands_locations (brand_id,location_id) values('#{brand.id}', '#{location.id}')")
          
+        
          product = Product.where(:brand_id=>brand.id)
+        
          product.each do |pro|
+          connection = ActiveRecord::Base.connection()
           results = connection.execute("insert into locations_products (product_id,location_id) values('#{pro.id}', '#{location.id}')")
         end
 
-    end
+      end
 
 
     end
@@ -213,7 +218,7 @@ namespace :import do
          productval = Product.where(:id => pro.id).first
           next if productval.nil?
          productval.update_attributes({
-          :product_key => ""
+          :name => pro.name
         })
        end
   end
@@ -244,13 +249,14 @@ namespace :import do
   end
   
   task :locationupdate => :environment do
-       locations = Location.all
+       locations = Location.where("slug='' || state =''").all
+       state = ''
        locations.each do |l|
          location = Location.where(:id => l.id).first
          if location.zip
           zipcode = location.zip
           connection = ActiveRecord::Base.connection()
-          results = connection.execute("select STATE from master_zipcode where ZIP_CODE=#{zipcode} limit 1")
+          results = connection.execute("select STATE from master_zipcode where ZIP_CODE='#{zipcode}' limit 1")
           results.each do |row|
             state =  row[0]
           end
