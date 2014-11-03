@@ -10,9 +10,9 @@ RealFood::Application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => 'registrations', :omniauth_callbacks => "omniauth_callbacks"}
   devise_scope :user do
-    #get 'login',  :to => 'devise/sessions#new'
-    get 'logout', :to => 'sessions#destroy'
-    #get 'signup', :to => 'devise/registrations#new'
+     get 'login',  :to => 'devise/sessions#new'
+     get 'logout', :to => 'devise/sessions#destroy'
+     get 'signup', :to => 'devise/registrations#new'
      
 
     # K2B Routes code
