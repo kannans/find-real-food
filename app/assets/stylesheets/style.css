@@ -4869,3 +4869,11 @@ width: 100%;
 {
     text-align: center;
 }
+p.ord_phone
+{
+    color:#e13436;
+}
+.contact_links p.disabled, .contact_links p.disabled a {
+    color: #5c5b5b;
+    opacity: 0.5;
+}
