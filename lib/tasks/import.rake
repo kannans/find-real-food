@@ -16,6 +16,7 @@ namespace :import do
   task :brands => :environment do
     file = "import_data/brand_master.csv"
     CSV.foreach(file, :headers => true) do |row|
+
       order_by_phone = row[3] == 'Yes'
       order_by_online = row[4] == 'Yes'
       image = "import_data/images/brands/#{row[5]}.jpg"
@@ -43,29 +44,190 @@ namespace :import do
   task :brandsnew => :environment do
     file = "import_data/branddata-03-nov.csv"
     CSV.foreach(file, :headers => true) do |row|
-      order_by_phone = row[3] == 'Yes'
-      order_by_online = row[4] == 'Yes'
-      image = "import_data/images/brands/#{row[5]}.jpg"
+      
+      if row[5] == 'T'
+        order_by_phone = 1
+      else
+        order_by_phone = 0
+      end
 
-      brand = Brand.create!({
-        :name => row[0],
-        :phone => row[1],
-        :website => row[2],
+      if row[6] == 'T'
+        order_by_online = 1
+      else
+        order_by_online = 0
+      end
+
+      if row[7] == 'T'
+        store_farmers_market = 1
+      else
+        store_farmers_market = 0
+      end
+
+      if row[8] == 'T'
+        third_party_available = 1
+      else
+        third_party_available = 0
+      end
+
+       brand = Brand.where(:name => row[1]).first
+      if brand.nil?
+        brand = Brand.create!({
+        :brand_code => row[0],
+        :name => row[1],
+        :phone => row[2],
+        :website => row[3],
+        :store_locator_url => row[4],
         :order_by_phone => order_by_phone,
         :order_by_online => order_by_online,
-        :approved => true
+        :store_farmers_market => store_farmers_market,
+        :third_party_available => third_party_available
+        })
+
+      else
+
+      brand.update_attributes({
+        :brand_code => row[0],
+        :name => row[1],
+        :phone => row[2],
+        :website => row[3],
+        :store_locator_url => row[4],
+        :order_by_phone => order_by_phone,
+        :order_by_online => order_by_online,
+        :store_farmers_market => store_farmers_market,
+        :third_party_available => third_party_available
       })
 
-      puts "#{image} -- #{File.exists?(image)}"
-
-      #if File.exists?(image)
-      #  brand.picture = File.open(image)
-      #  brand.save
-      #end
+      end
+      
+ 
 
     end
   end
+  
 
+  task :brandlinklocate => :environment do
+    file = "import_data/brandlocationdata-03-nov.csv"
+    CSV.foreach(file, :headers => true) do |row|
+      
+       brand = Brand.where(:brand_code => row[0]).first
+       location = Location.where(:location_code => row[0]).first
+       connection = ActiveRecord::Base.connection()
+       if brand.id &&  location.id
+         results = connection.execute("insert into brands_locations (brand_id,location_id) values('#{brand.id}', '#{location.id}')")
+         
+         product = Product.where(:brand_id=>brand.id)
+         product.each do |pro|
+          results = connection.execute("insert into locations_products (product_id,location_id) values('#{pro.id}', '#{location.id}')")
+        end
+
+    end
+
+
+    end
+  end
+  
+
+  task :brandsnewd => :environment do
+    file = "import_data/branddata-03-nov.csv"
+    CSV.foreach(file, :headers => true) do |row|
+       
+        
+       brand = Brand.where(:name => row[1]).first
+      if brand.nil?
+        brand = Brand.create!({
+        :brand_code => row[0],
+        :name => row[1],
+        :phone => row[2],
+        :website => row[3],
+        :store_locator_url => row[4],
+        :order_by_phone => row[5],
+        :order_by_online => row[6],
+        :third_party_available => row[8]
+        })
+      else
+
+      brand.update_attributes({
+        :brand_code => row[0],
+        :name => row[1],
+        :phone => row[2],
+        :website => row[3],
+        :store_locator_url => row[4],
+        :order_by_phone => row[5],
+        :order_by_online => row[6],
+        :third_party_available => row[8]
+      })
+
+      end
+      
+ 
+
+    end
+  end
+  
+  
+
+
+  task :locationsnew => :environment do
+    file = "import_data/locationdata-03-nov.csv"
+    CSV.foreach(file, :headers => true) do |row|
+      
+       parent = Location.where(:location_code => row[0]).first
+       location = Location.where(:name => row[1]).first
+      if location.nil?
+        location = Location.create!({
+        :location_code => row[0],
+        :name => row[1],
+        :address => row[2],
+        :city => row[3],
+        :state => row[4],
+        :zip => row[5],
+        :phone => row[6],
+        :location_type => row[7],
+        :parent_id => parent
+        })
+      else
+
+      location.update_attributes({
+        :location_code => row[0],
+        :name => row[1],
+        :address => row[2],
+        :city => row[3],
+        :state => row[4],
+        :zip => row[5],
+        :phone => row[6],
+        :location_type => row[7],
+        :parent_id => parent
+      })
+
+      end
+      
+ 
+
+    end
+  end
+  
+
+   task :productupdate => :environment do
+       products = Product.all
+       products.each do |pro|
+         productval = Product.where(:id => pro.id).first
+          next if productval.nil?
+         productval.update_attributes({
+          :product_key => ""
+        })
+       end
+  end
+
+  task :brandupdate => :environment do
+       brands = Brand.all
+       brands.each do |bra|
+         brandval = Brand.where(:id => bra.id).first
+          next if brandval.nil?
+         brandval.update_attributes({
+          :name => bra.name
+        })
+       end
+  end
 
   task :category => :environment do
     file = "import_data/category_master.csv"
@@ -81,15 +243,22 @@ namespace :import do
     end
   end
   
-  task :location => :environment do
+  task :locationupdate => :environment do
        locations = Location.all
        locations.each do |l|
          location = Location.where(:id => l.id).first
-          next if location.nil?
-
-       location.update_attributes({
-        :hours => ""
-      })
+         if location.zip
+          zipcode = location.zip
+          connection = ActiveRecord::Base.connection()
+          results = connection.execute("select STATE from master_zipcode where ZIP_CODE=#{zipcode} limit 1")
+          results.each do |row|
+            state =  row[0]
+          end
+          location.update_attributes({
+            :state => state
+          })
+         end
+         
        end
   end
 

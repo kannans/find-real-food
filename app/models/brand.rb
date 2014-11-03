@@ -6,7 +6,7 @@ class Brand < ActiveRecord::Base
   #validates :website, :presence => {:message => 'Should not be empty'}, :format => {:with => /\A(http|https):\/\/[a-z0-9]+[A-Za-z0-9._%+-]+\.[A-Za-z]+\z/, :message => 'Please enter valid Website'}
 
   alias_attribute :store_or_farmers_market, :store_farmers_market
-  before_save :process_parent_ids, :save_location, :format_url
+  #before_save :process_parent_ids, :save_location, :format_url
 
   attr_accessor :skip_processing, :parent_ids, :location
   attr_accessible :store_or_farmers_market,
@@ -26,7 +26,8 @@ class Brand < ActiveRecord::Base
                   :parent_ids,
                   :location,
                   :locations,
-                  :locations_attributes
+                  :locations_attributes,
+                  :brand_code
 
   validates :name, presence: true
 

@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
   
-  belongs_to :state
+  #belongs_to :state
   belongs_to :brand
 
   has_many :ratings, :as => :ratable
@@ -15,7 +15,7 @@ class Location < ActiveRecord::Base
   belongs_to :parent, :class_name => 'Location'
   has_many :children, :class_name => 'Location', :foreign_key => :parent_id
 
-  validates :location_type, :inclusion => { :in => TYPES }
+  #validates :location_type, :inclusion => { :in => TYPES }
 
   attr_accessible :address,
   								:city,
@@ -29,7 +29,8 @@ class Location < ActiveRecord::Base
                   :parent_id,
                   :location_type,
                   :state,
-                  :parent
+                  :parent,
+                  :location_code
 
   has_attached_file :picture,
     :styles => { :thumb => "100x39#", :small  => "300x117#", :full => "640x250#" },
