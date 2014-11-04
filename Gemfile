@@ -7,7 +7,7 @@ gem "jquery-rails", "2.3.0"
 gem "paperclip", "~> 3.0"
 gem 'haml'
 gem 'devise', '3.0.3'
-gem 'omniauth'
+# gem 'omniauth'
 gem 'omniauth-facebook' 
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
