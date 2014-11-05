@@ -1,0 +1,45 @@
+<section>
+      <div class="main_container">
+            <div class="cms_section">
+              <div class="container">
+                  <div class="feedback_container">
+                      <div class="fdbc_body">
+                          <div class="login_popup">
+                          <% if flash[:notice] %>  <p class="cmmn_error"><%= flash[:notice] %></p> <% end %>
+                          <% if flash[:success] %>  <p class="cmmn_success"><%= flash[:success] %></p> <% end %>
+                                <h1 class="login_title"><span>Forgot Password?</span></h1>
+                                <p class="center_align sign_txt">Please enter your email address to retrieve password</p>
+                                <div class="popup_form">
+                                    
+                                    <form method="post" action="/password_resets" id="forgot_frm" accept-charset="UTF-8">
+                                        <p class="inp_filed">
+                                            <span class="email_link">
+                                                <span class="login_email fl"></span>
+                                                    <span class="login_txt fl">
+                                                      <input type="text" autocomplete="off" id="email" name="email" placeholder="Email Address"/>
+                                                    </span>
+                                                </span>
+                                        </p>
+                                         
+                                        <div class="field signup_field">
+                                            <div class="form_control login_control">
+                                                <input type="submit" name="sbmt_login" id="sbmt_login" value="Submit">
+                                            </div>
+                                        </div>
+                                   </form>
+                                </div>
+                                </p>
+                                <div class="pop_signup_part">
+                                    <h1 class="login_title creat_acc"><span>Already have an</span> account?</h1>
+                                    <p class="signup_txt"><a class="signup_link" href="/login">Login</a></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+     
