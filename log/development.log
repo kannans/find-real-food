@@ -4193,3 +4193,225 @@ EXPLAIN for: SELECT `locations`.* FROM `locations`  WHERE (parent_id is not null
   Rendered admin/brands/_form.html.haml (83482.5ms)
   Rendered /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0/gems/activeadmin-0.6.3/app/views/active_admin/resource/edit.html.arb (83938.6ms)
 Completed 200 OK in 84031ms (Views: 80539.9ms | ActiveRecord: 3406.9ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-05 13:04:59 +0530
+Processing by HomeController#index as HTML
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT locations.*, NULL AS distance, NULL AS bearing FROM `locations` WHERE (false)[0m
+  [1m[35mSlider Load (0.1ms)[0m  SELECT `sliders`.* FROM `sliders` 
+  Rendered layouts/_googlemap.html.erb (0.4ms)
+  Rendered layouts/_zipsearch.html.erb (0.7ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT locations.*, NULL AS distance, NULL AS bearing FROM `locations` WHERE (false)[0m
+  Rendered home/index.html.erb within layouts/application (33.4ms)
+  Rendered layouts/_login.html.erb (1.0ms)
+  Rendered layouts/_register.html.erb (1.3ms)
+Completed 200 OK in 539ms (Views: 169.7ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 13:05:01 +0530
+Served asset /light_pop_v0.js - 404 Not Found (47ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.2ms)
+
+
+Started GET "/subscribe" for 127.0.0.1 at 2014-11-05 13:05:03 +0530
+Processing by SubscribeController#index as HTML
+  [1m[35mPage Load (0.1ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`slug` = 'subscribe' LIMIT 1
+  Rendered subscribe/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_login.html.erb (0.8ms)
+  Rendered layouts/_register.html.erb (1.3ms)
+Completed 200 OK in 89ms (Views: 39.2ms | ActiveRecord: 36.1ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 13:05:03 +0530
+Served asset /light_pop_v0.js - 404 Not Found (7ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/paynow/year" for 127.0.0.1 at 2014-11-05 13:05:05 +0530
+Processing by SubscribeController#paynow as HTML
+  Parameters: {"slug"=>"year"}
+  Rendered subscribe/paynow.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_login.html.erb (0.4ms)
+  Rendered layouts/_register.html.erb (0.5ms)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 13:05:05 +0530
+Served asset /light_pop_v0.js - 404 Not Found (4ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/users/checkemail?user%5Bemail%5D=rmarktesttesttest%40gmail.com" for 127.0.0.1 at 2014-11-05 13:05:13 +0530
+Processing by UsersController#check_email as JSON
+  Parameters: {"user"=>{"email"=>"rmarktesttesttest@gmail.com"}}
+  [1m[36mUser Load (45.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'rmarktesttesttest@gmail.com' ORDER BY name ASC LIMIT 1[0m
+Completed 200 OK in 50ms (Views: 0.2ms | ActiveRecord: 46.4ms)
+
+
+Started POST "/users/create" for 127.0.0.1 at 2014-11-05 13:05:21 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WKZPuEtw1add67kG9BvF0rM2HHOjzdDkcemibLTB43Q=", "user"=>{"fname"=>"test", "name"=>"test", "email"=>"rmarktesttesttest@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 4687 ORDER BY name ASC LIMIT 1
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 228ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-05 13:05:22 +0530
+Processing by HomeController#index as HTML
+  [1m[36mLocation Load (0.3ms)[0m  [1mSELECT locations.*, NULL AS distance, NULL AS bearing FROM `locations` WHERE (false)[0m
+  [1m[35mSlider Load (0.2ms)[0m  SELECT `sliders`.* FROM `sliders` 
+  Rendered layouts/_googlemap.html.erb (0.0ms)
+  Rendered layouts/_zipsearch.html.erb (0.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT locations.*, NULL AS distance, NULL AS bearing FROM `locations` WHERE (false)[0m
+  Rendered home/index.html.erb within layouts/application (4.9ms)
+  Rendered layouts/_login.html.erb (0.6ms)
+  Rendered layouts/_register.html.erb (4.0ms)
+Completed 200 OK in 333ms (Views: 13.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 13:05:22 +0530
+Served asset /light_pop_v0.js - 404 Not Found (7ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/search?utf8=%E2%9C%93&zip=72956" for 127.0.0.1 at 2014-11-05 13:06:36 +0530
+DEPRECATION WARNING: Calling set_table_name is deprecated. Please use `self.table_name = 'the_name'` instead. (called from <class:Search> at /home/k2badmin/projects/find-real-food/app/models/search.rb:2)
+Processing by SearchesController#index as HTML
+  Parameters: {"utf8"=>"✓", "zip"=>"72956"}
+  [1m[35mLocation Load (0.4ms)[0m  SELECT locations.*, NULL AS distance, NULL AS bearing FROM `locations` WHERE (false)
+  Rendered layouts/_googlemap.html.erb (0.0ms)
+  Rendered searches/_filter.html.erb (1.4ms)
+  Rendered layouts/_zipsearch.html.erb (0.2ms)
+  Rendered searches/_products.html.erb (2.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT locations.*, NULL AS distance, NULL AS bearing FROM `locations` WHERE (false)[0m
+  Rendered searches/index.html.erb within layouts/application (25.4ms)
+  Rendered layouts/_login.html.erb (0.5ms)
+  Rendered layouts/_register.html.erb (0.7ms)
+Completed 200 OK in 5424ms (Views: 44.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 13:06:42 +0530
+Served asset /light_pop_v0.js - 404 Not Found (4ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
