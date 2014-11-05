@@ -107,13 +107,13 @@ class Product < ActiveRecord::Base
       if category !=''
         if search !=''
             if sort =='proximity' || sort =='alphabetical'
-              self.unscoped.quality_rating_search(location).where(category_id: category.id)
+              self.unscoped.quality_rating_search(location).where(category_id: category)
               .order("products.name asc")
               .order("avg_rating desc")
               .order("quality_order asc")              
               .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
             else
-              self.unscoped.quality_rating_search(location).where(category_id: category.id)
+              self.unscoped.quality_rating_search(location).where(category_id: category)
               .order("avg_rating desc")
               .order("quality_order asc")
               .order("products.name asc")
@@ -121,7 +121,7 @@ class Product < ActiveRecord::Base
             end
 
          else
-          self.unscoped.quality_rating_search(location).where(category_id: category.id)
+          self.unscoped.quality_rating_search(location).where(category_id: category)
         .order("avg_rating desc")
         .order("quality_order asc")
         .order("products.name asc")
