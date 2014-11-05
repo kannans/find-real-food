@@ -3,7 +3,7 @@
   <% if news_post.picture.present? %>
         <%= image_tag (news_post.picture(:small)) %>
   <% else %>
-        <%= image_tag("category_no_img.png", :alt => "star") %>
+        <%= image_tag("news_no_img.png", :alt => "star") %>
   <% end %>
 
  <h3><%= news_post.title%></h3>

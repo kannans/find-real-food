@@ -7,7 +7,7 @@
   	if params[:sbmt_con] =='Submit'
   	
   	ContactMailer.contact_mail(params).deliver
-  	flash[:notice] = "Your Details have been Submited successfully, Administrator will contact you shortly"
+  	flash[:notice] = "Your details have been submitted successfully. We will contact you shortly. Thank you!"
   	redirect_to "/contact-us"
   	
     end

@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
 		  @products = Product.sort_by_rating()
 	end
 	#@productsall = Product.sort_by_rating()
-  @brands = Brand.search_by_locations_and_name(@location.id)
+  @brands = Brand.search_by_locations_and_name(@location.id,'')
 
   end
 
