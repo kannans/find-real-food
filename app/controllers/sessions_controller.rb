@@ -8,11 +8,11 @@ class SessionsController < Devise::SessionsController
       { "authentication_token": "KpFsdzD2dBQTNgWmU2hK", "user_id": 1 }
   EOS
 
-def create1
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
-    redirect_to root_url
-end
+# def create1
+#     user = User.from_omniauth(env["omniauth.auth"])
+#     session[:user_id] = user.id
+#     redirect_to root_url
+# end
 def create
     if params[:facebook_id]
       resource = User.where(:email => params[:email], :facebook_id => params[:facebook_id]).first
