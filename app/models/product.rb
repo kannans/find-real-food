@@ -175,7 +175,7 @@ class Product < ActiveRecord::Base
                     WHEN 'Best' THEN 1
                     WHEN 'Good' THEN 2
                     WHEN 'Avoid' THEN 3
-                END As quality_order, locations_products.location_id as location_id")
+                END As quality_order, locations_products.location_id as location_id, products.brand_id as brand_id")
           .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
           .where("products.quality_rating_id IS NOT NULL and locations_products.location_id in (#{params})")
         else
@@ -188,7 +188,7 @@ class Product < ActiveRecord::Base
                     WHEN 'Best' THEN 1
                     WHEN 'Good' THEN 2
                     WHEN 'Avoid' THEN 3
-                END As quality_order")
+                END As quality_order, products.brand_id as brand_id")
           .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
           
         end

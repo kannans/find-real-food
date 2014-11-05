@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   def index
   	@location = Location.find(params[:slug])
-    puts "#{@location}"
+    
   	if @location !=''
 		  @products = Product.sort_by_rating(@location.id,'')
 	else
