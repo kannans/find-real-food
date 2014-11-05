@@ -249,6 +249,5 @@ Devise.setup do |config|
 require "omniauth-facebook"
 config.omniauth :facebook, '868005356573205', '836825569dc0ee809b501cbee4b603d5',{provider_ignores_state: true}
 
-config.allow_insecure_sign_in_after_confirmation = true
 
 end
