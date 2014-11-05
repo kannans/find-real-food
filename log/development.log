@@ -334,3 +334,124 @@ ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"
 
 
   Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/location/squash-blossom-co" for 127.0.0.1 at 2014-11-05 21:27:18 +0530
+Processing by LocationsController#index as HTML
+  Parameters: {"slug"=>"squash-blossom-co"}
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1[0m
+  [1m[35mProduct Load (381.5ms)[0m  SELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20
+  [1m[36mBrand Load (7.8ms)[0m  [1mSELECT brands.* FROM `brands` LEFT OUTER JOIN brands_locations ON brands_locations.brand_id = brands.id WHERE (brands_locations.location_id in (1979)) AND (brands.name LIKE '%%') GROUP BY brands.id ORDER BY brands.name asc LIMIT 20[0m
+  [1m[35mState Exists (0.1ms)[0m  SELECT 1 AS one FROM `states` WHERE `states`.`id` = 0 LIMIT 1
+  [1m[36m (23.5ms)[0m  [1mselect count(*) from brands_locations where brand_id=3826 and location_id in (1979) [0m
+  Rendered locations/index.html.erb within layouts/application (40.4ms)
+  Rendered layouts/_login.html.erb (1.2ms)
+  Rendered layouts/_register.html.erb (1.3ms)
+Completed 200 OK in 669ms (Views: 172.3ms | ActiveRecord: 417.1ms)
+
+
+Started GET "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg?1386872805" for 127.0.0.1 at 2014-11-05 21:27:19 +0530
+
+ActionController::RoutingError (No route matches [GET] "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/assets/fonts.css" for 127.0.0.1 at 2014-11-05 21:27:19 +0530
+Served asset /fonts.css - 304 Not Modified (215ms)
+
+
+Started GET "/assets/light_pop_v0.1.css" for 127.0.0.1 at 2014-11-05 21:27:20 +0530
+Served asset /light_pop_v0.1.css - 304 Not Modified (42ms)
+
+
+Started GET "/assets/style.css" for 127.0.0.1 at 2014-11-05 21:27:20 +0530
+Served asset /style.css - 304 Not Modified (104ms)
+
+
+Started GET "/assets/responsive.css" for 127.0.0.1 at 2014-11-05 21:27:20 +0530
+Served asset /responsive.css - 304 Not Modified (164ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 21:27:20 +0530
+Served asset /light_pop_v0.js - 404 Not Found (469ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg?1386872805" for 127.0.0.1 at 2014-11-05 21:27:21 +0530
+
+ActionController::RoutingError (No route matches [GET] "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
