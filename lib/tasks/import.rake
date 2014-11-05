@@ -255,7 +255,7 @@ namespace :import do
   end
   
   task :locationupdate => :environment do
-       locations = Location.where("slug='' || state =''").all
+       locations = Location.all
        state = ''
        locations.each do |l|
          location = Location.where(:id => l.id).first
@@ -267,10 +267,28 @@ namespace :import do
             state =  row[0]
           end
           location.update_attributes({
+            :address => location.address,
+            :zip => location.zip,
+            :city => location.city,
             :state => state
-          })
+           })
          end
          
+       end
+  end
+
+  task :locationllupdate => :environment do
+       locations = Location.all
+       locations.each do |l|
+         location = Location.where(:id => l.id).first
+         
+          location.update_attributes({
+            :address => location.address,
+            :zip => location.zip,
+            :city => location.city
+
+          })
+                  
        end
   end
 

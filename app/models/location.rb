@@ -37,7 +37,7 @@ class Location < ActiveRecord::Base
     :default_url => "/assets/blank.png"
   
   # with an attributes
-  geocoded_by :address # address is an attribute of MyModel
+ # geocoded_by :address # address is an attribute of MyModel
 
   # or with a method
   geocoded_by :full_address # full_address is a method which take some model's attributes to get a formatted address for example
@@ -47,7 +47,7 @@ class Location < ActiveRecord::Base
 
   # the full_address method
   def full_address
-    "#{address}, #{zip}, #{city}, #{state}, USA"
+    "#{address}, #{zip}, #{city}, USA"
   end
   
   

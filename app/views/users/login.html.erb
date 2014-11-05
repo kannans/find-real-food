@@ -12,7 +12,7 @@
                                 <p class="center_align or">or</p>
                                 <p class="center_align sign_txt">Sign in using your email address:</p>
                                 <div class="popup_form">
-                                     <%= form_tag({:controller=>'sessions', :action => 'create'}, {:id => 'login_frm_full'}) %>
+                                     <%= form_tag("/sessions/create", {:id => 'login_frm_full'}) %>
                                         <p class="inp_filed">
                                             <span class="email_link">
                                                 <span class="login_email fl"></span>

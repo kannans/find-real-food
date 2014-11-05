@@ -48,10 +48,9 @@ class UsersController < Devise::RegistrationsController
   end
   
   def edit
-     if user_signed_in?
-    else
-      redirect_to "/login"
-    end
+     
+    
+    
   end
   
   def editpass
