@@ -35,9 +35,7 @@ class UsersController < Devise::RegistrationsController
 
   def create
 
-
-
-    build_resource(params[:user])
+   build_resource(params[:user])
 
     begin
       resource.save!
