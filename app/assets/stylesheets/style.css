@@ -4890,7 +4890,7 @@ p.ord_phone
 }
 .map_input input
 {
-       -webkit-line-height:normal;
+       line-height:normal;
 }
 .contact_links p.disabled, .contact_links p.disabled a {
    color: #303030;
@@ -4927,4 +4927,15 @@ p.ord_phone
        border-bottom-left-radius:300px;
        -webkit-border-top-left-radius:300px;
        -webkit-border-bottom-left-radius:300px;
+}
+.media .media_img
+{
+       border-radius: 20px;
+       -webkit-border-radius: 20px;
+}
+.media.product .media_img img
+{
+       position:absolute;
+       max-width:100px;
+       max-height:100px;
 }
