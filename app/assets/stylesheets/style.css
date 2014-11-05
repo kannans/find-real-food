@@ -4695,6 +4695,7 @@ padding-right: 12px;
     position: absolute;
     text-align: center;
     transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
     width: 100%;
 }
 .ribbon.ribbonbest 

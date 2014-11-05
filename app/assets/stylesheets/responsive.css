@@ -2419,7 +2419,7 @@ width: 750px;
 		width:180px
 	}
 }
-@media (max-width: 1011px) and (min-width: 865px)
+@media (max-width: 1011px) and (min-width: 769px)
 {
 	.form_newsletter .input_field input 
 	{
