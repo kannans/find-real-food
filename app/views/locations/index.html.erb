@@ -34,7 +34,7 @@
             	<div class="container">
                 	<ul class='etabs'>
                        <li class='tab'><a href="#nearby" class="active">Nearby Products</a></li>
-                       <li class='tab'><a href="#allbrands">All Products</a></li>
+                       <li class='tab'><a href="#allbrands">Brands</a></li>
                     </ul>
                     <div class="clear"></div>
                 	<div class='tab_container'>
@@ -106,58 +106,53 @@
                             <div id="allbrands" class="tab_div">
                                <div class="home_body prd_search">
                                     <div class="locations">
-                                         <% if @productsall %>
-                                         <div class="products">
-                               <% @productsall.each do |product| %> 
-                                <div class="product_item">
-                                    <div class="product_item_body">
-                                        <div class="media product">
-                                            <a href="/product/<%= product.slug %>" class="media_img">
-                                                <% if product.picture.present? %>
-                                           <%= image_tag (product.picture(:thumb)) %>
-                                            <% else %>
-                                            <%= image_tag("product_no_image.png", :alt => "star") %>
-                                            <% end %>
-                                            <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id).downcase %>"><%= get_quality_name(product.quality_rating_id)%></span>
-                                             </a>
-                                            <div class="media_text">
-                                                <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
-                                                 <% branddetails = get_brand_details(product.brand_id) %>
-                                                 <% if branddetails %>
-                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
-                                                <% end %>
-                                                <% $i = 0
-                                                if product.avg_rating %>
-                                                <p class="rating">
+                                         <% if @brands  %>
+                                        <div class="products">
+                                             
+                                            <% @brands.each do |brand| %> 
+                                           
+                                            <div class="product_item">
+                                                <div class="product_item_body">
+                                                    <div class="media product">
+                                                        <a href="/brand/<%= brand.slug %>" class="media_img">
+                                                         <% if brand.picture.present? %>
+                                                        <%= image_tag (brand.picture(:thumb)) %>
+                                                        <% else %>
+                                                        <%= image_tag("product_no_image.png", :alt => brand.name) %>
+                                                        <% end %>
 
-                                                
-                                               <% while $i < product.avg_rating  do %>
-                                                   <a href="#">
-                                                  <%= image_tag("star.png", :alt => "star") %>
-                                                 </a>
-                                                  
-                                              <%   $i +=1 
-                                                    end 
-                                                 
-                                              %>
-                                               <span>(<%= product.rating_count %>)</span></p>
-                                               <% end  %>
+                                                       </a>
+                                                        <div class="media_text">
+                                                            <p class="media_sub_title">
+                                                                <% if brand.slug !='' %><a href="/brand/<%= brand.slug %>">
+                                                                <% else %>
+                                                                <a href="javascript:void(0);">
+                                                                <% end %>
+                                                                <%= brand.name%></a></p>
+                                                      
+                                                            <p class="location"><a href="javascript:void(0);"><%= get_brand_location_count(brand.id, @location) %> Location(s) Nearby</a></p>
 
-                                                
+                                                        </div>
+                                                         <div class="clear"></div>
+                                                           
+
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <% end %>
+                                             
+                                            <div class="expand">
+                                                <a href="javascript:;"></a>
+                                            </div>
+                                           
                                         </div>
-                                    </div>
-                                </div>
-                                <% end %>
-                                
-                                
-                            </div> 
-                            <% else %>
-                            <div class="products"> <div class="product_item"><p class="notification" >No Products Available</p></div>
-                               </div>
+                                         <% else %>
+                                            <div class="products"> <div class="product_item"><p class="notification" >No Brands Available</p></div>
+                                            </div>
 
+                                            
 
-                            <% end %>
+                                        <% end %>
                                     </div>
                                 </div>
                              </div>
