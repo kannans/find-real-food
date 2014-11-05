@@ -158,6 +158,8 @@ class Product < ActiveRecord::Base
       end
     
   end
+  
+  
 
   def selected_parents
     self.locations.where("parent_id is null").pluck(:id)
