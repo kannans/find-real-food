@@ -39,11 +39,9 @@ class UsersController < Devise::RegistrationsController
 
     begin
       resource.save!
-        resource1 = User.find_for_database_authentication(:email => params[:email])
-        valid_login = resource.valid_password?(params[:password])
-        sign_in(:user, resource1)
-        flash[:success] = "You have been registered successfully"
-  	    redirect_to '/user/profile'
+      sign_in(:user, resource)
+      flash[:success] = "You have been registered successfully"
+      redirect_to '/user/profile'
     rescue Exception => e
         flash[:notice] = e.message
   		redirect_to '/login'
