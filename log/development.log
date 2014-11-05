@@ -1,0 +1,336 @@
+Connecting to database specified by database.yml
+
+
+Started GET "/location/squash-blossom-co" for 127.0.0.1 at 2014-11-05 21:15:10 +0530
+Processing by LocationsController#index as HTML
+  Parameters: {"slug"=>"squash-blossom-co"}
+  [1m[36mLocation Load (2.3ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1[0m
+  [1m[35mEXPLAIN (100.0ms)[0m  EXPLAIN SELECT `locations`.* FROM `locations` WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1
+EXPLAIN for: SELECT  `locations`.* FROM `locations`  WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1
++----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+| id | select_type | table     | type | possible_keys | key  | key_len | ref  | rows   | Extra       |
++----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+|  1 | SIMPLE      | locations | ALL  | NULL          | NULL | NULL    | NULL | 171584 | Using where |
++----+-------------+-----------+------+---------------+------+---------+------+--------+-------------+
+1 row in set (0.10 sec)
+
+  [1m[36mProduct Load (433.6ms)[0m  [1mSELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20[0m
+  [1m[35mEXPLAIN (0.3ms)[0m  EXPLAIN SELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20
+EXPLAIN for: SELECT  products.*,
+                CASE quality_ratings.name
+                    WHEN 'Best' THEN 1
+                    WHEN 'Good' THEN 2
+                    WHEN 'Avoid' THEN 3
+                END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20
++----+-------------+--------------------+--------+---------------------------------------------+---------+---------+--------------------------------------------------+--------+----------------------------------------------+
+| id | select_type | table              | type   | possible_keys                               | key     | key_len | ref                                              | rows   | Extra                                        |
++----+-------------+--------------------+--------+---------------------------------------------+---------+---------+--------------------------------------------------+--------+----------------------------------------------+
+|  1 | SIMPLE      | locations_products | ALL    | NULL                                        | NULL    | NULL    | NULL                                             | 167330 | Using where; Using temporary; Using filesort |
+|  1 | SIMPLE      | products           | eq_ref | PRIMARY,index_products_on_quality_rating_id | PRIMARY | 4       | find_real_food_dev.locations_products.product_id |      1 | Using where                                  |
+|  1 | SIMPLE      | quality_ratings    | eq_ref | PRIMARY                                     | PRIMARY | 4       | find_real_food_dev.products.quality_rating_id    |      1 |                                              |
+|  1 | SIMPLE      | ratings            | ALL    | NULL                                        | NULL    | NULL    | NULL                                             |    474 |                                              |
++----+-------------+--------------------+--------+---------------------------------------------+---------+---------+--------------------------------------------------+--------+----------------------------------------------+
+4 rows in set (0.00 sec)
+
+  [1m[36mBrand Load (329.1ms)[0m  [1mSELECT brands.* FROM `brands` LEFT OUTER JOIN brands_locations ON brands_locations.brand_id = brands.id WHERE (brands_locations.location_id in (1979)) AND (brands.name LIKE '%%') GROUP BY brands.id ORDER BY brands.name asc LIMIT 20[0m
+  [1m[35mState Exists (179.2ms)[0m  SELECT 1 AS one FROM `states` WHERE `states`.`id` = 0 LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mselect count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x007f8ac0372650>) [0m
+Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1: select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x007f8ac0372650>) 
+  Rendered locations/index.html.erb within layouts/application (366.8ms)
+Completed 500 Internal Server Error in 3458ms
+
+ActionView::Template::Error (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1: select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x007f8ac0372650>) ):
+    130:                                                                 <% end %>
+    131:                                                                 <%= brand.name%></a></p>
+    132:                                                       
+    133:                                                             <p class="location"><a href="javascript:void(0);"><%= get_brand_location_count(brand.id, @location) %> Location(s) Nearby</a></p>
+    134: 
+    135:                                                         </div>
+    136:                                                          <div class="clear"></div>
+  app/helpers/application_helper.rb:82:in `get_brand_location_count'
+  app/views/locations/index.html.erb:133:in `block in _app_views_locations_index_html_erb___3144056926738674059_70116953098700'
+  app/views/locations/index.html.erb:112:in `each'
+  app/views/locations/index.html.erb:112:in `_app_views_locations_index_html_erb___3144056926738674059_70116953098700'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (77.2ms)
+
+
+Started GET "/location/squash-blossom-co" for 127.0.0.1 at 2014-11-05 21:16:16 +0530
+Processing by LocationsController#index as HTML
+  Parameters: {"slug"=>"squash-blossom-co"}
+  [1m[35mLocation Load (0.1ms)[0m  SELECT `locations`.* FROM `locations` WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1
+  [1m[36mProduct Load (100.6ms)[0m  [1mSELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20[0m
+  [1m[35mBrand Load (31.0ms)[0m  SELECT brands.* FROM `brands` LEFT OUTER JOIN brands_locations ON brands_locations.brand_id = brands.id WHERE (brands_locations.location_id in (1979)) AND (brands.name LIKE '%%') GROUP BY brands.id ORDER BY brands.name asc LIMIT 20
+  [1m[36mState Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM `states` WHERE `states`.`id` = 0 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x00000004e2b590>) 
+Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1: select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x00000004e2b590>) 
+  Rendered locations/index.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 191ms
+
+ActionView::Template::Error (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1: select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x00000004e2b590>) ):
+    130:                                                                 <% end %>
+    131:                                                                 <%= brand.name%></a></p>
+    132:                                                       
+    133:                                                             <p class="location"><a href="javascript:void(0);"><%= get_brand_location_count(brand.id, @location) %> Location(s) Nearby</a></p>
+    134: 
+    135:                                                         </div>
+    136:                                                          <div class="clear"></div>
+  app/helpers/application_helper.rb:82:in `get_brand_location_count'
+  app/views/locations/index.html.erb:133:in `block in _app_views_locations_index_html_erb___3144056926738674059_70116953098700'
+  app/views/locations/index.html.erb:112:in `each'
+  app/views/locations/index.html.erb:112:in `_app_views_locations_index_html_erb___3144056926738674059_70116953098700'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.8ms)
+
+
+Started GET "/location/squash-blossom-co" for 127.0.0.1 at 2014-11-05 21:18:36 +0530
+Processing by LocationsController#index as HTML
+  Parameters: {"slug"=>"squash-blossom-co"}
+  [1m[36mLocation Load (0.1ms)[0m  [1mSELECT `locations`.* FROM `locations` WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1[0m
+  [1m[35mProduct Load (32.4ms)[0m  SELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20
+  [1m[36mBrand Load (5.5ms)[0m  [1mSELECT brands.* FROM `brands` LEFT OUTER JOIN brands_locations ON brands_locations.brand_id = brands.id WHERE (brands_locations.location_id in (1979)) AND (brands.name LIKE '%%') GROUP BY brands.id ORDER BY brands.name asc LIMIT 20[0m
+  [1m[35mState Exists (0.1ms)[0m  SELECT 1 AS one FROM `states` WHERE `states`.`id` = 0 LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mselect count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x00000007b56218>) [0m
+Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1: select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x00000007b56218>) 
+  Rendered locations/index.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 223ms
+
+ActionView::Template::Error (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1: select count(*) from brands_locations where brand_id=3826 and location_id in (#<Location:0x00000007b56218>) ):
+    130:                                                                 <% end %>
+    131:                                                                 <%= brand.name%></a></p>
+    132:                                                       
+    133:                                                             <p class="location"><a href="javascript:void(0);"><%= get_brand_location_count(brand.id, @location) %> Location(s) Nearby</a></p>
+    134: 
+    135:                                                         </div>
+    136:                                                          <div class="clear"></div>
+  app/helpers/application_helper.rb:82:in `get_brand_location_count'
+  app/views/locations/index.html.erb:133:in `block in _app_views_locations_index_html_erb___3144056926738674059_70116953098700'
+  app/views/locations/index.html.erb:112:in `each'
+  app/views/locations/index.html.erb:112:in `_app_views_locations_index_html_erb___3144056926738674059_70116953098700'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (6.5ms)
+
+
+Started GET "/location/squash-blossom-co" for 127.0.0.1 at 2014-11-05 21:20:17 +0530
+Processing by LocationsController#index as HTML
+  Parameters: {"slug"=>"squash-blossom-co"}
+  [1m[35mLocation Load (0.2ms)[0m  SELECT `locations`.* FROM `locations` WHERE `locations`.`slug` = 'squash-blossom-co' LIMIT 1
+  [1m[36mProduct Load (30.4ms)[0m  [1mSELECT products.*,
+ CASE quality_ratings.name
+ WHEN 'Best' THEN 1
+ WHEN 'Good' THEN 2
+ WHEN 'Avoid' THEN 3
+ END As quality_order, locations_products.location_id as location_id, count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.* FROM `products` LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product' LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id WHERE (products.quality_rating_id IS NOT NULL and locations_products.location_id in (1979)) AND (products.name IS NOT NULL) GROUP BY products.id ORDER BY avg_rating desc, quality_order asc, products.name asc LIMIT 20[0m
+  [1m[35mBrand Load (9.3ms)[0m  SELECT brands.* FROM `brands` LEFT OUTER JOIN brands_locations ON brands_locations.brand_id = brands.id WHERE (brands_locations.location_id in (1979)) AND (brands.name LIKE '%%') GROUP BY brands.id ORDER BY brands.name asc LIMIT 20
+  [1m[36mState Exists (0.1ms)[0m  [1mSELECT 1 AS one FROM `states` WHERE `states`.`id` = 0 LIMIT 1[0m
+  Rendered locations/index.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_login.html.erb (1.3ms)
+  Rendered layouts/_register.html.erb (1.7ms)
+Completed 200 OK in 290ms (Views: 245.9ms | ActiveRecord: 40.1ms)
+
+
+Started GET "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg?1386872805" for 127.0.0.1 at 2014-11-05 21:20:19 +0530
+
+ActionController::RoutingError (No route matches [GET] "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.7ms)
+
+
+Started GET "/assets/fonts.css" for 127.0.0.1 at 2014-11-05 21:20:20 +0530
+Compiled fonts.css  (0ms)  (pid 29261)
+Served asset /fonts.css - 200 OK (3082ms)
+
+
+Started GET "/assets/light_pop_v0.1.css" for 127.0.0.1 at 2014-11-05 21:20:23 +0530
+Compiled light_pop_v0.1.css  (0ms)  (pid 29261)
+Served asset /light_pop_v0.1.css - 200 OK (1033ms)
+
+
+Started GET "/assets/style.css" for 127.0.0.1 at 2014-11-05 21:20:24 +0530
+Compiled style.css  (0ms)  (pid 29261)
+Served asset /style.css - 200 OK (1738ms)
+
+
+Started GET "/assets/responsive.css" for 127.0.0.1 at 2014-11-05 21:20:26 +0530
+Compiled responsive.css  (0ms)  (pid 29261)
+Served asset /responsive.css - 200 OK (519ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 21:20:26 +0530
+Served asset /light_pop_v0.js - 404 Not Found (449ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg?1386872805" for 127.0.0.1 at 2014-11-05 21:20:28 +0530
+
+ActionController::RoutingError (No route matches [GET] "/system/brands/pictures/000/003/826/thumb/Redwood_Hill.jpg"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.6ms)
+
+
+Started GET "/brand/redwood-hill" for 127.0.0.1 at 2014-11-05 21:20:43 +0530
+Processing by BrandsController#index as HTML
+  Parameters: {"slug"=>"redwood-hill"}
+Redirected to http://localhost:3000/login
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2014-11-05 21:20:43 +0530
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_login.html.erb (0.4ms)
+  Rendered layouts/_register.html.erb (0.7ms)
+Completed 200 OK in 602ms (Views: 601.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 21:20:45 +0530
+Served asset /light_pop_v0.js - 404 Not Found (5ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/assets/light_pop_v0.js" for 127.0.0.1 at 2014-11-05 21:20:45 +0530
+Served asset /light_pop_v0.js - 404 Not Found (4ms)
+
+ActionController::RoutingError (No route matches [GET] "/assets/light_pop_v0.js"):
+  actionpack (3.2.13) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.13) lib/rails/rack/logger.rb:32:in `call_app'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `block in call'
+  activesupport (3.2.13) lib/active_support/tagged_logging.rb:22:in `tagged'
+  railties (3.2.13) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.5) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.5) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.13) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.5) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.13) lib/action_dispatch/middleware/static.rb:63:in `call'
+  railties (3.2.13) lib/rails/engine.rb:479:in `call'
+  railties (3.2.13) lib/rails/application.rb:223:in `call'
+  rack (1.4.5) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.13) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.5) lib/rack/handler/webrick.rb:59:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/k2badmin/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/k2badmin/.rvm/gems/ruby-2.1.2@global/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
