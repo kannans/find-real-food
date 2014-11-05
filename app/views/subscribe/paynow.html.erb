@@ -50,7 +50,7 @@
                             </div>
                         </div>
                        
-                         <div class="paymentdetails">
+                         <!--<div class="paymentdetails">
                         <h2 class="frm_title12"><span>Payment Details</span></h2>
 
                         <div class="form_field">
@@ -131,7 +131,7 @@
                         <input type="text" size="30" name="holder_name" id="holder_name">
                         </div>
                         </div>
-                        </div>
+                        </div>-->
 
                         <div class="form_field">
                             <label class="empty">&nbsp;</label>
@@ -178,8 +178,8 @@ $(document).ready(function(){
                         "user[password_confirmation]": {
                             required: true,
                             equalTo: "#user_password_confirmation"
-                        },
-                        cardtype:{
+                        }
+                        /*cardtype:{
                             selectcheck: true
 
                         },
@@ -202,7 +202,7 @@ $(document).ready(function(){
                         },
                         holder_name:{
                             required: true
-                        }
+                        }*/
                     },
                     messages: {
                         "user[fname]": "First Name is Required",
@@ -220,8 +220,8 @@ $(document).ready(function(){
                          "user[password_confirmation]": {
                             required: "Confirm Password is Required",
                             equalTo: "Passwords are Mismatch"
-                        },
-                        cardtype:{
+                        }
+                        /*cardtype:{
                             selectcheck: "Please choose card type"
 
                         },
@@ -247,7 +247,7 @@ $(document).ready(function(){
                         holder_name:{
                             required: "Card Holder Name is Required"
 
-                        }
+                        }*/
                     },submitHandler : function(form) {
                      if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
                      }

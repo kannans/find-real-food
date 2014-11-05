@@ -15,13 +15,13 @@ class UsersController < Devise::RegistrationsController
      if user_signed_in?
        @user = User.find(current_user.id)
        product_ids = Fovorite.where(user_id:current_user.id).where(type: "Product").collect{|c| c.reference_id}.join(',')
-       if product_ids
-       #@products = Product.where("id in (#{product_ids})") 
+       if product_ids !=''
+        @products = Product.where("id in (#{product_ids})") 
        end
 
        product_ids_rat = Rating.where(user_id:current_user.id).where(ratable_type: "Product").collect{|c| c.ratable_id}.join(',')
-       if product_ids_rat
-       #@products_rate = Product.where("id in (#{product_ids_rat})")
+       if product_ids_rat !=''
+        @products_rate = Product.where("id in (#{product_ids_rat})")
        end
      else
       redirect_to "/login"
@@ -36,47 +36,6 @@ class UsersController < Devise::RegistrationsController
   def create
 
 
-    require "rubygems"
-    require "active_merchant"
-
-    ActiveMerchant::Billing::Base.mode = :test
-
-    gateway = ActiveMerchant::Billing::PaypalGateway.new(
-      :login => "PayPal_api1.RealFoodMobileApp.com",
-      :password => "H53KLCUJMVQ3PU66",
-      :signature => "APNTJQWHE7asaT8MlHyiwn-f0vqpAYTTim7yHx2-5zZWks5INVOKJ-on"
-    )
-
-
-
-      credit_card = ActiveMerchant::Billing::CreditCard.new(
-      :type               => params[:cardtype],
-      :number             => params[:cardnumber],
-      :verification_value => params[:cvvnumber],
-      :month              => params[:month],
-      :year               => params[:year],
-      :first_name         => params[:user][:fname],
-      :last_name          => params[:user][:name]
-    )
-    
-    
-
-    if credit_card.valid?
-      # or gateway.purchase to do both authorize and capture
-      response = gateway.authorize(1000, credit_card, :ip => "127.0.0.1")
-      if response.success?
-        gateway.capture(1000, response.authorization)
-        
-      else
-        flash[:notice] = "Error: #{response.message}"
-         
-      end
-    else
-      flash[:notice] = "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}"
-       
-    end
-    
-   
 
     build_resource(params[:user])
 
@@ -167,7 +126,7 @@ class UsersController < Devise::RegistrationsController
   end
   
 
-
+  
 
   def updatepass
     if user_signed_in?
