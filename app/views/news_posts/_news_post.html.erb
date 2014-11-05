@@ -8,6 +8,6 @@
 
  <h3><%= news_post.title%></h3>
  <p class="news_authr"><em><%= news_post.created_at.strftime '%b %d, %Y' %> by <%= news_post.author %></em></p>
- <p><%= truncate(strip_tags(news_post.body), :ommision => "...", :length => 150) %></p>
+ <p><%= truncate(strip_tags(news_post.body), :ommision => "...", :length => 140) %></p>
  <p><a href="/news/<%= news_post.slug %>" class="news_read_more">Read More</a></p>
 </div>
