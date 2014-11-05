@@ -67,6 +67,7 @@ RealFood::Application.configure do
   #config.action_mailer.default_url_options = {
   #  :host => "prod.real-food.hcents.com"
   #}
+  config.GUARD_GEM_SILENCE_DEPRECATIONS = true
  config.gem "multipart-post", :lib => "net/http/post/multipart"
 
  config.action_mailer.delivery_method = :sendmail

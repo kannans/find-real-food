@@ -126,7 +126,7 @@ namespace :import do
         end
 
       end
-
+        puts "#{brand_code} #{location_code}"
 
     end
   end
@@ -255,7 +255,7 @@ namespace :import do
   end
   
   task :locationupdate => :environment do
-       locations = Location.all
+       locations = Location.where("latitude IS NULL").first(20)
        state = ''
        locations.each do |l|
          location = Location.where(:id => l.id).first

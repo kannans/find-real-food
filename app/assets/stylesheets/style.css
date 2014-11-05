@@ -2408,6 +2408,7 @@ span.avoid
 	-webkit-box-shadow:3px 3px 5px 0px rgba(0,0,0,0.25);
 	display:inline-block;
 	margin-top:30px;
+	max-width: 356px;
 }
 .brands_options .left
 {
@@ -4905,3 +4906,25 @@ p.ord_phone
        color:#18B04E;
 }
 /*****************************************/
+.user_menu a.user_mn_link
+{
+       display: block;
+       width: 80px;
+       height: 100px;
+       position: relative;
+       background: url(/assets/hdr_usr_arr_down.png) no-repeat #C92A2B;
+       border-left: 1px solid #E9443F;
+       transition: all 0.4s ease 0s;
+       -webkit-transition: all 0.4s ease 0s;
+       background-position: 62px center;
+} .user_menu a.user_mn_link:hover
+{
+       background: url(/assets/hdr_usr_arr_down.png) no-repeat #252525;
+       background-position: 62px center;
+}.login_fb
+{
+       border-top-left-radius:300px;
+       border-bottom-left-radius:300px;
+       -webkit-border-top-left-radius:300px;
+       -webkit-border-bottom-left-radius:300px;
+}
