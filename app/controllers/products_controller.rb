@@ -26,6 +26,8 @@ def more_details
 	
 	@similar_product  = Product.sort_by_rating(@location, @product.category_id) 
 
+	@locations = Location.near("#{zip}", 20)
+
 	else
 		redirect_to "/login"
 	end
