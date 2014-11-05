@@ -4877,3 +4877,30 @@ p.ord_phone
     color: #5c5b5b;
     opacity: 0.5;
 }
+/*************05-11-2014******************/
+.registerfrm .form_field label.error
+{
+       width:190px;
+}
+.map_btn a, .map_btn input
+{
+       margin:0;
+}
+.map_input input
+{
+       -webkit-line-height:normal;
+}
+.contact_links p.disabled, .contact_links p.disabled a {
+   color: #303030;
+   opacity: 0.5;
+}
+.inner_banner.brands_page ul li.disabled a
+{
+       color: #303030;
+   opacity: 0.5;
+}
+.alert_text.success
+{
+       color:#18B04E;
+}
+/*****************************************/
