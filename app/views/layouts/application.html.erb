@@ -319,14 +319,14 @@ $(document).ready(function(){
                 $("#forgot_frm").validate({
                      debug: true,
                      rules: {
-                      emailaddress:{
+                      email:{
                             required: true,
                             email: true,
                             remote:"/users/checkemailforgot"
                         } 
                     },
                     messages: {
-                        emailaddress:{
+                        email:{
                             required: "Email Address is Required",
                             email: "Invalid Email Address",
                             remote: "Entered Email Address is not available in our database"  
@@ -336,6 +336,8 @@ $(document).ready(function(){
                      }
                   }
                 });
+
+ });
                 //End Login
                 
                 //Start Register

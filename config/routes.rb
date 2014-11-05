@@ -1,11 +1,13 @@
 RealFood::Application.routes.draw do
 
+  get "password_resets/new"
+
   mount Ckeditor::Engine => '/ckeditor'
 
   get "locations/index"
 
    get "home/index"
-
+ resources :password_resets
   apipie
 
   devise_for :users, :controllers => { :registrations => 'registrations', :omniauth_callbacks => "omniauth_callbacks"}

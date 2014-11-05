@@ -10,4 +10,11 @@ class ContactMailer < ActionMailer::Base
     mail(to: 'rmarktest1@gmail.com', subject: 'Find Real Food - Login Credentials')
   end
 
+	def password_reset(user)
+	  @user = user
+	  mail :to => user.email, :subject => "Password Reset"
+	end
+
+
+
 end

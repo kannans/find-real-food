@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                   :cover_photo_file_size, :private, :bio, :pro_account
 
   before_save :ensure_authentication_token
-
+  before_create { generate_token(:auth_token) }
   has_many :flag_requests
   has_many :feedbacks
   has_many :ratings
@@ -54,6 +54,19 @@ class User < ActiveRecord::Base
     template.add :name
     template.add :facebook_id
     template.add :stats
+  end
+
+  def send_password_reset
+  generate_token(:reset_password_token)
+  self.reset_password_sent_at = Time.zone.now
+  save!
+  ContactMailer.password_reset(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
   end
 
   def subscription_type
