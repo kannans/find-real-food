@@ -10,7 +10,7 @@ def create
 end
 
 def edit
-  @user = User.where("reset_password_token = '#{params[:id]}'")
+  @user = User.find_by_reset_password_token!(params[:id])
   
 end
 
