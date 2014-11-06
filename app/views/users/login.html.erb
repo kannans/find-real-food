@@ -8,7 +8,7 @@
                           <% if flash[:notice] %>  <p class="cmmn_error"><%= flash[:notice] %></p> <% end %>
                           <% if flash[:success] %>  <p class="cmmn_success"><%= flash[:success] %></p> <% end %>
                                 <h1 class="login_title"><span>ALREADY HAVE AN ACCOUNT?</span></h1>
-                                <a class="fblogin_link" href="javascript:;"><span class="login_fb fl"></span><span class="fb_txt fl">Sign In with Facebook</span></a>
+                                <a class="fblogin_link" href="/users/auth/facebook"><span class="login_fb fl"></span><span class="fb_txt fl">Sign In with Facebook</span></a>
                                 <p class="center_align or">or</p>
                                 <p class="center_align sign_txt">Sign in using your email address:</p>
                                 <div class="popup_form">
@@ -38,7 +38,7 @@
                                    <p class="center_align forgot_txt"><%= link_to "forgot password?", new_password_reset_path %></p>
                                 <div class="pop_signup_part">
                                     <h1 class="login_title creat_acc"><span>Need to create an</span> account?</h1>
-                                    <p class="signup_txt"><a class="signup_link" href="/subscribe">Sign up</a></p>
+                                    <p class="signup_txt"><a class="signup_link" href="/register">Sign up</a></p>
                                 </div>
                             </div>
                             

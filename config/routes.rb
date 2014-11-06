@@ -56,6 +56,7 @@ RealFood::Application.routes.draw do
     get 'subscribe', :to => 'subscribe#index'
     get 'paynow/:slug', :to => 'subscribe#paynow'
     get 'map', :to => 'home#map'
+    get 'register', :to => 'subscribe#paynow'
 
     get 'product/:slug', :to => 'products#more_details'
     get 'category/:slug', :to => 'categories#products'
