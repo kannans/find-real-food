@@ -29,6 +29,7 @@ class SearchesController < ApplicationController
       end
     else
       @locations = Location.near("#{zip}", 20)
+      @products = Product.sort_by_rating('', search, '','',sort)
     end
     respond_to do |format|
       format.html

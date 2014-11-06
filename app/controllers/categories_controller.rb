@@ -33,6 +33,7 @@ class CategoriesController < ApplicationController
 	  	  end
 	    else
 	   	  @locations = Location.near("#{zip}", 20)
+	   	  @products = Product.sort_by_rating('',search,@category.id)
 	    end
 
 	   	@sliders = Slider.all

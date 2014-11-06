@@ -23,9 +23,11 @@ def more_details
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
 
 	@product = Product.find(params[:slug])
-	
-	@similar_product  = Product.sort_by_rating(@location, @product.category_id) 
-
+	if @location
+		@similar_product  = Product.sort_by_rating(@location, @product.category_id) 
+    else
+    	@similar_product  = Product.sort_by_rating('', @product.category_id) 
+    end
 	@locations = Location.near("#{zip}", 20)
 
 	else

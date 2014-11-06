@@ -57,11 +57,13 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>     
+                                               <% if @location1 %>
                                                             <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
+                                                <% end %>
                                                         </div>  
                                                              
                                              <div class="clear"></div>
-                                               <% if @locations %>
+                                               <% if @locations1 %>
                                               <div class="location_list">
                                               <ul>
                                                 <% @locations.each do |lrow| %>
