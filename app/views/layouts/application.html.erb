@@ -89,9 +89,19 @@
                     <% userdetails = get_user_details(current_user.id) %>
 
                     <div class="user_menu fr">
-                      <a href="javascript:;" class="user_mn_link"><img src="/assets/header_user_default.png" alt="User Name"/></a>
+                      <a href="javascript:;" class="user_mn_link"><% if @user.avatar(:original) %>
+                            <img src="/assets/header_user_default.png" alt="User Name"/>
+                            <% else %>
+                            <%= image_tag (@user.avatar(:original)) %>
+                            <% end %></a>
                         <ul class="user_menu_list">
-                          <li class="user_detail_list"><a href="javascript:;"><img src="/assets/header_user_default.png" alt="User Name"/><span><%= userdetails.fname %> <%= userdetails.name %></span></a></li>
+                          <li class="user_detail_list"><a href="javascript:;">
+                            <% if @user.avatar(:original) %>
+                            <img src="/assets/header_user_default.png" alt="User Name"/>
+                            <% else %>
+                            <%= image_tag (@user.avatar(:original)) %>
+                            <% end %>
+                            <span><%= userdetails.fname %> <%= userdetails.name %></span></a></li>
                           <li><%= link_to 'My Profile', "/user/profile" %></li>
                              <li><%= link_to 'Edit Profile', "/user/edit" %></li>
                              <li><%= link_to 'Change Password', "/user/editpass" %></li>

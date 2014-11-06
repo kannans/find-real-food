@@ -2,7 +2,7 @@
       <div class="main_container">
             <div class="inner_banner userprofile_page">
               <div class="container">
-                  <a href="javascript:;" class="banner_logo"><%= image_tag (@user.avatar(:original)) %></a>
+                  <a href="javascript:;" class="banner_logo"><%= image_tag (@user.cover_photo(:original)) %></a>
 
                     <div class="userprofile_details">
                       <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.capitalize %><% end %> <% if @user.name %><%= @user.name.capitalize %><% end %>, <span>
