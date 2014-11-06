@@ -17,18 +17,7 @@ gem "ransack"
 gem 'will_paginate'
 gem 'rails_12factor', group: :production
 gem 'bxslider-rails', '~> 4.1.0'
-
-
- 
-group :development do
-  
-  #gem 'capistrano-hitcents', :require => false, :git => 'git@yumrepo.omni-prise.com:capistrano-hitcents.git'
-  #gem 'capistrano-hitcents', :require => false, :git => 'git@yumrepo.omni-prise.com:capistrano-hitcents.git'
-  #gem 'capistrano-hitcents'
-  
-
-end
-
+gem "koala", "~> 1.10.0rc"
 
 
 group :assets do
@@ -53,6 +42,11 @@ group :test, :development do
   gem 'rails-erd'
   gem "shoulda-matchers"
   gem 'cocaine', '0.3.2'
+  gem 'debugger'
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1.1'
+  gem 'capistrano-rvm', github: "capistrano/rvm"
 end
 group :production do
     #gem 'pg'
@@ -62,13 +56,10 @@ gem 'mysql2', '0.3.16'
 gem 'magnificpopup-rails', '~> 0.0.5'
 gem 'friendly_id'
 gem 'geocoder'
-#gem 'debugger'
+
 gem "ckeditor"
 
-gem 'capistrano', '~> 3.1.0'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rvm', github: "capistrano/rvm"
+
 
   # Use the Unicorn app server
   gem 'unicorn'

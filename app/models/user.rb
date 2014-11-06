@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
-  has_attached_file :avatar, :default_url => ""
-  has_attached_file :cover_photo, :default_url => ""
+  # has_attached_file :avatar, :default_url => ""
+  # has_attached_file :cover_photo, :default_url => ""
 
   devise :database_authenticatable, :registerable, :omniauthable, 
          :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable
 
 	attr_accessible :database_authenticatable, :registerable, :email, :password,
          					:recoverable, :rememberable, :trackable, :validatable, :token_authenticatable,
-                  :name, :fname, :city, :state, :facebook_id, :avatar, :avatar_file_name,
-                  :avatar_file_size, :password_confirmation, :avatar_data,
-                  :cover_photo_data, :cover_photo, :cover_photo_file_name,
-                  :cover_photo_file_size, :private, :bio, :pro_account
+                  :name, :fname, :city, :state, :facebook_id, 
+                  :password_confirmation, :private, :bio, :pro_account, 
+                  :provider, :uid, 
+                  :avatar,:cover_photo
 
   before_save :ensure_authentication_token
   before_create { generate_token(:authentication_token) }
@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
   has_many :brands
   has_many :subscriptions
   has_one  :promo_code
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>", :baner => "800x300" }, :default_url => "/avatars/:style/missing.png"
+  validates_attachment :avatar, :presence => false, :content_type => {:content_type => /\Aimage\/.*\Z/}
+
+  has_attached_file :cover_photo, :styles => { :medium => "300x300>", :thumb => "100x100>", :baner => "800x300" }, :default_url => "/avatars/:style/missing.png"
+  validates_attachment :cover_photo, :presence => false, :content_type => {:content_type => /\Aimage\/.*\Z/}
 
 	acts_as_api
 
@@ -102,33 +108,55 @@ class User < ActiveRecord::Base
     stats
   end
 
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.save!
-    end
-  end
+  # def self.from_omniauth(auth)
+  #   where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+  #     user.provider = auth.provider
+  #     user.uid = auth.uid
+  #     user.name = auth.info.name
+  #     user.email = auth.info.email
+  #     user.password = Devise.friendly_token[0,20]
+  #     user.save!
+  #   end
+  # end
 
   
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    debugger
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
+      User.save_avatar(user, auth) unless user.avatar_file_name 
       return user
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
+        registered_user.update_attributes({
+          provider:auth.provider,
+          uid:auth.uid,
+        })
+        save_avatar user, auth unless user.avatar_file_name
         return registered_user
       else
-        user = User.create(name:auth.extra.raw_info.name,
-                            provider:auth.provider,
-                            uid:auth.uid,
-                            email:auth.info.email,
-                            password:Devise.friendly_token[0,20],
-                          )
-      end    end
+
+        user_date = {
+          name:auth.extra.raw_info.name,
+          provider:auth.provider,
+          uid:auth.uid,
+          email:auth.info.email,
+          password:Devise.friendly_token[0,20]
+        }
+        created_user = User.create(user_date)
+        save_avatar(created_user, auth)
+        created_user
+      end
+    end
+  end
+
+private
+  def self.save_avatar user, auth
+      if user && graph = Koala::Facebook::API.new(auth.credentials.token)
+        fb_profile = graph.get_object('me')
+        avatar_url = graph.get_picture(fb_profile['id'], type: :small)
+        user.update_attribute(:avatar,open(avatar_url))
+      end
   end
 end

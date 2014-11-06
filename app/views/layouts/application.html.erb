@@ -91,19 +91,20 @@
 
                     <% if user_signed_in? %>
                     <% userdetails = get_user_details(current_user.id) %>
-
                     <div class="user_menu fr">
-                      <a href="javascript:;" class="user_mn_link"><% if userdetails.avatar(:original) %>
+                      <a href="javascript:;" class="user_mn_link">
+                        <% unless userdetails.avatar_file_name%>
                             <img src="/assets/header_user_default.png" alt="User Name"/>
-                            <% else %>
-                            <%= image_tag (userdetails.avatar(:original)) %>
-                            <% end %></a>
+                        <% else %>
+                            <%= image_tag (userdetails.avatar.url) %>
+                        <% end %>
+                      </a>
                         <ul class="user_menu_list">
                           <li class="user_detail_list"><a href="javascript:;">
-                            <% if userdetails.avatar(:original) %>
-                            <img src="/assets/header_user_default.png" alt="User Name"/>
+                            <% unless userdetails.avatar_file_name%>
+                                <img src="/assets/header_user_default.png" alt="User Name"/>
                             <% else %>
-                            <%= image_tag (userdetails.avatar(:original)) %>
+                                <%= image_tag (userdetails.avatar.url) %>
                             <% end %>
                             <span><%= userdetails.fname %> <%= userdetails.name %></span></a></li>
                           <li><%= link_to 'My Profile', "/user/profile" %></li>
