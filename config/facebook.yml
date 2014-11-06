@@ -1,0 +1,9 @@
+defaults: &defaults
+  app_id: 868005356573205
+  app_secret: 836825569dc0ee809b501cbee4b603d5
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
