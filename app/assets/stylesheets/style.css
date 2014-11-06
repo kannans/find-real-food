@@ -4945,3 +4945,25 @@ p.ord_phone
        left: 0;
        margin: auto;
 }
+.notification
+{
+background:#e8dc9f;
+color:#000;
+font-family:'OpenSansBold', Arial, Helvetica, sans-serif;
+padding:12px;
+text-align:center;
+position:fixed;
+top:0;
+width:100%;
+z-index:999;
+}
+.notclose
+{
+position: fixed;
+right: 15px;
+top: 12px;
+}
+.notclose:hover
+{
+cursor:pointer;
+}

@@ -51,6 +51,10 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1601901470036363&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+  <% if user_signed_in? %>
+  <% else %>
+<div class="notification">please create an account to continue. Free for a limited time! <span class="notclose">X</span></div>
+<% end %>
     <header>
         <nav>
             <div class="container">
@@ -73,7 +77,7 @@
                               <li><a href="/how-foods-are-chosen">How Foods are Choosen</a></li>
                              
                               <li><a href="/page/terms-and-privacy-policy">Terms & Privacy Policy</a></li>
-                              <li><a href="#">Invite Friends</a></li>
+                              <li><a href="#invite" class="light_pop_trigger">Invite Friends</a></li>
                               <!--<li><a href="#">Suggest a Product</a></li>
                               <li><a href="#">Add a Location</a></li>
                               <li><a href="#">Become an Affiliate</a></li>-->
@@ -205,6 +209,14 @@
 
 $(document).ready(function(){
         
+  var notheight=$('.notification').height()+24;
+$('header').animate({"margin-top":notheight+"px"})
+$('.notclose').click(function() {
+
+$('.notification').animate({"margin-top":"-"+notheight+"px"}).fadeOut(300);
+$('header').animate({"margin-top":0})
+});
+
  $('.ajaxcall, .checks input').click(function(){
 
    search_products();
