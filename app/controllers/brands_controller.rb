@@ -20,14 +20,13 @@ class BrandsController < ApplicationController
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
     if @location !=''
-    @products = Product.sort_by_rating('',search,'',@brand)
-    @products_locations = Product.sort_by_rating('',search,'',@brand).collect{|c| c.location_id}.join(',')
+    @products = Product.sort_by_rating(@location,search,'',@brand)
+    @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
     if @products_locations!=''
     @locations = Location.where("id in (#{@products_locations})")
     end
     else
     @locations = Location.near("#{zip}", 20)
-    @products = Product.sort_by_rating('',search,'',@brand)
     end
 
 

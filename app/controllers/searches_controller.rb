@@ -23,7 +23,7 @@ class SearchesController < ApplicationController
     if @location !=''
       @products = Product.sort_by_rating('', search, '','',sort)
       @brands = Brand.search_by_locations_and_name('', search, sold)
-      @products_locations = Product.sort_by_rating('', search, '','',sort).collect{|c| c.location_id}.join(',')
+      @products_locations = Product.sort_by_rating(@location, search, '','',sort).collect{|c| c.location_id}.join(',')
       if @products_locations!=''
       @locations = Location.where("id in (#{@products_locations})")
       end

@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
 
 	    if @location !=''
 		  @products = Product.sort_by_rating('',search,@category.id)
-		  @products_locations = Product.sort_by_rating('',search,@category.id).collect{|c| c.location_id}.join(',')
+		  @products_locations = Product.sort_by_rating(@location,search,@category.id).collect{|c| c.location_id}.join(',')
 		  @brand_ids = Product.sort_by_rating('',search,@category.id).collect{|b| b.brand_id}.join(',')
 		  @brands = Brand.where("id in (#{@brand_ids})") 
 		  if @products_locations!=''
