@@ -1,3 +1,42 @@
+ <script type="text/javascript" src="/assets/jquery.webRating.js"></script>
+ <style>
+ .starOn{
+    background: rgb(254,252,234);
+    background: -moz-linear-gradient(top,  rgba(254,252,234,1) 0%, rgba(241,218,54,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,252,234,1)), color-stop(100%,rgba(241,218,54,1)));
+    background: -webkit-linear-gradient(top,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
+    background: -o-linear-gradient(top,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
+    background: linear-gradient(to bottom,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 );
+}
+
+.starOff{
+    background: rgb(206,220,231);
+    background: -moz-linear-gradient(top,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1)));
+    background: -webkit-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+    background: -o-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+    background: linear-gradient(to bottom,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 );
+}
+
+.starOnHover{
+    background: rgb(213,206,166);
+    background: -moz-linear-gradient(top,  rgba(213,206,166,1) 0%, rgba(201,193,144,1) 23%, rgba(183,173,112,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(213,206,166,1)), color-stop(23%,rgba(201,193,144,1)), color-stop(100%,rgba(183,173,112,1)));
+    background: -webkit-linear-gradient(top,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
+    background: -o-linear-gradient(top,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
+    background: linear-gradient(to bottom,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5cea6', endColorstr='#b7ad70',GradientType=0 );
+}
+
+.starOffHover{
+    background-color:#C03;
+}
+ </style>
  <section>
         <div class="main_container">
             <div class="product_detail_container">
@@ -190,6 +229,8 @@
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_red_detail.png"></a>
                                             <a href="javascript:;"><img alt="star" src="/assets/rate_star_gray_detail.png"></a>
                                     </div>-->
+                                    <div class="divClass" data-webRating="0" data-webRatingN="0" data-webRatingArg='{"type":"product","uid":<%= @product.id %>}'></div>
+
                                     <div class="leave_comment">
                                         <textarea class="leave_cmt" placeholder="Share your thoughts on this product..."></textarea>
                                         <span class="txt_arrow"></span>
@@ -379,12 +420,20 @@ $(document).ready(function(){
                 });
       
     $('.comment_post a').click(function(){
-        if($(".leave_cmt").val()!=''){
-        $.get('/products/addrating', { ratable_id:<%= @product.id %>,comment:$(".leave_cmt").val() }, null, "script");
-    }else{
+        
+
+        if($(".divClass").attr("data-webRating") < 1){
+          $(".alert_text").html("Rating should not be empty");
+          $(".alert_overlay").fadeIn();
+
+        }else if($(".leave_cmt").val()!=''){
+        $.get('/products/addrating', { ratable_id:<%= @product.id %>,comment:$(".leave_cmt").val(),rating:$(".divClass").attr("data-webRating")}, null, "script");
+        
+        }else{
+        
         $(".alert_text").html("Comment should not be empty");
         $(".alert_overlay").fadeIn();
-    }
+       }
         return false;
 
 
@@ -393,6 +442,33 @@ $(document).ready(function(){
     $(".close").click(function(){
     $(".alert_overlay").fadeOut();
 });
+
+    jQuery("div").webRating({     
+        
+        ratingCount     : 5,
+        imgSrc          : "/assets/rate_star_red_detail.png",
+        xLocation       : 0,  
+        yLocation       : 0,  
+        width           : 32,  
+        height          : 32,  
+        onClass         : 'starOn',
+        offClass        : 'starOff',
+        onClassHover    : 'starOnHover',  
+        offClassHover   : 'starOffHover',  
+        cookieEnable        : false,
+        cookiePrefix        : "myRating_",
+        maxClick                : 1,
+        onClick                 : function(clickScore, data){
+
+          $(".divClass").attr("data-webRating",clickScore)
+             
+        },
+
+         
+        tp_showAverage  : true,
+        prefixAverage   : "Avg",
+        tp_eachStar     : {'1':'Very Bad','2':'Bad','3':'Ok','4':'Good','5':'Very Good'}  
+}); 
     
 });
 </script>

@@ -48,7 +48,7 @@ def add_comments
 	
 	@already_exists = Rating.where(user_id:current_user.id).where(ratable_id: params[:ratable_id]).where(ratable_type: "Product").count
 	if @already_exists < 1
-	@comment = Rating.create(user_id:current_user.id, ratable_type: "Product", ratable_id: params[:ratable_id], comment: params[:comment] )
+	@comment = Rating.create(user_id:current_user.id, ratable_type: "Product", ratable_id: params[:ratable_id], comment: params[:comment],  rating: params[:rating] )
 	@comment.save
  	end
      
