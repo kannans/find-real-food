@@ -21,6 +21,7 @@ class HomeController < ApplicationController
     end
     else
     @locations = Location.near("#{zip}", 20)
+    @products = Product.sort_by_rating('',search)
     end
 
    	@sliders = Slider.all
