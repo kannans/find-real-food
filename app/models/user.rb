@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                   :cover_photo_file_size, :private, :bio, :pro_account
 
   before_save :ensure_authentication_token
-  before_create { generate_token(:auth_token) }
+  before_create { generate_token(:authentication_token) }
   has_many :flag_requests
   has_many :feedbacks
   has_many :ratings
