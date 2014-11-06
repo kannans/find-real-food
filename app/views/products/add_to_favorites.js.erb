@@ -1,7 +1,8 @@
 <%  unless @favorite.blank? %>
-   $(".alert_text").html("This Product has Already been added in your favorites");
+   
+    $(".alert_text").html("This Product has been added in your favorites Successfully");
  <% else %>
-   $(".alert_text").html("This Product has been added in your favorites Successfully");
+  $(".alert_text").html("This Product has Already been added in your favorites");
 <% end %>
 $(".alert_overlay").fadeIn();
 $(".close").click(function(){
