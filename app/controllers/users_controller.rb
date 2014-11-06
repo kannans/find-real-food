@@ -62,7 +62,7 @@ class UsersController < Devise::RegistrationsController
   end
   
   def check_email
-  @user = User.find_by_email(params[:user][:email])
+  @user = User.find_by_email(params[:emailaddress])
    
   respond_to do |format|
   format.json { render :json => !@user }
