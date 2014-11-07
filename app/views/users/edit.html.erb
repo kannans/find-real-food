@@ -46,7 +46,7 @@
                                <div   class="cus_select_rslt">
                                <span></span>
                                 <select class="custom_select" name="user[state]" >
-                                    <option value="Select Category" selected>Select State</option>
+                                    <option value="0" selected>Select State</option>
                                     <% get_state_list.each do |state| %> 
                                     <option value="<%= state.name %>"><%= state.name %></option>
                                     <% end %>

@@ -20,13 +20,13 @@ def more_details
       zip = '94123'
       session[:zip] = zip
     end
-    @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
 
 	@product = Product.find(params[:slug])
 	if @location
-		@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder() 
+		@similar_product  = Product.search_products(@location).categoryfilter(@product.category_id).sortorder().first(20)
     else
-    	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder() 
+    	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder().first(20)
     end
 	@locations = Location.near("#{zip}", 20)
 
