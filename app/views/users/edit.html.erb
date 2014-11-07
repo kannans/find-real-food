@@ -63,6 +63,9 @@
                                     <li class="file_btn"><a href="javascript:;">Browse</a></li>
                                 </ul>
                                 <div class="clear"></div>
+                                  <% if @user.avatar_file_name!='' %>
+                                 <%= image_tag (@user.avatar.url) %>
+                                <% end %>
                             </div>
                         </div>
                         <div class="field">
@@ -74,13 +77,16 @@
                                     <li class="file_btn"><a href="javascript:;">Browse</a></li>
                                 </ul>
                                 <div class="clear"></div>
+                                <% if @user.cover_photo_file_name!='' %>
+                                 <%= image_tag (@user.cover_photo.url) %>
+                                <% end %>
                             </div>
                         </div>
                          
                         <div class="field">
                             <label class="empty">&nbsp;</label>
                             <div class="form_control">
-                                <input type="submit" value="Update"/>
+                                <input type="submit" value="Update"/>  <input class="cancelbut" type="button" value="Cancel" />
                             </div>
                         </div>
                     <% end %>
@@ -97,7 +103,9 @@
 
 $(document).ready(function(){
         
- 
+                $(".cancelbut").click(function(){
+                    window.location = '/user/profile'
+                })
                 
                 //Start Register
                 $("#user_edit_form").validate({
