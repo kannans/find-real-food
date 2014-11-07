@@ -3,9 +3,9 @@ class LocationsController < ApplicationController
   	@location = Location.find(params[:slug])
     
   	if @location !=''
-		  @products = Product.sort_by_rating(@location.id,'')
+		  @products = Product.search_products(@location.id).sortorder().first(20)
 	else
-		  @products = Product.sort_by_rating()
+		  @products = Product.search_products().sortorder().first(20)
 	end
 	#@productsall = Product.sort_by_rating()
   @brands = Brand.search_by_locations_and_name(@location.id,'')

@@ -14,19 +14,27 @@ class HomeController < ApplicationController
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     
     if @location !=''
-	  @products = Product.sort_by_rating('',search)
-    @products_locations = Product.sort_by_rating(@location,search).collect{|c| c.location_id}.join(',')
+	  @products =  Product.search_products().sortorder().first(20)
+    @products_locations = Product.search_products(@location).sortorder().collect{|c| c.location_id}.join(',')
     if @products_locations!=''
     @locations = Location.where("id in (#{@products_locations})")
     end
     else
     @locations = Location.near("#{zip}", 20)
-    @products = Product.sort_by_rating('',search)
+    @products = Product.search_products().sortorder().first(20)
     end
 
    	@sliders = Slider.all
    	
     
+  end
+
+  def self.numofrows
+     if session.session_id
+     return 20 
+    else
+      return 2
+    end
   end
 
   def map
