@@ -45,7 +45,7 @@ class Brand < ActiveRecord::Base
 
   belongs_to :user
 
-  #default_scope order('brands.name ASC')
+  default_scope order('brands.name ASC')
   scope :approved, where(:approved => true)
 
   before_post_process :skip_check
@@ -72,7 +72,10 @@ class Brand < ActiveRecord::Base
   def selected_parents
     self.locations.where("parent_id is null").pluck(:id)
   end
-
+  
+  def self.search_brands(locations='')
+    self.unscoped.brand_search(locations)
+  end
 
   def self.search_by_locations_and_name(locations='', search='', sold='')
     
@@ -89,7 +92,7 @@ class Brand < ActiveRecord::Base
    elsif sold =='store'
     self.unscoped.brand_search(locations)
         .order("brands.name asc")
-        .where(store_farmers_market: 1) 
+        .where(third_party_available: 1) 
          .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
    elsif sold =='all'
     self.unscoped.brand_search(locations)
@@ -102,7 +105,28 @@ class Brand < ActiveRecord::Base
          .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
     end
   end
+  
+  def self.availabilityfilter(sold='')
+      if sold =='store'
+        where("brands.third_party_available = '1'")
+      elsif sold =='phone'
+        where("brands.order_by_phone = '1'")
+      elsif sold=='online'
+         where("brands.order_by_online = '1'")
+      elsif sold =='all'
+        where("brands.order_by_online = '1' and brands.order_by_phone = '1' and brands.third_party_available = '1'")
+      else
+        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.third_party_available = '1'")
+      end
+  end
 
+  def self.searchtext(search='')
+      if search
+        find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"])
+      else
+        find(:all)
+      end
+  end
   
   private
     def skip_check

@@ -4967,3 +4967,7 @@ top: 12px;
 {
 cursor:pointer;
 }
+.userprofile_page .banner_logo
+{
+	overflow: hidden;
+}

@@ -15,6 +15,7 @@ class HomeController < ApplicationController
     
     if @location !=''
 	  @products =  Product.search_products().sortorder().first(20)
+
     @products_locations = Product.search_products(@location).sortorder().collect{|c| c.location_id}.join(',')
     if @products_locations!=''
     @locations = Location.where("id in (#{@products_locations})")
@@ -28,17 +29,12 @@ class HomeController < ApplicationController
    	
     
   end
-
-  def self.numofrows
-     if session.session_id
-     return 20 
-    else
-      return 2
-    end
-  end
+ 
 
   def map
     location = params[:location]
-    @locations = Location.where("id in (#{location})")
+    if location!=''
+      @locations = Location.where("id in (#{location})")
+    end
   end
 end

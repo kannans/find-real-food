@@ -14,13 +14,11 @@ class BrandsController < ApplicationController
       zip = '94123'
       session[:zip] = zip
     end
-
     
-    search = ''
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
     if @location !=''
-    @products = Product.search_products().brandfilter(@brand.id).sortorder().first(20)
+    @products = Product.search_products(@location).brandfilter(@brand.id).sortorder().first(20)
     @products_locations = Product.search_products(@location).brandfilter(@brand.id).collect{|c| c.location_id}.join(',')
     if @products_locations!=''
     @locations = Location.where("id in (#{@products_locations})")
