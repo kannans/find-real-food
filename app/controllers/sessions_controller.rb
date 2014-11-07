@@ -38,8 +38,7 @@ def create
     return invalid_login_attempt unless valid_login
 
     sign_in(:user, resource)
-
-    redirect_to "/user/profile"
+    respond_with resource, location: after_sign_in_path_for(resource)
   end
 
   def invalid_login_attempt
