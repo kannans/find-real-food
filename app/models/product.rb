@@ -171,14 +171,15 @@ class Product < ActiveRecord::Base
     end
    
    def self.sortorder(sort='')
-       if sort=='rating'
-          order("avg_rating desc")
-         .order("quality_order asc")  
-         .order("products.name asc")
-      else
+      
+      if sort=='alphabetical' || sort =='alphabetical'
           order("products.name asc")
          .order("avg_rating desc")
+         .order("quality_order asc") 
+      else
+         order("avg_rating desc")
          .order("quality_order asc")  
+         .order("products.name asc") 
       end
     end
 
