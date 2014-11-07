@@ -3,10 +3,10 @@
             <div class="inner_banner userprofile_page">
               <div class="container">
                   <a href="javascript:;" class="banner_logo">
-                    <% unless @user.avatar_file_name%>
+                    <% unless @user.cover_photo_file_name%>
                         <img src="/assets/header_user_default.png" alt="User Name"/>
                     <% else %>
-                        <%= image_tag (@user.avatar.url) %>
+                        <%= image_tag (@user.cover_photo.url) %>
                     <% end %>
                   </a>
 
