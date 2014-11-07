@@ -35,7 +35,7 @@
                                                             <p class="media_title">
                                                                 <a href="/product/<%= product.slug %>"><%= product.name %></a></p>
                                                             <% branddetails = get_brand_details(product.brand_id) %>
-                                                 <% if branddetails.slug %>
+                                                 <% if branddetails.slug!='' %>
                                                 <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
                                                   <% else %>
                                                   <p class="media_sub_title"><a href="javascript:void(0);"> <%= branddetails.name %></a></p>

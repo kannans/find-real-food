@@ -24,9 +24,9 @@ def more_details
 
 	@product = Product.find(params[:slug])
 	if @location
-		@similar_product  = Product.sort_by_rating(@location, @product.category_id) 
+		@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder() 
     else
-    	@similar_product  = Product.sort_by_rating('', @product.category_id) 
+    	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder() 
     end
 	@locations = Location.near("#{zip}", 20)
 

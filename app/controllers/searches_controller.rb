@@ -19,17 +19,18 @@ class SearchesController < ApplicationController
     sort = params[:sort]
     sold = params[:sold]
     rank = params[:rank]
+    category = params[:category]
 
     if @location !=''
-      @products = Product.sort_by_rating('', search, '','',sort)
+      @products = Product.search_products().categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).first(20)
       @brands = Brand.search_by_locations_and_name('', search, sold)
-      @products_locations = Product.sort_by_rating(@location, search, '','',sort).collect{|c| c.location_id}.join(',')
+      @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
       if @products_locations!=''
       @locations = Location.where("id in (#{@products_locations})")
       end
     else
       @locations = Location.near("#{zip}", 20)
-      @products = Product.sort_by_rating('', search, '','',sort)
+      @products = Product.search_products().categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).first(20)
       @brands = Brand.search_by_locations_and_name('', search, sold)
     end
     respond_to do |format|

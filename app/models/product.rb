@@ -39,6 +39,7 @@ class Product < ActiveRecord::Base
 
   #default_scope order('products.name ASC')
   scope :approved, where(:approved => true)
+   
 
   delegate :name,  :to => :brand,    :prefix => :brand
   delegate :title, :to => :category, :prefix => :category
@@ -101,63 +102,20 @@ class Product < ActiveRecord::Base
               .order("products.name asc")
               .find(:all, :limit => 20)
   end
-
+  
+  def self.search_products(location='')
+    self.unscoped.quality_rating_search(location)
+  end
   def self.sort_by_rating(location='',search='', category='', brand='', sort='')
     
-      if category !=''
-        if search !=''
-            if sort =='proximity' || sort =='alphabetical'
-              self.unscoped.quality_rating_search(location).where(category_id: category)
-              .order("products.name asc")
-              .order("avg_rating desc")
-              .order("quality_order asc")              
-              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
-            else
-              self.unscoped.quality_rating_search(location).where(category_id: category)
-              .order("avg_rating desc")
-              .order("quality_order asc")
-              .order("products.name asc")
-              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
-            end
-
-         else
-          self.unscoped.quality_rating_search(location).where(category_id: category)
-        .order("avg_rating desc")
-        .order("quality_order asc")
-        .order("products.name asc")
-        .find(:all, :conditions => ['products.name IS NOT NULL'], :limit => 20)
-         end 
-      elsif brand !=''
-      self.unscoped.quality_rating_search(location).where(brand_id: brand.id)
-        .order("avg_rating desc")
-        .order("quality_order asc")
-        .order("products.name asc")
-        .find(:all, :conditions => ["products.name IS NOT NULL"], :limit => 20)
-      else
-        if search !=''
-            if sort =='proximity' || sort =='alphabetical'
-              self.unscoped.quality_rating_search(location)
-              .order("products.name asc")
-              .order("avg_rating desc")
-              .order("quality_order asc")
-              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
-            else
-              self.unscoped.quality_rating_search(location)
-              .order("avg_rating desc")
-              .order("quality_order asc")
-              .order("products.name asc")
-              .find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"], :limit => 20)
-            end 
-        else
-         self.unscoped.quality_rating_search(location)
-        .order("avg_rating desc")
-        .order("quality_order asc")
-        .order("products.name asc")
-        .find(:all, :conditions => ['products.name IS NOT NULL'], :limit => 20) 
-        end
-      end
-    
+          self.unscoped.quality_rating_search(location)
+          .categoryfilter(category)
+          .brandfilter(brand)
+          .searchtext(search)
+          .first(20)
+       
   end
+  
   
   
 
@@ -171,6 +129,7 @@ class Product < ActiveRecord::Base
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
           .joins("LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id")
+          .joins("LEFT OUTER JOIN brands ON brands.id = products.brand_id")
           .group("products.id")
           .select("products.*,
                 CASE quality_ratings.name
@@ -184,6 +143,7 @@ class Product < ActiveRecord::Base
 
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
+          .joins("LEFT OUTER JOIN brands ON brands.id = products.brand_id")
           .group("products.id")
           .select("products.*,
                 CASE quality_ratings.name
@@ -198,6 +158,65 @@ class Product < ActiveRecord::Base
 
     def skip_check
       return false if self.skip_processing
+    end
+    
+
+
+    def self.searchtext(search='')
+      if search
+        find(:all, :conditions => ['products.name LIKE ?', "%#{search}%"])
+      else
+        find(:all)
+      end
+    end
+   
+   def self.sortorder(sort='')
+      
+      if sort=='alphabetical' || sort =='alphabetical'
+          order("products.name asc")
+         .order("avg_rating desc")
+         .order("quality_order asc") 
+      else
+         order("avg_rating desc")
+         .order("quality_order asc")  
+         .order("products.name asc") 
+      end
+    end
+
+    def self.categoryfilter(category_id)
+     if category_id.to_i > 0
+        where category_id: category_id 
+      else
+        where("products.name IS NOT NULL")
+      end
+    end
+    
+    def self.brandfilter(brand_id)
+      if brand_id.to_i > 0
+        where brand_id: brand_id 
+      else
+        where("products.name IS NOT NULL")
+      end
+    end
+    
+    def self.qualityfilter(rank='')
+      if rank =='good' || rank =='best' 
+      where("quality_ratings.name = '#{rank}'")
+      else
+      where("quality_ratings.name = 'good' || quality_ratings.name = 'best'")
+      end
+    end
+
+    def self.availabilityfilter(sold='')
+      if sold =='store'
+        where("brands.third_party_available = '1'")
+      elsif sold =='phone'
+        where("brands.order_by_phone = '1'")
+      elsif sold=='online'
+         where("brands.order_by_online = '1'")
+      else
+        where("brands.order_by_online = '1' and brands.order_by_phone = '1' and brands.third_party_available = '1'")
+      end
     end
 
     def process_parent_ids

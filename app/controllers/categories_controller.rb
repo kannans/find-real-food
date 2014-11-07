@@ -24,17 +24,17 @@ class CategoriesController < ApplicationController
 	    
 
 	    if @location !=''
-		  @products = Product.sort_by_rating('',search,@category.id)
-		  @products_locations = Product.sort_by_rating(@location,search,@category.id).collect{|c| c.location_id}.join(',')
-		  @brand_ids = Product.sort_by_rating('',search,@category.id).collect{|b| b.brand_id}.join(',')
+		  @products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+		  @products_locations =  Product.search_products(@location).categoryfilter(@category.id).collect{|c| c.location_id}.join(',')
+		  @brand_ids =  Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
 		  @brands = Brand.where("id in (#{@brand_ids})") 
 		  if @products_locations!=''
 	      	@locations = Location.where("id in (#{@products_locations})") 
 	  	  end
 	    else
 	   	  @locations = Location.near("#{zip}", 20)
-	   	  @products = Product.sort_by_rating('',search,@category.id)
-	   	  @brand_ids = Product.sort_by_rating('',search,@category.id).collect{|b| b.brand_id}.join(',')
+	   	  @products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+	   	  @brand_ids = Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
 		  @brands = Brand.where("id in (#{@brand_ids})") 
 	    end
 

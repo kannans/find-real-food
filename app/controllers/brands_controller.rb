@@ -20,8 +20,8 @@ class BrandsController < ApplicationController
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
     if @location !=''
-    @products = Product.sort_by_rating(@location,search,'',@brand)
-    @products_locations = Product.sort_by_rating(@location,search,'',@brand).collect{|c| c.location_id}.join(',')
+    @products = Product.search_products().brandfilter(@brand.id).sortorder().first(20)
+    @products_locations = Product.search_products(@location).brandfilter(@brand.id).collect{|c| c.location_id}.join(',')
     if @products_locations!=''
     @locations = Location.where("id in (#{@products_locations})")
     end
@@ -30,8 +30,7 @@ class BrandsController < ApplicationController
     end
 
 
-	  @productsall = Product.sort_by_rating('',search,'',@brand)
-    
+	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().first(20)
 
     else
       redirect_to "/login"

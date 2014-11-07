@@ -53,7 +53,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
   <% if user_signed_in? %>
   <% else %>
-<div class="notification">please create an account to continue. Free for a limited time! <span class="notclose">X</span></div>
+<div class="notification">Please create an account to continue. Free for a limited time! <span class="notclose">X</span></div>
 <% end %>
     <header>
         <nav>
@@ -209,7 +209,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-        
+ <% if user_signed_in? %>
+ <% else %>        
   var notheight=$('.notification').height()+24;
 $('header').animate({"margin-top":notheight+"px"})
 $('.notclose').click(function() {
@@ -217,7 +218,7 @@ $('.notclose').click(function() {
 $('.notification').animate({"margin-top":"-"+notheight+"px"}).fadeOut(300);
 $('header').animate({"margin-top":0})
 });
-
+<% end %>
  $('.ajaxcall, .checks input').click(function(){
 
    search_products();
@@ -254,38 +255,34 @@ $('header').animate({"margin-top":0})
   <% else %>
   var category = ''; 
   <% end  %>
+  
    if($('#proximity').is(":checked")){
     sort = $('#proximity').val();
-   }
-   if($('#alphabetical').is(":checked")){
+   }else if($('#alphabetical').is(":checked")){
      sort = $('#alphabetical').val();
-   }
-   if($('#rating').is(":checked")){
+   }else if($('#rating').is(":checked")){
        sort = $('#rating').val();
    }
 
    if($('#best').is(":checked")){
+    
        rank = $('#best').val();
-   }
-
-   if($('#good').is(":checked")){
+   }else if($('#good').is(":checked")){
+    
        rank = $('#good').val();
-   }
-   if($('#all').is(":checked")){
+   }else if($('#all').is(":checked")){
+    
        rank = $('#all').val();
    }
-
+   
+   
    if($('#phone').is(":checked")){
        sold = $('#phone').val();
-   }
-
-   if($('#online').is(":checked")){
+   }else if($('#online').is(":checked")){
        sold = $('#online').val();
-   }
-   if($('#store').is(":checked")){
+   }else if($('#store').is(":checked")){
        sold = $('#store').val();
-   }
-   if($('#all').is(":checked")){
+   }else if($('#all').is(":checked")){
        sold = $('#all').val();
    }
 

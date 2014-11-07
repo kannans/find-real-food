@@ -12,8 +12,13 @@ class ApplicationController < ActionController::Base
     #abort(URI(request.referer).path)
      
   #end
-
+  
+  def user_is_logged_in?
+    !!session[:user_id]
+  end
+  
   def after_sign_in_path_for resource
+    
   	signed_in_root_path(resource)
   
   end
