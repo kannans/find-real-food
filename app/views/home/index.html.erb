@@ -6,9 +6,11 @@
                <ul class="slider">
                      <% @sliders.each do |slider| %> 
                     <li>
-                    
-                      <a href="<%= slider.url%>">   <%= image_tag(slider.picture(:original), :alt => "Banner") %></a>
-                       
+                    <% if slider.url %>
+                      <a href="<%= slider.url %>" target="_blank">   <%= image_tag(slider.picture(:original), :alt => "Banner") %></a>
+                     <% else %>  
+                      <%= image_tag(slider.picture(:original), :alt => "Banner") %>
+                     <% end %>
                         <div class="caption_part">
                             <div class="container">
                                <% if slider.slider_text !='' %>  <h4><%= slider.slider_text%></h4>
