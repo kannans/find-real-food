@@ -10,6 +10,7 @@ before_filter :store_location
     # store last url - this is needed for post-login redirect to whatever the user last visited.
     return unless request.get? 
     if (request.path != "/login" &&
+        request.path != "/users/auth/facebook/callback" &&
         request.path != "/users/sign_in" &&
         request.path != "/users/sign_up" &&
         request.path != "/users/password/new" &&
