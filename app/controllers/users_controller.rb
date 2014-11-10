@@ -98,7 +98,7 @@ class UsersController < Devise::RegistrationsController
       # current_user.cover_photo = RealFood::ImageDecoder.decode_jpg(cover_photo_data) if cover_photo_data
       current_user.update_attributes!(params[:user])
       flash[:success] = "Profile Details has been updated Successfully"
-  	  redirect_to "/user/edit"
+  	  redirect_to "/user/profile"
     rescue Exception => e
        flash[:notice] = e.message
   	   redirect_to "/user/edit"
