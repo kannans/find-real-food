@@ -274,7 +274,7 @@ $(document).ready(function(){
        sold = $('#all').val();
    }
 
-    $.get("/search", { search: $("#search_field_new").val(),sort:sort,category:category, rank:rank, sold:sold }, null, "script");
+    $.get("/search", { search: $("#search_field").val(),sort:sort,category:category, rank:rank, sold:sold }, null, "script");
     return false;
 
 
