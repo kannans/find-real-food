@@ -24,7 +24,11 @@ class CategoriesController < ApplicationController
 	    
 
 	    if @location !=''
-		  @products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+	    	if user_signed_in?
+		  		@products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+		  	else
+		  		@products = Product.search_products().categoryfilter(@category.id).sortorder().first(12)
+		  	end
 		  @products_locations =  Product.search_products(@location).categoryfilter(@category.id).collect{|c| c.location_id}.join(',')
 		  @brand_ids =  Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
 		  @brands = Brand.where("id in (#{@brand_ids})") 
@@ -33,7 +37,11 @@ class CategoriesController < ApplicationController
 	  	  end
 	    else
 	   	  @locations = Location.near("#{zip}", 20)
-	   	  @products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+	   	  if user_signed_in?
+	   	  	@products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+	   	  else
+	   	  	@products = Product.search_products().categoryfilter(@category.id).sortorder().first(12)
+	   	  end
 	   	  @brand_ids = Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
 		  @brands = Brand.where("id in (#{@brand_ids})") 
 	    end
