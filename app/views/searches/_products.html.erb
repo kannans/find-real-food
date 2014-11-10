@@ -165,7 +165,7 @@
                               
                         </div>
                     </div>
-
+                    <% if @location!='' %>
                      <%= form_tag("/map", :method => "post", :class => "map") do %>
                       <div class="map_button fr hide_for_mobile with_tab">
                                 <input name="location" value="<%= @location %>" type="hidden" />
@@ -180,7 +180,7 @@
                                  <input type="submit" value="Full Screen Map">
                             </div>
                             <% end %> 
-                                        
+                                        <% end %>
                              <div class="home_right modified fr">
                                         <div class="home_right_container">
                                             <div class="map_area">

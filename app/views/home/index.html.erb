@@ -38,14 +38,14 @@
                     <a href="/categories" class="button hide_for_desktop fr">browse all categories</a>
                     <div class="home_body">
                         
-
+                        <% if @location!='' %>
                         <%= form_tag("/map", :method => "post", :class => "map") do %>
                         <div class="map_button fr hide_for_mobile">
                                 <input name="location" value="<%= @location %>" type="hidden" />
                                  <input type="submit" value="Full Screen Map">
                             </div>
                             <% end %> 
-
+                            <% end %>
                         <div class="clear"></div>
                         <div class="home_left fl">
                             <% if @products %>
