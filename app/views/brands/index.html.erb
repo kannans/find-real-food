@@ -16,9 +16,12 @@
                     	<div class="left">
                             <h1><%= @brand.name%></h1>
                             <%
+                          if @brand.website!=''
                             @brand.website = "http://#{@brand.website}" unless @brand.website[/^https?/]    
+                          end
+                          if @brand.store_locator_url!=''
                             @brand.store_locator_url = "http://#{@brand.store_locator_url}" unless @brand.store_locator_url[/^https?/]    
-                            
+                          end
                             %>
                             <p><a href="javascript:;"><%= number_to_phone(@brand.phone, area_code: true)     %></a>   -   <a href="<%= @brand.website %>" target="_blank"><%= @brand.website %></a></p>
  							                <ul>

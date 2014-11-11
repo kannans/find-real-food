@@ -4980,3 +4980,31 @@ cursor:pointer;
 	line-height: 30px;
 	margin-left: 15px;
 }
+ 
+.light_pop_trigger.editicon{
+	 background: url(/assets/edit.png) no-repeat;
+	 width: 20px;
+	 height: 20px;
+	 display: inline-block;
+	 vertical-align: middle;
+}
+.starOn{
+    background: url(/assets/staron.png) no-repeat;
+    
+}
+
+.starOff{
+    background: url(/assets/staroff.png) no-repeat;
+}
+
+.starOnHover{
+     background: url(/assets/staron.png) no-repeat;
+}
+
+.starOffHover{
+     background: url(/assets/staroff.png) no-repeat;
+
+}
+.divClass{
+    margin:auto;
+}

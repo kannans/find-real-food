@@ -1,42 +1,5 @@
  <script type="text/javascript" src="/assets/jquery.webRating.js"></script>
- <style>
- .starOn{
-    background: rgb(254,252,234);
-    background: -moz-linear-gradient(top,  rgba(254,252,234,1) 0%, rgba(241,218,54,1) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,252,234,1)), color-stop(100%,rgba(241,218,54,1)));
-    background: -webkit-linear-gradient(top,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
-    background: -o-linear-gradient(top,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
-    background: -ms-linear-gradient(top,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
-    background: linear-gradient(to bottom,  rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 );
-}
-
-.starOff{
-    background: rgb(206,220,231);
-    background: -moz-linear-gradient(top,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1)));
-    background: -webkit-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
-    background: -o-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
-    background: -ms-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
-    background: linear-gradient(to bottom,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 );
-}
-
-.starOnHover{
-    background: rgb(213,206,166);
-    background: -moz-linear-gradient(top,  rgba(213,206,166,1) 0%, rgba(201,193,144,1) 23%, rgba(183,173,112,1) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(213,206,166,1)), color-stop(23%,rgba(201,193,144,1)), color-stop(100%,rgba(183,173,112,1)));
-    background: -webkit-linear-gradient(top,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
-    background: -o-linear-gradient(top,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
-    background: -ms-linear-gradient(top,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
-    background: linear-gradient(to bottom,  rgba(213,206,166,1) 0%,rgba(201,193,144,1) 23%,rgba(183,173,112,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5cea6', endColorstr='#b7ad70',GradientType=0 );
-}
-
-.starOffHover{
-    background-color:#C03;
-}
- </style>
+ 
  <section>
         <div class="main_container">
             <div class="product_detail_container">
@@ -48,8 +11,12 @@
                                  
                                      <% branddetails = get_brand_details(@product.brand_id) %>
                                      <%
-                                        branddetails.website = "http://#{branddetails.website}" unless branddetails.website[/^https?/]    
+                                       if branddetails.website !=''
+                                        branddetails.website = "http://#{branddetails.website}" unless branddetails.website[/^https?/]
+                                        end    
+                                        if branddetails.store_locator_url !=''
                                         branddetails.store_locator_url = "http://#{branddetails.store_locator_url}" unless branddetails.store_locator_url[/^https?/]
+                                        end
                                     %>
 
                                     <% if @product.picture.present? %>

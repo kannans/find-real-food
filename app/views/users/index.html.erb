@@ -12,7 +12,7 @@
 
                     <div class="userprofile_details">
                       <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.capitalize %><% end %> <% if @user.name %><%= @user.name.capitalize %><% end %><span>
-                        <% if @user.city %>,<%= @user.city %><% end %> <% if @user.state.to_i !=0 %>,<%= @user.state.capitalize %><% end %></span></h1>
+                        <% if @user.city %>, <%= @user.city %><% end %> <% if @user.state.to_s !='0' %>, <%= @user.state.capitalize %><% end %></span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
                         <div class="clear"></div>
                         <% if @user.bio !='' %>
                         <p class="user_pr_desc"><%= @user.bio %></p>
@@ -152,3 +152,138 @@
             <div class="clear"></div>
         </div>
     </section>
+
+    <div class="light_popup" id="editprofile">
+    <div class="light_pop_container">
+        <span class="pop_close"></span>
+        <div class="light_pop_body">
+            <div class="register_popup">
+                <h1 class="login_title"><span>Edit Profile</span></h1>
+                <p class="fr"><span class="required">*</span> Indicates required field</p>
+                <div class="clear"></div>
+                <div class="popup_form">
+                   <% if flash[:notice] %>  <p class="cmmn_error"><%= flash[:notice] %></p> <% end %>
+                          <% if flash[:success] %>  <p class="cmmn_success"><%= flash[:success] %></p> <% end %>
+                    <%= form_for(:user, url: "/users/update", :html =>{:id => "user_edit_form", :autocomplete=>"off", :multipart => true}) do |f| %>
+                        <div class="field">
+                            <label>First Name:<span class="required">*</span></label>
+                            <div class="form_control">
+                                <%= f.text_field :fname %>
+
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Last Name:<span class="required">*</span></label>
+                            <div class="form_control">
+                               <%= f.text_field :name %>
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <label>Bio:<span class="required">*</span></label>
+                            <div class="form_control">
+                                <%= text_area(:user, :bio, size: "20x6") %>
+                            </div>
+                        </div>
+                      
+                         
+                        <div class="field">
+                            <label>City:</label>
+                            <div class="form_control">
+                              <%= f.text_field :city %>
+                            </div>
+                        </div>
+                        
+                        <div class="field">
+                            <label>State:</label>
+                            <div class="form_control">
+                               <div   class="cus_select_rslt">
+                               <span></span>
+                                <select class="custom_select" name="user[state]" >
+                                    <option value="0" selected>Select State</option>
+                                    <% get_state_list.each do |state| %> 
+                                    <option value="<%= state.name %>"><%= state.name %></option>
+                                    <% end %>
+                                </select>
+                               </div> 
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Profile Picture:</label>
+                            <div class="form_control">
+                                <input type="file" name="user[avatar]" class="photo">
+                                <ul class="file_dup">
+                                    <li class="file_result">No file selected.</li>
+                                    <li class="file_btn"><a href="javascript:;">Browse</a></li>
+                                </ul>
+                                <div class="clear"></div>
+                                  <% if @user.avatar_file_name!='' %>
+                                 <%= image_tag (@user.avatar.url) %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Cover Photo:</label>
+                            <div class="form_control">
+                                <input type="file" name="user[cover_photo]" class="photo">
+                                <ul class="file_dup">
+                                    <li class="file_result">No file selected.</li>
+                                    <li class="file_btn"><a href="javascript:;">Browse</a></li>
+                                </ul>
+                                <div class="clear"></div>
+                                <% if @user.cover_photo_file_name!='' %>
+                                 <%= image_tag (@user.cover_photo.url) %>
+                                <% end %>
+                            </div>
+                        </div>
+                         
+                        <div class="field">
+                            <label class="empty">&nbsp;</label>
+                            <div class="form_control">
+                                <input type="submit" value="Update"/>  <input class="cancelbut" type="button" value="Cancel" />
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <script type="text/javascript">
+
+$(document).ready(function(){
+        
+                $(".cancelbut").click(function(){
+                    window.location = '/user/profile'
+                })
+                
+                //Start Register
+                $("#user_edit_form").validate({
+                  debug: true,
+                    rules: {
+                        "user[fname]": "required",
+                        "user[name]": "required",
+                        "user[email]":{
+                            required: true,
+                            email: true 
+                        }
+                          
+                        
+                    },
+                    messages: {
+                        "user[fname]": "First Name is Required",
+                        "user[name]": "Last Name is Required",
+                         "user[email]":{
+                            required: "Email Address is Required",
+                            email: "Invalid Email Address"  
+                        }
+                    },submitHandler : function(form) {
+                     if ($(form).valid()){ form.submit(); return false; // prevent normal form posting
+                     }
+                  }
+                });
+ 
+});
+    
+
+</script>

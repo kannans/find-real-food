@@ -9,6 +9,12 @@
                                             <%= image_tag("location_logo.png", :alt => "star") %>
                                             <% end %>
                     </a>
+                    <%
+                        if @location.website!=''
+                          @location.website = "http://#{@location.website}" unless @location.website[/^https?/]    
+                        end
+                                
+                    %>
                     <div class="locations_options">
                     	<ul>
                         	<li>
