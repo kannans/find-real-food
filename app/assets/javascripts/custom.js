@@ -1,10 +1,5 @@
 $(document).ready(function() {
-     $('.slider').bxSlider({
-			  pager:false,
-			  auto:true,
-			  pause: 5000,
-			  speed:1000
-		});
+      
 		  var hfrheight=$('.caption_part h4').height();
 		  var hfoheight=$('.caption_part h1').height();
 		  var pheight=$('.caption_part p').height();

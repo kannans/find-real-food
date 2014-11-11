@@ -4975,3 +4975,8 @@ cursor:pointer;
 	padding:10px;
 	color:#000 !important;
 }
+.notifiy_signup.button {
+	height:30px;
+	line-height: 30px;
+	margin-left: 15px;
+}

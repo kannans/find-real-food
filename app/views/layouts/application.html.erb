@@ -51,7 +51,10 @@
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1601901470036363&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-  
+<% if user_signed_in? %>
+ <% else %>
+<div class="notification">Create an account free for a limited time to browse the entire database of brands and products approved by the Weston A. Price Foundation! <a class="notifiy_signup button" href="/register">Sign Up</a><span class="notclose">X</span></div>
+<% end %>
     <header>
         <nav>
             <div class="container">
@@ -207,6 +210,17 @@
 
 $(document).ready(function(){
   
+  <% if user_signed_in? %>
+ <% else %>
+ var notheight=$('.notification').height()+24;
+$('header').animate({"margin-top":notheight+"px"})
+$('.notclose').click(function() {
+
+$('.notification').animate({"margin-top":"-"+notheight+"px"}).fadeOut(300);
+$('header').animate({"margin-top":0})
+});
+<% end %>
+
  $('.ajaxcall, .checks input').click(function(){
 
    search_products();
