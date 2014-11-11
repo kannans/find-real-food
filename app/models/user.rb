@@ -135,7 +135,7 @@ class User < ActiveRecord::Base
           provider:auth.provider,
           uid:auth.uid,
         })
-        save_avatar user, auth unless user.avatar_file_name
+        save_avatar registered_user, auth unless registered_user.avatar_file_name
         return registered_user
       else
 
