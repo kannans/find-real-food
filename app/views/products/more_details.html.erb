@@ -49,6 +49,7 @@
                                      <% branddetails = get_brand_details(@product.brand_id) %>
                                      <%
                                         branddetails.website = "http://#{branddetails.website}" unless branddetails.website[/^https?/]    
+                                        branddetails.store_locator_url = "http://#{branddetails.store_locator_url}" unless branddetails.store_locator_url[/^https?/]
                                     %>
 
                                     <% if @product.picture.present? %>
