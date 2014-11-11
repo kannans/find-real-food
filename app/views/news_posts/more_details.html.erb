@@ -25,7 +25,7 @@
                             <h2 class="news_title"><%= @newspost.title %></h2>
                             
                             <p class="news_detail_authr"><em><%= @newspost.created_at.strftime '%b %d, %Y' %> by <%= @newspost.author %></em></p>
-                            <%= @newspost.body %>
+                            <%= raw(@newspost.body) %>
                             <br />
                             <!--<div class="share_part">
                                 <div class="share_red"><span>Share:</span> <a href="javascript:;" class="mail_share"></a><a href="javascript:;" class="facebook_share"></a></div>

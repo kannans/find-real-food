@@ -47,6 +47,10 @@
                             <div class="product_img">
                                  
                                      <% branddetails = get_brand_details(@product.brand_id) %>
+                                     <%
+                                        branddetails.website = "http://#{branddetails.website}" unless branddetails.website[/^https?/]    
+                                    %>
+
                                     <% if @product.picture.present? %>
                                            <%= image_tag (@product.picture(:small)) %>
                                             <% else %>
@@ -54,7 +58,7 @@
                                             <% end %>
                                 <div class="wapf_rating"><p>WAPF Rating <span class="wapf_rating_detail fr"><%= @product.quality %></span></p></div>
                                  
-                <div class="detail_rating">
+                                 <div class="detail_rating">
                                     <div>
                                         User’s Rating  
                                         <% if total_rating(@product.id) %>
