@@ -22,6 +22,8 @@ before_filter :store_location
     end
 
     session[:previous_url] = '/user/profile' if request.path == '/register'
+    session[:previous_url] = '/admin' if request.path == '/admin/login'
+    
     puts "+" * 100
     p session[:previous_url]
     puts "+" * 100
