@@ -3,4 +3,8 @@ class FaqController < ApplicationController
   	@faqs = Faq.all
 
   end
+
+  def updatedlocations
+  	@records = Location.where("latitude !=''")
+  end
 end

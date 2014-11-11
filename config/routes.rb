@@ -72,6 +72,8 @@ RealFood::Application.routes.draw do
     get 'faq', :to => 'faq#index'
     get 'contact-us', :to => 'page#contact'
     post 'page/contact'
+
+    get 'updated-locations', :to => 'faq#updatedlocations'
     
 
     # end K2B Routes Code
