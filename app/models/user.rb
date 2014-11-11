@@ -140,7 +140,8 @@ class User < ActiveRecord::Base
       else
 
         user_date = {
-          name:auth.extra.raw_info.name,
+          fname:auth.extra.raw_info.first_name,
+          name:auth.extra.raw_info.last_name,
           provider:auth.provider,
           uid:auth.uid,
           email:auth.info.email,
