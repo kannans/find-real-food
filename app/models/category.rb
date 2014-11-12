@@ -9,7 +9,7 @@ class Category < ActiveRecord::Base
   has_attached_file :picture,
     :styles => { :thumb => "239x240#", :small => "300x117#", :full => "640x250#" },
     :default_url => ""
-  default_scope order('title ASC')
+  default_scope order('sort ASC')
 
   api_accessible :category do |template|
     template.add :id
