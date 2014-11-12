@@ -18,25 +18,17 @@ class BrandsController < ApplicationController
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
     if @location !=''
-      if user_signed_in?
+      
       @products = Product.search_products(@location).brandfilter(@brand.id).sortorder().first(20)
-      else
-      @products = Product.search_products(@location).brandfilter(@brand.id).sortorder().first(12)  
+      @products_locations = Product.search_products(@location).brandfilter(@brand.id).collect{|c| c.location_id}.join(',')
+      if @products_locations!=''
+        @locations = Location.where("id in (#{@products_locations})")
       end
-    @products_locations = Product.search_products(@location).brandfilter(@brand.id).collect{|c| c.location_id}.join(',')
-    if @products_locations!=''
-    @locations = Location.where("id in (#{@products_locations})")
-    end
     else
-    @locations = Location.near("#{zip}", 20)
+      @locations = Location.near("#{zip}", 20)
     end
-
-   if user_signed_in?
 	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().first(20)
-   else
-    @productsall = Product.search_products().brandfilter(@brand.id).sortorder().first(12)
-   end
-
+   
     else
       redirect_to "/login"
     end

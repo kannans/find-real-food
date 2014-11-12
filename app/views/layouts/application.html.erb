@@ -229,9 +229,10 @@ $('header').animate({"margin-top":0})
   });
  
   $(".search_form_top").submit(function(){ 
-    if($(".search_field").val()==''){
+    if($(".search_field").val()=='' || $(".search_field").val().length < 3){
       $(".search_box, .search_box input").css("background","#f9d4d4"); 
       $(".search_box, .search_box input").css("color","#ff0000"); 
+      $(".search_field").focus();
       return false;
     }
   });

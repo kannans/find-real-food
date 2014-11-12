@@ -24,26 +24,19 @@ class CategoriesController < ApplicationController
 	    
 
 	    if @location !=''
-	    	if user_signed_in?
-		  		@products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
-		  	else
-		  		@products = Product.search_products().categoryfilter(@category.id).sortorder().first(12)
+	    	
+		  	@products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+		  	@products_locations =  Product.search_products(@location).categoryfilter(@category.id).collect{|c| c.location_id}.join(',')
+			@brand_ids =  Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
+			@brands = Brand.where("id in (#{@brand_ids})") 
+			if @products_locations!=''
+		       @locations = Location.where("id in (#{@products_locations})") 
 		  	end
-		  @products_locations =  Product.search_products(@location).categoryfilter(@category.id).collect{|c| c.location_id}.join(',')
-		  @brand_ids =  Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
-		  @brands = Brand.where("id in (#{@brand_ids})") 
-		  if @products_locations!=''
-	      	@locations = Location.where("id in (#{@products_locations})") 
-	  	  end
 	    else
-	   	  @locations = Location.near("#{zip}", 20)
-	   	  if user_signed_in?
-	   	  	@products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
-	   	  else
-	   	  	@products = Product.search_products().categoryfilter(@category.id).sortorder().first(12)
-	   	  end
-	   	  @brand_ids = Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
-		  @brands = Brand.where("id in (#{@brand_ids})") 
+		   	@locations = Location.near("#{zip}", 20)
+		   	@products = Product.search_products().categoryfilter(@category.id).sortorder().first(20)
+		   	@brand_ids = Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
+			@brands = Brand.where("id in (#{@brand_ids})") 
 	    end
 
 	   	@sliders = Slider.all

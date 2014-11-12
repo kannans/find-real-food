@@ -191,6 +191,14 @@ class Product < ActiveRecord::Base
       end
     end
     
+
+    def self.categorysearch(categories='')
+     if categories!=''
+        where("products.category_id in (#{categories})")
+     end
+    end
+
+
     def self.brandfilter(brand_id)
       if brand_id.to_i > 0
         where brand_id: brand_id 
