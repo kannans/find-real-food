@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
 
 	def index
 
-		@categories = Category.paginate(page: params[:page], per_page: 5).order('title DESC')
+		@categories = Category.paginate(page: params[:page], per_page: 5).order('sort ASC')
 
 	end
 
