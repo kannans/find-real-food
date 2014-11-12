@@ -16,10 +16,10 @@
                     	<div class="left">
                             <h1><%= @brand.name%></h1>
                             <%
-                          if @brand.website!=''
+                          if @brand.website
                             @brand.website = "http://#{@brand.website}" unless @brand.website[/^https?/]    
                           end
-                          if @brand.store_locator_url!=''
+                          if @brand.store_locator_url
                             @brand.store_locator_url = "http://#{@brand.store_locator_url}" unless @brand.store_locator_url[/^https?/]    
                           end
                             %>
@@ -33,7 +33,9 @@
                                <% else %>
                                <li class="byphone disabled"><a href="javascript:;">Order By Phone</a></li> 
                                <% end %>
-                               <% if @brand.store_locator_url !='' && @brand.third_party_available %> <li class="store"><a href="<%= @brand.store_locator_url %>" target="_blank">Sold by online retailer</a></li>
+                               <% if @brand.third_party_available %> 
+                               <% searchstring = @brand.name %>
+                               <li class="store"><a href="http://www.google.com/search?q=<%= searchstring.gsub(" ", "+") %>" target="_blank">Sold by online retailer</a></li>
                                <% else %>
                                 <li class="store disabled"><a href="javascript:;">Sold by online retailer</a></li>
                                <% end %>

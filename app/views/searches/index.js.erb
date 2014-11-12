@@ -5,7 +5,8 @@ $('.products').slimScroll({
           alwaysVisible: true,
           railVisible: true
       }).bind('slimscroll', function(e, pos){
-        console.log("Reached " + pos);
+                  
+         
         });
 $('.expand a').click(function(){
         $('.expand a').toggleClass('close');
@@ -14,6 +15,15 @@ $('.expand a').click(function(){
         $('.modified.home_right').toggleClass('nullwidth');
         $('.map_button.hide_for_mobile').toggleClass('expanded');
         $('.tab_container').toggleClass('fullwidth');
+        if($(this).attr('class')=='close'){
+          setCookie('opened','Yes');
+          
+         
+        }else{
+          setCookie('opened','No');  
+          
+        }
+
         }) 
 
 $('.media_text .location a').click(function(){
@@ -31,6 +41,8 @@ $('.etabs .tab a').click(function(evt){
 
 
   initialize();
+
+
   <% if @locations %>
       setTimeout(function(){ 
         <% @locations.each do |lrow| %>
@@ -110,3 +122,16 @@ $('.etabs .tab a').click(function(evt){
             }
         });
       }
+
+ $(document).ready(function(){
+              if(getCookie('opened')=='Yes'){
+                      
+                $('.expand a').toggleClass('close');
+                $('.modified.home_right').toggleClass('goback');
+                $('.prd_search .home_left').toggleClass('fullwidth');
+                $('.modified.home_right').toggleClass('nullwidth');
+                $('.map_button.hide_for_mobile').toggleClass('expanded');
+                $('.tab_container').toggleClass('fullwidth');
+                
+              }
+  });

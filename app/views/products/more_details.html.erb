@@ -11,10 +11,10 @@
                                  
                                      <% branddetails = get_brand_details(@product.brand_id) %>
                                      <%
-                                       if branddetails.website !=''
+                                       if branddetails.website
                                         branddetails.website = "http://#{branddetails.website}" unless branddetails.website[/^https?/]
                                         end    
-                                        if branddetails.store_locator_url !=''
+                                        if branddetails.store_locator_url
                                         branddetails.store_locator_url = "http://#{branddetails.store_locator_url}" unless branddetails.store_locator_url[/^https?/]
                                         end
                                     %>
@@ -95,9 +95,11 @@
                                 
                                 <% end %>
                                 
-                                <% if branddetails.store_locator_url!='' && branddetails.third_party_available %>
-                                <p class="ord_store"> <a target="_blank" href="<%= branddetails.store_locator_url %>">Sold by online retailer</a></p>
+                                <% if branddetails.third_party_available %>
+                                <% searchstring = branddetails.name %>
+                                <p class="ord_store"> <a target="_blank" href="http://www.google.com/search?q=<%= searchstring.gsub(" ", "+") %>">Sold by online retailer</a></p>
                                 <% else %>
+
                                 <p class="ord_store disabled"> <a href="javascript:;">Sold by online retailer</a></p>
                                 
                                 <% end %>

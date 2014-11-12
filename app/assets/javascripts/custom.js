@@ -1,5 +1,5 @@
 $(document).ready(function() {
-      
+         var expanded = false;
 		  var hfrheight=$('.caption_part h4').height();
 		  var hfoheight=$('.caption_part h1').height();
 		  var pheight=$('.caption_part p').height();
@@ -29,6 +29,8 @@ $(document).ready(function() {
 				$('.modified.home_right').toggleClass('nullwidth');
 				$('.map_button.hide_for_mobile').toggleClass('expanded');
 				$('.tab_container').toggleClass('fullwidth');
+				
+
 				})	  
 				  
 			  $('.etabs .tab a').click(function(evt){
