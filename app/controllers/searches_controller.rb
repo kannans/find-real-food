@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
     if @location !=''
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-        @cat_products = Product.search_products(@location).categorysearch(categories).first(20)
+        @cat_products = Product.search_products(@location).categorysearch(categories).sortorder().first(20)
         remaining = 20 - @cat_products.count
         @product_list = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).first(remaining)
         @products = @cat_products+@product_list
@@ -24,10 +24,23 @@ class SearchesController < ApplicationController
         end
     else
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-        @cat_products = Product.search_products(@location).categorysearch(categories).first(20)
-        remaining = 20 - @cat_products.count
+        
+        if categories!=''
+          
+          @cat_products = Product.search_products().categorysearch(categories).first(20)
+          remaining = 20 - @cat_products.count
+        else
+          
+          remaining = 20
+        end
+
+        
         @product_list = Product.search_products().categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).first(remaining)
-        @products = @cat_products+@product_list
+        if categories!=''
+          @products = @cat_products + @product_list
+        else
+          @products = @product_list
+        end
         @products.uniq
         @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).first(20)
     end
