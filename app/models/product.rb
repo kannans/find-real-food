@@ -138,7 +138,7 @@ class Product < ActiveRecord::Base
                     WHEN 'Avoid' THEN 3
                 END As quality_order, locations_products.location_id as location_id, products.brand_id as brand_id")
           .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
-          .where("products.quality_rating_id IS NOT NULL and brands.third_party_available = '1' and locations_products.location_id in (#{params})")
+          .where("products.quality_rating_id IS NOT NULL and locations_products.location_id in (#{params})")
         else
 
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
@@ -217,15 +217,15 @@ class Product < ActiveRecord::Base
 
      def self.availabilityfilter(sold='')
       if sold =='store'
-        where("brands.third_party_available = '1'")
+        where("brands.store_farmers_market = '1'")
       elsif sold =='phone'
         where("brands.order_by_phone = '1'")
       elsif sold=='online'
          where("brands.order_by_online = '1'")
       elsif sold =='all'
-        where("brands.order_by_online = '1' and brands.order_by_phone = '1' and brands.third_party_available = '1'")
+        where("brands.order_by_online = '1' and brands.order_by_phone = '1' and brands.store_farmers_market = '1'")
       else
-        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.third_party_available = '1'")
+        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.store_farmers_market = '1'")
       end
     end
 

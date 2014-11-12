@@ -35,7 +35,7 @@ class SearchesController < ApplicationController
         end
 
         
-        @product_list = Product.search_products().categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).first(remaining)
+        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).sortorder(sort).searchtext(search).first(remaining)
         if categories!=''
           @products = @cat_products + @product_list
         else
