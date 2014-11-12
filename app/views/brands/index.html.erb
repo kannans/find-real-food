@@ -23,7 +23,7 @@
                             @brand.store_locator_url = "http://#{@brand.store_locator_url}" unless @brand.store_locator_url[/^https?/]    
                           end
                             %>
-                            <p><a href="javascript:;"><%= number_to_phone(@brand.phone, area_code: true)     %></a>   -   <a href="<%= @brand.website %>" target="_blank"><%= @brand.website %></a></p>
+                            <p><a href="javascript:;"><%= number_to_phone(@brand.phone, area_code: true) %></a><span style="color:#fff;"> - </span><a href="<%= @brand.website %>" target="_blank"><%= @brand.website %></a></p>
  							                <ul>
                                 <% if @brand.order_by_online && @brand.website !='' %><li class="online"><a href="<%= @brand.website %>" target="_blank">Order from brand's website</a></li> 
                                 <% else %>

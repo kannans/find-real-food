@@ -238,8 +238,9 @@
                                             <div class="comment_dtl">
                                                
                                                 <% if user_details %>
-                                                <h3><%= user_details.fname %> <%= user_details.name %></h3>
+                                                <h3><%= user_details.fname %> <%= user_details.name %> <span>(<%= relative_time(c.created_at) %>)</span></h3>
                                                 <% end %>
+
                                                 
                                                      <% $i = 0
                                                 if c.rating %>
