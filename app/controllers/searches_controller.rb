@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
 
   def index
     zip = params[:zip]
-    @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]
     sold = params[:sold]
@@ -31,7 +31,7 @@ class SearchesController < ApplicationController
           @products = @product_list
         end
         @products.uniq
-        
+
         @brands = Brand.search_brands(@location).availabilityfilter(sold).searchtext(search).first(20)
         @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
         if @products_locations!=''
