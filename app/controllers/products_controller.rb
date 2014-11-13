@@ -21,8 +21,12 @@ def more_details
       session[:zip] = zip
     end
     @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-
+    
 	@product = Product.find(params[:slug])
+    
+	subquery = "select location_id from locations_products where product_id=#{@product.id})"
+    @locations = Location.where("locations.id IN (#{subquery})")
+
 	if @location
 		@similar_product  = Product.search_products(@location).categoryfilter(@product.category_id).sortorder().first(20)
     else
@@ -66,7 +70,7 @@ end
 def comments
 	
 	@ratings = Rating.where(ratable_id: params[:ratable_id]).where(ratable_type: "Product").paginate(page: params[:page], per_page: 3).order("id desc")
-	 
+
 end
 
 end

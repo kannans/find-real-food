@@ -1,5 +1,5 @@
  <script type="text/javascript" src="/assets/jquery.webRating.js"></script>
- 
+ <%= render '/layouts/googlemap' %>
  <section>
         <div class="main_container">
             <div class="product_detail_container">
@@ -133,8 +133,8 @@
                             <div class="prd_btm_lft_container">
                                 <div class="view_location_part">
                                     <a href="javascript:;" class="view_lct_btn">View Locations</a>
-                                    <div class="view_location_part_container">
-                                        <!--<img src="/assets/map.jpg" alt="map"/>-->
+                                    <div class="view_location_part_container" style="display:block;">
+                                          <div id="map-canvas"></div>
                                     </div>
                                 </div>
                                 <div class="prd_btm_right_responsive">
@@ -481,6 +481,19 @@ $(document).ready(function(){
         prefixAverage   : "Avg",
         tp_eachStar     : {'1':'Very Bad','2':'Bad','3':'Ok','4':'Good','5':'Very Good'}  
 }); 
+
+     <% if @locations %>
+      setTimeout(function(){ 
+        <% @locations.each do |lrow| %>
+        <% if lrow.slug %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% else %>
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% end %>
+        <% end %>
+      }, 5000);
+      <% end %>
+
     
 });
 </script>
