@@ -1,0 +1,6 @@
+<%  unless @productsall.blank? %>
+	$('#allbrands .products').append("<%=escape_javascript(render :partial => 'products/product', :collection => @productsall, :as => :product)%>");
+	$('.view_all_products').attr('data-page','<%= @productsall.next_page %>')
+<% end %>
+
+	   

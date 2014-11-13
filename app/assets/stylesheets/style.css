@@ -5008,3 +5008,38 @@ cursor:pointer;
 .divClass{
     margin:auto;
 }
+a.view_all_products {
+    background: none repeat scroll 0 0 #dd3637;
+    border-radius: 3px;
+    color: #ffffff;
+    display: inline-block;
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 10px;
+    margin-top: 20px;
+    padding: 0 20px;
+    text-decoration: none;
+}
+a.view_all_products:hover, a.view_all_products:focus
+{
+    background:#252525;
+}
+.notification
+{  
+    background: none repeat scroll 0 0 #e8dc9f;
+    color: #000;
+    font-family: "OpenSansBold",Arial,Helvetica,sans-serif;
+    padding: 12px 35px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+input[type="submit"], input[type="button"]
+{
+    -webkit-appearance:none;
+}

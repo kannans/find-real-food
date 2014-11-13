@@ -14,6 +14,12 @@ class BrandsController < ApplicationController
       zip = '94123'
       session[:zip] = zip
     end
+
+    if params[:page]
+      page = params[:page]
+    else
+      page = 1
+    end
     
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
@@ -27,7 +33,7 @@ class BrandsController < ApplicationController
     else
       @locations = Location.near("#{zip}", 20)
     end
-	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().first(20)
+	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().paginate(page: page, per_page: 5)
    
     else
       redirect_to "/login"

@@ -2486,4 +2486,25 @@ width: 750px;
 	}
 }
 
+@media screen and (max-width: 699px)
+{
+    .search
+    {
+        padding: 10px 0px 0 0px;
+    }
+}
+@media screen and (max-width: 699px)
+{
+    .home_left .products .product_item, .home_body .products .product_item
+    {
+        width:96%;
+    }
+}
+@media screen and (max-width: 350px)
+{
+    .login_txt.fl > input
+    {
+        width: 120px;
+    }
+}
 /******************************************************/

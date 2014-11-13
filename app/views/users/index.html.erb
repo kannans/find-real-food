@@ -11,8 +11,7 @@
                   </a>
 
                     <div class="userprofile_details">
-                      <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.capitalize %><% end %> <% if @user.name %><%= @user.name.capitalize %><% end %><span>
-                        <% if @user.city!='' %>, <%= @user.city.capitalize %><% end %> <% if @user.state.to_s !='' && @user.state.to_s !='0' %>, <%= @user.state.capitalize %><% end %></span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
+                      <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.titleize %><% end %> <% if @user.name %><%= @user.name.titleize %><% end %><span><% if @user.state.to_s !='' && @user.state.to_s !='0' %>, <%= @user.state.titleize %><% end %><% if @user.city!='' %>, <%= @user.city.titleize %><% end %> </span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
                         <div class="clear"></div>
                         <% if @user.bio !='' %>
                         <p class="user_pr_desc"><%= @user.bio %></p>
@@ -79,7 +78,22 @@
                                                   <% end %>
                                                 <% end %>
                                                 
+                                                <% $i = 0
+                                                if total_rating(product.id) %>
+                                                <p class="rating">
+
                                                 
+                                               <% while $i < get_avg_rating(product.id)  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= total_rating(product.id) %>)</span></p>
+                                               <% end  %>     
                                             </div>
                                             <div class="clear"></div>
                                                    
@@ -125,7 +139,22 @@
                                                 
                                                   <% end %>
                                                 <% end %>
+                                                 <% $i = 0
+                                                if total_rating(product.id) %>
+                                                <p class="rating">
+
                                                 
+                                               <% while $i < get_avg_rating(product.id)  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 
+                                              %>
+                                               <span>(<%= total_rating(product.id) %>)</span></p>
+                                               <% end  %> 
                                                 
                                             </div>
                                             <div class="clear"></div>

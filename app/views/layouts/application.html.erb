@@ -123,7 +123,9 @@ function getCookie(cname) {
                               <li><a href="/how-foods-are-chosen">How Foods are Choosen</a></li>
                              
                               <li><a href="/page/terms-and-privacy-policy">Terms & Privacy Policy</a></li>
+                               <% if user_signed_in? %>
                               <li><a href="#invite" class="light_pop_trigger">Invite Friends</a></li>
+                              <% end %>
                               <!--<li><a href="#">Suggest a Product</a></li>
                               <li><a href="#">Add a Location</a></li>
                               <li><a href="#">Become an Affiliate</a></li>-->
