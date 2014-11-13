@@ -341,6 +341,13 @@ $('header').animate({"margin-top":0})
 
  }
 
+            var currentSelect = $('.custom_select');
+             currentSelect.each(function(){
+             var selectedValue = $(this).val();
+             $(this).prev('span').html(selectedValue);                                        
+            });
+
+
             $("#optin").validate({
                      
                      rules: {

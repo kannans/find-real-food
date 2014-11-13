@@ -202,7 +202,7 @@
                                 <select class="custom_select" name="user[state]" >
                                     <option value="0" selected>Select State</option>
                                     <% get_state_list.each do |state| %> 
-                                    <option value="<%= state.name %>"><%= state.name %></option>
+                                    <option value="<%= state.name %>" <% if @user.state==state.name %>Selected="selected" <% end %> ><%= state.name %></option>
                                     <% end %>
                                 </select>
                                </div> 
@@ -252,7 +252,9 @@
   <script type="text/javascript">
 
 $(document).ready(function(){
-        
+                
+               
+                       
                 $(".cancelbut").click(function(){
                     window.location = '/user/profile'
                 })
