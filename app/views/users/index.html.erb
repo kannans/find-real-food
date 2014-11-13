@@ -6,7 +6,7 @@
                     <% unless @user.cover_photo_file_name %>
                         <img src="/assets/header_user_default.png" alt="User Name"/>
                     <% else %>
-                        <% #= image_tag (@user.cover_photo.url) %>
+                        <%= image_tag (@user.cover_photo.url) %>
                     <% end %>
                   </a>
 
@@ -21,20 +21,7 @@
                         <% end %>
                         <div class="clear"></div>
                     </div>
-                    <div class="user_rewards">
-                      <ul>
-                         <% if @products_rate %>
-                          <li class="user_star"><a href="javascript:;" class="tooltip" title="Shared a review!"><img src="/assets/user_profile_star.png"/><span class="rounded_span"><%= @products_rate.count %></span></a></li>
-                          <% end %>
-                            <!--<li class="user_prd"><a href="javascript:;" class="tooltip" title="Shared a review!"><img src="/assets/user_profile_product.png"/><span class="rounded_span">5+</span></a></li>
-                            <li class="user_loc"><a href="javascript:;" class="tooltip" title="Shared a review!"><img src="/assets/user_profile_location.png"/><span class="rounded_span">7+</span></a></li>-->
-                            <% if @products %>
-                            <li class="user_tick"><a href="javascript:;" class="tooltip" title="Shared a review!"><img src="/assets/user_profile_tick.png"/><span class="rounded_span"><%= @products.count %></span></a></li>
-                             <% end %>
-                        </ul>
-                        <div class="clear"></div>
-                    </div>
-                </div>
+                    
             </div>
 
             <div class="products_part profile_products">
