@@ -83,7 +83,7 @@
                             <div class="contact_links">
                                 
                                 <% if branddetails.order_by_phone && branddetails.phone !='' %>
-                                <p class="ord_phone">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
+                                <p class="ord_phone"><a href="javascript:;">Order by Phone <%= branddetails.phone %></a></p>
                                 <% else %>
                                 <p class="ord_phone disabled">Order by Phone <a href="javascript:;"><%= branddetails.phone %></a></p>
                                 <% end %>
