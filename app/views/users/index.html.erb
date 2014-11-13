@@ -6,7 +6,7 @@
                     <% unless @user.cover_photo_file_name %>
                         <img src="/assets/header_user_default.png" alt="User Name"/>
                     <% else %>
-                        <%= image_tag (@user.cover_photo.url) %>
+                        <% #= image_tag (@user.cover_photo.url) %>
                     <% end %>
                   </a>
 
@@ -254,7 +254,7 @@
 $(document).ready(function(){
                 
                
-                       
+
                 $(".cancelbut").click(function(){
                     window.location = '/user/profile'
                 })
