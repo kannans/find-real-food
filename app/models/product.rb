@@ -129,7 +129,7 @@ class Product < ActiveRecord::Base
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
           .joins("LEFT OUTER JOIN locations_products ON locations_products.product_id = products.id")
-          .joins("LEFT OUTER JOIN brands ON brands.id = products.brand_id")
+          .joins("RIGHT JOIN brands ON products.brand_id=brands.id ")
           .group("products.id")
           .select("products.*,
                 CASE quality_ratings.name
@@ -137,13 +137,13 @@ class Product < ActiveRecord::Base
                     WHEN 'Good' THEN 2
                     WHEN 'Avoid' THEN 3
                 END As quality_order, locations_products.location_id as location_id, products.brand_id as brand_id")
-          .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
+          .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating")
           .where("products.quality_rating_id IS NOT NULL and locations_products.location_id in (#{params})")
         else
 
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
-          .joins("LEFT OUTER JOIN brands ON brands.id = products.brand_id")
+          .joins("RIGHT JOIN brands ON products.brand_id=brands.id")
           .group("products.id")
           .select("products.*,
                 CASE quality_ratings.name
@@ -151,7 +151,7 @@ class Product < ActiveRecord::Base
                     WHEN 'Good' THEN 2
                     WHEN 'Avoid' THEN 3
                 END As quality_order, products.brand_id as brand_id")
-          .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating, products.*")
+          .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating")
           
         end
     end

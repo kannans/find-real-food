@@ -65,7 +65,7 @@ end
 
 def comments
 	
-	@ratings = Rating.where(ratable_id: params[:ratable_id]).where(ratable_type: "Product").paginate(page: params[:page], per_page: 3)
+	@ratings = Rating.where(ratable_id: params[:ratable_id]).where(ratable_type: "Product").paginate(page: params[:page], per_page: 3).order("id desc")
 	 
 end
 

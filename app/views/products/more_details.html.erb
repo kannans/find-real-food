@@ -112,7 +112,7 @@
                                 
                             </div>
                             <div class="product_button_set">
-                                <span class='st_sharethis_custom' displayText='Share'>Share</span>
+                                <span class='st_sharethis_custom' st_summary='Check out <%= @product.name %> from <%= branddetails.name %> that I found using "Find Real Food", the WAPF Guide to the Highest Quality Foods Available here: <%= request.original_url %>.' st_image="http://findrealfoodapp.com<%= @product.picture(:small) %>" st_url="<%= request.original_url %>" st_title="<%= @product.name %>" displayText='Share'>Share</span>
                                  <% if user_signed_in? %>
                                  <a href="#flagProduct" class="flag_prd light_pop_trigger">flag product</a>
                                 
