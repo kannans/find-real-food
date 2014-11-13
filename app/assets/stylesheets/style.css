@@ -2255,13 +2255,17 @@ span.avoid
 {
 	display:block;
 }
-.news h3
+.news h3, .news h3 a
 {
 	font-family:'OpenSansBold', Arial, Helvetica, sans-serif;
 	font-size:21px;
 	color:#4d4d4d;
 	margin-top:20px;
 	margin-bottom:10px;
+}
+.news h3 a:hover, .news h3 a:focus
+{
+	color: #dd3637;
 }
 .news p
 {
