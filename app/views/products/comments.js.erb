@@ -1,0 +1,6 @@
+<%  unless @ratings.blank? %>
+	$('.user_comments').append("<%=escape_javascript(render :partial => 'rating', :collection => @ratings, :as => :comment)%>");
+	$('.see_all').attr('data-page','<%= @ratings.next_page%>')
+<% end %>
+
+	   

@@ -5,7 +5,7 @@ module ProductsHelper
   end
 
   def get_rating_list(product_id)
-  	return Rating.where(ratable_id:product_id).last(5)
+  	return Rating.where(ratable_id: product_id).where(ratable_type: "Product").paginate(page: 1, per_page: 3)
   end
 
 end

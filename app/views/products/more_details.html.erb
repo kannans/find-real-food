@@ -219,9 +219,7 @@
                                     </div>
                                     <% end %>
                                     <div class="user_comments">
-                                        
-                                        
-                                        <% comments = get_rating_list(@product.id) %>
+                                            <% comments = get_rating_list(@product.id) %>
                                         
                                         <% comments.each do |c| %>
                                         <div class="comment">
@@ -261,11 +259,11 @@
                                             <div class="clear"></div>
                                         </div>
                                         <% end %>
-                                         
-                                    </div>
-                                    <!--<div class="see_all">
+                                        
+                                      </div>
+                                     <div class="see_all" data-page="2">
                                         <a href="javascript:;">See All</a>
-                                    </div>-->
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -371,7 +369,44 @@
     <script type="text/javascript">
 $(document).ready(function(){
     
+     var next_page ='';
+    var allpages = new Array(); 
+    function lastAddedLiveFunc()
+    {
+        if($('.see_all').attr('data-page')){
+         next_page = $('.see_all').attr('data-page')+'a';
+         
+            if(key_exists(next_page, allpages)){
+                     
+            }else{
+                
+                allpages.push(next_page);
+           
+                $.get('/products/comments', { ratable_id:<%= @product.id %>, page: $('.see_all').attr('data-page')}, null, "script");
+          
+            }
+          
+        }else{
+            $('.see_all').hide();
+        }
+         return false;
+    };
     
+     function key_exists(key, search) {
+    if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+        return false;
+    }
+    for (var i = 0; i < search.length; i++) {
+        if (search[i] === key) {
+            return true;
+        }
+    }
+    return key in search;
+    }
+
+    $('.see_all').click(function(){
+        lastAddedLiveFunc();
+    })
     $('.add_fav').click(function(){
 
         $.get('/products/addtofavorite', { product_id:<%= @product.id %> }, null, "script");

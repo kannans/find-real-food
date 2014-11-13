@@ -1,0 +1,40 @@
+ 
+                                        
+                                        
+                                        <div class="comment">
+                                             <% user_details = get_user_details(comment.user_id) %>
+                                              <% if user_details %>
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                            </div>
+                                            <% else %>
+                                            <div class="user_img fl">
+                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                            </div>
+                                            <% end %>
+                                            <div class="comment_dtl">
+                                               
+                                                <% if user_details %>
+                                                <h3><%= user_details.fname %> <%= user_details.name %> <span>(<%= relative_time(comment.created_at) %>)</span></h3>
+                                                <% end %>
+
+                                                
+                                                     <% $i = 0
+                                                if comment.rating %>
+                                                <p class="rating">
+
+                                                
+                                               <% while $i < comment.rating  do %>
+                                                   <a href="#">
+                                                  <%= image_tag("star.png", :alt => "star") %>
+                                                 </a>
+                                                  
+                                              <%   $i +=1 
+                                                    end 
+                                                 end
+                                              %> 
+                                                <p><%= comment.comment %></p>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                      
