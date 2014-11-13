@@ -12,7 +12,13 @@
 
                     <div class="userprofile_details">
                       <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.capitalize %><% end %> <% if @user.name %><%= @user.name.capitalize %><% end %><span>
-                        
+                        <% if @user.city!='' %>, <%= @user.city %><% end %> <% if @user.state.to_s !='' && @user.state.to_s !='0' %>, <%= @user.state.capitalize %><% end %></span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
+                        <div class="clear"></div>
+                        <% if @user.bio !='' %>
+                        <p class="user_pr_desc"><%= @user.bio %></p>
+                        <% else %>
+                        <p class="user_pr_desc">Share something about your eating habits!</p>
+                        <% end %>
                         <div class="clear"></div>
                     </div>
                     <div class="user_rewards">
