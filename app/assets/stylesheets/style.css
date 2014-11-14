@@ -3574,6 +3574,7 @@ p.download_links a img
 	border-radius:500px;
 	-webkit-border-radius:500px;
 	bottom:-48px;
+	max-width: 223px;
 }
 .userprofile_details
 {

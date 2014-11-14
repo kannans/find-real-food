@@ -141,7 +141,7 @@ function getCookie(cname) {
                     <div class="user_menu fr">
                       <a href="javascript:;" class="user_mn_link">
                         <% unless userdetails.avatar_file_name%>
-                            <img src="/assets/header_user_default.png" alt="User Name"/>
+                            <img src="/assets/user_profile_default.png" alt="User Name"/>
                         <% else %>
                             <%= image_tag (userdetails.avatar.url) %>
                         <% end %>
@@ -149,7 +149,7 @@ function getCookie(cname) {
                         <ul class="user_menu_list">
                           <li class="user_detail_list"><a href="javascript:;">
                             <% unless userdetails.avatar_file_name%>
-                                <img src="/assets/header_user_default.png" alt="User Name"/>
+                                <img src="/assets/user_profile_default.png" alt="User Name"/>
                             <% else %>
                                 <%= image_tag (userdetails.avatar.url) %>
                             <% end %>

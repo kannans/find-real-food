@@ -4,7 +4,7 @@
               <div class="container">
                   <a href="javascript:;" class="banner_logo">
                     <% unless @user.cover_photo_file_name %>
-                        <img src="/assets/header_user_default.png" alt="User Name"/>
+                        <img src="/assets/user_profile_default.png" alt="User Name"/>
                     <% else %>
                         <%= image_tag (@user.cover_photo.url) %>
                     <% end %>
