@@ -24,7 +24,7 @@ def more_details
     
 	@product = Product.find(params[:slug])
     
-    @locations = Location.where("locations.id IN (select location_id from locations_products where product_id=#{@product.id})")
+    #@locations = Location.where("locations.id IN (select location_id from locations_products where product_id=#{@product.id})")
 
     
 
@@ -33,7 +33,7 @@ def more_details
     else
     	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder().first(20)
     end
-	
+	@locations = Location.near("#{zip}", 20)
 
 	else
 		redirect_to "/login"
