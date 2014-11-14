@@ -10,7 +10,7 @@
                                             <% end %>
                     </a>
                     <%
-                        if @location.website!=''
+                        if @location.website
                           @location.website = "http://#{@location.website}" unless @location.website[/^https?/]    
                         end
                                 

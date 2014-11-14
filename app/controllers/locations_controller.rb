@@ -1,19 +1,8 @@
 class LocationsController < ApplicationController
   def index
   	@location = Location.find(params[:slug])
-    
-  	if @location !=''
-       
-		  @products = Product.search_products(@location.id).sortorder().first(20)
-     
-	else
-     
-		  @products = Product.search_products().sortorder().first(20)
-      
-	end
-	#@productsall = Product.sort_by_rating()
-  @brands = Brand.search_by_locations_and_name(@location.id,'')
-
+    @products = Product.search_products(@location.id).sortorder().first(20)
+    @brands = Brand.search_brands(@location.id)
   end
 
   def create
