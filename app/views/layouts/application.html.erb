@@ -97,10 +97,9 @@ function getCookie(cname) {
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1601901470036363&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<% if user_signed_in? %>
- <% else %>
-<div class="notification">Create an account free for a limited time to browse the entire database of brands and products approved by the Weston A. Price Foundation! <a class="notifiy_signup button" href="/register">Sign Up</a><span class="notclose">X</span></div>
-<% end %>
+ 
+<div class="notification" style="display:none;">Create an account free for a limited time to browse the entire database of brands and products approved by the Weston A. Price Foundation! <a class="notifiy_signup button" href="/register">Sign Up</a><span class="notclose">X</span></div>
+
     <header>
         <nav>
             <div class="container">
@@ -260,12 +259,17 @@ $(document).ready(function(){
   
   <% if user_signed_in? %>
  <% else %>
- var notheight=$('.notification').height()+24;
-$('header').animate({"margin-top":notheight+"px"})
+ 
+ if(getCookie('notification')!='closed'){
+    $('.notification').show();
+    var notheight=$('.notification').height()+24;
+    $('header').animate({"margin-top":notheight+"px"})
+  }
 $('.notclose').click(function() {
+    setCookie('notification','closed');
+    $('.notification').animate({"margin-top":"-"+notheight+"px"}).fadeOut(300);
+    $('header').animate({"margin-top":0})
 
-$('.notification').animate({"margin-top":"-"+notheight+"px"}).fadeOut(300);
-$('header').animate({"margin-top":0})
 });
 <% end %>
 
@@ -461,7 +465,7 @@ $('header').animate({"margin-top":0})
                 });
 
 
-$( ".cmmn_success, .cmmn_error" ).delay( 3000 ).fadeOut( 400 );
+$( ".cmmn_success, .cmmn_error" ).delay( 5000 ).fadeOut( 400 );
  
 });
     
