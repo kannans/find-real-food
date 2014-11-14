@@ -21,7 +21,9 @@
                             </p>
                               <% if flash[:notice] %>  <p class="cmmn_success"><%= flash[:notice] %></p> <% end %>
                             <div class="contact_form">
-                                <form id="frm_con" name="frm_con" method="post" action="/page/contact">
+                                
+                                     <%= form_for(:user, url: "/page/contact", :html =>{:id => "frm_con", :autocomplete=>"off", :multipart => true}) do |f| %>
+
                                     <div class="frm_field">
                                         <label>First Name:<span class="required">*</span></label>
                                         <div class="frm_control">
@@ -58,7 +60,7 @@
                                             <input type="submit" value="Submit" id="sbmt_con" name="sbmt_con" />
                                         </div>
                                     </div>
-                                </form>
+                                <% end %>
                             </div>
                         </div>
                         

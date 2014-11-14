@@ -1,0 +1,70 @@
+<section>
+        <div class="main_container">
+            <div class="cms_section contact_page">
+                <div class="container">
+                    <div class="cms_white_bg">
+                        <h1>Invite Friends</h1>
+                        <div class="contact_left fl">
+                            
+                              <% if flash[:notice] %>  <p class="cmmn_success"><%= flash[:notice] %></p> <% end %>
+                            <div class="contact_form">
+                                
+                                     <%= form_for(:user, url: "/invite/sendinvite", :html =>{:id => "frm_con", :autocomplete=>"off", :multipart => true}) do |f| %>
+                                    <div class="frm_field">
+                                        <label>Email Address:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <textarea rows="5" id="txtar_con_emails" name="txtar_con_emails" ></textarea>
+
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                    <label></label>
+                                    	 <div class="frm_control">
+                                    Enter Email Addresses separated by comma(,)
+                                		</div>
+                                	</div>
+                                    <div class="frm_field">
+                                        <label>Message:<span class="required">*</span></label>
+                                        <div class="frm_control">
+                                            <textarea rows="5" id="txtar_con_comments" name="txtar_con_comments" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="frm_field">
+                                        <label class="empty_label">&nbsp;</label>
+                                        <div class="frm_control buttons">
+                                        	<input type="hidden" name="sender_fname" value="<%= @user.fname %>" />
+                                        	<input type="hidden" name="sender_name" value="<%= @user.name %>" />
+                                            <input type="submit" value="Submit" id="sbmt_con" name="sbmt_con" />
+                                        </div>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                        
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </section>
+ <script type="text/javascript">
+        $(document).ready(function(){
+            /*********** Start 06-10-2014 *************/
+        
+                $("#frm_con").validate({
+                    rules: {
+                        
+                        txtar_con_emails: "required",
+                        txtar_con_comments: "required"
+                    },
+                    messages: {
+                         
+                        txtar_con_emails: "Email Address is Required",
+                        txtar_con_comments: "Message are Required"
+                    }
+                });
+            
+            /*********** End 06-10-2014 **************/
+        });
+    </script>

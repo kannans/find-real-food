@@ -1,5 +1,7 @@
 RealFood::Application.routes.draw do
 
+  get "invite/index"
+
   get "password_resets/new"
 
   mount Ckeditor::Engine => '/ckeditor'
@@ -40,6 +42,9 @@ RealFood::Application.routes.draw do
     post 'users/create'
     post 'users/update'
     post 'users/updatepass'
+
+    
+
     get 'logout', :to => 'sessions#destroy'
 
     get 'brands/addtofavorite', :to => 'brands#add_to_favorites'
@@ -120,4 +125,8 @@ RealFood::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   mount Ckeditor::Engine => "/ckeditor"
+
+  post 'invite/sendinvite'
+  
 end
+  
