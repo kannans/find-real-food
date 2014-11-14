@@ -32,7 +32,7 @@ def more_details
     else
     	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder().first(20)
     end
-	@locations = Location.near("#{zip}", 20)
+	
 
 	else
 		redirect_to "/login"
