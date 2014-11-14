@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
 
   def index
     zip = params[:zip]
+    session[:zip] = zip
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]

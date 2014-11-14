@@ -11,16 +11,12 @@ def more_details
 	
 	if user_signed_in?
 
-	if params[:zip]
-      zip = params[:zip]
-      session[:zip] = zip
-    elsif session[:zip]
-      zip = session[:zip]
-    else
-      zip = '94123'
-      session[:zip] = zip
-    end
-    @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+	
+	if session[:zip]!=''
+		zip = session[:zip]
+		@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+	end
+    
     
 	@product = Product.find(params[:slug])
     
