@@ -5048,3 +5048,15 @@ input[type="submit"], input[type="button"]
 {
     -webkit-appearance:none;
 }
+.notclose {
+background: none repeat scroll 0 0 #c92a2b;
+border: 2px solid #c92a2b;
+border-radius: 20px;
+color: #ffffff;
+height: 20px;
+line-height: 20px;
+position: fixed;
+right: 10px;
+top: 12px;
+width: 20px;
+}
