@@ -1,14 +1,15 @@
 <section>
       <div class="main_container">
-            <div class="inner_banner userprofile_page">
+            <div class="inner_banner userprofile_page"  <% if @user.cover_photo_file_name %> style="background: url('http://findrealfoodapp.com<%= @user.cover_photo(:big) %>') no-repeat scroll 0 0 / cover #202020;" <% end %> >
               <div class="container">
                   <a href="javascript:;" class="banner_logo">
-                    <% unless @user.cover_photo_file_name %>
+                    <% unless @user.avatar_file_name %>
                         <img src="/assets/user_profile_default.png" alt="User Name"/>
                     <% else %>
-                        <%= image_tag (@user.cover_photo.url) %>
+                        <%= image_tag (@user.avatar.url) %>
                     <% end %>
                   </a>
+                  
 
                     <div class="userprofile_details">
                       <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.titleize %><% end %> <% if @user.name %><%= @user.name.titleize %><% end %><span><% if @user.state.to_s !='' && @user.state.to_s !='0' %>, <%= @user.state.titleize %><% end %><% if @user.city!='' %>, <%= @user.city.titleize %><% end %> </span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
