@@ -7,11 +7,9 @@ class ContactMailer < ActionMailer::Base
   
   def invite_send(invite)
     @invite = invite
-    invite[:txtar_con_emails].split(',').each {|email| 
-      mail(to: email, subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food')
-     
-    }
-
+    
+      mail(to: invite[:txtar_con_emails], subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food')
+    
     
   end
 
