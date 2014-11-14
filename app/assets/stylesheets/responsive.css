@@ -2507,4 +2507,11 @@ width: 750px;
         width: 120px;
     }
 }
+@media screen and (max-width: 658px)
+{
+       label.empty.width_full
+       {
+               display:none;
+       }
+}
 /******************************************************/
