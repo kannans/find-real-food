@@ -96,7 +96,7 @@
                                 <% end %>
                                 
                                 <% if branddetails.third_party_available %>
-                                <% searchstring = branddetails.name %>
+                                <% searchstring = branddetails.name+" "+@product.name %>
                                 <p class="ord_store"> <a target="_blank" href="http://www.google.com/search?q=<%= searchstring.gsub(" ", "+") %>">Sold by online retailer</a></p>
                                 <% else %>
 

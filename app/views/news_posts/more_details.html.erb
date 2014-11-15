@@ -42,7 +42,11 @@
                           
 
                           <% @newsposts.each do |news| %> 
+                          <% if news.website !='' %>
+                          <li><a href="<%= news.website %>" target="_blank"><%= news.title %></a></li>
+                          <% else %>
                           <li><a href="/news/<%= news.slug %>"><%= news.title %></a></li>
+                          <% end %>
                           <% end %>
 
 
