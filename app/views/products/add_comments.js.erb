@@ -1,13 +1,8 @@
 <%  unless @comment.blank? %>
-   $(".alert_text").html("Your comment and rating has been added successfully");
    $(".leave_cmt").val('');
+    location.reload(); 
  <% else %>
    $(".leave_cmt").val('');
 <% end %>
-$(".alert_overlay").fadeIn();
-$(".close").click(function(){
-    $(".alert_overlay").fadeOut();
-    location.reload(); 
-});
 
        
