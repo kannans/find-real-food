@@ -20,7 +20,7 @@
                                     %>
 
                                     <% if @product.picture.present? %>
-                                           <%= image_tag (@product.picture(:small)) %>
+                                           <%= image_tag (@product.picture(:original)) %>
                                             <% else %>
                                             <%= image_tag('product_detail_no_imge.jpg', :alt => "How to add products") %>
                                             <% end %>
@@ -73,7 +73,7 @@
                             <div class="prd_comp_logo fr">
                                 <a href="javascript:;"> 
                                     <% if branddetails.picture.present? %>
-                                        <%= image_tag (branddetails.picture(:thumb)) %>
+                                        <%= image_tag (branddetails.picture(:original)) %>
                                     <% else %>
                                         <%= image_tag('category_no_img12.jpg', :alt => branddetails.name) %>
                                     <% end %>

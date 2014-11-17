@@ -58,7 +58,7 @@
                                         <div class="media product">
                                             <a href="/product/<%= product.slug %>" class="media_img">
                                                 <% if product.picture.present? %>
-                                           <%= image_tag (product.picture(:thumb)) %>
+                                           <%= image_tag (product.picture(:original)) %>
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
