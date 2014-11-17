@@ -5,18 +5,12 @@
   <% else %>
         <%= image_tag("news_no_img.png", :alt => "star") %>
   <% end %>
-<% if news_post.website !='' %>
- <h3><a href="<%= news_post.website %>" target="_blank" ><%= news_post.title%></a></h3>
 
- <% else %>
  <h3><a href="/news/<%= news_post.slug %>" ><%= news_post.title%></a></h3>
- <% end %>
+
  <p class="news_authr"><em><%= news_post.created_at.strftime '%b %d, %Y' %> by <%= news_post.author %></em></p>
  <p><%= truncate(strip_tags(news_post.body), :ommision => "...", :length => 140) %></p>
-<% if news_post.website !='' %>
- <p><a href="<%= news_post.website %>" target="_blank" class="news_read_more">Read More</a></p>
- <% else %>
  <p><a href="/news/<%= news_post.slug %>" class="news_read_more">Read More</a></p>
- <% end %>
+
 
 </div>

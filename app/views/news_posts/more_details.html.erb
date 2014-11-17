@@ -26,12 +26,15 @@
                             
                             <p class="news_detail_authr"><em><%= @newspost.created_at.strftime '%b %d, %Y' %> by <%= @newspost.author %></em></p>
                             <%= raw(@newspost.body) %>
-                            <br />
+                            <% if @newspost.website !='' %>
+                            <p><a href="<%= @newspost.website %>"  target="_blank" class="news_read_more">Read More</a></p>
+                            <% end %>
                             <!--<div class="share_part">
                                 <div class="share_red"><span>Share:</span> <a href="javascript:;" class="mail_share"></a><a href="javascript:;" class="facebook_share"></a></div>
                                 <div class="clear"></div>
                             </div>
                             -->
+
                            
                         </div>
                     </div>
@@ -42,11 +45,9 @@
                           
 
                           <% @newsposts.each do |news| %> 
-                          <% if news.website !='' %>
-                          <li><a href="<%= news.website %>" target="_blank"><%= news.title %></a></li>
-                          <% else %>
+                           
                           <li><a href="/news/<%= news.slug %>"><%= news.title %></a></li>
-                          <% end %>
+                         
                           <% end %>
 
 
