@@ -14,7 +14,7 @@ class Category < ActiveRecord::Base
   api_accessible :category do |template|
     template.add :id
     template.add :title
-    template.add :picture, :as => :image
+    
 
 
   end
