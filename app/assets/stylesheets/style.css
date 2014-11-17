@@ -5060,3 +5060,35 @@ right: 10px;
 top: 12px;
 width: 20px;
 }
+
+ .media.product .media_img img
+{
+   bottom: 0;
+   left: 0;
+   margin: auto;
+   max-height: 100px;
+   max-width: none;
+   position: absolute;
+   right: 0;
+   top: 0;
+   width: auto;
+}
+
+.prd_comp_logo.fr {
+   background: none repeat scroll 0 0 #ffffff;
+   border: 1px solid #d0d0d0;
+   height: 136px;
+   position: relative;
+   width: 136px;
+}
+.prd_comp_logo img {
+   bottom: 0 none;
+   display: block;
+   left: 0;
+   margin: auto;
+   max-height: 136px;
+   max-width: 136px;
+   position: absolute;
+   right: 0;
+   top: 0;
+}

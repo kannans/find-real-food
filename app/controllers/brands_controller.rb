@@ -20,12 +20,13 @@ class BrandsController < ApplicationController
     else
       page = 1
     end
+
     
     @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
     
     if @location !=''
       
-      @products = Product.search_products(@location).brandfilter(@brand.id).sortorder().first(20)
+      @products = Product.search_products(@location).brandfilter(@brand.id).sortorder().paginate(page: page, per_page: 30)
       @products_locations = Product.search_products(@location).brandfilter(@brand.id).collect{|c| c.location_id}.join(',')
       if @products_locations!=''
         @locations = Location.where("id in (#{@products_locations})")
@@ -33,7 +34,7 @@ class BrandsController < ApplicationController
     else
       @locations = Location.near("#{zip}", 20)
     end
-	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().paginate(page: page, per_page: 5)
+	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().paginate(page: page, per_page: 30)
    
     else
       redirect_to "/login"

@@ -80,7 +80,7 @@
                                      
                                     <div class="clear"></div>
                                     <div class="home_left fl">
-                                         <% if @products %>
+                                         <% unless @products.blank?  %>  
                                          <div class="products">
                                <% @products.each do |product| %> 
                               
@@ -90,7 +90,7 @@
                                         <div class="media product">
                                             <a href="/product/<%= product.slug %>" class="media_img">
                                                 <% if product.picture.present? %>
-                                           <%= image_tag (product.picture(:thumb)) %>
+                                           <%= image_tag (product.picture(:original)) %>
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
@@ -144,10 +144,14 @@
                                 <div class="expand">
                                                 <a href="javascript:;"></a>
                                             </div>
+                                           
+                                             <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+
+                                             
                             </div>
 
                              <% else %>
-                                            <div class="products"> <div class="product_item"><p class="notification" >No Products Available</p></div>
+                                            <div class="products"> <div class="product_item"><p class="notification1" >No Products Available</p></div>
                                             </div>
 
                                             
@@ -163,15 +167,15 @@
                                   
                                     <div class="clear"></div>
                                     <div class="home_left fl">
-                                        <% if @productsall %>
-                                         <div class="products">
+                                        <% unless @productsall.blank?  %>
+                                         <div class="products">  
                                <% @productsall.each do |product| %> 
                                 <div class="product_item">
                                     <div class="product_item_body">
                                         <div class="media product">
                                             <a href="/product/<%= product.slug %>" class="media_img">
                                                 <% if product.picture.present? %>
-                                           <%= image_tag (product.picture(:thumb)) %>
+                                           <%= image_tag (product.picture(:original)) %>
                                             <% else %>
                                             <%= image_tag("product_no_image.png", :alt => "star") %>
                                             <% end %>
@@ -210,13 +214,16 @@
                                 </div>
                                 <% end %>
                                <div class="expand">
-                                                <a href="javascript:;"></a>
-                                            </div>
+                                    <a href="javascript:;"></a>
+                                </div>
                                 
                             </div> 
-                            <a href="javascript:void(0);" class="view_all_products" data-page="2">View More Products</a>
+                            
+                            <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+
+                            
                              <% else %>
-                                            <div class="products"> <div class="product_item"><p class="notification" >No Products Available</p></div>
+                                            <div class="products"> <div class="product_item"><p class="notification1" >No Products Available</p></div>
                                             </div>
 
                                             

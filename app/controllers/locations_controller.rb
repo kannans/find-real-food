@@ -1,8 +1,16 @@
 class LocationsController < ApplicationController
   def index
+      
+      if params[:page]
+          page = params[:page]
+      else
+          page = 1
+      end
+
   	@location = Location.find(params[:slug])
-    @products = Product.search_products(@location.id).sortorder().first(20)
-    @brands = Brand.search_brands(@location.id)
+    
+    @products = Product.search_products(@location.id).sortorder().paginate(page: page, per_page: 30)
+    @brands = Brand.search_brands(@location.id).paginate(page: page, per_page: 30)
   end
 
   def create

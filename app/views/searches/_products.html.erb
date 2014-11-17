@@ -21,7 +21,7 @@
                                     
                                     <div class="clear"></div>
                                     <div class="home_left fl">
-                                        <% if @products %>
+                                        <% unless @products.blank? %>
                                         <div class="products">
                                              
                                              <% @products.each do |product| %> 
@@ -31,7 +31,7 @@
                                                     <div class="media product">
                                                     <a href="/product/<%= product.slug %>" class="media_img">
                                                          <% if product.picture.present? %>
-                                                        <%= image_tag (product.picture(:thumb)) %>
+                                                        <%= image_tag (product.picture(:original)) %>
                                                         <% else %>
                                                         <%= image_tag("product_no_image.png", :alt => "star") %>
                                                         <% end %>
@@ -94,6 +94,8 @@
                                             </div>
                                             
                                         </div>
+                                          <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+
                                          <% else %>
                                             <div class="products"> <div class="product_item"><p class="notification" >No Products Available</p></div>
                                             </div>
@@ -112,7 +114,7 @@
                                     
                                     <div class="clear"></div>
                                     <div class="home_left fl">
-                                        <% if @brands  %>
+                                        <% unless @brands.blank?  %>
                                         <div class="products">
                                              
                                             <% @brands.each do |brand| %> 
@@ -122,7 +124,7 @@
                                                     <div class="media product">
                                                         <a href="/brand/<%= brand.slug %>" class="media_img">
                                                          <% if brand.picture.present? %>
-                                                        <%= image_tag (brand.picture(:thumb)) %>
+                                                        <%= image_tag (brand.picture(:original)) %>
                                                         <% else %>
                                                         <%= image_tag("product_no_image.png", :alt => brand.name) %>
                                                         <% end %>
@@ -151,6 +153,9 @@
                                             </div>
                                            
                                         </div>
+
+                                        <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+
                                          <% else %>
                                             <div class="products"> <div class="product_item"><p class="notification" >No Brands Available</p></div>
                                             </div>
@@ -197,3 +202,54 @@
                 </div>
 
                    
+<script type="text/javascript">
+ 
+$(document).ready(function() {
+
+        
+     
+      var next_page ='';
+    var allpages = new Array(); 
+    function lastAddedLiveFunc()
+    {
+        if($('.view_all_products').attr('data-page')){
+         next_page = $('.view_all_products').attr('data-page')+'a';
+         
+            if(key_exists(next_page, allpages)){
+                     
+            }else{
+                
+                allpages.push(next_page);
+           
+                $.get('<%= request.original_url %>', { page: $('.view_all_products').attr('data-page')}, null, "script");
+          
+            }
+          
+        }else{
+            $('.view_all_products').hide();
+        }
+         return false;
+    };
+    
+     function key_exists(key, search) {
+    if (!search || (search.constructor !== Array && search.constructor !== Object)) {
+        return false;
+    }
+    for (var i = 0; i < search.length; i++) {
+        if (search[i] === key) {
+            return true;
+        }
+    }
+    return key in search;
+    }
+
+    $('.view_all_products').click(function(){
+        lastAddedLiveFunc();
+    })
+
+      
+ 
+});
+    
+
+</script>

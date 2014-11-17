@@ -50,7 +50,7 @@
                 <div id="myfav" class="tab_div active">
                                 <div class="home_body prd_search">
                                     <div class="locations">  
-                                        <% if @products %>
+                                        <% unless @products.blank? %>
                             <div class="products">
                                <% @products.each do |product| %> 
                               
@@ -112,7 +112,7 @@
                             <div id="prdrew" class="tab_div">
                                <div class="home_body prd_search">
                                     <div class="locations">
-                                        <% if @products_rate %>
+                                        <% unless @products_rate.blank? %>
                             <div class="products">
                                <% @products_rate.each do |product| %> 
                               
