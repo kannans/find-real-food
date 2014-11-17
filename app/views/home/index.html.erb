@@ -48,7 +48,7 @@
                             <% end %>
                         <div class="clear"></div>
                         <div class="home_left fl">
-                            <% if @products %>
+                            <% unless @products.blank? %>
                             <div class="products">
                                <% @products.each do |product| %> 
                               
@@ -119,7 +119,7 @@
                                 
                             </div>
                             <% else %>
-                                            <div class="products"> <div class="product_item"><p class="notification" >No Products Available</p></div>
+                                            <div class="products"> <div class="product_item"><p class="notification1" >No Products Available</p></div>
                                             </div>
 
 
