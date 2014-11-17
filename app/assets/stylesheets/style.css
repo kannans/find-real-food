@@ -5075,14 +5075,13 @@ width: 20px;
 }
 
 .prd_comp_logo.fr {
-   background: none repeat scroll 0 0 #ffffff;
-   border: 1px solid #d0d0d0;
+    
    height: 136px;
    position: relative;
    width: 136px;
 }
 .prd_comp_logo img {
-   bottom: 0 none;
+   bottom: 0;
    display: block;
    left: 0;
    margin: auto;
