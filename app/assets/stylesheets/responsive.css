@@ -2514,4 +2514,31 @@ width: 750px;
                display:none;
        }
 }
+
+@media screen and (max-width: 559px)
+{
+	.news_page .news
+	{
+		min-height:inherit !important;
+	}
+}
+@media screen and (max-width: 479px)
+{
+	.inner_banner .caption_part 
+	{
+		display: block !important;
+	}
+	.inner_banner .caption_part h4, .inner_banner .caption_part p
+	{
+		display:none;
+	}
+}
+@media screen and (max-width: 410px)
+{
+	h1.about_frf_title
+	{
+		text-align: left;
+	}
+}
+
 /******************************************************/

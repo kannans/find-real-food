@@ -5037,6 +5037,7 @@ a.view_all_products:hover, a.view_all_products:focus
     font-family: "OpenSansBold",Arial,Helvetica,sans-serif;
     padding: 12px 35px;
     position: fixed;
+    line-height:26px;
     text-align: center;
     top: 0;
     width: 100%;
