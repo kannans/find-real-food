@@ -5092,3 +5092,7 @@ width: 20px;
    right: 0;
    top: 0;
 }
+ .forgot_txt a
+{
+   text-transform: capitalize;
+}

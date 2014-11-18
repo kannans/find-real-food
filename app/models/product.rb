@@ -96,7 +96,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.similar_products(location='', category_id='')
-    self.unscoped.quality_rating_search(location).where(category_id: category_id)
+    self.unscoped.quality_rating_search_web(location).where(category_id: category_id)
               .order("avg_rating desc")
               .order("quality_order asc")
               .order("products.name asc")
@@ -104,27 +104,15 @@ class Product < ActiveRecord::Base
   end
   
   def self.search_products(location='')
-    self.unscoped.quality_rating_search(location)
+    self.unscoped.quality_rating_search_web(location)
   end
-  def self.sort_by_rating(location='',search='', category='', brand='', sort='')
-    
-          self.unscoped.quality_rating_search(location)
-          .categoryfilter(category)
-          .brandfilter(brand)
-          .searchtext(search)
-          .first(20)
-       
-  end
-  
-  
-  
 
   def selected_parents
     self.locations.where("parent_id is null").pluck(:id)
   end
 
   private
-    def self.quality_rating_search(params='')
+    def self.quality_rating_search_web(params='')
       if params !=''
       self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
@@ -154,6 +142,20 @@ class Product < ActiveRecord::Base
           .select("count(ratings.rating) as rating_count,AVG(ratings.rating) as avg_rating")
           
         end
+    end
+    
+    def self.quality_rating_search
+      self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
+          .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
+          .group("products.id")
+          .select("products.*,
+                CASE quality_ratings.name
+                    WHEN 'Best' THEN 1
+                    WHEN 'Good' THEN 2
+                    WHEN 'Avoid' THEN 3
+                END As quality_order")
+          .select("AVG(ratings.rating) as avg_rating, products.*")
+          .where("products.quality_rating_id IS NOT NULL")
     end
 
     def skip_check
