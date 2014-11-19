@@ -36,8 +36,9 @@ class SearchesController < ApplicationController
         if categories!=''
           @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20)
         end
+        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).first(20)
         
-
+     
     end
     respond_to do |format|
       format.html
