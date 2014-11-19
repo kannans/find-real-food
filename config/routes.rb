@@ -50,7 +50,7 @@ RealFood::Application.routes.draw do
     get 'brands/addtofavorite', :to => 'brands#add_to_favorites'
     get 'location/:slug', :to => 'locations#index'
     get 'brands/addflag', :to => 'brands#add_flag'
-
+    get 'searches/showmore'
     post 'locations/create'
     
     get 'products', :to => 'products#index'
@@ -77,6 +77,7 @@ RealFood::Application.routes.draw do
     get 'faq', :to => 'faq#index'
     get 'contact-us', :to => 'page#contact'
     post 'page/contact'
+    post 'invite/sendinvite'
 
     get 'updated-locations', :to => 'faq#updatedlocations'
     
@@ -126,7 +127,7 @@ RealFood::Application.routes.draw do
 
   mount Ckeditor::Engine => "/ckeditor"
 
-  post 'invite/sendinvite'
+  
   
 end
   

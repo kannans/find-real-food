@@ -94,7 +94,11 @@
                                             </div>
                                             
                                         </div>
+                                        <% if @current_page =='search' %>
+                                          <a href="javascript:void(0);" class="view_all_products search_more" data-page="2">View More</a>
+                                          <% else %>
                                           <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+                                          <% end %>
 
                                          <% else %>
                                             <div class="products"> <div class="product_item"><p class="notification1" >No Products Available</p></div>
@@ -154,7 +158,11 @@
                                            
                                         </div>
 
-                                        <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+                                       <% if @current_page =='search' %>
+                                          <a href="javascript:void(0);" class="view_all_products search_more" data-page="2">View More</a>
+                                          <% else %>
+                                          <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+                                          <% end %>
 
                                          <% else %>
                                             <div class="products"> <div class="product_item"><p class="notification1" >No Brands Available</p></div>
@@ -206,13 +214,14 @@
  
 $(document).ready(function() {
 
-        
-     
+
       var next_page ='';
     var allpages = new Array(); 
-    function lastAddedLiveFunc()
+    function lastAddedLiveFuncSearch()
     {
+        
         if($('.view_all_products').attr('data-page')){
+        
          next_page = $('.view_all_products').attr('data-page')+'a';
          
             if(key_exists(next_page, allpages)){
@@ -221,7 +230,50 @@ $(document).ready(function() {
                 
                 allpages.push(next_page);
            
-                $.get('<%= request.original_url %>', { page: $('.view_all_products').attr('data-page')}, null, "script");
+                
+                
+                var sort = '';
+                var rank = '';
+                var sold = '';
+                <% if @category %>
+                var category = <%= @category.id %>
+                <% else %>
+                var category = ''; 
+                <% end  %>
+                
+                 if($('#proximity').is(":checked")){
+                  sort = $('#proximity').val();
+                 }else if($('#alphabetical').is(":checked")){
+                   sort = $('#alphabetical').val();
+                 }else if($('#rating').is(":checked")){
+                     sort = $('#rating').val();
+                 }
+
+                 if($('#best').is(":checked")){
+                  
+                     rank = $('#best').val();
+                 }else if($('#good').is(":checked")){
+                  
+                     rank = $('#good').val();
+                 }else if($('#all').is(":checked")){
+                  
+                     rank = $('#all').val();
+                 }
+                 
+                 
+                 if($('#phone').is(":checked")){
+                     sold = $('#phone').val();
+                 }else if($('#online').is(":checked")){
+                     sold = $('#online').val();
+                 }else if($('#store').is(":checked")){
+                     sold = $('#store').val();
+                 }else if($('#all').is(":checked")){
+                     sold = $('#all').val();
+                 }
+
+                  $.get("/searches/showmore", { page: $('.view_all_products').attr('data-page'),search: $("#search_field").val(),sort:sort,category:category, rank:rank, sold:sold }, null, "script");
+                  return false;
+
           
             }
           
@@ -243,8 +295,9 @@ $(document).ready(function() {
     return key in search;
     }
 
-    $('.view_all_products').click(function(){
-        lastAddedLiveFunc();
+    $('.search_more').click(function(){
+      
+        lastAddedLiveFuncSearch();
     })
 
       
