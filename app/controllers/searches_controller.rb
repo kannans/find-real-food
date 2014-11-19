@@ -26,10 +26,10 @@ class SearchesController < ApplicationController
       
         #@products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
         @brands = Brand.search_brands(@location).availabilityfilter(sold).searchtext(search).paginate(page: 1, per_page: 30)
-        @products_locations = Product.search_products().where("products.id in (#{@product_ids})").collect{|c| c.location_id}.join(',')
-        if @products_locations!=''
-          @locations = Location.where("id in (#{@products_locations})")
-        end
+        #@products_locations = Product.search_products().where("products.id in (#{@product_ids})").collect{|c| c.location_id}.join(',')
+        #if @products_locations!=''
+         # @locations = Location.where("id in (#{@products_locations})")
+        #end
     else
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
         if categories!=''
