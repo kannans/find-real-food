@@ -33,9 +33,9 @@ class SearchesController < ApplicationController
     else
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
         if categories!=''
-          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
+          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20).collect{|c| c.id}.join(',')
         end
-        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
+        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).first(20).collect{|c| c.id}.join(',')
         if categories!=''
           @product_ids = @cat_products + @product_list
         else
