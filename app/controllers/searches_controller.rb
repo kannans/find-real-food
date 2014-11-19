@@ -15,16 +15,16 @@ class SearchesController < ApplicationController
         
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
         if categories!=''
-          @cat_products = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20).collect{|c| c.id}.join(',')
+          @cat_products = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20)
         end
-        @product_list = Product.search_products(@location).categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).first(20).collect{|c| c.id}.join(',')
+        @product_list = Product.search_products(@location).categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).first(20)
         if categories!=''
-          @product_ids = @cat_products + @product_list
+          @products = @cat_products + @product_list
         else
-          @product_ids = @product_list
+          @products = @product_list
         end        
       
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+        #@products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
         @brands = Brand.search_brands(@location).availabilityfilter(sold).searchtext(search).paginate(page: 1, per_page: 30)
         @products_locations = Product.search_products().where("products.id in (#{@product_ids})").collect{|c| c.location_id}.join(',')
         if @products_locations!=''
@@ -33,16 +33,16 @@ class SearchesController < ApplicationController
     else
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
         if categories!=''
-          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20).collect{|c| c.id}.join(',')
+          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20)
         end
-        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).first(20).collect{|c| c.id}.join(',')
+        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).first(20)
         if categories!=''
-          @product_ids = @cat_products + @product_list
+          @products = @cat_products + @product_list
         else  
-          @product_ids = @product_list
+          @products = @product_list
         end        
       
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+      #  @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
         @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).paginate(page: 1, per_page: 30)
 
     end
