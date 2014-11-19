@@ -11,7 +11,14 @@ class SearchesController < ApplicationController
     rank = params[:rank]
     category = params[:category]
     @current_page ='search';
-   
+
+    if @location !=''
+        
+         
+    else
+        
+
+    end
     respond_to do |format|
       format.html
       format.js
