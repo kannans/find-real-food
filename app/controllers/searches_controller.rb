@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
           @product_ids = @product_list
         end        
       
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: params[:page], per_page: 30).sortorder(sort)
         @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).first(20)
 
         @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
@@ -43,7 +43,7 @@ class SearchesController < ApplicationController
           @product_ids = @product_list
         end        
       
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: params[:page], per_page: 30).sortorder(sort)
         @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).first(20)
     end
     respond_to do |format|
