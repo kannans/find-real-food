@@ -28,7 +28,7 @@ class SearchesController < ApplicationController
        else
         @products = "";
        end
-        #@brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).find(30)
+        @brands = Brand.paginate(page: 1, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
 
         @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
         if @products_locations!=''
@@ -50,7 +50,7 @@ class SearchesController < ApplicationController
       else
         @products = "";
       end
-        #@brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).find(30)
+        @brands = Brand.paginate(page: 1, per_page: 30).search_brands().availabilityfilter(sold).searchtext(search)
     end
     respond_to do |format|
       format.html
