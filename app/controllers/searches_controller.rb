@@ -33,7 +33,10 @@ class SearchesController < ApplicationController
         #end
     else
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-       
+        if categories!=''
+          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).first(20)
+        end
+        
 
     end
     respond_to do |format|
