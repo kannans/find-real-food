@@ -11,7 +11,6 @@ class SearchesController < ApplicationController
     rank = params[:rank]
     category = params[:category]
     @current_page ='search';
-    
     if @location !=''
         
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
@@ -43,7 +42,9 @@ class SearchesController < ApplicationController
           @products = @product_list
         end        
       
-     
+        #@products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+        @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).paginate(page: 1, per_page: 30)
+
     end
     respond_to do |format|
       format.html
