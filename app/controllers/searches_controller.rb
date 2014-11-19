@@ -23,8 +23,11 @@ class SearchesController < ApplicationController
         else
           @product_ids = @product_list
         end        
-       
+       if @product_ids
         @products = Product.search_products().paginate(page: 1, per_page: 30).where("products.id in (#{@product_ids})").sortorder(sort)
+       else
+        @products = "";
+       end
         #@brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).find(30)
 
         @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
@@ -42,8 +45,11 @@ class SearchesController < ApplicationController
         else
           @product_ids = @product_list
         end        
-      
+      if @product_ids
         @products = Product.search_products().paginate(page: 1, per_page: 30).where("products.id in (#{@product_ids})").sortorder(sort)
+      else
+        @products = "";
+      end
         #@brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).find(30)
     end
     respond_to do |format|
