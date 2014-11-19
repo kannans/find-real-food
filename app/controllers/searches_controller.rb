@@ -43,8 +43,7 @@ class SearchesController < ApplicationController
         end        
       
         #@products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
-        @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).paginate(page: 1, per_page: 30)
-
+        @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).first(20)
     end
     respond_to do |format|
       format.html
