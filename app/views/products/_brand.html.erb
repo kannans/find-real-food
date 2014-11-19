@@ -1,12 +1,8 @@
                                             <div class="product_item">
                                                 <div class="product_item_body">
                                                     <div class="media product">
-                                                        <a href="/brand/<%= brand.slug %>" class="media_img">
-                                                         <% if brand.picture.present? %>
-                                                        <%= image_tag (brand.picture(:thumb)) %>
-                                                        <% else %>
-                                                        <%= image_tag("product_no_image.png", :alt => brand.name) %>
-                                                        <% end %>
+                                                        <a href="/brand/<%= brand.slug %>" class="media_img" <% if brand.picture_file_name %> style="background:url('http://findrealfoodapp.com<%= brand.picture(:original) %>') no-repeat scroll center center; background-size: cover;" <% end %>>
+                                                          
 
                                                        </a>
                                                         <div class="media_text">
