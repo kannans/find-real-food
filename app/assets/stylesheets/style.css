@@ -5099,5 +5099,6 @@ width: 20px;
 .media .media_img
 {
 background:url("/assets/product_no_image.png") no-repeat scroll center center;
+background-size: cover;
 
 }
