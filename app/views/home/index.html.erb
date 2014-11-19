@@ -56,7 +56,7 @@
                                 <div class="product_item">
                                     <div class="product_item_body">
                                         <div class="media product">
-                                            <a href="/product/<%= product.slug %>" class="media_img" style="background:url("http://findrealfoodapp.com<%= product.picture(:original) %>") no-repeat scroll center center">
+                                            <a href="/product/<%= product.slug %>" class="media_img" style="background:url('http://findrealfoodapp.com<%= product.picture(:original) %>') no-repeat scroll center center">
                                                
                                             <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id).downcase %>"><%= get_quality_name(product.quality_rating_id)%></span>
                                           </a>
