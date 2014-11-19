@@ -23,8 +23,8 @@ class SearchesController < ApplicationController
         else
           @product_ids = @product_list
         end        
-       if @product_ids
-        @products = Product.search_products().paginate(page: 1, per_page: 30).where("products.id in (#{@product_ids})").sortorder(sort)
+       if @product_ids!=''
+        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
        else
         @products = "";
        end
@@ -45,8 +45,8 @@ class SearchesController < ApplicationController
         else
           @product_ids = @product_list
         end        
-      if @product_ids
-        @products = Product.search_products().paginate(page: 1, per_page: 30).where("products.id in (#{@product_ids})").sortorder(sort)
+      if @product_ids!=''
+        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
       else
         @products = "";
       end
