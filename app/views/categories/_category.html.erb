@@ -1,15 +1,12 @@
- 
-                            <li>
-                             <a href="/category/<%= category.slug %>">
-                              <% if category.picture.present? %>
-                          <%= image_tag (category.picture(:original)) %>
-                          <% else %>
-                          <%= image_tag("category_no_img.png", :alt => "star") %>
-                          <% end %>
-                            </a>
-                                <p class="catg_name"><%= category.title %></p>
-                                <a href="/category/<%= category.slug %>">View Products</a>
-                                
-                                
-                            </li>
+<li>
+ <a href="/category/<%= category.slug %>">
+ <% if category.picture.present? %>
+      <%= image_tag (category.picture(:original)) %>
+ <% else %>
+      <%= image_tag("category_no_img.png", :alt => "star") %>
+ <% end %>
+ </a>
+ <p class="catg_name"><%= category.title %></p>
+ <a href="/category/<%= category.slug %>">View Products</a>
+</li>
  
