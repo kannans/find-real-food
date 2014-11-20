@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
      
     
-    @locationval = Location.near("[80.2153889, 13.0401945]", 20).collect{|c| c.id}.join(',')
+    @locationval = Location.near("[37.09024, -95.712891]", 20).collect{|c| c.id}.join(',')
 
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     
@@ -36,12 +36,7 @@ class HomeController < ApplicationController
     end
 
    	@sliders = Slider.all
-   	currentlocation = Net::HTTP.get_response(URI.parse('http://api.hostip.info'))
-    currentlocation.each do |f|
-
-    puts "#{f}"
-    
-    end
+   	 
   end
  
 
