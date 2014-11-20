@@ -468,7 +468,34 @@ $('.notclose').click(function() {
 $( ".cmmn_success, .cmmn_error" ).delay( 5000 ).fadeOut( 400 );
  
 });
-    
+
+
+ var lat;
+    var long;
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+
+        }
+        
+    }
+    function showPosition(position)
+    {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+        
+        $.ajax({
+            type: 'POST',
+            url: '/home/setzip',
+            data: { lat: lat, long: long },
+            contentType: 'application/json',
+            dataType: 'json'
+
+        });
+    }
+        
 
 </script>
 

@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
 
   	@location = Location.find(params[:slug])
     
-    @products = Product.search_products(@location.id).sortorder().paginate(page: page, per_page: 30)
+    @products = Product.search_products(@location.id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
     @brands = Brand.search_brands(@location.id).paginate(page: page, per_page: 30)
   end
 

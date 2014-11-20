@@ -12,7 +12,6 @@ class BrandsController < ApplicationController
       zip = session[:zip]
     else
       zip = '94123'
-      session[:zip] = zip
     end
 
     if params[:page]

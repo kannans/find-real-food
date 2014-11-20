@@ -4,21 +4,13 @@ class HomeController < ApplicationController
   	if params[:zip]
   		zip = params[:zip]
       session[:zip] = zip
+  	elsif session[:zip]
+    	zip = session[:zip]
   	else
-    	zip = '94123'
-      session[:zip] = zip
-  	end
-    zip = '94123'
-    
-    search = ''
-
+      zip ='94123'
+    end
      
-
-     
-    
-    @locationval = Location.near("[37.09024, -95.712891]", 2000).collect{|c| c.id}.join(',')
-
-  	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     
     if @location !=''
        
@@ -29,9 +21,8 @@ class HomeController < ApplicationController
       @locations = Location.where("id in (#{@products_locations})")
       end
     else
-    @locations = Location.near("#{zip}", 20)
-    
-      @products = Product.search_products().sortorder().first(20)
+       
+    @products = Product.search_products().sortorder().first(20)
     
     end
 
@@ -39,6 +30,19 @@ class HomeController < ApplicationController
    	 
   end
  
+  def setzip
+    lati = params[:latitude]
+    longi = params[:longitude]
+    location  = Geocoder.search("#{lati}, #{longi}")
+    location.each do |lo|
+      if lo.postal_code
+      
+        session[:zip] = lo.postal_code
+
+      end
+    end
+  end
+
 
   def map
     location = params[:location]

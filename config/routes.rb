@@ -52,6 +52,7 @@ RealFood::Application.routes.draw do
     get 'brands/addflag', :to => 'brands#add_flag'
     get 'searches/showmore'
     post 'locations/create'
+    post 'home/setzip'
     
     get 'products', :to => 'products#index'
     get 'products/addtofavorite', :to => 'products#add_to_favorites'

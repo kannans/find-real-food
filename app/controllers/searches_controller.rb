@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
        end
         @brands = Brand.paginate(page: 1, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
 
-        @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
+        @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter('store').sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
         if @products_locations!=''
           @locations = Location.where("id in (#{@products_locations})")
         end
@@ -60,8 +60,8 @@ class SearchesController < ApplicationController
   end
  
  def showmore
-    zip = params[:zip]
-    session[:zip] = zip
+    
+    zip = session[:zip]
     @location = Location.near("#{zip}", 50).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]
@@ -91,10 +91,6 @@ class SearchesController < ApplicationController
         @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: 30).sortorder(sort)
         @brands = Brand.paginate(page: page, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
 
-        @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter(sold).sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
-        if @products_locations!=''
-          @locations = Location.where("id in (#{@products_locations})")
-        end
     else
         categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
         if categories!=''
