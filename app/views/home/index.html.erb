@@ -1,4 +1,6 @@
 <%= render '/layouts/googlemap' %>
+
+
 <section>
         <div class="main_container">
             <% if @sliders %>
@@ -186,6 +188,36 @@
             
         </div>
     </section>
+    
+<%= @locationval %>
+<script>
+    
+    var lat;
+    var long;
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+
+        }
+        
+    }
+    function showPosition(position)
+    {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+        
+        $.ajax({
+            type: 'POST',
+            url: '',
+            data: { lat: lat, long: long },
+            contentType: 'application/json',
+            dataType: 'json'
+
+        });
+    }
+</script>
 <script type="text/javascript">
  
 $(document).ready(function() {

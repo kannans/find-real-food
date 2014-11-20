@@ -11,6 +11,13 @@ class HomeController < ApplicationController
     zip = '94123'
     
     search = ''
+
+     
+
+     
+    
+    @locationval = Location.near("[80.2153889, 13.0401945]", 20).collect{|c| c.id}.join(',')
+
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     
     if @location !=''
@@ -29,9 +36,12 @@ class HomeController < ApplicationController
     end
 
    	@sliders = Slider.all
-   	
+   	currentlocation = Net::HTTP.get_response(URI.parse('http://api.hostip.info'))
+    currentlocation.each do |f|
+
+    puts "#{f}"
     
-    
+    end
   end
  
 
