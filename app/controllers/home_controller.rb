@@ -30,7 +30,7 @@ class HomeController < ApplicationController
 
    	@sliders = Slider.all
    	
-    @current_location = request.location.country
+    
     
   end
  
