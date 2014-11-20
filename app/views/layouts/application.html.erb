@@ -485,18 +485,12 @@ $( ".cmmn_success, .cmmn_error" ).delay( 5000 ).fadeOut( 400 );
     {
         lat = position.coords.latitude;
         long = position.coords.longitude;
+        $.get("/home/setzip", { lat: lat, long: long }, null, "script");
         
-        $.ajax({
-            type: 'POST',
-            url: '/home/setzip',
-            data: { lat: lat, long: long },
-            contentType: 'application/json',
-            dataType: 'json'
-
-        });
     }
+    <% if session[:zip].blank? %>
     getLocation(); 
-
+    <% end %>
 </script>
 
 </body>
