@@ -31,8 +31,8 @@ class HomeController < ApplicationController
   end
  
   def setzip
-    lati = params[:latitude]
-    longi = params[:longitude]
+    lati = params[:lat]
+    longi = params[:long]
     location  = Geocoder.search("#{lati}, #{longi}")
     location.each do |lo|
       if lo.postal_code
