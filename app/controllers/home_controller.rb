@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
      
     
-    @locationval = Location.near("[37.09024, -95.712891]", 20).collect{|c| c.id}.join(',')
+    @locationval = Location.near("[37.09024, -95.712891]", 2000).collect{|c| c.id}.join(',')
 
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     
