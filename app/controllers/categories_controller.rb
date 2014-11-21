@@ -13,9 +13,6 @@ class CategoriesController < ApplicationController
 	      session[:zip] = zip
 	  	elsif session[:zip]
 	      zip = session[:zip]
-	  	else
-	    	zip = '94123'
-	      session[:zip] = zip
 	  	end
 
 	  	 if params[:page]
@@ -25,8 +22,8 @@ class CategoriesController < ApplicationController
     	end
 
 	    @category = Category.find(params[:slug])
-	    search = ''
-	  	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+	    
+	  	@location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
 	    
 	  	@current_page ='category';
 	    if @location !=''
@@ -39,7 +36,7 @@ class CategoriesController < ApplicationController
 		       @locations = Location.where("id in (#{@products_locations})") 
 		  	end
 	    else
-		   	@locations = Location.near("#{zip}", 20)
+		   	@locations = Location.near("#{zip}", 100)
 		   	@products = Product.search_products().categoryfilter(@category.id).sortorder().paginate(page: page, per_page: 30)
 		   	@brand_ids = Product.search_products().categoryfilter(@category.id).collect{|b| b.brand_id}.join(',')
 			@brands = Brand.where("id in (#{@brand_ids})").paginate(page: page, per_page: 30)

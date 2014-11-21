@@ -6,15 +6,13 @@ class HomeController < ApplicationController
       session[:zip] = zip
   	elsif session[:zip]
     	zip = session[:zip]
-  	else
-      zip ='94123'
-    end
+  	end
      
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     
     if @location !=''
        
-  	  @products =  Product.search_products().sortorder().first(20)
+  	  @products =  Product.search_products(@location).sortorder().first(20)
       
       @products_locations = Product.search_products(@location).sortorder().collect{|c| c.location_id}.join(',')
       if @products_locations!=''

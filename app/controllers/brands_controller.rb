@@ -10,8 +10,6 @@ class BrandsController < ApplicationController
       session[:zip] = zip
     elsif session[:zip]
       zip = session[:zip]
-    else
-      zip = '94123'
     end
 
     if params[:page]
@@ -21,7 +19,7 @@ class BrandsController < ApplicationController
     end
 
     
-    @location = Location.near("#{zip}", 200).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     
     if @location !=''
       
@@ -31,7 +29,7 @@ class BrandsController < ApplicationController
         @locations = Location.where("id in (#{@products_locations})")
       end
     else
-      @locations = Location.near("#{zip}", 20)
+      @locations = Location.near("#{zip}", 100)
     end
 	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().paginate(page: page, per_page: 30)
    

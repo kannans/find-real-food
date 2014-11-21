@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
     else
       zip = session[:zip]
     end
-    @location = Location.near("#{zip}", 50).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]
     sold = params[:sold]
@@ -84,7 +84,7 @@ class SearchesController < ApplicationController
  def showmore
     
     zip = session[:zip]
-    @location = Location.near("#{zip}", 50).collect{|c| c.id}.join(',')
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]
     sold = params[:sold]
@@ -97,9 +97,19 @@ class SearchesController < ApplicationController
         page = 1
     end
 
+    if sold=='' and zip !=''
+      sold = 'store'
+    end
+    
    if @location !=''
         
+       
+       if search
        categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+       else
+        categories =''
+       end
+
         if categories!=''
           @cat_products = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
         end
@@ -114,7 +124,13 @@ class SearchesController < ApplicationController
         @brands = Brand.paginate(page: page, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
 
     else
-        categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+        
+        if search
+       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+       else
+        categories =''
+       end
+
         if categories!=''
           @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
         end

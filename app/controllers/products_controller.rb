@@ -14,7 +14,7 @@ def more_details
 	
 	if session[:zip]!=''
 		zip = session[:zip]
-		@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
+		@location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
 	end
     
     
@@ -29,7 +29,7 @@ def more_details
     else
     	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder().first(20)
     end
-	@locations = Location.near("#{zip}", 20)
+	@locations = Location.near("#{zip}", 100)
 
 	else
 		redirect_to "/login"
