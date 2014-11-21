@@ -2,8 +2,12 @@ class SearchesController < ApplicationController
   param :search, String
 
   def index
+    if params[:zip]
     zip = params[:zip]
     session[:zip] = zip
+    else
+      zip = session[:zip]
+    end
     @location = Location.near("#{zip}", 50).collect{|c| c.id}.join(',')
     search = params[:search]
     sort = params[:sort]
