@@ -11,12 +11,23 @@ class SearchesController < ApplicationController
     rank = params[:rank]
     category = params[:category]
     @current_page ='search';
+
+    if sold=='' and zip !=''
+      sold = 'store'
+    end
+
     if @location !=''
-        
+       
+       if search
        categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+       else
+        categories =''
+       end
+
         if categories!=''
           @cat_products = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
         end
+       
         @product_list = Product.search_products(@location).categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
         if categories!=''
           @product_ids = @cat_products + @product_list
@@ -35,7 +46,14 @@ class SearchesController < ApplicationController
           @locations = Location.where("id in (#{@products_locations})")
         end
     else
-        categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+        
+        if search
+       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+       else
+        categories =''
+       end
+
+
         if categories!=''
           @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
         end

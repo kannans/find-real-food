@@ -213,7 +213,7 @@ class Product < ActiveRecord::Base
       if rank =='good' || rank =='best' 
       where("quality_ratings.name = '#{rank}'")
       else
-      where("quality_ratings.name = 'good' || quality_ratings.name = 'best'")
+      where("quality_ratings.name = 'good' or quality_ratings.name = 'best'")
       end
     end
 
