@@ -257,6 +257,19 @@ function getCookie(cname) {
 
 $(document).ready(function(){
   
+
+  
+       $('.map_input input[type="text"]').focus(function() {
+           $('.map_area').append('<div class="map_overlay"></div>');
+                       $('.map_overlay').fadeIn(200);
+       });
+               $('.map_input input[type="text"]').blur(function() {
+           $('.map_overlay').fadeOut(200);
+                       $('.map_overlay').remove();
+       });
+   
+
+
   <% if user_signed_in? %>
  <% else %>
  

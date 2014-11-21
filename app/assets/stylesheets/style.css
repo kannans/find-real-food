@@ -5102,3 +5102,13 @@ background:url("/assets/product_no_image.png") no-repeat scroll center center;
 background-size: cover;
 
 }
+.map_overlay{
+    background:rgba(0,0,0,0.7);
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+    display:none;
+}
