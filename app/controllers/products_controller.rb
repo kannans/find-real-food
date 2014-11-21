@@ -25,9 +25,7 @@ def more_details
     
 
 	if @location
-		@similar_product  = Product.search_products(@location).categoryfilter(@product.category_id).sortorder().first(20)
-    else
-    	@similar_product  = Product.search_products().categoryfilter(@product.category_id).sortorder().first(20)
+		@similar_product  = Product.where('id !=@product.id').search_products(@location).categoryfilter(@product.category_id).sortorder().first(20)
     end
 	@locations = Location.near("#{zip}", 100)
 
