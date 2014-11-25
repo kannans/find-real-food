@@ -68,7 +68,7 @@ class Api::SearchesController < Api::BaseController
     @resources[:users] = User.search(q).result  if f.nil? || f == "User"
 
 
-    if q[:category_id_eq]
+    if q[:category_id_eq].to_i > 0
       q[:products_category_id_eq] = q[:category_id_eq]
       @resources[:brands] = Brand.approved.joins(:products).search(q).result.group("brands.name")
       @resources[:categories] = nil
