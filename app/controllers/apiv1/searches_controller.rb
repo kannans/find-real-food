@@ -29,12 +29,13 @@ class Apiv1::SearchesController < Api::BaseController
 
     q = params[:q]
 
-    unless q[:name_cont].nil?
-      q[:name_cont_all] = q[:name_cont].split(' ')
-      q[:title_cont_all] = q[:name_cont_all]
-      q.delete(:name_cont)
-    end
-
+    #unless q[:name_cont].nil?
+    #  q[:name_cont_all] = q[:name_cont].split(' ')
+    #  q[:title_cont_all] = q[:name_cont_all]
+    #  q.delete(:name_cont)
+    #end
+    
+    search  = q[:name_cont]
     
 
     f = q[:filter]
@@ -53,29 +54,34 @@ class Apiv1::SearchesController < Api::BaseController
 
     @resources = {}
 
-    @resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
-    @resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
-    @resources[:locations] = Location.search(q).result  if f.nil? || f == "Location"
+    #@resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
+    @resources[:brands] = Brand.approved.search_brands().searchtext(search) if f.nil? || f == "Brand"
+    
+    #@resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
+    @resources[:categories] = Category.where("title like '%#{search}%'")  if f.nil? || f == "Category"
+    @resources[:locations] = Location.where("name like '%#{search}%'")  if f.nil? || f == "Location"
 
     if f.nil? || f == "Product"
       if params[:sort] == "rating"
-        @resources[:products] = Product.search_and_sort_by_rating(q).result
+        #@resources[:products] = Product.search_and_sort_by_rating(q).result
+        @resources[:products] = Product.search_products().sortorder('rating')
       elsif params[:sort] == "quality"
-        @resources[:products] = Product.search_and_sort_by_quality(q).result
+        #@resources[:products] = Product.search_and_sort_by_quality(q).result
+        @resources[:products] = Product.search_products().sortorder('quality')
       else
-        @resources[:products] = Product.search(q).result
+        @resources[:products] = Product.search_products().sortorder('rating')
       end
     end
 
-    @resources[:users] = User.search(q).result  if f.nil? || f == "User"
+    #@resources[:users] = User.search(q).result  if f.nil? || f == "User"
 
 
-    if q[:category_id_eq].to_i > 0
-      q[:products_category_id_eq] = q[:category_id_eq]
-      @resources[:brands] = Brand.approved.joins(:products).search(q).result.group("brands.name")
-      @resources[:categories] = nil
+    #if q[:category_id_eq].to_i > 0
+    #  q[:products_category_id_eq] = q[:category_id_eq]
+    #  @resources[:brands] = Brand.approved.joins(:products).search(q).result.group("brands.name")
+    #  @resources[:categories] = nil
       @resources[:users] = nil
-    end
+    #end
 
     search = Search.new({
       :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]),

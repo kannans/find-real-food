@@ -175,9 +175,13 @@ class Product < ActiveRecord::Base
    def self.sortorder(sort='')
       
       if sort=='alphabetical' || sort =='alphabetical'
-          order("products.name asc")
+         order("products.name asc")
          .order("avg_rating desc")
          .order("quality_order asc") 
+      elsif sort=='quality'
+         order("quality_order asc")  
+         .order("avg_rating desc")         
+         .order("products.name asc") 
       else
          order("avg_rating desc")
          .order("quality_order asc")  
@@ -230,6 +234,11 @@ class Product < ActiveRecord::Base
         where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.store_farmers_market = '1'")
       end
     end
+
+    def self.except(product_id)
+      where("products.id not in ('#{product_id}')")
+    end
+
 
     def process_parent_ids
       return unless parent_ids.any?
