@@ -77,8 +77,8 @@ class Apiv1::SearchesController < Api::BaseController
 
 
     if q[:category_id_eq].to_i > 0
+      
       q[:products_category_id_eq] = q[:category_id_eq]
-      @products = Product.search_products().categoryfilter(q[:category_id_eq]).sortorder()
       @brand_ids = Product.search_products().categoryfilter(q[:category_id_eq]).collect{|b| b.brand_id}.join(',')
       @resources[:brands] = Brand.where("id in (#{@brand_ids})")
       @resources[:categories] = nil
