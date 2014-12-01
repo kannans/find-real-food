@@ -76,12 +76,14 @@ class Apiv1::SearchesController < Api::BaseController
     #@resources[:users] = User.search(q).result  if f.nil? || f == "User"
 
 
-    #if q[:category_id_eq].to_i > 0
-    #  q[:products_category_id_eq] = q[:category_id_eq]
-    #  @resources[:brands] = Brand.approved.joins(:products).search(q).result.group("brands.name")
-    #  @resources[:categories] = nil
+    if q[:category_id_eq].to_i > 0
+      q[:products_category_id_eq] = q[:category_id_eq]
+      @products = Product.search_products().categoryfilter(q[:category_id_eq]).sortorder()
+      @brand_ids = Product.search_products().categoryfilter(q[:category_id_eq]).collect{|b| b.brand_id}.join(',')
+      @resources[:brands] = Brand.where("id in (#{@brand_ids})")
+      @resources[:categories] = nil
       @resources[:users] = nil
-    #end
+    end
 
     search = Search.new({
       :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]),
