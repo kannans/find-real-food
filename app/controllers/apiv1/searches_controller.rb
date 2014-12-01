@@ -91,11 +91,7 @@ class Apiv1::SearchesController < Api::BaseController
       :categories => @resources[:categories].nil? ? nil : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]),
       :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]),
       :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]),
-     
-      :pages => {
-        :brands => @resources[:brands].nil? ? 0 : (@resources[:brands].length / search_result_limit.to_f).ceil,
-        
-      }
+   
     })
 
     respond_to do |format|
