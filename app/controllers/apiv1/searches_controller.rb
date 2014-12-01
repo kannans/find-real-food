@@ -64,12 +64,12 @@ class Apiv1::SearchesController < Api::BaseController
     if f.nil? || f == "Product"
       if params[:sort] == "rating"
         #@resources[:products] = Product.search_and_sort_by_rating(q).result
-        @resources[:products] = Product.search_products().categoryfilter(q[:category_id_eq]).sortorder('rating')
+        @resources[:products] = Product.search_products().sortorder('rating')
       elsif params[:sort] == "quality"
         #@resources[:products] = Product.search_and_sort_by_quality(q).result
-        @resources[:products] = Product.search_products().categoryfilter(q[:category_id_eq]).sortorder('quality')
+        @resources[:products] = Product.search_products().sortorder('quality')
       else
-        @resources[:products] = Product.search_products().categoryfilter(q[:category_id_eq]).sortorder('rating')
+        @resources[:products] = Product.search_products().sortorder('rating')
       end
     end
 
@@ -79,7 +79,6 @@ class Apiv1::SearchesController < Api::BaseController
     if q[:category_id_eq].to_i > 0
       
       q[:products_category_id_eq] = q[:category_id_eq]
-      @resources[:products] = Product.search_products().categoryfilter(q[:category_id_eq]).sortorder('rating')
       @brand_ids = Product.search_products().categoryfilter(q[:category_id_eq]).collect{|b| b.brand_id}.join(',')
       @resources[:brands] = Brand.where("id in (#{@brand_ids})")
       @resources[:categories] = nil
@@ -91,7 +90,7 @@ class Apiv1::SearchesController < Api::BaseController
       :categories => @resources[:categories].nil? ? nil : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]),
       :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]),
       :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]),
-   
+      
     })
 
     respond_to do |format|
