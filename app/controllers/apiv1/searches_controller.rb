@@ -73,8 +73,8 @@ class Apiv1::SearchesController < Api::BaseController
       end
     end
 
-    #@resources[:users] = User.search(q).result  if f.nil? || f == "User"
-
+    @resources[:users] = User.where("name like '%#{search}%'")  if f.nil? || f == "User"
+    
 
     if q[:category_id_eq].to_i > 0
       
@@ -82,7 +82,7 @@ class Apiv1::SearchesController < Api::BaseController
       @brand_ids = Product.search_products().categoryfilter(q[:category_id_eq]).collect{|b| b.brand_id}.join(',')
       @resources[:brands] = Brand.where("id in (#{@brand_ids})")
       @resources[:categories] = nil
-      @resources[:users] = nil
+      @resources[:users] = nil  
     end
 
     search = Search.new({
@@ -91,7 +91,13 @@ class Apiv1::SearchesController < Api::BaseController
       :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]),
       :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]),
       :users => @resources[:users].nil? ? nil : @resources[:users].paginate(:per_page => search_result_limit, :page => params[:page]),
-      
+      :pages => {
+        :brands => @resources[:brands].nil? ? 0 : (@resources[:brands].length / search_result_limit.to_f).ceil,
+        :categories => @resources[:categories].nil? ? 0 : (@resources[:categories].length / search_result_limit.to_f).ceil,
+        :locations => @resources[:locations].nil? ? 0 : (@resources[:locations].length / search_result_limit.to_f).ceil,
+        :products => @resources[:products].nil? ? 0 : (@resources[:products].length / search_result_limit.to_f).ceil,
+        :users => @resources[:users].nil? ? 0 : (@resources[:users].length / search_result_limit.to_f).ceil
+      }
     })
 
     respond_to do |format|
