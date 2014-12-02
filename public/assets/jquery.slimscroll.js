@@ -70,7 +70,7 @@
         wheelStep : 20,
 
         // scroll amount applied when user is using gestures
-        touchScrollStep : 200,
+        touchScrollStep : 1000,
 
         // sets border radius
         borderRadius: '7px',
@@ -381,7 +381,7 @@
           {
             this.addEventListener('DOMMouseScroll', _onWheel, false );
             this.addEventListener('mousewheel', _onWheel, false );
-            this.addEventListener('MozMousePixelScroll', _onWheel, false );
+            //this.addEventListener('MozMousePixelScroll', _onWheel, false );
           }
           else
           {
