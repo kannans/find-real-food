@@ -9,11 +9,48 @@ class SearchesController < ApplicationController
       zip = session[:zip]
     end
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
-    search = params[:search]
-    sort = params[:sort]
-    sold = params[:sold]
-    rank = params[:rank]
-    category = params[:category]
+    
+    if params[:search]
+      search = params[:search]
+      session[:search] = search
+    else 
+      search = session[:search]
+      
+    end
+
+    if params[:sort]
+      sort = params[:sort]
+      session[:sort] = sort
+    else
+      sort = session[:sort]
+    end
+    
+    if params[:sold]
+      sold = params[:sold]
+      session[:sold] = sold
+    else
+      sold = session[:sold]
+      
+    end
+    
+    if params[:rank]
+      rank = params[:rank]
+      session[:rank] = rank
+    else
+      rank = session[:rank]
+      
+    end
+    
+    if  params[:category]
+      category = params[:category] 
+      session[:category] = category
+    else
+      category = session[:category]
+
+    end
+    
+
+    
     @current_page ='search';
 
     if sold=='' and zip !=''
@@ -23,9 +60,9 @@ class SearchesController < ApplicationController
     if @location !=''
        
        if search
-       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+          categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
        else
-        categories =''
+          categories =''
        end
 
         if categories!=''
@@ -39,22 +76,22 @@ class SearchesController < ApplicationController
           @product_ids = @product_list
         end        
        if @product_ids!=''
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+          @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
        else
-        @products = "";
+          @products = "";
        end
-        @brands = Brand.paginate(page: 1, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
+          @brands = Brand.paginate(page: 1, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
 
-        @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter('store').sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
+          @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter('store').sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
         if @products_locations!=''
           @locations = Location.where("id in (#{@products_locations})")
         end
     else
         
         if search
-       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+          categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
        else
-        categories =''
+          categories =''
        end
 
 
@@ -85,11 +122,47 @@ class SearchesController < ApplicationController
     
     zip = session[:zip]
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
-    search = params[:search]
-    sort = params[:sort]
-    sold = params[:sold]
-    rank = params[:rank]
-    category = params[:category]
+    
+    if params[:search]
+      search = params[:search]
+      session[:search] = search
+    else 
+      search = session[:search]
+      
+    end
+
+    if params[:sort]
+      sort = params[:sort]
+      session[:sort] = sort
+    else
+      sort = session[:sort]
+    end
+    
+    if params[:sold]
+      sold = params[:sold]
+      session[:sold] = sold
+    else
+      sold = session[:sold]
+      
+    end
+    
+    if params[:rank]
+      rank = params[:rank]
+      session[:rank] = rank
+    else
+      rank = session[:rank]
+      
+    end
+    
+    if  params[:category]
+      category = params[:category] 
+      session[:category] = category
+    else
+      category = session[:category]
+
+    end
+
+
     @current_page ='search';
     if params[:page]
         page = params[:page]
