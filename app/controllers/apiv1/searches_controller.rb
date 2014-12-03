@@ -55,7 +55,7 @@ class Apiv1::SearchesController < Api::BaseController
     @resources = {}
 
     #@resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
-    @resources[:brands] = Brand.approved.search_brands().searchtext(search) if f.nil? || f == "Brand"
+    #@resources[:brands] = Brand.approved.search_brands().searchtext(search) if f.nil? || f == "Brand"
     
     #@resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
     @resources[:categories] = Category.where("title like '%#{search}%'")  if f.nil? || f == "Category"
@@ -76,10 +76,11 @@ class Apiv1::SearchesController < Api::BaseController
     #@resources[:users] = User.where("name like '%#{search}%'")  if f.nil? || f == "User"
     
 
-    if q[:category_id_eq].to_i > 0
-      
+    if q[:category_id_eq]
+    
       q[:products_category_id_eq] = q[:category_id_eq]
       @resources[:products] = Product.search_products().categoryfilter(q[:category_id_eq])
+      
       @brand_ids = Product.search_products().categoryfilter(q[:category_id_eq]).collect{|b| b.brand_id}.join(',')
       @resources[:brands] = Brand.where("id in (#{@brand_ids})")
       @resources[:categories] = nil
@@ -88,7 +89,7 @@ class Apiv1::SearchesController < Api::BaseController
 
     search = Search.new({
       :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page])
+      
       
     })
 
