@@ -4,14 +4,20 @@
                                         <div class="comment">
                                              <% user_details = get_user_details(comment.user_id) %>
                                               <% if user_details %>
+                                             
                                             <div class="user_img fl">
-                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
-                                            </div>
-                                            <% else %>
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                              <% unless user_details.avatar_file_name %>
+                                               <img src="/assets/review_user_default.png" alt="User Name"/>
+                                                
+                                              <% else %>
+                                                 <%= image_tag (user_details.avatar.url) %>
+                                               <% end %>
+                          
                                             </div>
                                             <% end %>
+
+
+                                            
                                             <div class="comment_dtl">
                                                
                                                 <% if user_details %>

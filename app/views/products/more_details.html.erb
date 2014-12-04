@@ -221,13 +221,17 @@
                                         <div class="comment">
                                              <% user_details = get_user_details(c.user_id) %>
                                               <% if user_details %>
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
+                                            
+                                             <div class="user_img fl">
+                                              <% unless user_details.avatar_file_name %>
+                                               <img src="/assets/review_user_default.png" alt="User Name"/>
+                                                
+                                              <% else %>
+                                                 <%= image_tag (user_details.avatar.url) %>
+                                               <% end %>
+                          
                                             </div>
-                                            <% else %>
-                                            <div class="user_img fl">
-                                                <a href="javascript:;"><%= image_tag("review_user_default.png", :alt => "User") %></a>
-                                            </div>
+
                                             <% end %>
                                             <div class="comment_dtl">
                                                
