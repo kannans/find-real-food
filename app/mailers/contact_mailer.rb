@@ -1,15 +1,14 @@
 class ContactMailer < ActionMailer::Base
-  default from: "rmarktest@gmail.com"
+  default from: "findrealfoodapp@gmail.com"
   def contact_mail(contact)
     @contact = contact
     mail(to: 'rmarktest1@gmail.com', subject: 'Find Real Food - Contact Us')
   end
   
-  def invite_send(invite)
+  def invite_send(invite, email)
     @invite = invite
     
-      mail(to: invite[:txtar_con_emails], subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food')
-    
+    mail(to: email, subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food')
     
   end
 
