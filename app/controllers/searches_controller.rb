@@ -10,8 +10,11 @@ class SearchesController < ApplicationController
     end
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     
+    
+
+    
     if params[:search]
-      search = params[:search]
+      search = params[:search].gsub("'", "\\\\'")
       session[:search] = search
     else 
       search = session[:search]
@@ -124,7 +127,7 @@ class SearchesController < ApplicationController
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     
     if params[:search]
-      search = params[:search]
+      search = params[:search].gsub("'", "\\\\'")
       session[:search] = search
     else 
       search = session[:search]
