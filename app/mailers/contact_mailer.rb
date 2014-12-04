@@ -8,7 +8,7 @@ class ContactMailer < ActionMailer::Base
   def invite_send(invite, email)
     @invite = invite
     
-    mail(to: email, subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food')
+    #mail(to: email, subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food')
     
   end
 
