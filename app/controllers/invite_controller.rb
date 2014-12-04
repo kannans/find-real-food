@@ -10,8 +10,9 @@ class InviteController < ApplicationController
   def sendinvite
 
    if params[:sbmt_con] =='Submit'
+    @user = User.find(current_user.id)
    	params[:txtar_con_emails].split(",").each do |emailval|
-   	ContactMailer.invite_send(params,emailval).deliver
+   	ContactMailer.invite_send(params,emailval,@user).deliver
     end
   	flash[:notice] = "Your Invitation has been sent successfully."
   	redirect_to "/invite/index"

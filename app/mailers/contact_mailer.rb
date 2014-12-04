@@ -5,10 +5,10 @@ class ContactMailer < ActionMailer::Base
     mail(to: 'rmarktest1@gmail.com', subject: 'Find Real Food - Contact Us')
   end
   
-  def invite_send(invite, email)
+  def invite_send(invite, email, user)
     @invite = invite
     
-    mail(to: email, subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food', from: "rmarktest1@gmail.com")
+    mail(to: email, subject: invite[:sender_fname]+' '+invite[:sender_name]+' is Inviting you to Find Real Food', from: user.email)
     
   end
 
