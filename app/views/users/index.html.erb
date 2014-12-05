@@ -12,7 +12,7 @@
 
 
                     <div class="userprofile_details">
-                      <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname.titleize %><% end %> <% if @user.name %><%= @user.name.titleize %><% end %><span><% if @user.state.to_s !='' && @user.state.to_s !='0' %>, <%= @user.state.titleize %><% end %><% if @user.city!='' %>, <%= @user.city.titleize %><% end %> </span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
+                      <h1 class="user_pr_name"><% if @user.fname %><%= @user.fname %><% end %> <% if @user.name %><%= @user.name %><% end %><span><% if @user.state.to_s !='' && @user.state.to_s !='0' %>, <%= @user.state %><% end %><% if @user.city!='' %>, <%= @user.city %><% end %> </span> <a class="light_pop_trigger editicon" href="#editprofile"></a></h1>
                         <div class="clear"></div>
                         <% if @user.bio !='' %>
                         <p class="user_pr_desc"><%= @user.bio %></p>
