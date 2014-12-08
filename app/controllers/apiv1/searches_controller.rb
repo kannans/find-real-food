@@ -25,61 +25,8 @@ class Apiv1::SearchesController < Api::BaseController
   EOT
 
   def search
-    search_result_limit = 20
-
-    q = params[:q]
- 
-    search  = q[:name_cont]
-    sold = ''
-    rank = 'all'
-    sort = 'rating'
-
-    f = q[:filter]
-
-    
-
-    
-    unless params[:sub_filter].nil?
-      sold = 'phone' if params[:sub_filter] == 'order_by_phone'
-      sold = 'online' if params[:sub_filter] == 'order_by_online'
-      sold='store' if params[:sub_filter] == 'store_or_farmers_market'
-      sold='all' if params[:sub_filter] == 'all'
-    end
-    unless params[:sub_filter].nil?
-    rank = 'good' if params[:sub_filter] == 'good'
-    rank = 'best' if params[:sub_filter] == 'best'
-    end
-
-    if params[:page]
-        page = params[:page]
-    else
-        page = 1
-    end
-
-    @resources = {}
-    if q[:category_id_eq]
-    category = q[:category_id_eq]
-    else
-      category = ''
-    end
-       
-       if search
-       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-       else
-        categories =''
-       end
-
-        if categories!=''
-          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
-        end
-        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
-        if categories!=''
-          @product_ids = @cat_products + @product_list
-        else
-          @product_ids = @product_list
-        end        
-       
-        @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: 20)
+       @resources = {}
+        @resources[:products] = Product.search_products().paginate(page: 1, per_page: 20)
         #@resources[:brands] = Brand.paginate(page: page, per_page: search_result_limit).search_brands().availabilityfilter(sold).searchtext(search)
         
         
