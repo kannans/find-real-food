@@ -5112,3 +5112,31 @@ background-size: cover;
     margin:auto;
     display:none;
 }
+ .comment .user_img
+{
+   height: 80px;
+   width: 80px;
+   position:relative;
+   overflow:hidden
+}
+.user_img img
+{
+   position:absolute;
+   max-width:80px;
+   max-height:80px;
+   top:0;
+   bottom:0;
+   right:0;
+   left:0;
+   margin:auto;
+}
+.user_img img:before
+{
+   border-radius: 200px;
+   box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.45) inset;
+   content: "";
+   display: block;
+   height: 100%;
+   position: absolute;
+   width: 100%;
+}
