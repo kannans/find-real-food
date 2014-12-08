@@ -2,6 +2,15 @@
 	$('#products .products').append("<%=escape_javascript(render :partial => 'products/product', :collection => @products, :as => :product)%>");
 	$('#brands .products').append("<%=escape_javascript(render :partial => 'products/brand', :collection => @brands, :as => :brand)%>");
 	$('.view_all_products').attr('data-page','<%= @products.next_page %>')
+	<% if @products.next_page %>
+	
+	$('#products .page_results').html('Showing <%= @products.offset+30 %> from <%= @products.total_entries %>')
+	
+   <% else %>
+   $('#products .page_results').html('Showing <%= @products.total_entries %> from <%= @products.total_entries %>')
+   <% end %>
+
+	
 <% else %>
 	$('.view_all_products').attr('data-page','')
 <% end %>
