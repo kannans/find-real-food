@@ -32,9 +32,13 @@ class Apiv1::SearchesController < Api::BaseController
     search  = q[:name_cont]
     sold = ''
     rank = 'all'
+    sort = params[:sort]
 
     f = q[:filter]
 
+    
+
+    
     unless params[:sub_filter].nil?
       sold = 'phone' if params[:sub_filter] == 'order_by_phone'
       sold = 'online' if params[:sub_filter] == 'order_by_online'
