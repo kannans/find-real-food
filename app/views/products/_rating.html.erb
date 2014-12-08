@@ -10,7 +10,7 @@
                                                <img src="/assets/review_user_default.png" alt="User Name"/>
                                                 
                                               <% else %>
-                                                <img src="/assets/review_user_default.png" alt="User Name"/>
+                                                <%= image_tag (user_details.avatar(:original)) %>
                                                <% end %>
                           
                                             </div>
