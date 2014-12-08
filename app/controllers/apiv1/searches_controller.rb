@@ -28,68 +28,61 @@ class Apiv1::SearchesController < Api::BaseController
     search_result_limit = 20
 
     q = params[:q]
-
-    #unless q[:name_cont].nil?
-    #  q[:name_cont_all] = q[:name_cont].split(' ')
-    #  q[:title_cont_all] = q[:name_cont_all]
-    #  q.delete(:name_cont)
-    #end
-    
+ 
     search  = q[:name_cont]
-    
+    sold = ''
+    rank = 'all'
 
     f = q[:filter]
 
     unless params[:sub_filter].nil?
-      q[:order_by_phone_eq] = true if params[:sub_filter] == 'order_by_phone'
-      q[:brand_order_by_phone_eq] = true if params[:sub_filter] == 'order_by_phone'
+      sold = 'phone' if params[:sub_filter] == 'order_by_phone'
+      sold = 'online' if params[:sub_filter] == 'order_by_online'
+      sold='store' if params[:sub_filter] == 'store_or_farmers_market'
+      sold='all' if params[:sub_filter] == 'all'
+    end
+    unless params[:sub_filter].nil?
+    rank = 'good' if params[:sub_filter] == 'good'
+    rank = 'best' if params[:sub_filter] == 'best'
+    end
 
-      q[:order_by_online_or_third_party_available_eq] = true if params[:sub_filter] == 'order_by_online'
-      q[:brand_order_by_online_or_brand_third_party_available_eq] = true if params[:sub_filter] == 'order_by_online'
-
-      q[:store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market'
-      q[:brand_store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market'
-
+    if params[:page]
+        page = params[:page]
+    else
+        page = 1
     end
 
     @resources = {}
-
-    #@resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
-    #@resources[:brands] = Brand.approved.search_brands().searchtext(search) if f.nil? || f == "Brand"
-    
-    #@resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
-    @resources[:categories] = Category.where("title like '%#{search}%'")  if f.nil? || f == "Category"
-    @resources[:locations] = Location.where("name like '%#{search}%'")  if f.nil? || f == "Location"
-
-    if f.nil? || f == "Product"
-      if params[:sort] == "rating"
-        #@resources[:products] = Product.search_and_sort_by_rating(q).result
-        @resources[:products] = Product.search_products().sortorder('rating')
-      elsif params[:sort] == "quality"
-        #@resources[:products] = Product.search_and_sort_by_quality(q).result
-        @resources[:products] = Product.search_products().sortorder('quality')
-      else
-        @resources[:products] = Product.search_products().sortorder('rating')
-      end
-    end
-
-    #@resources[:users] = User.where("name like '%#{search}%'")  if f.nil? || f == "User"
-    
-
     if q[:category_id_eq]
-    
-      q[:products_category_id_eq] = q[:category_id_eq]
-      @resources[:products] = Product.search_products().categoryfilter(q[:category_id_eq])
-      
-      @brand_ids = Product.search_products().categoryfilter(q[:category_id_eq]).collect{|b| b.brand_id}.join(',')
-      @resources[:brands] = Brand.where("id in (#{@brand_ids})")
-      @resources[:categories] = nil
-      @resources[:users] = nil  
+    category = q[:category_id_eq]
+    else
+      category = ''
     end
+      if search
+       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+       else
+        categories =''
+       end
+
+        if categories!=''
+          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
+        end
+        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
+        if categories!=''
+          @product_ids = @cat_products + @product_list
+        else
+          @product_ids = @product_list
+        end        
+      
+        @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: search_result_limit).sortorder(sort)
+        @resources[:brands] = Brand.paginate(page: page, per_page: search_result_limit).search_brands().availabilityfilter(sold).searchtext(search)
+        @resources[:categories] = nil
+        @resources[:users] = nil  
+    
 
     search = Search.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :products => @resources[:products].nil? ? nil : @resources[:products]
+      :brands => @resources[:brands],
+      :products => @resources[:products]
       
     })
 
