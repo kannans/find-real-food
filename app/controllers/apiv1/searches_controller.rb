@@ -32,7 +32,7 @@ class Apiv1::SearchesController < Api::BaseController
     search  = q[:name_cont]
     sold = ''
     rank = 'all'
-    sort = params[:sort]
+    sort = 'rating'
 
     f = q[:filter]
 
@@ -78,20 +78,20 @@ class Apiv1::SearchesController < Api::BaseController
         else
           @product_ids = @product_list
         end        
-      
-        @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: search_result_limit).sortorder(sort)
-        @resources[:brands] = Brand.paginate(page: page, per_page: search_result_limit).search_brands().availabilityfilter(sold).searchtext(search)
+       
+        @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: search_result_limit)
+        #@resources[:brands] = Brand.paginate(page: page, per_page: search_result_limit).search_brands().availabilityfilter(sold).searchtext(search)
         
         
     
 
     searchres = Search.new({
-      :brands => @resources[:brands],
+      
       :products => @resources[:products]
       
     })
 
-    puts "welcome #{search}"
+    
 
     respond_to do |format|
       format.json { render_for_api :search, :json => searchres, :meta => { :success => true} }
