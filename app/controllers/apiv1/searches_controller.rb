@@ -62,7 +62,8 @@ class Apiv1::SearchesController < Api::BaseController
     else
       category = ''
     end
-      if search
+       
+       if search
        categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
        else
         categories =''
@@ -80,18 +81,20 @@ class Apiv1::SearchesController < Api::BaseController
       
         @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: search_result_limit).sortorder(sort)
         @resources[:brands] = Brand.paginate(page: page, per_page: search_result_limit).search_brands().availabilityfilter(sold).searchtext(search)
-        @resources[:categories] = nil
-        @resources[:users] = nil  
+        
+        
     
 
-    search = Search.new({
+    searchres = Search.new({
       :brands => @resources[:brands],
       :products => @resources[:products]
       
     })
 
+    puts "welcome #{search}"
+
     respond_to do |format|
-      format.json { render_for_api :search, :json => search, :meta => { :success => true} }
+      format.json { render_for_api :search, :json => searchres, :meta => { :success => true} }
     end
 
   end
