@@ -5140,3 +5140,18 @@ background-size: cover;
    position: absolute;
    width: 100%;
 }
+.page_results
+{
+   color: #2f2f2f;
+   display: inline-block;
+   float: left;
+   font-size: 14px;
+   font-weight: bold;
+   margin-right: 10px;
+   margin-top: 25px;
+   text-transform: uppercase;
+}
+.page_results span
+{
+   color:#dd3637;
+}
