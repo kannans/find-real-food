@@ -79,7 +79,7 @@ class Apiv1::SearchesController < Api::BaseController
           @product_ids = @product_list
         end        
        
-        @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: search_result_limit)
+        @resources[:products] = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: 20)
         #@resources[:brands] = Brand.paginate(page: page, per_page: search_result_limit).search_brands().availabilityfilter(sold).searchtext(search)
         
         
