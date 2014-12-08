@@ -4,10 +4,10 @@
 	$('.view_all_products').attr('data-page','<%= @products.next_page %>')
 	<% if @products.next_page %>
 	
-	$('#products .page_results').html('Showing <%= @products.offset+30 %> from <%= @products.total_entries %>')
+	$('#products .page_results').html('Showing <span><%= @products.offset+30 %></span> from <span><%= @products.total_entries %></span>')
 	
    <% else %>
-   $('#products .page_results').html('Showing <%= @products.total_entries %> from <%= @products.total_entries %>')
+   $('#products .page_results').html('Showing <span><%= @products.total_entries %></span> from <span><%= @products.total_entries %></span>')
    <% end %>
 
 	

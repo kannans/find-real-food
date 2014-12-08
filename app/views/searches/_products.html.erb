@@ -92,9 +92,9 @@
                                         </div>
                                         <% if @current_page =='search' %>
                                          <% if @products.total_entries > 30 %>
-                                         <span class="page_results"> Showing <%= @products.offset+30 %> from <%= @products.total_entries %></span>
+                                         <span class="page_results"> Showing <span><%= @products.offset+30 %></span> from <span><%= @products.total_entries %></span></span>
                                          <% else %>
-                                         <span class="page_results"> Showing <%= @products.total_entries %></span>
+                                         <span class="page_results"> Showing <span><%= @products.total_entries %></span></span>
                                          <% end %>
                                           <a href="javascript:void(0);" class="view_all_products search_more" data-page="2">View More</a>
                                           <% else %>
