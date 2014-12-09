@@ -1,4 +1,5 @@
 class Api::BrandsController < Api::BaseController
+  skip_filter :ensure_user_authentication!
   respond_to :json
 
   api :GET, '/brands/:brand_id', 'Get a specific brand'
