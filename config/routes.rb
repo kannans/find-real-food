@@ -93,6 +93,8 @@ RealFood::Application.routes.draw do
 
  
   namespace :api do
+
+    get 'search', :to => 'searches#search'
     devise_for :users
 
     post 'password/reset', :to => 'users#reset_password'
@@ -106,7 +108,6 @@ RealFood::Application.routes.draw do
 
     resources :products, :only => [:show, :create]
 
-    
     post ':ratable_type/:ratable_id/ratings', :to => 'ratings#create'
     post ':flaggable_type/:flaggable_id/flags', :to => 'flag_requests#create'
 
@@ -117,13 +118,12 @@ RealFood::Application.routes.draw do
       resources :subscriptions, :only => [:create]
     end
 
-    get 'search', :to => 'searches#search'
+    
 
     post 'feedback', :to => 'feedbacks#create'
     resources :ratings, :only => [:index, :create]
   end
-
- 
+  
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
