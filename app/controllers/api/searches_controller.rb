@@ -1,5 +1,5 @@
 class Api::SearchesController < Api::BaseController
-  skip_filter :ensure_user_authentication!
+ # skip_filter :ensure_user_authentication!
   
   respond_to :json
 

@@ -93,7 +93,7 @@ RealFood::Application.routes.draw do
 
  
   namespace :api do
-    devise_for :users
+
 
     post 'password/reset', :to => 'users#reset_password'
 
