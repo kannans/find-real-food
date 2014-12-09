@@ -106,8 +106,7 @@ RealFood::Application.routes.draw do
 
     resources :products, :only => [:show, :create]
 
-    resources :sessions, :only => [:create]
-
+    
     post ':ratable_type/:ratable_id/ratings', :to => 'ratings#create'
     post ':flaggable_type/:flaggable_id/flags', :to => 'flag_requests#create'
 
