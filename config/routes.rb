@@ -122,35 +122,7 @@ RealFood::Application.routes.draw do
     resources :ratings, :only => [:index, :create]
   end
 
-  namespace :apiv1 do
-    devise_for :users
-
-    post 'password/reset', :to => 'users#reset_password'
-
-    resources :quality_ratings
-    resources :cms_texts, :only => [:index]
-
-    resources :brands, :only => [:index, :create, :show] do
-      resources :products, :only => [:index]
-    end
-
-    resources :products, :only => [:show, :create]
-
-    post ':ratable_type/:ratable_id/ratings', :to => 'ratings#create'
-    post ':flaggable_type/:flaggable_id/flags', :to => 'flag_requests#create'
-
-    resources :categories, :only => [:index]
-    resources :news_posts, :only => [:index]
-
-    resources :users, :only => [:show, :update] do
-      resources :subscriptions, :only => [:create]
-    end
-
-    get 'search', :to => 'searches#search'
-
-    post 'feedback', :to => 'feedbacks#create'
-    resources :ratings, :only => [:index, :create]
-  end
+ 
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
