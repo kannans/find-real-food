@@ -27,10 +27,11 @@ class Api::SearchesController < Api::BaseController
   def search
       q = params[:q]
       category = q[:category_id_eq]
+      @resources = {}
       @resources[:products] = Product.search_products().categoryfilter(category).
       
     searchres = Search.new({
-      :products => @resources[:products].nil? ? nil : @resources[:products]),
+      :products => @resources[:products].nil? ? nil : @resources[:products])
        
       }
     })
