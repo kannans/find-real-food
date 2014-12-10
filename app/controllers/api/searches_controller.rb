@@ -25,21 +25,10 @@ class Api::SearchesController < Api::BaseController
   EOT
 
   def search
-      q = params[:q]
-      category = q[:category_id_eq]
-      @resources = {}
-      @resources[:products] = Product.search_products().categoryfilter(category).
-      
-    searchres = Search.new({
-      :products => @resources[:products].nil? ? nil : @resources[:products])
-       
-      }
-    })
-
+      categories = Category.unscoped.order(:sort)
     respond_to do |format|
-      format.json { render_for_api :search, :json => searchres, :meta => { :success => true} }
+      format.json { render_for_api :category, :json => categories, :meta => { :success => true} }
     end
-
   end
 
   private
