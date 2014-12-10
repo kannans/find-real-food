@@ -1999,8 +1999,7 @@ a.view_lct_btn:hover:before
 .user_img img
 {
 	display:block;
-	border-radius:200px;
-	-webkit-border-radius:200px;
+	
 }
 .user_img
 {
@@ -5122,8 +5121,8 @@ background-size: cover;
 .user_img img
 {
    position:absolute;
-   max-width:80px;
-   max-height:80px;
+   min-width:80px;
+   min-height:80px;
    top:0;
    bottom:0;
    right:0;
