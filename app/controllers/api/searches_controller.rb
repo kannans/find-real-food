@@ -25,50 +25,12 @@ class Api::SearchesController < Api::BaseController
   EOT
 
   def search
-    search_result_limit = 20
-
-    q = params[:q]
-
-    search =  q[:name_cont]
-    sort = 'rating'
-    sold = ''
-    
-    f = q[:filter]
-
-    unless params[:sub_filter].nil?
-      sold = 'phone' if params[:sub_filter] == 'order_by_phone'
-      sold='online' if params[:sub_filter] == 'order_by_online'
-      sold='store' if params[:sub_filter] == 'store_or_farmers_market'
-    end
-
-    @resources = {}
-
-     if search
-          categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-       else
-          categories =''
-       end
-
-
-        if categories!=''
-          @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
-        end
-        @product_list = Product.search_products().categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
-        if categories!=''
-          @product_ids = @cat_products + @product_list
-        else
-          @product_ids = @product_list
-        end        
-      if @product_ids!=''
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
-      else
-        @products = "";
-      end
-        @resources[:brands] = Brand.paginate(page: 1, per_page: 30).search_brands().availabilityfilter(sold).searchtext(search)
-
-
+      q = params[:q]
+      category = q[:category_id_eq]
+      @resources[:products] = Product.search_products().categoryfilter(category).
+      
     searchres = Search.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands]),
+      :products => @resources[:products].nil? ? nil : @resources[:products]),
        
       }
     })
