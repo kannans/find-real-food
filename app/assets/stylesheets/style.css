@@ -5154,3 +5154,18 @@ background-size: cover;
 {
    color:#dd3637;
 }
+.kwd_srch_form input[type="button"].resetcall {
+    background: none repeat scroll 0 0 #dd3637;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #ffffff;
+    display: block;
+    margin-left: 26%;
+    margin-top: 10px;
+    padding: 0 10px;
+    width: auto;
+}
+.kwd_srch_form input[type="button"].resetcall:hover {
+    background: none repeat scroll 0 0 #c92a2b;
+    cursor: pointer;
+}
