@@ -93,8 +93,10 @@ RealFood::Application.routes.draw do
 
  
   namespace :api do
-    devise_for :users do
-    end
+    
+    get 'search', :to => 'searches#search'
+    
+    devise_for :users
 
     post 'password/reset', :to => 'users#reset_password'
 
@@ -117,7 +119,7 @@ RealFood::Application.routes.draw do
       resources :subscriptions, :only => [:create]
     end
 
-    get 'search', :to => 'searches#search'
+    
 
     post 'feedback', :to => 'feedbacks#create'
     resources :ratings, :only => [:index, :create]
