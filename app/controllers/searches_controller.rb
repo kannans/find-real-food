@@ -9,7 +9,8 @@ class SearchesController < ApplicationController
       zip = session[:zip]
     end
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
-    
+    @centerlocation = Location.near("#{zip}", 100).first
+
     
 
     
@@ -60,43 +61,36 @@ class SearchesController < ApplicationController
       sold = 'store'
     end
 
+
+    if search
+       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+    else
+       categories =''
+    end
+
     if @location !=''
        
-       if search
-          categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-       else
-          categories =''
-       end
-
         if categories!=''
-          @cat_products = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
+          @cat_productsnear = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter('sold').collect{|c| c.id}.join(',')
         end
        
-        @product_list = Product.search_products(@location).categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
+        @product_listnear = Product.search_products(@location).categoryfilter(category).availabilityfilter('sold').qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
         if categories!=''
-          @product_ids = @cat_products + @product_list
+          @product_idsnear = @cat_productsnear + @product_listnear
         else
-          @product_ids = @product_list
+          @product_idsnear = @product_listnear
         end        
-       if @product_ids!=''
-          @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+       if @product_idsnear!=''
+          @productsnear = Product.search_products().where("products.id in (#{@product_idsnear})").paginate(page: 1, per_page: 30).sortorder(sort)
        else
-          @products = "";
+          @productsnear = "";
        end
-          @brands = Brand.paginate(page: 1, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
-
           @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter('store').sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
-        if @products_locations!=''
+       if @products_locations!=''
           @locations = Location.where("id in (#{@products_locations})")
-        end
-    else
-        
-        if search
-          categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-       else
-          categories =''
        end
-
+    end
+       
 
         if categories!=''
           @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
@@ -113,7 +107,8 @@ class SearchesController < ApplicationController
         @products = "";
       end
         @brands = Brand.paginate(page: 1, per_page: 30).search_brands().availabilityfilter(sold).searchtext(search)
-    end
+    
+
     respond_to do |format|
       format.html
       format.js
@@ -125,6 +120,7 @@ class SearchesController < ApplicationController
     
     zip = session[:zip]
     @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
+    @centerlocation = Location.near("#{zip}", 100).first
     
     if params[:search]
       search = params[:search].gsub("'", "\\\\'")
@@ -177,35 +173,37 @@ class SearchesController < ApplicationController
       sold = 'store'
     end
     
-   if @location !=''
-        
-       
-       if search
+   
+
+   if search
        categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
-       else
-        categories =''
-       end
-
-        if categories!=''
-          @cat_products = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
-        end
-        @product_list = Product.search_products(@location).categoryfilter(category).availabilityfilter(sold).qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
-        if categories!=''
-          @product_ids = @cat_products + @product_list
-        else
-          @product_ids = @product_list
-        end        
-      
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: 30).sortorder(sort)
-        @brands = Brand.paginate(page: page, per_page: 30).search_brands(@location).availabilityfilter(sold).searchtext(search)
-
     else
-        
-        if search
-       categories = Category.where("title like '%#{search}%'").collect{|c| c.id}.join(',')
+       categories =''
+    end
+
+    if @location !=''
+       
+        if categories!=''
+          @cat_productsnear = Product.search_products(@location).categorysearch(categories).qualityfilter(rank).availabilityfilter('sold').collect{|c| c.id}.join(',')
+        end
+       
+        @product_listnear = Product.search_products(@location).categoryfilter(category).availabilityfilter('sold').qualityfilter(rank).searchtext(search).collect{|c| c.id}.join(',')
+        if categories!=''
+          @product_idsnear = @cat_productsnear + @product_listnear
+        else
+          @product_idsnear = @product_listnear
+        end        
+       if @product_idsnear!=''
+          @productsnear = Product.search_products().where("products.id in (#{@product_idsnear})").paginate(page: page, per_page: 30).sortorder(sort)
        else
-        categories =''
+          @productsnear = "";
        end
+          @products_locations = Product.search_products(@location).categoryfilter(category).qualityfilter(rank).availabilityfilter('store').sortorder(sort).searchtext(search).collect{|c| c.location_id}.join(',')
+       if @products_locations!=''
+          @locations = Location.where("id in (#{@products_locations})")
+       end
+    end
+       
 
         if categories!=''
           @cat_products = Product.search_products().categorysearch(categories).qualityfilter(rank).availabilityfilter(sold).collect{|c| c.id}.join(',')
@@ -216,11 +214,14 @@ class SearchesController < ApplicationController
         else
           @product_ids = @product_list
         end        
-      
+      if @product_ids!=''
         @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: 30).sortorder(sort)
+      else
+        @products = "";
+      end
         @brands = Brand.paginate(page: page, per_page: 30).search_brands().availabilityfilter(sold).searchtext(search)
+    
 
-    end
     respond_to do |format|
       format.html
       format.js

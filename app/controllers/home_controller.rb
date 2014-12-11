@@ -7,9 +7,10 @@ class HomeController < ApplicationController
   	elsif session[:zip]
     	zip = session[:zip]
   	end
-     
-    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
     
+    
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
+    @centerlocation = Location.near("#{zip}", 100).first
     if @location !=''
        
   	  @products =  Product.search_products(@location).sortorder().first(20)

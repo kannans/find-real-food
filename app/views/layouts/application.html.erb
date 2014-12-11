@@ -295,6 +295,28 @@ $('.notclose').click(function() {
 
   });
  
+$('.resetcall').click(function(){
+   
+   $('#proximity').attr("checked",false)
+   $('#alphabetical').attr("checked",false)
+   $('#rating').attr("checked",false)
+   $('#best').attr("checked",false)
+   $('#good').attr("checked",false)
+   $('#all').attr("checked",false)
+   $('#phone').attr("checked",false)
+   $('#online').attr("checked",false)
+   $('#all').attr("checked",false)
+   $('#store').attr("checked",false)
+       
+   $.get("/search", { search: $("#search_field").val(),sort:'',category:'', rank:'', sold:'' }, null, "script");
+});
+ 
+
+
+
+
+
+
   $(".search_form_top").submit(function(){ 
     if($(".search_field").val()=='' || $(".search_field").val().length < 3){
       $(".search_box, .search_box input").css("background","#f9d4d4"); 
