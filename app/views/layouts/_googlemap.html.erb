@@ -48,8 +48,12 @@
   // Create a map object, and include the MapTypeId to add
   // to the map type control.
   var mapOptions = {
-    zoom: 4,
-    center: new google.maps.LatLng(37.09024, -95.712891),
+    zoom: 12,
+    <% unless @centerlocation.blank? %>
+    center: new google.maps.LatLng(<%= @centerlocation.latitude %>, <%= @centerlocation.longitude %>),
+    <% else %>
+   center: new google.maps.LatLng(37.09024, -95.712891),
+    <% end %>
     mapTypeControlOptions: {
       mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
     }
