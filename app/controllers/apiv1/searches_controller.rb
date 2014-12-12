@@ -10,10 +10,9 @@ class Apiv1::SearchesController < Apiv1::BaseController
 
   def search
     
-    @brands = Brand.approved
-    
+     categories = Category.unscoped.order(:sort)
     respond_to do |format|
-      format.json { render_for_api :search, :json => @brands, :meta => { :success => true} }
+      format.json { render_for_api :category, :json => categories, :meta => { :success => true} }
     end
 
   end
