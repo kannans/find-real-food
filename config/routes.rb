@@ -150,7 +150,7 @@ RealFood::Application.routes.draw do
       resources :subscriptions, :only => [:create]
     end
 
-    get 'search', :to => 'searches#search'
+    get 'search', :to => 'apiv1/searches#search'
     
 
     post 'feedback', :to => 'feedbacks#create'
