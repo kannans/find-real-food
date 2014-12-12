@@ -27,7 +27,7 @@ class Apiv1::SearchesController < Apiv1::BaseController
 
   def search
     
-    @brands = Brand.search_brands()
+    @brands = Brand.approved
     
     respond_to do |format|
       format.json { render_for_api :search, :json => @brands, :meta => { :success => true} }
