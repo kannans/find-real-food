@@ -1,4 +1,4 @@
-class Api::SearchesController < Api::BaseController
+class Apiv1::SearchesController < Apiv1::BaseController
   skip_filter :ensure_user_authentication!
   
   respond_to :json
