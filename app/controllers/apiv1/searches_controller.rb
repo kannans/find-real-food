@@ -27,7 +27,7 @@ class Api::SearchesController < Api::BaseController
   def search
       
     respond_to do |format|
-      format.json { render_for_api :category, :json => q[:category_id_eq], :meta => { :success => true} }
+      format.json { render_for_api :category, :json => 'text', :meta => { :success => true} }
     end
   end
 
