@@ -5,11 +5,7 @@ class Apiv1::SearchesController < Apiv1::BaseController
   respond_to :json
 
   api :GET, '/search', "Perform a multi-object search"
-  param :q, Hash do
-    param :name_cont, String, :desc => "Object name contains"
-    param :filter, String, :desc => "A specific type to search (User, Brand, Product, Category)"
-    param :quality_rating_value_eq, String, :desc => ""
-  end
+   
   desc <<-EOT
     Params are passed in the url via ?q[]
 
