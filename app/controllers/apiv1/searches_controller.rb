@@ -27,7 +27,7 @@ class Apiv1::SearchesController < Apiv1::BaseController
 
   def search
     @resources = {}
-    @resources[:brands] = @brands = Brand.search_brands()
+    @resources[:brands] = Brand.search_brands()
     search = Search.new({
       :brands => @resources[:brands].nil? ? nil : @resources[:brands])
       }
