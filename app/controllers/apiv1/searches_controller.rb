@@ -26,15 +26,11 @@ class Apiv1::SearchesController < Apiv1::BaseController
   EOT
 
   def search
-    @resources = {}
-    @resources[:brands] = Brand.search_brands()
-    search = Search.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands]
-      
-    })
-
+    
+    @brands = Brand.search_brands()
+    
     respond_to do |format|
-      format.json { render_for_api :search, :json => search, :meta => { :success => true} }
+      format.json { render_for_api :search, :json => @brands, :meta => { :success => true} }
     end
 
   end
