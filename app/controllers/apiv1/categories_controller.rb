@@ -1,4 +1,4 @@
-class Api::CategoriesController < Api::BaseController
+class Apiv1::CategoriesController < Apiv1::BaseController
   skip_filter :ensure_user_authentication!
   
   respond_to :json
