@@ -26,8 +26,9 @@ class Api::SearchesController < Api::BaseController
 
   def search
       
+   categories = Category.unscoped.order(:sort)
     respond_to do |format|
-      format.json { render_for_api :category, :json => 'text', :meta => { :success => true} }
+      format.json { render_for_api :category, :json => categories, :meta => { :success => true} }
     end
   end
 
