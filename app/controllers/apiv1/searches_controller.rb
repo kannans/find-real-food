@@ -31,9 +31,12 @@ class Apiv1::SearchesController < Apiv1::BaseController
     q = params[:q]
 
     unless q[:name_cont].nil?
-      q[:name_cont_all] = q[:name_cont].split(' ')
-      q[:title_cont_all] = q[:name_cont_all]
-      q.delete(:name_cont)
+      searchval = q[:name_cont]
+      #q[:name_cont_all] = q[:name_cont].split(' ')
+      #q[:title_cont_all] = q[:name_cont_all]
+      #q.delete(:name_cont)
+    else
+      searchval = ''
     end
 
     f = q[:filter]
@@ -52,42 +55,12 @@ class Apiv1::SearchesController < Apiv1::BaseController
 
     @resources = {}
 
-    @resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
-    @resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
-    @resources[:locations] = Location.search(q).result  if f.nil? || f == "Location"
-
-    if f.nil? || f == "Product"
-      if params[:sort] == "rating"
-        @resources[:products] = Product.search_and_sort_by_rating(q).result
-      elsif params[:sort] == "quality"
-        @resources[:products] = Product.search_and_sort_by_quality(q).result
-      else
-        @resources[:products] = Product.search(q).result
-      end
-    end
-
-    @resources[:users] = User.search(q).result  if f.nil? || f == "User"
-
-
-    if q[:category_id_eq]
-      q[:products_category_id_eq] = q[:category_id_eq]
-      @resources[:brands] = Brand.approved.joins(:products).search(q).result.group("brands.name")
-      @resources[:categories] = nil
-      @resources[:users] = nil
-    end
-
+    @resources[:brands] = @brands = Brand.search_brands().availabilityfilter('sold').paginate(page: 1, per_page: 30).searchtext(searchval) if f.nil? || f == "Brand"
+    @resources[:users] = nil
+    @resources[:categories] = nil
+ 
     search = Search.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :categories => @resources[:categories].nil? ? nil : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :users => @resources[:users].nil? ? nil : @resources[:users].paginate(:per_page => search_result_limit, :page => params[:page]),
-      :pages => {
-        :brands => @resources[:brands].nil? ? 0 : (@resources[:brands].length / search_result_limit.to_f).ceil,
-        :categories => @resources[:categories].nil? ? 0 : (@resources[:categories].length / search_result_limit.to_f).ceil,
-        :locations => @resources[:locations].nil? ? 0 : (@resources[:locations].length / search_result_limit.to_f).ceil,
-        :products => @resources[:products].nil? ? 0 : (@resources[:products].length / search_result_limit.to_f).ceil,
-        :users => @resources[:users].nil? ? 0 : (@resources[:users].length / search_result_limit.to_f).ceil
+      :brands => @resources[:brands].nil? ? nil : @resources[:brands])
       }
     })
 
