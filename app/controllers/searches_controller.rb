@@ -106,7 +106,7 @@ class SearchesController < ApplicationController
       else
         @products = "";
       end
-        @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).paginate(page: 1, per_page: 30)
+        @brands = Brand.paginate(page: 1, per_page: 30).search_brands().availabilityfilter(sold).searchtext(search)
     
 
     respond_to do |format|
@@ -219,7 +219,7 @@ class SearchesController < ApplicationController
       else
         @products = "";
       end
-        @brands = Brand.search_brands().availabilityfilter(sold).searchtext(search).paginate(page: page, per_page: 30)
+        @brands = Brand.paginate(page: page, per_page: 30).search_brands().availabilityfilter(sold).searchtext(search)
     
 
     respond_to do |format|
