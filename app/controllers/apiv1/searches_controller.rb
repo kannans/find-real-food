@@ -26,39 +26,8 @@ class Apiv1::SearchesController < Apiv1::BaseController
   EOT
 
   def search
-    search_result_limit = 20
-
-    q = params[:q]
-
-    unless q[:name_cont].nil?
-      searchval = q[:name_cont]
-      #q[:name_cont_all] = q[:name_cont].split(' ')
-      #q[:title_cont_all] = q[:name_cont_all]
-      #q.delete(:name_cont)
-    else
-      searchval = ''
-    end
-
-    f = q[:filter]
-
-    unless params[:sub_filter].nil?
-      q[:order_by_phone_eq] = true if params[:sub_filter] == 'order_by_phone'
-      q[:brand_order_by_phone_eq] = true if params[:sub_filter] == 'order_by_phone'
-
-      q[:order_by_online_or_third_party_available_eq] = true if params[:sub_filter] == 'order_by_online'
-      q[:brand_order_by_online_or_brand_third_party_available_eq] = true if params[:sub_filter] == 'order_by_online'
-
-      q[:store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market'
-      q[:brand_store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market'
-
-    end
-
     @resources = {}
-
-    @resources[:brands] = @brands = Brand.search_brands() if f.nil? || f == "Brand"
-    
-    
- 
+    @resources[:brands] = @brands = Brand.search_brands()
     search = Search.new({
       :brands => @resources[:brands].nil? ? nil : @resources[:brands])
       }
