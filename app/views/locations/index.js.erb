@@ -2,6 +2,14 @@
 	$('#nearby .products').append("<%=escape_javascript(render :partial => 'products/product', :collection => @products, :as => :product)%>");
 	$('#allbrands .products').append("<%=escape_javascript(render :partial => 'products/brand', :collection => @brands, :as => :brand)%>");
 	$('.view_all_products').attr('data-page','<%= @products.next_page %>')
+	<% if @products.next_page %>
+	$('#allbrands .page_results').html('Showing <span><%= @brands.offset+30 %></span> of <span><%= @brands.total_entries %></span>')
+	$('#nearby .page_results').html('Showing <span><%= @products.offset+30 %></span> of <span><%= @products.total_entries %></span>')
+   <% else %>
+   $('#allbrands .page_results').html('Showing <span><%= @brands.total_entries %></span> of <span><%= @brands.total_entries %></span>')
+   $('#nearby .page_results').html('Showing <span><%= @productsall.total_entries %></span> of <span><%= @productsall.total_entries %></span>')
+   <% end %>
+
 <% else %>
 	$('.view_all_products').attr('data-page','')
 <% end %>

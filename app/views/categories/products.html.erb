@@ -27,6 +27,18 @@
 $(document).ready(function(){
 
     
+     <% if @locations %>
+      setTimeout(function(){ 
+        <% @locations.each do |lrow| %>
+        <% if lrow.slug %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% else %>
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% end %>
+        <% end %>
+      }, 3000);
+      <% end %>
+
     $("#search_field_new").keyup(function(){
  
         // Retrieve the input field text and reset the count to zero

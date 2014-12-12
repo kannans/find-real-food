@@ -140,7 +140,13 @@
                                 <div class="expand">
                                                 <a href="javascript:;"></a>
                                             </div>
-                                           
+                                            
+                                            <% if @products.total_entries > 30 %>
+                                         <span class="page_results"> Showing <span><%= @products.offset+30 %></span> of <span><%= @products.total_entries %></span></span>
+                                         <% else %>
+                                         <span class="page_results"> Showing <span><%= @products.total_entries %></span> of <span><%= @products.total_entries %></span></span>
+                                         <% end %>
+
                                              <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
 
                                              
@@ -211,6 +217,12 @@
                                 
                             </div> 
                             
+                            <% if @productsall.total_entries > 30 %>
+                                         <span class="page_results"> Showing <span><%= @productsall.offset+30 %></span> of <span><%= @productsall.total_entries %></span></span>
+                                         <% else %>
+                                         <span class="page_results"> Showing <span><%= @productsall.total_entries %></span> of <span><%= @productsall.total_entries %></span></span>
+                                         <% end %>
+                                         
                             <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
 
                             
@@ -376,7 +388,7 @@ $(document).ready(function() {
         codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
         <% end %>
         <% end %>
-      }, 5000);
+      }, 3000);
       <% end %>
 
  
