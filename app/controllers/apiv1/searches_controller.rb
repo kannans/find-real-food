@@ -55,9 +55,9 @@ class Apiv1::SearchesController < Apiv1::BaseController
 
     @resources = {}
 
-    @resources[:brands] = @brands = Brand.search_brands().availabilityfilter('sold').paginate(page: 1, per_page: 30).searchtext(searchval) if f.nil? || f == "Brand"
-    @resources[:users] = nil
-    @resources[:categories] = nil
+    @resources[:brands] = @brands = Brand.search_brands() if f.nil? || f == "Brand"
+    
+    
  
     search = Search.new({
       :brands => @resources[:brands].nil? ? nil : @resources[:brands])
