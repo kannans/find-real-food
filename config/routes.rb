@@ -128,7 +128,7 @@ RealFood::Application.routes.draw do
   namespace :apiv1 do
     
     devise_scope :user do
-      get "users/sign_in", to: "devise/sessions#new"
+      get "users/sign_in", to: "sessions#create"
     end
 
     post 'password/reset', :to => 'users#reset_password'
