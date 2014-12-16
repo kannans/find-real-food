@@ -61,7 +61,7 @@ class Brand < ActiveRecord::Base
     template.add :phone
     template.add :third_party_available
     template.add :website
-    template.add :sized_picture, :as => :image
+    template.add lambda{|model| model.picture(:full) }, :as => :image
     template.add :approved
     template.add :store_locator_url
     template.add :user, :template => :user_basic, :if => lambda { |b| !b.user.nil? && !b.user.private }

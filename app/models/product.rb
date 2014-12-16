@@ -56,7 +56,7 @@ class Product < ActiveRecord::Base
     template.add  :brand_name, :unless => lambda { |p| p.brand_id.nil? }
     template.add  :quality_rating_id
     template.add  :quality
-    template.add  :picture, :as => :image
+    template.add  lambda{|model| model.picture(:large) }, :as => :image
     template.add  :approved
     template.add  :rating
     template.add  :comments, :template => :rating
@@ -73,7 +73,7 @@ class Product < ActiveRecord::Base
     return 0 if self.ratings.length == 0
     self.ratings.sum(:rating) / self.ratings.length
   end
-  
+
   def comments
     self.ratings.joins(:user).where("users.private != true").order("created_at DESC").limit(5)
   end

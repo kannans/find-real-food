@@ -58,8 +58,12 @@ module ApplicationHelper
   end
   
   def get_quality_name(id)
-    qualityval =  QualityRating.where(id:id).first
-    return qualityval.name
+    qualityval = QualityRating.where(id: id).first
+    if qualityval
+      return qualityval.name
+    else
+      return ""
+    end
   end
   def get_location_count(product_id='',locations='')
     
