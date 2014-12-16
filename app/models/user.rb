@@ -38,13 +38,13 @@ class User < ActiveRecord::Base
 		template.add :id
 		template.add :email
 		template.add :authentication_token
-		template.add :password
+	# 	template.add :password
     template.add :name
     template.add :city
     template.add :state
     template.add :facebook_id
-    template.add :avatar
-    template.add :cover_photo
+    template.add :avatar_url, :as=>:avatar
+    template.add :cover_photo_url, :as=>:cover_photo
     template.add :private
     template.add :created_at
     template.add :bio
@@ -62,6 +62,14 @@ class User < ActiveRecord::Base
     template.add :name
     template.add :facebook_id
     template.add :stats
+  end
+
+  def avatar_url
+    avatar.url
+  end
+
+  def cover_photo_url
+    cover_photo.url
   end
 
   def send_password_reset

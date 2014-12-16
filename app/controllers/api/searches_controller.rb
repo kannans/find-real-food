@@ -1,9 +1,10 @@
 class Api::SearchesController < Api::BaseController
   skip_filter :ensure_user_authentication!
   
-  respond_to :json
-
+  # respond_to :json
+ 
   api :GET, '/search', "Perform a multi-object search"
+  formats ['json']  
   param :q, Hash do
     param :name_cont, String, :desc => "Object name contains"
     param :filter, String, :desc => "A specific type to search (User, Brand, Product, Category)"
@@ -23,7 +24,6 @@ class Api::SearchesController < Api::BaseController
     sort=quality
     sort=rating
   EOT
-
   def search
     search_result_limit = 20
 
@@ -51,33 +51,35 @@ class Api::SearchesController < Api::BaseController
 
     @resources = {}
 
-    @resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
-    @resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
-    @resources[:locations] = Location.search(q).result  if f.nil? || f == "Location"
+    @resources[:brands] = Brand.approved.search(q) if f == "Brand"
+    @resources[:categories] = Category.search(q)  if f == "Category"
+    @resources[:locations] = Location.search(q)  if f == "Location"
 
     if f.nil? || f == "Product"
       if params[:sort] == "rating"
-        @resources[:products] = Product.search_and_sort_by_rating(q).result
+        @resources[:products] = Product.search_and_sort_by_rating(q)
       elsif params[:sort] == "quality"
-        @resources[:products] = Product.search_and_sort_by_quality(q).result
+        @resources[:products] = Product.search_and_sort_by_quality(q)
       else
-        @resources[:products] = Product.search(q).result
+        @resources[:products] = Product.search(q)
       end
     end
 
-    @resources[:users] = User.search(q).result  if f.nil? || f == "User"
+    @resources[:users] = User.search(q)  if f == "User"
 
 
    
 
-    search = Search.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) 
-    })
+    @search = {
+      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :categories => @resources[:categories].nil? ? nil : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+    }
 
     respond_to do |format|
-      format.json { render_for_api :search, :json => search, :meta => { :success => true} }
+      format.json {render json: @search }
     end
-
   end
 
   private
