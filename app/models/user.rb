@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     template.add :created_at
     template.add :bio
 
-    template.add lambda{ |user| user.activities  }, :as => :activities
+    #template.add lambda{ |user| user.activities  }, :as => :activities
     template.add :subscriptions, :template => :subscription
     template.add :active_subscription
     template.add :subscription_type
