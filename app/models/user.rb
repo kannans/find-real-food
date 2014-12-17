@@ -103,10 +103,9 @@ class User < ActiveRecord::Base
   end
 
   def activities
-    products = self.products.map { |p| { :id => p.id, :name => p.name, :image => p.picture, :created_at => p.created_at, :category_id => p.category.nil? ? nil : p.category.id } }
-    reviews = nil 
-    #self.ratings.map { |r| { :id => r.id, :rating => r.rating, :comment => r.comment, :image => r.ratable.picture, :name => r.ratable.name, :ratable_type => r.ratable_type, :ratable_id => r.ratable_id, :created_at => r.created_at, :category_id => r.ratable_type == 'Product' ? r.ratable.category_id : "" } }
-    brands = self.brands.map { |b| { :id => b.id, :name => b.name, :image => b.picture, :created_at => b.created_at } }
+    products = self.products.map { |p| { :id => p.id, :name => p.name, :image => p.picture(:full), :created_at => p.created_at, :category_id => p.category.nil? ? nil : p.category.id } }
+    reviews = self.ratings.map { |r| { :id => r.id, :rating => r.rating, :comment => r.comment, :image => r.ratable.picture(:full), :name => r.ratable.name, :ratable_type => r.ratable_type, :ratable_id => r.ratable_id, :created_at => r.created_at, :category_id => r.ratable_type == 'Product' ? r.ratable.category_id : "" } }
+    brands = self.brands.map { |b| { :id => b.id, :name => b.name, :image => b.picture(:full), :created_at => b.created_at } }
     { :products => products, :reviews => reviews, :brands => brands }
   end
 
