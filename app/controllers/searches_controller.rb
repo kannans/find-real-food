@@ -101,12 +101,25 @@ class SearchesController < ApplicationController
         else
           @product_ids = @product_list
         end        
-      if @product_ids!=''
-        @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
-      else
-        @products = "";
-      end
-        @brands = Brand.search_brands().availabilityfilter(sold).paginate(page: 1, per_page: 30).searchtext(search)
+        if @product_ids!=''
+          @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: 1, per_page: 30).sortorder(sort)
+          @brandids2 = Product.search_products().where("products.id in (#{@product_ids})").collect{|c| c.brand_id}.join(',')
+        else
+          @products = "";
+        end
+
+        @brandids1 = Brand.search_brands().availabilityfilter(sold).searchtext(search).collect{|c| c.id}.join(',')
+        if @brandids2
+          @brand_ids = @brandids1 + @brandids2
+        else
+          @brand_ids = @brandids1
+        end 
+        if @brand_ids!=''
+          @brands = Brand.where("id in (#{@brand_ids})").paginate(page: 1, per_page: 30)
+        else
+          @brands = "";
+        end
+
 
     respond_to do |format|
       format.html
@@ -215,10 +228,23 @@ class SearchesController < ApplicationController
         end        
       if @product_ids!=''
         @products = Product.search_products().where("products.id in (#{@product_ids})").paginate(page: page, per_page: 30).sortorder(sort)
+        @brandids2 = Product.search_products().where("products.id in (#{@product_ids})").collect{|c| c.brand_id}.join(',')
       else
         @products = "";
       end
-        @brands = Brand.search_brands().availabilityfilter(sold).paginate(page: page, per_page: 30).searchtext(search)
+        
+        @brandids1 = Brand.search_brands().availabilityfilter(sold).searchtext(search).collect{|c| c.id}.join(',')
+        if @brandids2
+          @brand_ids = @brandids1 + @brandids2
+        else
+          @brand_ids = @brandids1
+        end 
+        if @brand_ids!=''
+          @brands = Brand.where("id in (#{@brand_ids})").paginate(page: page, per_page: 30)
+        else
+          @brands = "";
+        end
+    
     
 
     respond_to do |format|
