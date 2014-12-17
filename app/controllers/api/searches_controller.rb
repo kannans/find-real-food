@@ -51,9 +51,9 @@ class Api::SearchesController < Api::BaseController
 
     @resources = {}
 
-    @resources[:brands] = Brand.approved.search(q) if f == "Brand"
-    @resources[:categories] = Category.search(q)  if f == "Category"
-    @resources[:locations] = Location.search(q)  if f == "Location"
+    @resources[:brands] = Brand.approved.search(q) if f.nil? ||  f == "Brand"
+    @resources[:categories] = Category.search(q)  if f.nil? ||  f == "Category"
+    @resources[:locations] = Location.search(q)  if f.nil? ||  f == "Location"
 
     if f.nil? || f == "Product"
       if params[:sort] == "rating"
