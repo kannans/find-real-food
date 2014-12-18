@@ -16,6 +16,7 @@ class Api::SessionsController < Devise::SessionsController
       resource = User.where(:email => params[:email], :facebook_id => params[:facebook_id]).first
       if resource.nil?
         resource = User.create!(:email => params[:email], :facebook_id => params[:facebook_id], :password => "empty1234")
+        params[:user].delete(:id)
         resource.update_attributes!(params[:user])
         resource.reload
       end
