@@ -88,15 +88,15 @@ class Api::SearchesController < Api::BaseController
       @resources[:users] = nil
     end
 
-    @search = {
+    @search = {:search => {
       :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
       :categories => @resources[:categories].nil? ? nil : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]) ,
       :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]) ,
       :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]) ,
-    }
+    }}
 
     respond_to do |format|
-      format.json {render json: @search, :meta => { :success => true} }
+      format.json {render json: @search.merge(:success => true)}
     end
   end
 
