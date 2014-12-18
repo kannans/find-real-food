@@ -36,6 +36,7 @@ class Api::SearchesController < Api::BaseController
     end
 
     f = q[:filter]
+    q.delete(:filter)
 
     unless params[:sub_filter].nil?
       q[:order_by_phone_eq] = true if params[:sub_filter] == 'order_by_phone'
@@ -51,9 +52,21 @@ class Api::SearchesController < Api::BaseController
 
     @resources = {}
 
-    @resources[:brands] = Brand.approved.search(q) if f == "Brand"
-    @resources[:categories] = Category.search(q)  if f == "Category"
-    @resources[:locations] = Location.search(q)  if f == "Location"
+    if f == "Brand"
+      q.delete(:category_id_eq)
+      @resources[:brands] = Brand.approved.search(q)
+    end
+
+    if f == "Category"
+      q.delete(:name_contains)
+      q.delete(:category_id_eq)
+      @resources[:categories] = Category.search(q)
+    end
+
+    if f == "Location"
+      q.delete(:category_id_eq)
+      @resources[:locations] = Location.search(q)
+    end
 
     if f.nil? || f == "Product"
       if params[:sort] == "rating"
