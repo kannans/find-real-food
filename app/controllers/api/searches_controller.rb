@@ -91,7 +91,7 @@ class Api::SearchesController < Api::BaseController
     }
 
     respond_to do |format|
-      format.json {render json: @search }
+      format.json {render json: @search, :meta => { :success => true} }
     end
   end
 
