@@ -25,10 +25,9 @@ class Api::SessionsController < Devise::SessionsController
           resource.update_attributes!(params[:user])
           resource.reload
         else
-          newarr = Array.new
-          newarr[0] = params[:facebook_id]
-          resource.update_attributes!(newarr)
-          
+           
+          resource.update_attributes!({ :facebook_id => params[:facebook_id]})
+
         end
       end
     else
