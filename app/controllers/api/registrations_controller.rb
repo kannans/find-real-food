@@ -33,11 +33,14 @@ class Api::RegistrationsController < Devise::RegistrationsController
       resource.avatar = RealFood::ImageDecoder.decode_jpg(avatar_data) if avatar_data
       resource.cover_photo = RealFood::ImageDecoder.decode_jpg(cover_photo_data) if cover_photo_data
 
-      if resource.save
-        render:text=>"success"
-      else
-        render:text=>"failure"
-       end 
+      resource.save
+      respond_to do |format|
+       format.json { render_for_api :user, :json => resource, :meta =>
+         { :success => true}, :root => :user }
+     end
+     rescue Exception => e
+     render :json=> {:success => false, :message => e.message}
     end
   end
 end
+
