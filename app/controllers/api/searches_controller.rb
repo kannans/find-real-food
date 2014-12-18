@@ -58,7 +58,7 @@ class Api::SearchesController < Api::BaseController
       q.delete(:brand_order_by_phone_eq)
       @resources[:brands] = Brand.approved.search(q)
     elsif f == "Category"
-      q.delete(:name_containsains)
+      q.delete(:name_contains)
       q.delete(:category_id_eq)
       @resources[:categories] = Category.search(q)
     elsif f == "Location"
