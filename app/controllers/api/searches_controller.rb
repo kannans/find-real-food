@@ -45,8 +45,8 @@ class Api::SearchesController < Api::BaseController
       q[:order_by_online_or_third_party_available_eq] = true if params[:sub_filter] == 'order_by_online'
       q[:brand_order_by_online_or_brand_third_party_available_eq] = true if params[:sub_filter] == 'order_by_online'
 
-      q[:store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market'
-      q[:brand_store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market'
+      q[:store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market' && f == "Brand"
+      q[:brand_store_farmers_market_eq] = true if params[:sub_filter] == 'store_or_farmers_market' && f != "Brand"
 
     end
 
@@ -55,15 +55,11 @@ class Api::SearchesController < Api::BaseController
     if f == "Brand"
       q.delete(:category_id_eq)
       @resources[:brands] = Brand.approved.search(q)
-    end
-
-    if f == "Category"
+    elsif f == "Category"
       q.delete(:name_contains)
       q.delete(:category_id_eq)
       @resources[:categories] = Category.search(q)
-    end
-
-    if f == "Location"
+    elsif f == "Location"
       q.delete(:category_id_eq)
       @resources[:locations] = Location.search(q)
     end
@@ -83,6 +79,8 @@ class Api::SearchesController < Api::BaseController
     if q[:category_id_eq]
       q[:products_category_id_eq] = q[:category_id_eq]
       q.delete(:category_id_eq)
+      q.delete(:quality_rating_name_eq)
+      q.delete(:brand_store_farmers_market_eq)
       @resources[:brands] = Brand.approved.joins(:products).search(q).group("brands.name")
       @resources[:categories] = nil
       @resources[:users] = nil
