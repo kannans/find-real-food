@@ -145,11 +145,11 @@ class Product < ActiveRecord::Base
     end
     
     def self.quality_rating_search
-      self.joins("LEFT OUTER JOIN quality_ratings ON quality_ratings.id = products.quality_rating_id")
+      self.joins("LEFT OUTER JOIN quality_ratings qr ON qr.id = products.quality_rating_id")
           .joins("LEFT OUTER JOIN ratings ON ratable_id = products.id AND ratable_type = 'Product'")
           .group("products.id")
           .select("products.*,
-                CASE quality_ratings.name
+                CASE qr.name
                     WHEN 'Best' THEN 1
                     WHEN 'Good' THEN 2
                     WHEN 'Avoid' THEN 3

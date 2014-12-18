@@ -6,7 +6,7 @@ class Api::SearchesController < Api::BaseController
   api :GET, '/search', "Perform a multi-object search"
   formats ['json']  
   param :q, Hash do
-    param :name_cont, String, :desc => "Object name contains"
+    param :name_contains, String, :desc => "Object name contains"
     param :filter, String, :desc => "A specific type to search (User, Brand, Product, Category)"
     param :quality_rating_value_eq, String, :desc => ""
   end
@@ -29,10 +29,10 @@ class Api::SearchesController < Api::BaseController
 
     q = params[:q]
 
-    unless q[:name_cont].nil?
-      q[:name_cont_all] = q[:name_cont].split(' ')
-      q[:title_cont_all] = q[:name_cont_all]
-      q.delete(:name_cont)
+    unless q[:name_contains].nil?
+      q[:name_contains_all] = q[:name_contains].split(' ')
+      q[:title_contains_all] = q[:name_contains_all]
+      q.delete(:name_contains)
     end
 
     f = q[:filter]
@@ -54,17 +54,23 @@ class Api::SearchesController < Api::BaseController
 
     if f == "Brand"
       q.delete(:category_id_eq)
+      q.delete(:title_contains_all)
+      q.delete(:brand_order_by_phone_eq)
       @resources[:brands] = Brand.approved.search(q)
     elsif f == "Category"
-      q.delete(:name_contains)
+      q.delete(:name_containsains)
       q.delete(:category_id_eq)
       @resources[:categories] = Category.search(q)
     elsif f == "Location"
       q.delete(:category_id_eq)
+      q.delete(:title_contains_all)
       @resources[:locations] = Location.search(q)
     end
 
     if f.nil? || f == "Product"
+      q.delete(:title_contains_all)
+      q.delete(:order_by_phone_eq)
+      q.delete(:order_by_online_or_third_party_available_eq)
       if params[:sort] == "rating"
         @resources[:products] = Product.search_and_sort_by_rating(q)
       elsif params[:sort] == "quality"
@@ -81,6 +87,8 @@ class Api::SearchesController < Api::BaseController
       q.delete(:category_id_eq)
       q.delete(:quality_rating_name_eq)
       q.delete(:brand_store_farmers_market_eq)
+      q.delete(:brand_order_by_phone_eq)
+      q.delete(:brand_order_by_online_or_brand_third_party_available_eq)
       @resources[:brands] = Brand.approved.joins(:products).search(q).group("brands.name")
       @resources[:categories] = nil
       @resources[:users] = nil

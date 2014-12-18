@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   api_accessible :user_basic do |template|
     template.add :id
-    template.add :avatar
+    template.add :avatar_url, :as => :avatar
     template.add :name
     template.add :facebook_id
     template.add :stats
