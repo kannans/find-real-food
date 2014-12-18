@@ -34,11 +34,11 @@ class Api::RegistrationsController < Devise::RegistrationsController
       resource.cover_photo = RealFood::ImageDecoder.decode_jpg(cover_photo_data) if cover_photo_data
 
       resource.save
+
       respond_to do |format|
-       format.json { render_for_api :user, :json => resource, :meta =>
-         { :success => true}, :root => :user }
-     end
-     rescue Exception => e
+      format.json {render json: resource.merge(:success => true)}
+      end
+      rescue Exception => e
      render :json=> {:success => false, :message => e.message}
     end
   end
