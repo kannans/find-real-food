@@ -80,8 +80,13 @@ class Api::SearchesController < Api::BaseController
 
     @resources[:users] = User.search(q)  if f == "User"
 
-
-   
+    if q[:category_id_eq]
+      q[:products_category_id_eq] = q[:category_id_eq]
+      q.delete(:category_id_eq)
+      @resources[:brands] = Brand.approved.joins(:products).search(q).group("brands.name")
+      @resources[:categories] = nil
+      @resources[:users] = nil
+    end
 
     @search = {
       :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
