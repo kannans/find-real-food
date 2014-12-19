@@ -56,7 +56,7 @@ class Product < ActiveRecord::Base
     template.add  :brand_name, :unless => lambda { |p| p.brand_id.nil? }
     template.add  :quality_rating_id
     template.add  :quality
-    template.add  lambda{|model| model.picture(:large) }, :as => :image
+    template.add  lambda{|model| model.picture(:full) }, :as => :image
     template.add  :approved
     template.add  :rating
     template.add  :comments, :template => :rating
