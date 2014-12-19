@@ -56,7 +56,7 @@ class Product < ActiveRecord::Base
     template.add  :brand_name, :unless => lambda { |p| p.brand_id.nil? }
     template.add  :quality_rating_id
     template.add  :quality
-    template.add  lambda{|model| model.picture(:large) }, :as => :image
+    template.add  lambda{|model| model.picture(:full) }, :as => :image
     template.add  :approved
     template.add  :rating
     template.add  :comments, :template => :rating
@@ -231,7 +231,7 @@ class Product < ActiveRecord::Base
       elsif sold =='all'
         where("brands.order_by_online = '1' and brands.order_by_phone = '1' and brands.store_farmers_market = '1'")
       else
-        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.store_farmers_market = '1'")
+        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.store_farmers_market = '1' or brands.third_party_available = '1'")
       end
     end
 

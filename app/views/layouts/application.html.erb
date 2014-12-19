@@ -67,6 +67,18 @@ function getCookie(cname) {
     return "";
 }
 
+function fixHeigh()
+    {
+        
+    var heights=[];
+    var newsitem=$('.news_page .news');
+    newsitem.each(function() {
+    var newsheight=$(this).height();
+    heights.push(parseInt(newsheight));
+    });
+    var maxHeight=Math.max.apply(Math, heights);
+    newsitem.css('min-height',maxHeight);
+    }
 
 
 </script>
@@ -274,7 +286,7 @@ $(document).ready(function(){
 
   <% if user_signed_in? %>
  <% else %>
- 
+ try{}
  if(getCookie('notification')!='closed'){
     $('.notification').show();
     var notheight=$('.notification').height()+24;
@@ -286,6 +298,7 @@ $('.notclose').click(function() {
     $('header').animate({"margin-top":0})
 
 });
+}
 <% end %>
 
  $('.ajaxcall, .checks input').click(function(){
