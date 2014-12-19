@@ -161,7 +161,6 @@ RealFood::Application.routes.draw do
     resources :locations, :only => [:index] do
       collection do
         get 'total_count'
-        get 'show'
       end
     end
   end
