@@ -30,5 +30,21 @@ class Apiv1::LocationsController < Apiv1::BaseController
       format.json {render :json => {:success => true, :locations => locations}}
     end
   end
- 
+
+  api :GET, '/locations/:id', 'Get brand and product list based on location'
+  def show
+    location_id = params[:id]
+    if params[:page]
+      page = params[:page]
+    else
+      page = 1
+    end
+
+    @brands = Brand.search_brands(location_id).paginate(page: page, per_page: 30)
+    @products = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
+
+    respond_to do |format|
+      format.json {render :json => {:success => true, :brands => @brands, :products => @products}}
+    end
+  end
 end
