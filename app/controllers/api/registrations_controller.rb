@@ -36,7 +36,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
       resource.save
 
       respond_to do |format|
-      format.json {render json: resource.merge(:success => true)}
+      format.json {render json: {:user => resource, :success => true}}
       end
       rescue Exception => e
      render :json=> {:success => false, :message => e.message}
