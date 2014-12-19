@@ -231,7 +231,7 @@ class Product < ActiveRecord::Base
       elsif sold =='all'
         where("brands.order_by_online = '1' and brands.order_by_phone = '1' and brands.store_farmers_market = '1'")
       else
-        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.store_farmers_market = '1'")
+        where("brands.order_by_online = '1' or brands.order_by_phone = '1' or brands.store_farmers_market = '1' or brands.third_party_available = '1'")
       end
     end
 
