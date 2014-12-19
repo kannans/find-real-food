@@ -286,7 +286,7 @@ $(document).ready(function(){
 
   <% if user_signed_in? %>
  <% else %>
- 
+ try{}
  if(getCookie('notification')!='closed'){
     $('.notification').show();
     var notheight=$('.notification').height()+24;
@@ -298,6 +298,7 @@ $('.notclose').click(function() {
     $('header').animate({"margin-top":0})
 
 });
+}
 <% end %>
 
  $('.ajaxcall, .checks input').click(function(){
