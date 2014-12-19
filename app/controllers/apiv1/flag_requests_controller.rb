@@ -1,4 +1,4 @@
-class Api::FlagRequestsController < Api::BaseController
+class Apiv1::FlagRequestsController < Apiv1::BaseController
   respond_to :json
 
   api :POST, '/:flaggable_type/:flaggable_id/flags', "Flag an object"

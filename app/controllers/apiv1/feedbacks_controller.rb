@@ -1,4 +1,4 @@
-class Api::FeedbacksController < Api::BaseController
+class Apiv1::FeedbacksController < Apiv1::BaseController
   respond_to :json
 
   api :POST, '/feedback', "Create user feedback"

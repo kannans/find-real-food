@@ -15,9 +15,20 @@ class Apiv1::SessionsController < Devise::SessionsController
     if params[:facebook_id]
       resource = User.where(:email => params[:email], :facebook_id => params[:facebook_id]).first
       if resource.nil?
-        resource = User.create!(:email => params[:email], :facebook_id => params[:facebook_id], :password => "empty1234")
-        resource.update_attributes!(params[:user])
-        resource.reload
+        resource = User.where(:email => params[:email]).first
+        if resource.nil?
+          resource = User.create!(:email => params[:email], :facebook_id => params[:facebook_id], :password => "empty1234")
+          params[:user].delete(:id)
+          params[:user].delete(:created_at)
+          params[:user].delete(:active_subscription)
+          params[:user][:avatar] = open(params[:user][:avatar])
+          resource.update_attributes!(params[:user])
+          resource.reload
+        else
+           
+          resource.update_attributes!({ :facebook_id => params[:facebook_id]})
+
+        end
       end
     else
       resource = User.find_for_database_authentication(:email => params[:email])

@@ -1,4 +1,4 @@
-class Api::RatingsController < Api::BaseController
+class Apiv1::RatingsController < Apiv1::BaseController
   respond_to :json
 
   api :POST, '/:ratable_type/:ratable_id/ratings', "Rate a Product/Brand/Location"

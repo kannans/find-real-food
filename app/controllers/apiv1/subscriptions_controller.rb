@@ -1,4 +1,4 @@
-class Api::SubscriptionsController < Api::BaseController
+class Apiv1::SubscriptionsController < Apiv1::BaseController
 
   api :POST, '/users/:user_id/subscriptions', 'Add a subscription'
   param :subscription, Hash do

@@ -1,4 +1,4 @@
-class Api::CmsTextsController < ApplicationController
+class Apiv1::CmsTextsController < ApplicationController
   api :GET, '/cms_texts', 'Get all admin editable text snippets'
   def index
     @texts = CmsText.all

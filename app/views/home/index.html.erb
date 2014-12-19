@@ -91,24 +91,13 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>
-                                               <% if @location1 %>
+                                               <% if @location.to_s!='' %>
                                                 <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
                                                    
                                                 <% end %>
                                             </div>
                                             <div class="clear"></div>
-                                               <% if @locations1 %>
-                                              <div class="location_list">
-                                              <ul>
-                                                <% @locations.each do |lrow| %>
-                                              <li>
-                                              <h4 class="loaction_title"><a href="/location/<%= lrow.slug %>"><%= lrow.name %></a></h4>
-                                              <a href="javascript:;"><span><%= lrow.full_address %></span></a>
-                                              </li>
-                                              <% end %>
-                                              </ul>
-                                              </div>
-                                              <% end %>
+                                                
                                             
                                         </div>
                                     </div>
@@ -206,15 +195,17 @@ $(document).ready(function() {
 
 
  <% if @locations %>
-      setTimeout(function(){ 
+      
         <% @locations.each do |lrow| %>
+        setTimeout(function(){ 
         <% if lrow.slug %>
         codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
         <% else %>
         codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
         <% end %>
+         }, <%= @locations.count %>*200);
         <% end %>
-      }, 3000);
+     
       <% end %>
 
 });

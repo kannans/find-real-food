@@ -1,4 +1,4 @@
-class Api::BrandsController < Api::BaseController
+class Apiv1::BrandsController < Apiv1::BaseController
   respond_to :json
 
   api :GET, '/brands/:brand_id', 'Get a specific brand'

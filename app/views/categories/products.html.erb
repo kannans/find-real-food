@@ -27,16 +27,18 @@
 $(document).ready(function(){
 
     
-     <% if @locations %>
-      setTimeout(function(){ 
+      <% if @locations %>
+      
         <% @locations.each do |lrow| %>
+        setTimeout(function(){ 
         <% if lrow.slug %>
         codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
         <% else %>
         codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
         <% end %>
+         }, <%= @locations.count %>*200);
         <% end %>
-      }, 3000);
+     
       <% end %>
 
     $("#search_field_new").keyup(function(){

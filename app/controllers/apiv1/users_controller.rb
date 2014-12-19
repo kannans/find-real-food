@@ -1,4 +1,4 @@
-class Api::UsersController < Api::BaseController
+class Apiv1::UsersController < Apiv1::BaseController
   respond_to :json
   skip_filter :ensure_user_authentication!, :only => :reset_password
 

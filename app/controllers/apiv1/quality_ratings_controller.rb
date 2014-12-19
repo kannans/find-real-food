@@ -1,4 +1,4 @@
-class Api::QualityRatingsController < ApplicationController
+class Apiv1::QualityRatingsController < ApplicationController
 
   api :GET, '/quality_ratings', 'Get a listing of all quality ratings.'
   def index

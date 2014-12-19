@@ -29,8 +29,6 @@ class BrandsController < ApplicationController
       if @products_locations!=''
         @locations = Location.where("id in (#{@products_locations})")
       end
-    else
-      @locations = Location.near("#{zip}", 100)
     end
 	  @productsall = Product.search_products().brandfilter(@brand.id).sortorder().paginate(page: page, per_page: 30)
    

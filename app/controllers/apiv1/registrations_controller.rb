@@ -1,4 +1,4 @@
-class Api::RegistrationsController < Devise::RegistrationsController
+class Apiv1::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   api :POST, '/users', "Create a user"
@@ -33,11 +33,14 @@ class Api::RegistrationsController < Devise::RegistrationsController
       resource.avatar = RealFood::ImageDecoder.decode_jpg(avatar_data) if avatar_data
       resource.cover_photo = RealFood::ImageDecoder.decode_jpg(cover_photo_data) if cover_photo_data
 
-      if resource.save
-        render:text=>"success"
-      else
-        render:text=>"failure"
-       end 
+      resource.save
+
+      respond_to do |format|
+      format.json {render json: {:user => resource, :success => true}}
+      end
+      rescue Exception => e
+     render :json=> {:success => false, :message => e.message}
     end
   end
 end
+

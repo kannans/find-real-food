@@ -1,4 +1,4 @@
-class Api::NewsPostsController < Api::BaseController
+class Apiv1::NewsPostsController < Apiv1::BaseController
   skip_filter :ensure_user_authentication!
   
   respond_to :json
