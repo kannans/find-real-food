@@ -157,6 +157,12 @@ RealFood::Application.routes.draw do
 
     post 'feedback', :to => 'feedbacks#create'
     resources :ratings, :only => [:index, :create]
+
+    resources :locations, :only => [:index] do
+      collection do
+        get 'total_count'
+      end
+    end
   end
 
 
