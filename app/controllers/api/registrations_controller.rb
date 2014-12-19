@@ -36,10 +36,10 @@ class Api::RegistrationsController < Devise::RegistrationsController
       resource.save
 
       respond_to do |format|
-      format.json {render json: {:user => resource, :success => true}}
+        format.json { render_for_api :user, :json => resource, :meta => {:success => true, :authentication_token => resource.authentication_token}, :root => :user }
       end
-      rescue Exception => e
-     render :json=> {:success => false, :message => e.message}
+    rescue Exception => e
+      render :json => {:success => false, :message => e.message}
     end
   end
 end
