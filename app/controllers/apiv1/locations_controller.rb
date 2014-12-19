@@ -24,7 +24,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
   api :GET, '/locations', 'List Locations'
   def index
     @zip_code = params[:zip_code]
-    locations = Location.near("#{@zip_code}", 100).find(:all)
+    locations = Location.near("#{@zip_code}", 100).first(20)
     
     respond_to do |format|
       format.json {render :json => {:success => true, :locations => locations}}
