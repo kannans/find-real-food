@@ -9,6 +9,8 @@ $(".news").each(function() {
     var newClass = 'last';
     if (i % 3 == 0){ newClass = 'last';
     $(this).addClass(newClass);
+    fixHeigh();
+    
 }
 i++;
 });

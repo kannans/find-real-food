@@ -67,6 +67,18 @@ function getCookie(cname) {
     return "";
 }
 
+function fixHeigh()
+    {
+        
+    var heights=[];
+    var newsitem=$('.news_page .news');
+    newsitem.each(function() {
+    var newsheight=$(this).height();
+    heights.push(parseInt(newsheight));
+    });
+    var maxHeight=Math.max.apply(Math, heights);
+    newsitem.css('min-height',maxHeight);
+    }
 
 
 </script>
