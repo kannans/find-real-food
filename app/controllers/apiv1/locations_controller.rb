@@ -2,7 +2,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
   respond_to :json
   skip_filter :ensure_user_authentication!
 
-  api :GET, '/locations', 'Get a specific brand'
+  api :GET, '/locations', 'Get location count'
   def total_count
     lat = params[:lat]
     long = params[:long]
@@ -30,4 +30,22 @@ class Apiv1::LocationsController < Apiv1::BaseController
       format.json {render :json => {:success => true, :locations => locations}}
     end
   end
+
+  api :GET, '/locations/', 'get brand and product list'
+  def show
+    @locationid = params[:id]
+    if params[:page]
+          page = params[:page]
+      else
+          page = 1
+      end
+
+    @brands = Brand.search_brands(@locationid).paginate(page: page, per_page: 30)
+    @products = Product.search_products(@locationid).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
+    
+    respond_to do |format|
+      format.json {render :json => {:success => true, :brands => @brands, :products => @products}}
+    end
+  end
+
 end
