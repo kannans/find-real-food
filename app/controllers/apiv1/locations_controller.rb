@@ -33,7 +33,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
       @miles = 25
     end
     if @type
-      locations = Location.near("#{@zip_code}", @miles).where("location_type='#{@type}'").first(20)
+      locations = Location.where("location_type='#{@type}'").near("#{@zip_code}", @miles).first(20)
     else
       locations = Location.near("#{@zip_code}", @miles).first(20)
     end
