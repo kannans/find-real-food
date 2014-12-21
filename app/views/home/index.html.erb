@@ -9,9 +9,9 @@
                      <% @sliders.each do |slider| %> 
                     <li>
                     <% if slider.url %>
-                      <a href="<%= slider.url %>" target="_blank">   <%= image_tag(slider.picture(:original), :alt => "Banner") %></a>
+                      <a href="<%= slider.url %>" target="_blank">   <%= image_tag(slider.picture(:original), :alt => "Banner", :width => 1600, :height => 410) %></a>
                      <% else %>  
-                      <%= image_tag(slider.picture(:original), :alt => "Banner") %>
+                      <%= image_tag(slider.picture(:original), :alt => "Banner", :width => 1600, :height => 410) %>
                      <% end %>
                         <div class="caption_part">
                             <div class="container">
