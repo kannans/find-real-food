@@ -264,10 +264,11 @@
                                        <% if @current_page =='search' %>
                                          <% if @brands.total_entries > 30 %>
                                          <span class="page_results"> Showing <span><%= @brands.offset+30 %></span> of <span><%= @brands.total_entries %></span></span>
+                                         <a href="javascript:void(0);" class="view_all_products search_more" data-page="2">View More</a>
                                          <% else %>
                                          <span class="page_results"> Showing <span><%= @brands.total_entries %></span> of <span><%= @brands.total_entries %></span></span>
                                          <% end %>
-                                          <a href="javascript:void(0);" class="view_all_products search_more" data-page="2">View More</a>
+                                          
                                           <% else %>
                                           <% if @brands.total_entries > 30 %>
                                          <span class="page_results"> Showing <span><%= @brands.offset+30 %></span> of <span><%= @brands.total_entries %></span></span>
