@@ -286,7 +286,7 @@ $(document).ready(function(){
 
   <% if user_signed_in? %>
  <% else %>
- try{}
+ try{
  if(getCookie('notification')!='closed'){
     $('.notification').show();
     var notheight=$('.notification').height()+24;
