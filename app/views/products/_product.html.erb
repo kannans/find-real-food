@@ -27,7 +27,10 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>
-
+                                                <% if @location.to_s!='' %>
+                                                <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
+                                                   
+                                                <% end %>
                                                 
                                             </div>
 

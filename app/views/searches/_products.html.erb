@@ -61,8 +61,11 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>     
-                                               <% if @location1 %>
-                                                            <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
+                                                <% if @location.to_s!='' %>
+                                                  <% locationcount =  get_location_count(product.id, @location) %>
+                                                  <% if locationcount.to_s!='[]' %>
+                                                <p class="location"><a href="javascript:void(0);"><%= locationcount %> Location(s) Nearby</a></p>
+                                                   <% end %>
                                                 <% end %>
                                                         </div>  
                                                              
@@ -165,24 +168,16 @@
                                               %>
                                                <span>(<%= product.rating_count %>)</span></p>
                                                <% end  %>     
-                                               <% if @location1 %>
-                                                            <p class="location"><a href="javascript:void(0);"><%= get_location_count(product.id, @location) %> Location(s) Nearby</a></p>
+                                                <% if @location.to_s!='' %>
+                                                  <% locationcount =  get_location_count(product.id, @location) %>
+                                                  <% if locationcount.to_s!='[]' %>
+                                                <p class="location"><a href="javascript:void(0);"><%= locationcount %> Location(s) Nearby</a></p>
+                                                   <% end %>
                                                 <% end %>
                                                         </div>  
                                                              
                                              <div class="clear"></div>
-                                               <% if @locations1 %>
-                                              <div class="location_list">
-                                              <ul>
-                                                <% @locations.each do |lrow| %>
-                                              <li>
-                                              <h4 class="loaction_title"><a href="/location/<%= lrow.slug %>"><%= lrow.name %></a></h4>
-                                              <a href="javascript:;"><span><%= lrow.full_address %></span></a>
-                                              </li>
-                                              <% end %>
-                                              </ul>
-                                              </div>
-                                              <% end %>
+                                               
 
                                                     </div>
                                                 </div>
