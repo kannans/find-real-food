@@ -202,9 +202,9 @@ $(document).ready(function() {
         setTimeout(function(){ 
         <% if lrow.slug %>
         <% products = get_products_count_by_location(lrow.id) %>
-        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><a href="/location/<%= lrow.slug %>"><%= products %> Products</a><%= lrow.full_address %>');
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><a href="/location/<%= lrow.slug %>"><%= products %> Product(s)</a><%= lrow.full_address %>');
         <% else %>
-        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= products %> Products <%= lrow.full_address %>');
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= products %> Product(s)<%= lrow.full_address %>');
         <% end %>
          }, <%= i+1 %>*200);
         
