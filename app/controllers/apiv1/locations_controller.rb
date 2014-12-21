@@ -24,9 +24,9 @@ class Apiv1::LocationsController < Apiv1::BaseController
   api :GET, '/locations', 'List Locations'
   def index
     @zip_code = params[:zip_code]
-    @type = params[:type]
     
-    
+    @type = params[:type].gsub("'", "\\\\'")
+
     if params[:miles]
       @miles = params[:miles]
     else
