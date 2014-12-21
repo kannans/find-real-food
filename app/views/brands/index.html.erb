@@ -82,7 +82,7 @@
                                     <div class="home_left fl">
                                          <% unless @products.blank?  %>  
                                          <div class="products">
-                               <% @products.each do |product| %> 
+                                     <% @products.each do |product| %> 
                               
                                
                                 <div class="product_item">
@@ -135,16 +135,17 @@
                                                 <a href="javascript:;"></a>
                                             </div>
                                             
-                                            <% if @products.total_entries > 30 %>
-                                         <span class="page_results"> Showing <span><%= @products.offset+30 %></span> of <span><%= @products.total_entries %></span></span>
-                                         <% else %>
-                                         <span class="page_results"> Showing <span><%= @products.total_entries %></span> of <span><%= @products.total_entries %></span></span>
-                                         <% end %>
-
-                                             <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+                                           
+                                            
 
                                              
                             </div>
+                             <% if @products.total_entries > 30 %>
+                                         <span class="page_results"> Showing <span><%= @products.offset+30 %></span> of <span><%= @products.total_entries %></span></span>
+                                          <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+                                         <% else %>
+                                         <span class="page_results"> Showing <span><%= @products.total_entries %></span> of <span><%= @products.total_entries %></span></span>
+                                         <% end %>
 
                              <% else %>
                                             <div class="products"> <div class="product_item"><p class="notification1" >No Products Available</p></div>
@@ -213,11 +214,12 @@
                             
                             <% if @productsall.total_entries > 30 %>
                                          <span class="page_results"> Showing <span><%= @productsall.offset+30 %></span> of <span><%= @productsall.total_entries %></span></span>
+                                          <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
                                          <% else %>
                                          <span class="page_results"> Showing <span><%= @productsall.total_entries %></span> of <span><%= @productsall.total_entries %></span></span>
                                          <% end %>
                                          
-                            <a href="javascript:void(0);" class="view_all_products" data-page="2">View More</a>
+                           
 
                             
                              <% else %>
