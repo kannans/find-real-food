@@ -25,7 +25,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
   def index
     @zip_code = params[:zip_code]
     
-    @type = params[:type].gsub("'", "\\\\'")
+    @type = params[:type]
 
     if params[:miles]
       @miles = params[:miles]
@@ -33,7 +33,8 @@ class Apiv1::LocationsController < Apiv1::BaseController
       @miles = 25
     end
     if @type
-      locations = Location.where("location_type='#{@type}'").near("#{@zip_code}", @miles).first(20)
+      @type = params[:type].gsub("'", "\\\\'")
+      locations = Location.where("location_type like '%#{@type}%'").near("#{@zip_code}", @miles).first(20)
     else
       locations = Location.near("#{@zip_code}", @miles).first(20)
     end
