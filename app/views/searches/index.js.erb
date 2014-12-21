@@ -45,14 +45,14 @@ $('.etabs .tab a').click(function(evt){
 
    <% if @locations %>
       
-        <% @locations.each do |lrow| %>
+        <% @locations.each do |lrow, i| %>
         setTimeout(function(){ 
         <% if lrow.slug %>
         codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
         <% else %>
         codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
         <% end %>
-         }, <%= @locations.count %>*200);
+         }, <%= i %>*200);
         <% end %>
      
       <% end %>
