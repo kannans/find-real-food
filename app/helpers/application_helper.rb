@@ -75,15 +75,16 @@ module ApplicationHelper
 
   end
 
-  def getlocationslist(product_id='',locations='')
-      connection = ActiveRecord::Base.connection()
-      subquery = "select location_id from locations_products where product_id=#{product_id} and location_id in (#{locations})"
-      return Location.where("locations.id IN (#{subquery})")
+  def get_products_count_by_location(location_id='')
+      
+      return Product.search_products(location_id).find(:all).count
+      
 
 
   end
 
   def get_brand_location_count(brand_id='',locations='')
+    
       connection = ActiveRecord::Base.connection()
       results = connection.execute("select count(*) from brands_locations where brand_id=#{brand_id} and location_id in (#{locations}) group by location_id")
       results.each do |row|

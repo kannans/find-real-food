@@ -19,20 +19,21 @@
  
 $(document).ready(function() {
 
-   <% if @locations %>
-      
-        <% @locations.each do |lrow, i| %>
+    <% if @locations %>
+        
+        <% @locations.each_with_index do |lrow, i| %>
         setTimeout(function(){ 
         <% if lrow.slug %>
-        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><%= lrow.full_address %>');
+        <% products = get_products_count_by_location(lrow.id) %>
+        codeAddress('<%= lrow.full_address %>','<a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><a href="/location/<%= lrow.slug %>"><%= products %> Products</a><%= lrow.full_address %>');
         <% else %>
-        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= lrow.full_address %>');
+        codeAddress('<%= lrow.full_address %>','<a href="javascript:void(0);"><%= lrow.name %></a><%= products %> Products <%= lrow.full_address %>');
         <% end %>
-         }, <%= i %>*200);
+         }, <%= i+1 %>*200);
+        
         <% end %>
      
-      <% end %>
-
+    <% end %>
 
        $("#search_field_new").keyup(function(){
  
