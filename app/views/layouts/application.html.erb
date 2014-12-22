@@ -41,9 +41,6 @@
 <script src="/assets/jquery-1.11.0.js"></script>
 <script src="/assets/jquery.slimscroll.js"></script>
 <script src="/assets/jquery.bxslider.js"></script>
-<script src="/assets/light_pop_v0.js"></script>
-<script src="/assets/jquery.validate.js"></script>
-<script src="/assets/custom.js"></script>
 
 
 <script type="text/javascript">
@@ -102,14 +99,7 @@ function fixHeigh()
 </head>
 <body>
   <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1601901470036363&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
- 
+
 <div class="notification" style="display:none;">Create an account free for a limited time to browse the entire database of brands and products approved by the Weston A. Price Foundation! <a class="notifiy_signup button" href="/register">Sign Up</a><span class="notclose">X</span></div>
 
     <header>
@@ -252,7 +242,17 @@ function fixHeigh()
     <%= render '/layouts/login' %>
     <%= render '/layouts/register' %>
     
-   
+   <script src="/assets/light_pop_v0.js"></script>
+<script src="/assets/jquery.validate.js"></script>
+<script src="/assets/custom.js"></script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=1601901470036363&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+ 
     <script type="text/javascript">
     $(function(){
 
