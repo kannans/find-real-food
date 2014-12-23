@@ -5,12 +5,7 @@ class BrandsController < ApplicationController
 
   	@brand = Brand.find(params[:slug])
 
-    if params[:zip]
-      zip = params[:zip]
-      session[:zip] = zip
-    elsif session[:zip]
-      zip = session[:zip]
-    end
+    zip = session[:zip]
 
     if params[:page]
       page = params[:page]
@@ -19,8 +14,8 @@ class BrandsController < ApplicationController
     end
 
     
-    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 100).first
+    @location = Location.near("#{zip}", 10).collect{|c| c.id}.join(',')
+    @centerlocation = Location.near("#{zip}", 10).first
     
     if @location !=''
       

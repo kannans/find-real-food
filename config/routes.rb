@@ -45,7 +45,7 @@ RealFood::Application.routes.draw do
 
     
 
-    get 'logout', :to => 'sessions#destroy'
+    #get 'logout', :to => 'sessions#destroy'
 
     get 'brands/addtofavorite', :to => 'brands#add_to_favorites'
     get 'location/:slug', :to => 'locations#index'
