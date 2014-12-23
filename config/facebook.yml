@@ -6,4 +6,4 @@ development:
   <<: *defaults
 
 production:
-  <<: *defaults
+  <<: *defaults 
