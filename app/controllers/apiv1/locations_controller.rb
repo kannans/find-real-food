@@ -53,12 +53,12 @@ class Apiv1::LocationsController < Apiv1::BaseController
     else
       page = 1
     end
-    @locations = Location.where("id=#{location_id}")
+    @locations = Location.find(location_id)
     @brands = Brand.search_brands(location_id).paginate(page: page, per_page: 30)
     @products = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
 
     respond_to do |format|
-      format.json {render :json => {:success => true, :Details => {:brands => @brands, :products => @products, :location => @locations }}}
+      format.json {render :json => {:success => true, :Details => {:brands => @brands, :products => @products, :location => [@locations] }}}
     end
   end
 end
