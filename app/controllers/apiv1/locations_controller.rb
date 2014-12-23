@@ -53,7 +53,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
     else
       page = 1
     end
-    @locations = Location.find(location_id)
+    @locations = Location.where("id=#{location_id}")
     @brands = Brand.search_brands(location_id).paginate(page: page, per_page: 30)
     @products = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
 
