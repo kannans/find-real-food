@@ -45,6 +45,7 @@ class HomeController < ApplicationController
 
   def map
     location = params[:location]
+    @centerlocation = Location.near("#{zip}", 10).first
     if location!=''
       @locations = Location.where("id in (#{location})")
     end
