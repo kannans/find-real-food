@@ -85,4 +85,8 @@ class Location < ActiveRecord::Base
   def children_ids
     self.children.pluck(:id)
   end
+
+  def self.near(zipcode)
+    self.where("zip")
+  end
 end

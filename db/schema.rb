@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.integer  "user_id"
     t.string   "store_locator_url"
     t.string   "slug"
-    t.string   "brand_code1",           :limit => 100,                    :null => false
     t.string   "brand_code"
   end
 
@@ -212,8 +211,8 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.integer "WHITE_POPULATION",                                                     :null => false
     t.integer "BLACK_POPULATION",                                                     :null => false
     t.integer "HISPANIC_POPULATION",                                                  :null => false
-    t.float   "INCOME_PER_HOUSEHOLD",   :limit => 10,                                 :null => false
-    t.float   "AVERAGE_HOUSE_VALUE",    :limit => 10,                                 :null => false
+    t.float   "INCOME_PER_HOUSEHOLD",                                                 :null => false
+    t.float   "AVERAGE_HOUSE_VALUE",                                                  :null => false
   end
 
   add_index "master_zipcode", ["LATITUDE", "LONGITUDE"], :name => "LATITUDE"
