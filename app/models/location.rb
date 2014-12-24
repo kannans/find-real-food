@@ -55,6 +55,9 @@ class Location < ActiveRecord::Base
      template.add :zip
      template.add lambda{|model| model.picture(:full) }, :as => :image
      template.add :state
+     template.add :latitude
+     template.add :longitude
+     template.add :distance
      template.add :location_type
   end
  
@@ -70,6 +73,9 @@ class Location < ActiveRecord::Base
      template.add :zip
      template.add lambda{|model| model.picture(:full) }, :as => :image
      template.add :state
+     template.add :latitude
+     template.add :longitude
+      template.add :distance
      template.add :location_type
   end
 
