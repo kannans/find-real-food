@@ -65,12 +65,12 @@ class Apiv1::LocationsController < Apiv1::BaseController
 
       })
 
-    respond_to do |format|
-      format.json { render_for_api :Details, :json => @search, :meta => { :success => true} }
-    end
-
     #respond_to do |format|
-    #  format.json {render :json => {:success => true, :Details => {:brands => @brands, :products => @products, :location => [@locations] }}}
+    #  format.json { render_for_api :Details, :json => @search, :meta => { :success => true} }
     #end
+
+    respond_to do |format|
+      format.json {render :json => {:success => true, :Details => {:brands => @resources[:brands], :products => @resources[:products], :location => [@resources[:location] ] }}}
+    end
   end
 end
