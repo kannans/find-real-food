@@ -90,8 +90,8 @@ class Apiv1::SearchesController < Apiv1::BaseController
       q.delete(:brand_order_by_phone_eq)
       q.delete(:brand_order_by_online_or_brand_third_party_available_eq)
       @resources[:brands] = Brand.approved.joins(:products).search(q).group("brands.name")
-      @resources[:categories] = {}
-      @resources[:users] = {}
+      @resources[:categories] = nil
+      @resources[:users] = nil
     end
 
     @search = Search.new({
