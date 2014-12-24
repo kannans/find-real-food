@@ -57,7 +57,6 @@ class Location < ActiveRecord::Base
      template.add :state
      template.add :latitude
      template.add :longitude
-     template.add :distance
      template.add :location_type
   end
  
