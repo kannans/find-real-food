@@ -43,7 +43,7 @@ class Location < ActiveRecord::Base
   
   acts_as_api
 
-  api_accessible :Details do |template|
+  api_accessible :location do |template|
      template.add :products, :template => :product
      template.add :brands, :template => :brand     
      template.add :id
