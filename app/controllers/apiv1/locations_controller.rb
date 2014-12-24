@@ -47,18 +47,35 @@ class Apiv1::LocationsController < Apiv1::BaseController
 
   api :GET, '/locations/:id', 'Get brand and product list based on location'
   def show
+    search_result_limit = 20
     location_id = params[:id]
     if params[:page]
       page = params[:page]
     else
       page = 1
     end
-    @locations = Location.find(location_id)
-    @brands = Brand.search_brands(location_id).paginate(page: page, per_page: 30)
-    @products = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
+    @resources = {}
+    @resources[:location] = Location.find(location_id)
+    @resources[:brands] = Brand.search_brands(location_id)
+    @resources[:products] = Product.search_products(location_id).availabilityfilter('store').sortorder()
+
+    @search = Location.new({
+      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :location => @resources[:location]) ,
+      :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :pages => {
+          :brands => @resources[:brands].nil? ? 0 : (@resources[:brands].length / search_result_limit.to_f).ceil,
+          :products => @resources[:products].nil? ? 0 : (@resources[:products].length / search_result_limit.to_f).ceil
+      
+      }
+    })
 
     respond_to do |format|
-      format.json {render :json => {:success => true, :Details => {:brands => @brands, :products => @products, :location => [@locations] }}}
+      format.json { render_for_api :location, :json => @search, :meta => { :success => true} }
     end
+
+    #respond_to do |format|
+    #  format.json {render :json => {:success => true, :Details => {:brands => @brands, :products => @products, :location => [@locations] }}}
+    #end
   end
 end
