@@ -58,6 +58,20 @@ class Location < ActiveRecord::Base
      template.add :location_type
   end
  
+ api_accessible :locationlist do |template|
+     template.add :products, :template => :productcount
+     template.add :brands, :template => :brandcount     
+     template.add :id
+     template.add :address
+     template.add :city
+     template.add :name
+     template.add :phone
+     template.add :website
+     template.add :zip
+     template.add lambda{|model| model.picture(:full) }, :as => :image
+     template.add :state
+     template.add :location_type
+  end
 
   # with an attributes
  # geocoded_by :address # address is an attribute of MyModel

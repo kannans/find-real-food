@@ -42,7 +42,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
     
     respond_to do |format|
       #format.json {render :json => {:success => true, :locations => @locations}}
-      format.json { render_for_api :location, :json => @locations, :meta => { :success => true} }
+      format.json { render_for_api :locationlist, :json => @locations, :meta => { :success => true} }
     end
   end
 

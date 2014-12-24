@@ -66,6 +66,12 @@ class Brand < ActiveRecord::Base
     template.add :store_locator_url
     template.add :user, :template => :user_basic, :if => lambda { |b| !b.user.nil? && !b.user.private }
   end
+
+   api_accessible :brandcount do |template|
+    template.add :id
+   end
+
+
   def format_url
   self.website = "http://#{self.url}" unless self.website[/^https?/]    
   end

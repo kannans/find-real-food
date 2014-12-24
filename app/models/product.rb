@@ -64,6 +64,10 @@ class Product < ActiveRecord::Base
     template.add  :brand, :template => :brand
   end
 
+  api_accessible :productcount do |template|
+    template.add  :id    
+  end
+
   def quality
     return self.quality_rating.name unless self.quality_rating.nil?
     ""
