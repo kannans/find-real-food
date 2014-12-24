@@ -36,11 +36,18 @@ class Location < ActiveRecord::Base
     :styles => { :thumb => "100x39#", :small  => "300x117#", :full => "640x250#" },
     :default_url => "/assets/blank.png"
   
+  acts_as_api
+
+  api_accessible :location do |template|
+     template.add :products, :template => :product
+     template.add :brands, :template => :brand
+  end
+
   # with an attributes
  # geocoded_by :address # address is an attribute of MyModel
 
   # or with a method
-  geocoded_by :full_address # full_address is a method which take some model's attributes to get a formatted address for example
+  geocoded_by :full_address # full_address is a method which  take some model's attributes to get a formatted address for example
 
   # the callback to set longitude and latitude
   after_validation :geocode
