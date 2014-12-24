@@ -43,10 +43,17 @@ class Location < ActiveRecord::Base
   
   acts_as_api
 
-  api_accessible :location do |template|
+  api_accessible :Details do |template|
      template.add :products, :template => :product
      template.add :brands, :template => :brand     
+     template.add :location, :template => :location  
   end
+
+  api_accessible :location do |template|
+     template.add :id
+     template.add :address
+  end
+
 
   # with an attributes
  # geocoded_by :address # address is an attribute of MyModel
