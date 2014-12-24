@@ -59,7 +59,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @resources[:location] = Location.find(location_id)
     @resources[:brands] = Brand.search_brands(location_id)
     @resources[:products] = Product.search_products(location_id)
-
+    @resources[:location].merge({ "distance" => 1})
     @search = Search.new({
       :products => @resources[:products],
       :brands => @resources[:brands],
