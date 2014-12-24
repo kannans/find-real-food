@@ -52,20 +52,28 @@ class Apiv1::SearchesController < Apiv1::BaseController
 
     @resources = {}
 
-    if f == "Brand"
+    if f.nil? || f == "Brand"
       q.delete(:category_id_eq)
       q.delete(:title_contains_all)
       q.delete(:brand_order_by_phone_eq)
       @resources[:brands] = Brand.approved.search(q)
-    elsif f == "Category"
+    end
+    if f.nil? || f == "Category"
       q.delete(:name_contains)
       q.delete(:category_id_eq)
       @resources[:categories] = Category.search(q)
-    elsif f == "Location"
+    end
+    if f.nil? || f == "Location"
       q.delete(:category_id_eq)
       q.delete(:title_contains_all)
       @resources[:locations] = Location.search(q)
     end
+
+     @resources[:brands] = Brand.approved.search(q).result if f.nil? || f == "Brand"
+    @resources[:categories] = Category.search(q).result  if f.nil? || f == "Category"
+    @resources[:locations] = Location.search(q).result  if f.nil? || f == "Location"
+
+
 
     if f.nil? || f == "Product"
       q.delete(:title_contains_all)
