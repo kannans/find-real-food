@@ -62,7 +62,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @search = Search.new({
       :products => @resources[:products],
       :brands => @resources[:brands],
-      :location => @resources[:location]
+      :locations => @resources[:location]
       })
 
     respond_to do |format|
