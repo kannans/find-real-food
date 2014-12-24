@@ -34,14 +34,14 @@ class Apiv1::LocationsController < Apiv1::BaseController
     end
     if @type
       @type = params[:type].gsub("'", "\\\\'")
-      locations = Location.where("location_type like '%#{@type}%'").near("#{@zip_code}", @miles).first(20)
+      @locations = Location.where("location_type like '%#{@type}%'").near("#{@zip_code}", @miles).first(20)
     else
-      locations = Location.near("#{@zip_code}", @miles).first(20)
+      @locations = Location.near("#{@zip_code}", @miles).first(20)
     end
     
     
     respond_to do |format|
-      format.json {render :json => {:success => true, :locations => locations}}
+      format.json {render :json => {:success => true, :locations => @locations}}
       #format.json { render_for_api :location, :json => locations, :meta => { :success => true} }
     end
   end
