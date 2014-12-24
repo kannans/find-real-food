@@ -59,14 +59,14 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @resources[:brands] = Brand.search_brands(location_id)
     @resources[:products] = Product.search_products(location_id)
 
-    @search = Location.new({
-      :products => @resources[:products],
-      :brands => @resources[:brands],
-      :json => @resources[:location]
-      })
+    @search = Search.new({
+                             :locations => @resources[:location],
+                             :products => @resources[:products],
+                             :brands => @resources[:brands]
+                         })
 
     respond_to do |format|
-      format.json { render_for_api :Details, :json => @search, :meta => { :success => true} }
+      format.json { render_for_api :search, :json => @search, :meta => { :success => true} }
     end
 
     #respond_to do |format|
