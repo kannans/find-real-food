@@ -60,10 +60,9 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @resources[:products] = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
 
     @search = Location.new({
-      :brands => @resources[:brands],
-      :locations => @resources[:location],
-      :products => @resources[:products] 
-    })
+      :products => @resources[:products],
+      :brands => @resources[:brands]
+      })
 
     respond_to do |format|
       format.json { render_for_api :location, :json => @search, :meta => { :success => true} }
