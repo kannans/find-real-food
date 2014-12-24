@@ -17,6 +17,9 @@ class Location < ActiveRecord::Base
 
   #validates :location_type, :inclusion => { :in => TYPES }
 
+
+
+
   attr_accessible :address,
   								:city,
   								:hours,
@@ -30,7 +33,9 @@ class Location < ActiveRecord::Base
                   :location_type,
                   :state,
                   :parent,
-                  :location_code
+                  :location_code,
+                  :products,
+                  :brands
 
   has_attached_file :picture,
     :styles => { :thumb => "100x39#", :small  => "300x117#", :full => "640x250#" },
