@@ -57,7 +57,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @resources = {}
     @resources[:location] = Location.find(location_id)
     @resources[:brands] = Brand.search_brands(location_id)
-    @resources[:products] = Product.search_products(location_id).availabilityfilter('store').sortorder()
+    @resources[:products] = Product.search_products(location_id)
 
     @search = Location.new({
       :products => @resources[:products],
