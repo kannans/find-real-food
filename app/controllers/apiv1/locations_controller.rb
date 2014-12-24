@@ -60,7 +60,8 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @resources[:products] = Product.search_products(location_id)
 
     @search = Search.new({
-     
+      :products => @resources[:products],
+      :brands => @resources[:brands],
       :locations => @resources[:location]
       })
 
