@@ -12,9 +12,9 @@ def more_details
 	if user_signed_in?
 		if session[:zip]
 			zip = session[:zip]
-			@location = Location.near("#{zip}", 10).collect{|c| c.id}.join(',')
-			@locations = Location.near("#{zip}", 10)
-			@centerlocation = Location.near("#{zip}", 10).first
+			@location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
+			@locations = Location.near("#{zip}", 100)
+			@centerlocation = Location.near("#{zip}", 100).first
 		end
 		@product = Product.find(params[:slug])
     	#@locations = Location.where("locations.id IN (select location_id from locations_products where product_id=#{@product.id} limit 20 ) ")

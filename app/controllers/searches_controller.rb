@@ -8,8 +8,8 @@ class SearchesController < ApplicationController
     else
       zip = session[:zip]
     end
-    @location = Location.near("#{zip}", 10).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 10).first
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
+    @centerlocation = Location.near("#{zip}", 100).first
 
     
 
@@ -131,8 +131,8 @@ class SearchesController < ApplicationController
  def showmore
     
     zip = session[:zip]
-    @location = Location.near("#{zip}", 10).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 10).first
+    @location = Location.near("#{zip}", 100).collect{|c| c.id}.join(',')
+    @centerlocation = Location.near("#{zip}", 100).first
     
     if params[:search]
       search = params[:search].gsub("'", "\\\\'")
