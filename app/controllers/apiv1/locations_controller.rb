@@ -60,9 +60,9 @@ class Apiv1::LocationsController < Apiv1::BaseController
     @resources[:products] = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
 
     @search = Location.new({
-      :brands => @resources[:brands]) ,
-      :location => @resources[:location]) ,
-      :products => @resources[:products]) 
+      :brands => @resources[:brands],
+      :location => @resources[:location],
+      :products => @resources[:products] 
     })
 
     respond_to do |format|
