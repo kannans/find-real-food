@@ -56,7 +56,7 @@ class Apiv1::LocationsController < Apiv1::BaseController
       page = 1
     end
     @resources = {}
-    @resources[:location] = Location.find(location_id)
+    @resources[:location] = Location.where("id=#{location_id}").select("locations.*, '1' as distance")
     @resources[:brands] = Brand.search_brands(location_id)
     @resources[:products] = Product.search_products(location_id)
     
