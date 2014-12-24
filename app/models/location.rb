@@ -46,8 +46,7 @@ class Location < ActiveRecord::Base
   api_accessible :Details do |template|
      template.add :products, :template => :product
      template.add :brands, :template => :brand     
-     template.add :id
-     template.add :address
+     template.add :location, :template => :location 
 
   end
 
