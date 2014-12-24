@@ -56,18 +56,13 @@ class Apiv1::LocationsController < Apiv1::BaseController
     end
     @resources = {}
     @resources[:location] = Location.find(location_id)
-    @resources[:brands] = Brand.search_brands(location_id)
-    @resources[:products] = Product.search_products(location_id).availabilityfilter('store').sortorder()
+    @resources[:brands] = Brand.search_brands(location_id).paginate(page: page, per_page: 30)
+    @resources[:products] = Product.search_products(location_id).availabilityfilter('store').sortorder().paginate(page: page, per_page: 30)
 
     @search = Location.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :brands => @resources[:brands]) ,
       :location => @resources[:location]) ,
-      :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]) ,
-      :pages => {
-          :brands => @resources[:brands].nil? ? 0 : (@resources[:brands].length / search_result_limit.to_f).ceil,
-          :products => @resources[:products].nil? ? 0 : (@resources[:products].length / search_result_limit.to_f).ceil
-      
-      }
+      :products => @resources[:products]) 
     })
 
     respond_to do |format|
