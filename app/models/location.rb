@@ -58,6 +58,17 @@ class Location < ActiveRecord::Base
      template.add :latitude
      template.add :longitude
      template.add :distance
+     template.add :hours
+     template.add :created_at
+     template.add :updated_at
+     template.add :state_id
+     template.add :picture_file_name
+     template.add :picture_content_type
+     template.add :picture_file_size
+     template.add :picture_updated_at
+     template.add :parent_id
+     template.add :slug
+     template.add :location_code
      template.add :location_type
   end
  
@@ -76,6 +87,17 @@ class Location < ActiveRecord::Base
      template.add :latitude
      template.add :longitude
       template.add :distance
+      template.add :hours
+     template.add :created_at
+     template.add :updated_at
+     template.add :state_id
+     template.add :picture_file_name
+     template.add :picture_content_type
+     template.add :picture_file_size
+     template.add :picture_updated_at
+     template.add :parent_id
+     template.add :slug
+     template.add :location_code
      template.add :location_type
   end
 
