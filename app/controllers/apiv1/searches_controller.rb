@@ -95,11 +95,11 @@ class Apiv1::SearchesController < Apiv1::BaseController
     end
 
     @search = Search.new({
-      :brands => @resources[:brands].nil? ? nil : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
-      :categories => @resources[:categories].nil? ? nil : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]) ,
-      :locations => @resources[:locations].nil? ? nil : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]) ,
-      :products => @resources[:products].nil? ? nil : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]) ,
-      :users => @resources[:users].nil? ? nil : @resources[:users].paginate(:per_page => search_result_limit, :page => params[:page]),
+      :brands => @resources[:brands].nil? ? [] : @resources[:brands].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :categories => @resources[:categories].nil? ? [] : @resources[:categories].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :locations => @resources[:locations].nil? ? [] : @resources[:locations].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :products => @resources[:products].nil? ? [] : @resources[:products].paginate(:per_page => search_result_limit, :page => params[:page]) ,
+      :users => @resources[:users].nil? ? [] : @resources[:users].paginate(:per_page => search_result_limit, :page => params[:page]),
       :pages => {
           :brands => @resources[:brands].nil? ? 0 : (@resources[:brands].length / search_result_limit.to_f).ceil,
           :categories => @resources[:categories].nil? ? 0 : (@resources[:categories].length / search_result_limit.to_f).ceil,
