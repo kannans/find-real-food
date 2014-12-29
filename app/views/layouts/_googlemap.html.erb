@@ -6,7 +6,7 @@ function initialize() {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
-        mapTypeId: 'roadmap'
+        mapTypeId: 'hybrid'
     };
 
      var styles =   [
@@ -20,27 +20,6 @@ function initialize() {
 
 
         ]
-      },
-      {
-      featureType: "road.arterial",
-      elementType: "geometry",
-      stylers: [
-        { hue: "#f0f0f0" },
-        { saturation: 100 }
-      ]
-    },{
-        featureType: 'road',
-        elementType: 'geometry',
-        stylers: [
-          { lightness: 50 },
-          { visibility: 'simplified' }
-        ]
-      },{
-        featureType: 'road',
-        elementType: 'labels',
-        stylers: [
-          { visibility: 'on' }
-        ]
       }
     ];
 
@@ -51,7 +30,7 @@ function initialize() {
                     
     // Display a map on the page
     var mapOptions = {
-    zoom: 10,
+    zoom: 13,
     <% unless @locations.blank? %>
     <% @locations.each_with_index do |lrow, i| %>
     center: new google.maps.LatLng(<%= lrow.latitude %>, <%= lrow.longitude %>),
