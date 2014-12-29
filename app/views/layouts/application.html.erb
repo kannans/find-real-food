@@ -32,7 +32,7 @@
 <%= csrf_meta_tags %>
 <meta name="google-site-verification" content="OC2HGxUUAKeKNS4XwtYamOr5PsxrEy1oQ7fsKzBoS0s" />
  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<link rel="stylesheet" type="text/css" href="/assets/fonts.css">
+<!--<link rel="stylesheet" type="text/css" href="/assets/fonts.css">
 <link rel="stylesheet" type="text/css" href="/assets/light_pop_v0.1.css">
 <link rel="stylesheet" type="text/css" href="/assets/style.css">
 
@@ -41,6 +41,40 @@
 <script src="/assets/jquery-1.11.0.js"></script>
 <script src="/assets/jquery.slimscroll.js"></script>
 <script src="/assets/jquery.bxslider.js"></script>
+-->
+
+<script type="text/javascript">
+
+        function stylesheet(url) {
+            var s = document.createElement('link');
+            s.type = 'text/css';
+            s.async = true;
+            s.src = url;
+            var x = document.getElementsByTagName('head')[0];
+            x.appendChild(s);
+        }
+
+        function script(url) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url;
+            var x = document.getElementsByTagName('head')[0];
+            x.appendChild(s);
+        }
+
+        //load scritps to the catche of browser
+        (function () {            
+                stylesheet('/assets/fonts.css');
+                stylesheet('/assets/light_pop_v0.1.css');
+                stylesheet('/assets/style.css');
+                script('/assets/jquery-1.11.0.js');
+                script('/assets/jquery.slimscroll.js');
+                script('/assets/jquery.bxslider.js');
+                
+        })();
+
+    </script>
 
 
 <script type="text/javascript">
