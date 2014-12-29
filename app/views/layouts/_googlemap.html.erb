@@ -1,56 +1,65 @@
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-     <script>
-     var geocoder;
-     var map;
-    function initialize() {
-      geocoder = new google.maps.Geocoder();
-  // Create an array of styles.
-  var styles =   [
-    {
+ <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
+  <script type="text/javascript">
+   
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+
+     var styles =   [
+      {
+
+        stylers: [
+          { hue: '#d6d4c5' },
+          { saturation: -20 },
+          { gamma: 1.51 }
+
+
+
+        ]
+      },
+      {
+      featureType: "road.arterial",
+      elementType: "geometry",
       stylers: [
-        { hue: '#d6d4c5' },
-        { saturation: -20 },
-        { gamma: 1.51 }
-
-
-
-      ]
-    },
-    {
-    featureType: "road.arterial",
-    elementType: "geometry",
-    stylers: [
-      { hue: "#f0f0f0" },
-      { saturation: 100 }
-    ]
-  },{
-      featureType: 'road',
-      elementType: 'geometry',
-      stylers: [
-        { lightness: 50 },
-        { visibility: 'simplified' }
+        { hue: "#f0f0f0" },
+        { saturation: 100 }
       ]
     },{
-      featureType: 'road',
-      elementType: 'labels',
-      stylers: [
-        { visibility: 'on' }
-      ]
-    }
-  ];
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [
+          { lightness: 50 },
+          { visibility: 'simplified' }
+        ]
+      },{
+        featureType: 'road',
+        elementType: 'labels',
+        stylers: [
+          { visibility: 'on' }
+        ]
+      }
+    ];
 
   // Create a new StyledMapType object, passing it the array of styles,
   // as well as the name to be displayed on the map type control.
   var styledMap = new google.maps.StyledMapType(styles,
     {name: 'Styled Map'});
-
-  // Create a map object, and include the MapTypeId to add
-  // to the map type control.
-  var mapOptions = {
-    zoom: 12,
-    <% unless @centerlocation.blank? %>
-    center: new google.maps.LatLng(<%= @centerlocation.latitude %>, <%= @centerlocation.longitude %>),
+                    
+    // Display a map on the page
+    var mapOptions = {
+    zoom: 10,
+    <% unless @locations.blank? %>
+    <% @locations.each_with_index do |lrow, i| %>
+    center: new google.maps.LatLng(<%= lrow.latitude %>, <%= lrow.longitude %>),
+    <% if i==0 
+          break
+        end
+    %>
+    <% end %>
     <% else %>
    center: new google.maps.LatLng(37.09024, -95.712891),
     <% end %>
@@ -64,61 +73,54 @@
   //Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('map_style', styledMap);
   map.setMapTypeId('map_style');
-}
-
-function codeAddress(address_val, content) {
-  var address = address_val;
-  
-  if(geocoder){
-
-  geocoder.geocode( { 'address': address}, function(results, status) {
-
-
-    if (status == google.maps.GeocoderStatus.OK) {
-
-
-        //map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            icon:'/assets/map_pointer_for_map.png'
-            
-        });
-        //Content structure of info Window for the Markers
-        var contentString = $('<div class="marker-info-win">'+
-        '<div class="marker-inner-win" style="max-width:300px;"><span class="info-content">'+content+
-        '</span>'+
-        '<button name="remove-marker" class="remove-marker" title="Remove Marker">x</button></div></div>');
-           
-        //Create an infoWindow
-        var infowindow = new google.maps.InfoWindow();
-       
-        //set the content of infoWindow
-        infowindow.setContent(contentString[0]);
         
-        //add click listner to marker which will open infoWindow         
-        google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map,marker); // click on marker opens info window
-        });
+    // Multiple Markers
+    var markers = [<% if @locations %><% @locations.each_with_index do |lrow, i| %><% if i > 0 %>,<% end %>['<%= lrow.full_address %>', <%= lrow.latitude %>,<%= lrow.longitude %>]<% end %><% end %>];
+                        
+    // Info Window Content
+    var infoWindowContent = [<% if @locations %>
+        <% @locations.each_with_index do |lrow, i| %>
+        <% if lrow.slug %>
+        <% products = get_products_count_by_location(lrow.id) %><% if i > 0 %>,<% end %>['<div class="marker-info-win"><div class="marker-inner-win" style="max-width:300px;"><span class="info-content"><a href="/location/<%= lrow.slug %>"><%= lrow.name %></a><a href="/location/<%= lrow.slug %>"><%= products %> Product(s)</a><%= raw(lrow.full_address) %></span></div></div>']
+        <% else %>
+        <% if i > 0 %>,<% end %>['<div class="marker-info-win"><div class="marker-inner-win" style="max-width:300px;"><span class="info-content"><a href="javascript:void(0);"><%= lrow.name %></a><%= products %> Product(s)<%= raw(lrow.full_address) %></span></div></div>']
+        <% end %>
+        <% end %>
+<% end %>];
         
-        //###### remove marker #########/
-        var removeBtn   = contentString.find('button.remove-marker')[0];
-        google.maps.event.addDomListener(removeBtn, "click", function(event) {
-            infowindow.close(); 
-        });
-
-
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow({minHeight: 200
+}), marker, i;
     
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: '/assets/map_pointer_for_map.png',
+            title: markers[i][0]
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
 
-    } else {
-      //alert('Geocode was not successful for the following reason: ' + status+ address);
+
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
     }
-  });
- 
 
-}
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(10);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}  initialize();</script> 
