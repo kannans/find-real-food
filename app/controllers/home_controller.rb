@@ -1,16 +1,9 @@
 class HomeController < ApplicationController
   def index
   	
-  	if params[:zip]
-  		zip = params[:zip]
-      session[:zip] = zip
-  	elsif session[:zip]
-    	zip = session[:zip]
-  	end
-    
-    
-    @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 20).first
+  	
+    zip = session[:zip]
+  	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     if @location !=''
        
   	  @products =  Product.search_products(@location).sortorder().first(20)
@@ -45,7 +38,7 @@ class HomeController < ApplicationController
 
   def map
     location = params[:location]
-    @centerlocation = Location.near("#{zip}", 100).first
+    
     if location!=''
       @locations = Location.where("id in (#{location})")
     end

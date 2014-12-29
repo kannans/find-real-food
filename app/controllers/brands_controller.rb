@@ -15,7 +15,7 @@ class BrandsController < ApplicationController
 
     
     @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 20).first
+    
     
     if @location !=''
       

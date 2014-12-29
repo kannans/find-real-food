@@ -12,12 +12,21 @@ def more_details
 	if user_signed_in?
 		if session[:zip]
 			zip = session[:zip]
+			
 			@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-			@locations = Location.near("#{zip}", 20)
-			@centerlocation = Location.near("#{zip}", 20).first
+		    @locations = Location.near("#{zip}", 20).first(20)
+			
 		end
 		@product = Product.find(params[:slug])
-    	#@locations = Location.where("locations.id IN (select location_id from locations_products where product_id=#{@product.id} limit 20 ) ")
+		#@locations = Location.where("id in (select location_id as locationids from locations_products where product_id=#{@product.id} and location_id in (#{@location}) group by location_id)")
+	 #connection = ActiveRecord::Base.connection()
+     #results = connection.execute("select location_id as locationids from locations_products where product_id=#{@product.id} and location_id in (#{@location}) group by location_id")
+     # results.each_with_index do |row, i|
+     # puts "#{row[0]}"   
+         
+     # end
+
+      
 		if @location
 			@similar_product  = Product.where('id !=@product.id').search_products(@location).categoryfilter(@product.category_id).sortorder().first(20)
     	end

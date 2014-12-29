@@ -9,7 +9,7 @@ class SearchesController < ApplicationController
       zip = session[:zip]
     end
     @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 20).first
+    
 
     
 
@@ -132,7 +132,7 @@ class SearchesController < ApplicationController
     
     zip = session[:zip]
     @location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
-    @centerlocation = Location.near("#{zip}", 20).first
+    
     
     if params[:search]
       search = params[:search].gsub("'", "\\\\'")
