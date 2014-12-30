@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   	
   	
     zip = session[:zip]
+
+    @current_page ='home';
+
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     if @location !=''
        
