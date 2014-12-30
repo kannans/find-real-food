@@ -148,7 +148,7 @@
                                                               <p class="media_sub_title"><a href="javascript:void(0);"> <%= product.brand.name %></a></p>
                                                             
                                                               <% end %>
-                                                              
+
                                                          <% $i = 0
                                                 if product.avg_rating %>
                                                 <p class="rating">
@@ -244,13 +244,7 @@
                                                                 <a href="javascript:void(0);">
                                                                 <% end %>
                                                                 <%= brand.name%></a></p>
-                                                       <% if @location.to_s!='' %>
-                                                        <% locationcount =  get_brand_location_count(brand.id, @location) %>
-                                                        <% if locationcount.to_s!='[]' %>
-                                                      <p class="location"><a href="javascript:void(0);"><%= locationcount %> Location(s) Nearby</a></p>
-                                                         <% end %>
-                                                      <% end %>
-
+                                                        
 
                                                         </div>
                                                          <div class="clear"></div>
