@@ -39,7 +39,7 @@
 
 <script src="/assets/jquery-1.11.0.js"></script>
 <script src="/assets/jquery.slimscroll.js"></script>
-<script src="/assets/jquery.bxslider.js"></script>
+
 
  
 <script type="text/javascript">
@@ -247,6 +247,8 @@ function fixHeigh()
    
 <script src="/assets/jquery.validate.js"></script>
 <script src="/assets/custom.js"></script>
+
+<% if @current_page.nil? %>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -255,7 +257,10 @@ function fixHeigh()
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
  
-    <script type="text/javascript">
+  
+<% end %>
+
+  <script type="text/javascript">
     $(function(){
 
       $('.products').slimScroll({
@@ -267,6 +272,7 @@ function fixHeigh()
      
     });
 </script>
+
 <script type="text/javascript">
 
 $(document).ready(function(){
