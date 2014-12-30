@@ -9,9 +9,9 @@
                      <% @sliders.each do |slider| %> 
                     <li>
                     <% if slider.url %>
-                      <a href="<%= slider.url %>" target="_blank">   <%= image_tag(slider.picture(:original), :alt => "Banner", :width => 1600, :height => 410) %></a>
+                      <a href="<%= slider.url %>" target="_blank">   <%= image_tag(slider.picture(:original), :alt => "Banner") %></a>
                      <% else %>  
-                      <%= image_tag(slider.picture(:original), :alt => "Banner", :width => 1600, :height => 410) %>
+                      <%= image_tag(slider.picture(:original), :alt => "Banner") %>
                      <% end %>
                         <div class="caption_part">
                             <div class="container">
@@ -61,20 +61,20 @@
                                             <a href="/product/<%= product.slug %>" class="media_img" 
                                               <% if product.picture_file_name %> style="background:url('http://findrealfoodapp.com<%= product.picture(:original) %>') no-repeat scroll center center; background-size: cover;" <% end %> >
                                                
-                                            <span class="ribbon ribbon<%= get_quality_name(product.quality_rating_id).downcase %>"><%= get_quality_name(product.quality_rating_id)%></span>
+                                            <span class="ribbon ribbon<%= product.quality_rating.name.downcase %>"><%= product.quality_rating.name %></span>
                                           </a>
                                              
                                             <div class="media_text">
                                                 <p class="media_title"><a href="/product/<%= product.slug %>"><%= product.name %></a></p>
-                                                 <% branddetails = get_brand_details(product.brand_id) %>
-                                                 <% if branddetails %>
-                                                 <% if branddetails.slug %>
-                                                <p class="media_sub_title"><a href="/brand/<%= branddetails.slug %>"> <%= branddetails.name %></a></p>
+                                                 <% # branddetails = get_brand_details(product.brand_id) %>
+                                                 
+                                                 <% if product.brand.slug %>
+                                                <p class="media_sub_title"><a href="/brand/<%= product.brand.slug %>"> <%= product.brand.name %></a></p>
                                                   <% else %>
-                                                  <p class="media_sub_title"><a href="javascript:void(0);"> <%= branddetails.name %></a></p>
+                                                  <p class="media_sub_title"><a href="javascript:void(0);"> <%= product.brand.name %></a></p>
                                                 
                                                   <% end %>
-                                                <% end %>
+                                                
                                                 <% $i = 0
                                                 if product.avg_rating %>
                                                 <p class="rating">
@@ -144,30 +144,30 @@
                     <div class="container">
                         <div class="app_part_container">
                             <div class="shopping_gd fl">
-                                <a href="#"><%= image_tag("shopping_guide.png", :alt => "star", :width => 159, :height => 270) %> </a>
+                                <a href="#"><%= image_tag("shopping_guide.png", :alt => "star") %> </a>
                             </div>
                             <div class="app_screen fl">
-                                <%= image_tag("app_screen1.png", :alt => "star", :width => 130, :height => 274) %>
+                                <%= image_tag("app_screen1.png", :alt => "App Screen1") %>
                                 
                             </div>
                             <div class="app_screen two fl">
-                                 <%= image_tag("app_screen2.png", :alt => "star", :width => 130, :height => 274) %>
+                                 <%= image_tag("app_screen2.png", :alt => "App Screen2") %>
                                 
                             </div>
                             <div class="app_screen fl">
-                                 <%= image_tag("app_screen3.png", :alt => "star", :width => 130, :height => 274) %>
+                                 <%= image_tag("app_screen3.png", :alt => "App Screen3") %>
                                 
                             </div>
                             <div class="app_screen last fl">
-                                 <%= image_tag("app_screen4.png", :alt => "star", :width => 129, :height => 274) %>
+                                 <%= image_tag("app_screen4.png", :alt => "App Screen4") %>
                                 
                             </div>
                             <div class="bottom_logo_part fr">
                                 <a href="#" class="big_logo">
-                                <%= image_tag("logo_large.png", :alt => "star", :width => 170, :height => 170) %></a>
+                                <%= image_tag("logo_large.png", :alt => "star") %></a>
                                 <ul>
-                                    <li><a href="#"><%= image_tag("apple_store.png", :alt => "star", :width => 175, :height => 59) %></a></li>
-                                    <li><a href="#"><%= image_tag("play_store.png", :alt => "star", :width => 174, :height => 57) %></a></li>
+                                    <li><a href="#"><%= image_tag("apple_store.png", :alt => "star") %></a></li>
+                                    <li><a href="#"><%= image_tag("play_store.png", :alt => "star") %></a></li>
                                 </ul>
                             </div>
                             <div class="clear"></div>
