@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   	@location = Location.near("#{zip}", 20).collect{|c| c.id}.join(',')
     if @location !=''
        
-  	  @products =  Product.search_products(@location).sortorder().first(10)
+  	  @products =  Product.search_products(@location).sortorder().first(20)
       
       @products_locations = Product.search_products(@location).sortorder().collect{|c| c.location_id}.join(',')
       if @products_locations!=''
@@ -17,7 +17,7 @@ class HomeController < ApplicationController
       end
     else
        
-    @products = Product.search_products().sortorder().first(10)
+    @products = Product.search_products().sortorder().first(20)
     
     end
 
