@@ -21,8 +21,7 @@ class HomeController < ApplicationController
     
     end
 
-   	@sliders = Slider.first(4)
-   	 
+   	@sliders = Slider.all   	 
   end
  
   def setzip
