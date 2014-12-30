@@ -6,7 +6,7 @@ function initialize() {
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
-        mapTypeId: 'hybrid'
+        mapTypeId: 'HYBRID'
     };
 
      var styles =   [
@@ -43,7 +43,7 @@ function initialize() {
    center: new google.maps.LatLng(37.09024, -95.712891),
     <% end %>
     mapTypeControlOptions: {
-      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+      mapTypeIds: [google.maps.MapTypeId.HYBRID, 'map_style']
     }
   };
    map = new google.maps.Map(document.getElementById('map-canvas'),

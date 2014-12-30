@@ -85,3 +85,58 @@
 		padding:15px 15px;
 	}
 }
+
+.search .search_btn
+{
+    background:url(/assets/new_sprite.png) no-repeat -136px -53px #252525;
+}
+.search_btn:hover
+{
+    -webkit-animation: none;
+    -webkit-animation-fill-mode:none;
+    animation:none;
+}
+.menu_toggle a
+{
+    background:url(/assets/new_sprite.png) no-repeat -132px 36px #c92a2b;
+}
+.menu_toggle a:before {
+    background:url(/assets/new_sprite.png) no-repeat -132px 36px #252525;
+    content: "";
+    height: 0%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    transition:all 0.5s ease 0s;
+    -webkit-transition:all 0.5s ease 0s;
+    opacity:0;
+}
+.menu_toggle:hover a:before, .menu_toggle.active a:before {
+    background: url(/assets/new_sprite.png) no-repeat -132px 36px #252525;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    opacity:1;
+}
+.bx-wrapper .bx-prev {
+    left: 10px;
+    background:url(/assets/new_sprite.png) no-repeat 0 0;
+}
+
+.bx-wrapper .bx-next {
+    right: 10px;
+    background:url(/assets/new_sprite.png) no-repeat -65px 0;
+}
+.facebook a
+{
+    display:block;
+    background:url(/assets/new_sprite.png) no-repeat -153px -137px;
+    height:20px;
+    width:26px;
+}
