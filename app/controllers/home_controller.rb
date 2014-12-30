@@ -21,7 +21,7 @@ class HomeController < ApplicationController
     
     end
 
-   	@sliders = Slider.all
+   	@sliders = Slider.first(4)
    	 
   end
  
