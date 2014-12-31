@@ -347,12 +347,16 @@ $(document).ready(function(){
 
   <% if user_signed_in? %>
  <% else %>
- 
+ try{
  if(getCookie('notification')!='closed'){
     $('.notification').show();
     var notheight=$('.notification').height()+24;
     $('header').animate({"margin-top":notheight+"px"})
   }
+}
+catch(err){
+  
+}
 $('.notclose').click(function() {
     setCookie('notification','closed');
     $('.notification').animate({"margin-top":"-"+notheight+"px"}).fadeOut(300);
