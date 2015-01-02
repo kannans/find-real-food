@@ -38,7 +38,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/responsive.css">
 
 <script src="/assets/jquery-1.11.0.js" ></script>
-<script src="/assets/jquery.slimscroll.js" async></script>
+<script src="/assets/jquery.slimscroll.js" ></script>
 
 
  
@@ -300,8 +300,17 @@ function fixHeigh()
     <%= render '/layouts/register' %>
     
    
-<script src="/assets/jquery.validate.js" async ></script>
-<script src="/assets/custom.js" async ></script>
+<script src="/assets/jquery.validate.js" ></script>
+ 
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "/assets/custom.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'custom-js'));</script>
+
 
 <% if @current_page.nil? %>
 <script>(function(d, s, id) {
