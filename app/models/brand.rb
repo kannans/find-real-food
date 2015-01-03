@@ -89,26 +89,26 @@ class Brand < ActiveRecord::Base
     self.unscoped.brand_search(locations)
         .order("brands.name asc")
         .where(order_by_phone: 1) 
-         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
+         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"])
    elsif sold =='online'
     self.unscoped.brand_search(locations)
         .order("brands.name asc")
         .where(order_by_online: 1) 
-         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
+         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"])
    elsif sold =='store'
     self.unscoped.brand_search(locations)
         .order("brands.name asc")
         .where(third_party_available: 1) 
-         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
+         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"])
    elsif sold =='all'
     self.unscoped.brand_search(locations)
         .order("brands.name asc")
         .where(order_by_phone: 1, order_by_online: 1, store_farmers_market: 1) 
-         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
+         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"])
    else
     self.unscoped.brand_search(locations)
         .order("brands.name asc")
-         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"], :limit => 20)
+         .find(:all, :conditions => ['brands.name LIKE ?', "%#{search}%"])
     end
   end
   
