@@ -22,8 +22,18 @@
 
   = f.inputs "Locations" do
     = f.input :parent_ids, :label => "Parent Locations", :as => :select, :collection => options_from_collection_for_select(Location.parent_locations, :id, :name, f.object.selected_parents), :multiple => true, :input_html => { :style => "height: 150px; width: 350px;" }
-    = select_tag "brand_state_select", options_for_select(Location.group('state').uniq.map {|loc| [loc.state, loc.state]})
-    = select_tag "brand_city_select", options_for_select("")
+    %li
+      = label_tag 'Select State'
+      = select_tag "brand_state_select", options_for_select(Location.pluck(:state).uniq.reject(&:blank?).sort.each_with_index.map { |state,idx| [state, idx] }), :include_blank => true, :style => 'width:350px;'
+    %li
+      = label_tag 'Select City'
+      = select_tag "brand_city_select", options_for_select(""), :include_blank => true, :style => 'width:350px;'
+    %li
+      = label_tag 'Select Zip Code'
+      = select_tag "brand_zipcode_select", options_for_select(""), :include_blank => true, :style => 'width:350px;'
+    %li
+      = label_tag 'Select Locations'
+      = select_tag "brand_location_select", options_for_select(""), :multiple => true, :style => 'height: 150px; width: 350px;'
     =# f.input :location_ids, :label => "Locations", :as => :select, :collection => Location.child_locations, :multiple => true, :input_html => { :style => "height: 250px; width: 350px;" }
 
   = f.inputs "Create a New Location" do
@@ -45,15 +55,34 @@
 
 :javascript
   $(document).ready(function() {
-    $('#location_state').change(function() {
-      var state, options;
-      state = $('#location_state :selected').text();
-      options = $(states).filter(state).html();
-      if (options) {
-        return $('#location_city').html(options);
-      } else {
-        return $('#location_city').empty();
-      }
+    $('#brand_state_select').change(function() {
+      $.ajax({
+        url: "#{select_cities_admin_brands_path}",
+        data: {
+          state : $('#brand_state_select option:selected').text()
+        },
+      });
     });
-  });
-
+    $('#brand_city_select').change(function() {
+      $.ajax({
+        url: "#{select_zipcodes_admin_brands_path}",
+        data: {
+          state : $('#brand_state_select option:selected').text(),
+          city : $('#brand_city_select option:selected').text()
+        },
+        dataType: "script"
+      });
+    });
+    $('#brand_zipcode_select').change(function() {
+      $.ajax({
+        url: "#{select_locations_admin_brands_path}",
+        data: {
+          state : $('#brand_state_select option:selected').text(),
+          city : $('#brand_city_select option:selected').text(),
+          zipcode : $('#brand_zipcode_select option:selected').text(),
+          brand : window.location.pathname.replace(/^\/admin\/brands\//,"").replace(/\/edit$/,"")
+        },
+        dataType: "script"
+      });
+    });
+  }); 

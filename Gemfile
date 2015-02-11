@@ -18,8 +18,6 @@ gem 'will_paginate'
 gem 'rails_12factor', group: :production
 gem 'bxslider-rails', '~> 4.1.0'
 gem "koala", "~> 1.10.0rc"
-gem 'select2-rails'
-
 
 group :assets do
   gem 'coffee-script'
@@ -27,9 +25,6 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
-
-
-
 
 group :test, :development do
   gem "spork-rails"
