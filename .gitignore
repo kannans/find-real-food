@@ -1,0 +1,4 @@
+config/database.yml
+log/*
+.ruby-gemset
+tmp/*

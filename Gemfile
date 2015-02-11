@@ -18,6 +18,7 @@ gem 'will_paginate'
 gem 'rails_12factor', group: :production
 gem 'bxslider-rails', '~> 4.1.0'
 gem "koala", "~> 1.10.0rc"
+gem 'select2-rails'
 
 
 group :assets do
@@ -33,8 +34,8 @@ end
 group :test, :development do
   gem "spork-rails"
   gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin') && 'rb-fsevent'
-  gem 'guard-rspec'
-  gem 'guard-spork'
+  # gem 'guard-rspec'
+  # gem 'guard-spork'
   gem "rspec-rails", "~> 2.0"
   gem "autotest-rails"
   gem "autotest-growl"
@@ -42,7 +43,7 @@ group :test, :development do
   gem 'rails-erd'
   gem "shoulda-matchers"
   gem 'cocaine', '0.3.2'
-  gem 'debugger'
+  # gem 'debugger'
   gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1.1'

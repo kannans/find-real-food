@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.boolean  "order_by_online"
     t.boolean  "store_farmers_market"
     t.boolean  "third_party_available"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.boolean  "approved",                             :default => false
+    t.boolean  "approved",              :default => false
     t.integer  "user_id"
     t.string   "store_locator_url"
     t.string   "slug"
@@ -156,8 +156,8 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.string   "phone"
     t.string   "website"
     t.string   "hours"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -167,8 +167,6 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "slug"
-    t.string   "location_code1",       :limit => 100, :null => false
-    t.string   "state1",               :limit => 50,  :null => false
     t.string   "state"
     t.string   "location_code"
   end
@@ -182,42 +180,6 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
-
-  create_table "master_zipcode", :force => true do |t|
-    t.integer "ZIP_CODE",                                                             :null => false
-    t.string  "CITY",                                                                 :null => false
-    t.string  "STATE",                                                                :null => false
-    t.string  "AREA_CODE",              :limit => 100,                                :null => false
-    t.string  "CITY_ALIAS_NAME",                                                      :null => false
-    t.string  "CITY_ALIAS_ABBR",                                                      :null => false
-    t.string  "CITY_TYPE",              :limit => 2,                                  :null => false
-    t.string  "COUNTY_NAME",                                                          :null => false
-    t.integer "STATE_FIPS",                                                           :null => false
-    t.integer "COUNTY_FIPS",                                                          :null => false
-    t.integer "TIME_ZONE",                                                            :null => false
-    t.string  "DAY_LIGHT_SAVING",       :limit => 1,                                  :null => false
-    t.decimal "LATITUDE",                              :precision => 10, :scale => 5, :null => false
-    t.decimal "LONGITUDE",                             :precision => 10, :scale => 5, :null => false
-    t.integer "ELEVATION",                                                            :null => false
-    t.integer "MSA2000",                                                              :null => false
-    t.integer "PMSA",                                                                 :null => false
-    t.integer "CBSA",                                                                 :null => false
-    t.integer "CBSA_DIV",                                                             :null => false
-    t.string  "CBSA_TITLE",                                                           :null => false
-    t.decimal "PERSONS_PER_HOUSEHOLD",                 :precision => 10, :scale => 2, :null => false
-    t.integer "ZIPCODE_POPULATION",                                                   :null => false
-    t.integer "COUNTIES_AREA",                                                        :null => false
-    t.integer "HOUSEHOLDS_PER_ZIPCODE",                                               :null => false
-    t.integer "WHITE_POPULATION",                                                     :null => false
-    t.integer "BLACK_POPULATION",                                                     :null => false
-    t.integer "HISPANIC_POPULATION",                                                  :null => false
-    t.float   "INCOME_PER_HOUSEHOLD",                                                 :null => false
-    t.float   "AVERAGE_HOUSE_VALUE",                                                  :null => false
-  end
-
-  add_index "master_zipcode", ["LATITUDE", "LONGITUDE"], :name => "LATITUDE"
-  add_index "master_zipcode", ["STATE"], :name => "STATE"
-  add_index "master_zipcode", ["ZIP_CODE"], :name => "ZIP_CODE"
 
   create_table "news_posts", :force => true do |t|
     t.string   "title"
@@ -361,11 +323,9 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.boolean  "private",                  :default => false
     t.string   "bio"
     t.boolean  "pro_account",              :default => false
-    t.string   "fname"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "fname"
     t.string   "password"
   end
 
