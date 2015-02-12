@@ -31,7 +31,6 @@
     %li
       = label_tag 'Select Zip Code'
       = select_tag "brand_zipcode_select", options_for_select(""), :include_blank => true, :style => 'width:350px;'
-    / = f.select("zipcode_select", ['',''], :input_html => { :style => "width: 350px;" })
     = f.input :location_ids, :label => "Locations", :as => :select, :collection => ['',''], :multiple => true, :input_html => { :style => "height: 250px; width: 350px;", :id => 'brand_location_select' }
 
   = f.inputs "Create a New Location" do

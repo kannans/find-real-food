@@ -8,7 +8,7 @@ class Brand < ActiveRecord::Base
   alias_attribute :store_or_farmers_market, :store_farmers_market
   #before_save :process_parent_ids, :save_location, :format_url
 
-  attr_accessor :skip_processing, :parent_ids, :location#, :zipcode_select
+  attr_accessor :skip_processing, :parent_ids, :location
   attr_accessible :store_or_farmers_market,
                   :store_farmers_market,
   								:name,
