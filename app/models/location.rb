@@ -132,7 +132,7 @@ class Location < ActiveRecord::Base
   end
 
   def self.cron_update
-    location_set = Location.find(:all, :limit => 50, :conditions => ["coordinates_updated_on IS NULL OR coordinates_updated_on < ?", DateTime.now-25.days])
+    location_set = Location.find(:all, :limit => 50000, :conditions => ["coordinates_updated_on IS NULL OR coordinates_updated_on < ?", DateTime.now-25.days])
 
     location_set.each do |location|
       # address = "#{location.address}, #{location.zip}, #{location.city}, USA"
