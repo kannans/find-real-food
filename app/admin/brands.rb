@@ -4,8 +4,7 @@ ActiveAdmin.register Brand do
 
   collection_action :select_cities, method: :get do
     if params[:state]
-      @cities = Location.where(:state => params[:state]).pluck(:city).uniq.reject(&:blank?).sort.each_with_index.map { |city,idx| [city,idx] }.insert(0, ['',''])
-      puts "Location.where(:state => #{params[:state]}).pluck(:city).uniq.reject(&:blank?).sort.each_with_index.map { |city,idx| [city,idx] }.insert(0, ['',''])"
+      @cities = Location.where(:state => params[:state]).pluck(:city).uniq.reject(&:blank?).sort.each_with_index.map { |city,idx| [city, idx] }.insert(0, ['',''])   
     else
       @cities = [['', '']]
     end
@@ -13,8 +12,8 @@ ActiveAdmin.register Brand do
 
   collection_action :select_zipcodes, method: :get do
     if params[:city]
-      @zipcodes = Location.where(:state => params[:state], :city => params[:city]).pluck(:zip).uniq.reject(&:blank?).sort.each_with_index.map { |zip,idx| [zip,idx] }.insert(0, ['',''])
-      puts @zipcodes
+      zips = Location.where(:state => params[:state], :city => params[:city]).pluck(:zip)
+      @zipcodes = zips.uniq.reject(&:blank?).sort.each_with_index.map { |zip,idx| [zip,idx] }.insert(0, ['',''])
     else
       @zipcodes = [['', '']]
     end
@@ -22,14 +21,13 @@ ActiveAdmin.register Brand do
   
   collection_action :select_locations, method: :get do
     if params[:zipcode]
-      @locations = Location.where(:state => params[:state], :city => params[:city], :zip => params[:zipcode]).pluck(:name).uniq.reject(&:blank?).sort.map { |location| [location, location]}
-      @selected_locations = Location.where(:id => BrandsLocation.where(:brand_id => Brand.where(:slug => params[:brand]).pluck(:id).first).pluck(:location_id)).pluck(:name).uniq.reject(&:blank?).sort.map { |location| [location, location]}
-      puts @locations
-      puts "$$$$$$$$$$$$$$$$ all locations count: #{@locations.count}"      
-      puts @selected_locations
-      puts "$$$$$$$$$$$$$$$$ selected set count: #{@selected_locations.count}"
-      puts "$$$$$$$$$$$$$$$$ brand: #{params[:brand]}"
-      puts "Location.where(:state => #{params[:state]}, :city => #{params[:city]}, :zip => #{params[:zipcode]}).pluck(:name).uniq.reject(&:blank?).sort.map { |location| [location, location]}"
+      locs = Location.where(:state => params[:state], :city => params[:city], :zip => params[:zipcode])
+      @locations = locs.pluck(:name).uniq.reject(&:blank?).sort.each_with_index.map { |location,idx| [location, idx] }
+      brand_id = Brand.where(:slug => params[:brand]).pluck(:id)
+      locs_ids = locs.pluck(:id).uniq.reject(&:blank?)
+      brand_locs = BrandsLocation.where(:brand_id => brand_id, :location_id => locs_ids).pluck(:location_id).uniq.reject(&:blank?)
+      brand_locs_names = locs.where(:id => brand_locs).pluck(:name).uniq.reject(&:blank?)
+      @selected_locations = @locations.each.map { |loc| loc[1] if brand_locs_names.include? (loc[0]) }.compact
     else
       @locations = [['', '']]
     end
