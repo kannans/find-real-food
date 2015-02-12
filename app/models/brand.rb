@@ -8,7 +8,7 @@ class Brand < ActiveRecord::Base
   alias_attribute :store_or_farmers_market, :store_farmers_market
   #before_save :process_parent_ids, :save_location, :format_url
 
-  attr_accessor :skip_processing, :parent_ids, :location
+  attr_accessor :skip_processing, :parent_ids, :location#, :zipcode_select
   attr_accessible :store_or_farmers_market,
                   :store_farmers_market,
   								:name,
@@ -71,10 +71,10 @@ class Brand < ActiveRecord::Base
     template.add :id
    end
 
-
   def format_url
   self.website = "http://#{self.url}" unless self.website[/^https?/]    
   end
+
   def selected_parents
     self.locations.where("parent_id is null").pluck(:id)
   end

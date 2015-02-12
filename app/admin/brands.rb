@@ -13,7 +13,7 @@ ActiveAdmin.register Brand do
   collection_action :select_zipcodes, method: :get do
     if params[:city]
       zips = Location.where(:state => params[:state], :city => params[:city]).pluck(:zip)
-      @zipcodes = zips.uniq.reject(&:blank?).sort.each_with_index.map { |zip,idx| [zip,idx] }.insert(0, ['',''])
+      @zipcodes = zips.uniq.reject(&:blank?).sort.map { |zip| [zip,zip] }.insert(0, ['',''])
     else
       @zipcodes = [['', '']]
     end
@@ -21,13 +21,17 @@ ActiveAdmin.register Brand do
   
   collection_action :select_locations, method: :get do
     if params[:zipcode]
-      locs = Location.where(:state => params[:state], :city => params[:city], :zip => params[:zipcode])
-      @locations = locs.map { |loc| [loc.name, loc.id] }
       brand_id = Brand.where(:slug => params[:brand]).pluck(:id)
-      locs_ids = locs.pluck(:id)
-      brand_locs = BrandsLocation.where(:brand_id => brand_id, :location_id => locs_ids).pluck(:location_id)
-      brand_locs_ids = locs.where(:id => brand_locs).pluck(:id)
-      @selected_locations = @locations.each.map { |loc| loc[1] if brand_locs_ids.include? (loc[1]) }.compact
+      brandlocs_locs_ids = BrandsLocation.where(:brand_id => brand_id).pluck(:location_id)
+      filtered_locs = Location.where(:state => params[:state], :city => params[:city], :zip => params[:zipcode]).map { |loc| [loc.name, loc.id] }
+      selected_locs = Location.where(:id => brandlocs_locs_ids)
+      selected_locs_map = selected_locs.map { |loc| [loc.name, loc.id] }
+
+      locations_set = filtered_locs+selected_locs_map
+      @locations = locations_set.uniq
+      
+      selected_locs_ids = selected_locs.pluck(:id)
+      @selected_locations = @locations.each.map { |loc| loc[1] if selected_locs_ids.include? (loc[1]) }.compact
     else
       @locations = [['', '']]
     end
