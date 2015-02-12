@@ -96,6 +96,7 @@ GEM
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     choice (0.1.6)
+    chronic (0.10.2)
     ckeditor (4.1.0)
       mime-types
       orm_adapter (~> 0.5.0)
@@ -301,6 +302,8 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.3)
       rack (>= 1.0)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     will_paginate (3.0.7)
 
 PLATFORMS
@@ -347,4 +350,5 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.0.3)
   unicorn
+  whenever
   will_paginate

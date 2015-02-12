@@ -2,3 +2,4 @@ config/database.yml
 log/*
 .ruby-gemset
 tmp/*
+lib/geocode_cron.rb

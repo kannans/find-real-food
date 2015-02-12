@@ -18,8 +18,6 @@ class Location < ActiveRecord::Base
   #validates :location_type, :inclusion => { :in => TYPES }
 
 
-
-
   attr_accessible :address,
   								:city,
   								:hours,
@@ -35,6 +33,7 @@ class Location < ActiveRecord::Base
                   :parent,
                   :location_code,
                   :products,
+                  :coordinates_updated_on,
                   :brands
 
   has_attached_file :picture,
@@ -130,5 +129,20 @@ class Location < ActiveRecord::Base
 
   def self.near1(zipcode)
     self.where("zip")
+  end
+
+  def self.cron_update
+    location_set = Location.find(:all, :limit => 50, :conditions => ["coordinates_updated_on IS NULL OR coordinates_updated_on < ?", DateTime.now-25.days])
+
+    location_set.each do |location|
+      # address = "#{location.address}, #{location.zip}, #{location.city}, USA"
+      # coordinate = address.geocode
+      # if coordinate.[0].present? && coordinate.[1].present?
+        # location.update_attributes(:latitude => coordinate.[0].to_s, :longitude => coordinate.[1].to_s, :coordinates_updated_on => DateTime.now)
+      # else
+        # location.update_attributes(:coordinates_updated_on => DateTime.now)
+      # end
+      location.update_attributes(:coordinates_updated_on => DateTime.now)
+    end
   end
 end

@@ -18,6 +18,7 @@ gem 'will_paginate'
 gem 'rails_12factor', group: :production
 gem 'bxslider-rails', '~> 4.1.0'
 gem "koala", "~> 1.10.0rc"
+gem 'whenever', :require => false
 
 group :assets do
   gem 'coffee-script'

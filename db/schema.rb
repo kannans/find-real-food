@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141103085328) do
+ActiveRecord::Schema.define(:version => 20150212134458) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -54,20 +54,25 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.boolean  "order_by_online"
     t.boolean  "store_farmers_market"
     t.boolean  "third_party_available"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.boolean  "approved",                             :default => false
+    t.boolean  "approved",              :default => false
     t.integer  "user_id"
     t.string   "store_locator_url"
     t.string   "slug"
     t.string   "brand_code"
   end
 
+  add_index "brands", ["name"], :name => "name"
+  add_index "brands", ["name"], :name => "name_2"
+  add_index "brands", ["order_by_online"], :name => "order_by_online"
+  add_index "brands", ["order_by_phone"], :name => "order_by_phone"
   add_index "brands", ["slug"], :name => "index_brands_on_slug", :unique => true
+  add_index "brands", ["store_farmers_market"], :name => "store_farmers_market"
 
   create_table "brands_locations", :force => true do |t|
     t.integer  "brand_id"
@@ -75,6 +80,9 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "brands_locations", ["brand_id"], :name => "brand_id"
+  add_index "brands_locations", ["location_id"], :name => "location_id"
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -89,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
   end
 
   add_index "categories", ["slug"], :name => "index_categories_on_slug", :unique => true
+  add_index "categories", ["title"], :name => "title"
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -156,8 +165,8 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.string   "phone"
     t.string   "website"
     t.string   "hours"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -167,14 +176,15 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "slug"
-    t.string   "location_code1",       :limit => 100, :null => false
-    t.string   "state1",               :limit => 50,  :null => false
-    t.string   "state"
-    t.string   "location_code"
+    t.string   "location_code",          :limit => 100, :null => false
+    t.string   "state",                  :limit => 50
+    t.datetime "coordinates_updated_on"
   end
 
-  add_index "locations", ["slug"], :name => "index_locations_on_slug", :unique => true
-  add_index "locations", ["state_id"], :name => "index_locations_on_state_id"
+  add_index "locations", ["latitude"], :name => "latitude"
+  add_index "locations", ["longitude"], :name => "longitude"
+  add_index "locations", ["slug"], :name => "slug"
+  add_index "locations", ["zip"], :name => "zip"
 
   create_table "locations_products", :force => true do |t|
     t.integer  "product_id"
@@ -183,41 +193,8 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "master_zipcode", :force => true do |t|
-    t.integer "ZIP_CODE",                                                             :null => false
-    t.string  "CITY",                                                                 :null => false
-    t.string  "STATE",                                                                :null => false
-    t.string  "AREA_CODE",              :limit => 100,                                :null => false
-    t.string  "CITY_ALIAS_NAME",                                                      :null => false
-    t.string  "CITY_ALIAS_ABBR",                                                      :null => false
-    t.string  "CITY_TYPE",              :limit => 2,                                  :null => false
-    t.string  "COUNTY_NAME",                                                          :null => false
-    t.integer "STATE_FIPS",                                                           :null => false
-    t.integer "COUNTY_FIPS",                                                          :null => false
-    t.integer "TIME_ZONE",                                                            :null => false
-    t.string  "DAY_LIGHT_SAVING",       :limit => 1,                                  :null => false
-    t.decimal "LATITUDE",                              :precision => 10, :scale => 5, :null => false
-    t.decimal "LONGITUDE",                             :precision => 10, :scale => 5, :null => false
-    t.integer "ELEVATION",                                                            :null => false
-    t.integer "MSA2000",                                                              :null => false
-    t.integer "PMSA",                                                                 :null => false
-    t.integer "CBSA",                                                                 :null => false
-    t.integer "CBSA_DIV",                                                             :null => false
-    t.string  "CBSA_TITLE",                                                           :null => false
-    t.decimal "PERSONS_PER_HOUSEHOLD",                 :precision => 10, :scale => 2, :null => false
-    t.integer "ZIPCODE_POPULATION",                                                   :null => false
-    t.integer "COUNTIES_AREA",                                                        :null => false
-    t.integer "HOUSEHOLDS_PER_ZIPCODE",                                               :null => false
-    t.integer "WHITE_POPULATION",                                                     :null => false
-    t.integer "BLACK_POPULATION",                                                     :null => false
-    t.integer "HISPANIC_POPULATION",                                                  :null => false
-    t.float   "INCOME_PER_HOUSEHOLD",                                                 :null => false
-    t.float   "AVERAGE_HOUSE_VALUE",                                                  :null => false
-  end
-
-  add_index "master_zipcode", ["LATITUDE", "LONGITUDE"], :name => "LATITUDE"
-  add_index "master_zipcode", ["STATE"], :name => "STATE"
-  add_index "master_zipcode", ["ZIP_CODE"], :name => "ZIP_CODE"
+  add_index "locations_products", ["location_id"], :name => "location_id"
+  add_index "locations_products", ["product_id"], :name => "product_id"
 
   create_table "news_posts", :force => true do |t|
     t.string   "title"
@@ -303,6 +280,10 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.text     "comment"
   end
 
+  add_index "ratings", ["ratable_id"], :name => "ratable_id"
+  add_index "ratings", ["ratable_type"], :name => "ratable_type"
+  add_index "ratings", ["user_id"], :name => "user_id"
+
   create_table "sliders", :force => true do |t|
     t.string   "title"
     t.string   "url"
@@ -332,19 +313,19 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                    :default => "",    :null => false
-    t.string   "encrypted_password",       :default => "",    :null => false
+    t.string   "email",                                   :default => "",    :null => false
+    t.string   "encrypted_password",                      :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",            :default => 0
+    t.integer  "sign_in_count",                           :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.string   "name"
     t.string   "city"
     t.string   "state"
@@ -358,15 +339,13 @@ ActiveRecord::Schema.define(:version => 20141103085328) do
     t.string   "cover_photo_content_type"
     t.integer  "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
-    t.boolean  "private",                  :default => false
+    t.boolean  "private",                                 :default => false
     t.string   "bio"
-    t.boolean  "pro_account",              :default => false
+    t.boolean  "pro_account",                             :default => false
     t.string   "fname"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "password"
+    t.string   "provider",                 :limit => 10
+    t.string   "uid",                      :limit => 100
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
