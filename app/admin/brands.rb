@@ -22,12 +22,12 @@ ActiveAdmin.register Brand do
   collection_action :select_locations, method: :get do
     if params[:zipcode]
       locs = Location.where(:state => params[:state], :city => params[:city], :zip => params[:zipcode])
-      @locations = locs.pluck(:name).uniq.reject(&:blank?).sort.each_with_index.map { |location,idx| [location, idx] }
+      @locations = locs.map { |loc| [loc.name, loc.id] }
       brand_id = Brand.where(:slug => params[:brand]).pluck(:id)
-      locs_ids = locs.pluck(:id).uniq.reject(&:blank?)
-      brand_locs = BrandsLocation.where(:brand_id => brand_id, :location_id => locs_ids).pluck(:location_id).uniq.reject(&:blank?)
-      brand_locs_names = locs.where(:id => brand_locs).pluck(:name).uniq.reject(&:blank?)
-      @selected_locations = @locations.each.map { |loc| loc[1] if brand_locs_names.include? (loc[0]) }.compact
+      locs_ids = locs.pluck(:id)
+      brand_locs = BrandsLocation.where(:brand_id => brand_id, :location_id => locs_ids).pluck(:location_id)
+      brand_locs_ids = locs.where(:id => brand_locs).pluck(:id)
+      @selected_locations = @locations.each.map { |loc| loc[1] if brand_locs_ids.include? (loc[1]) }.compact
     else
       @locations = [['', '']]
     end
