@@ -71,10 +71,10 @@ class Brand < ActiveRecord::Base
     template.add :id
    end
 
-
   def format_url
   self.website = "http://#{self.url}" unless self.website[/^https?/]    
   end
+
   def selected_parents
     self.locations.where("parent_id is null").pluck(:id)
   end
