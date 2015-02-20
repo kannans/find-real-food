@@ -39,7 +39,7 @@ set :pty, true
  set :unicorn_config, "#{deploy_to}/current/config/unicorn.rb"
  set :unicorn_config_path, "#{deploy_to}/current/config/unicorn.rb"
 
- set :rvm_ruby_version, 'ruby-2.0.0-p576'
+# set :rvm_ruby_version, 'ruby-2.0.0-p576'
 
 namespace :deploy do
 
@@ -73,7 +73,7 @@ namespace :deploy do
         error 'Unicorn process not running'
       end
     end
-  end   
+  end
 
   after "deploy", "deploy:stop"
   after "deploy", "deploy:start"
