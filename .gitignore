@@ -3,3 +3,5 @@ log/*
 .ruby-gemset
 tmp/*
 lib/geocode_cron.rb
+
+import_data/test.xlsx

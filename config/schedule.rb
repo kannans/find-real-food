@@ -12,3 +12,7 @@ set :output, "log/cron.log"
 every 1.day do
 	runner "Location.cron_update"
 end
+
+every 6.hours do
+  rake "import_brand_location:import"
+end

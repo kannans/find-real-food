@@ -248,6 +248,10 @@ GEM
     ref (1.0.5)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
     rspec-collection_matchers (1.0.0)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (2.99.2)
@@ -264,6 +268,8 @@ GEM
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
     ruby-graphviz (1.0.9)
+    ruby-ole (1.2.11.8)
+    rubyzip (1.1.7)
     sass (3.4.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -275,6 +281,8 @@ GEM
     spork-rails (4.0.0)
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
+    spreadsheet (1.0.1)
+      ruby-ole (>= 1.0)
     sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -343,6 +351,7 @@ DEPENDENCIES
   rails_12factor
   ransack
   rb-fsevent
+  roo
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   shoulda-matchers
