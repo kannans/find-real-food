@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '2.1.5'
 
 gem 'rails', '3.2.13'
 gem 'ZenTest', '~> 4.10.1'
@@ -19,6 +20,7 @@ gem 'rails_12factor', group: :production
 gem 'bxslider-rails', '~> 4.1.0'
 gem "koala", "~> 1.10.0rc"
 gem 'whenever', :require => false
+gem 'roo'
 
 group :assets do
   gem 'coffee-script'
