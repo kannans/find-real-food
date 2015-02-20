@@ -212,7 +212,7 @@ function fixHeigh()
                             <% else %>
                                 <%= image_tag (userdetails.avatar.url) %>
                             <% end %>
-                            <span><%= userdetails.fname %> <%= userdetails.name %></span></a></li>
+                            <span><%= userdetails.fname if defined?(userdetails.fname) && userdetails.fname.present? %> <%= userdetails.name %></span></a></li>
                           <li><%= link_to 'My Profile', "/user/profile" %></li>
                              <li><%= link_to 'Edit Profile', "/user/edit" %></li>
                              <li><%= link_to 'Change Password', "/user/editpass" %></li>
